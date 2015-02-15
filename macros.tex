@@ -1,0 +1,39 @@
+% names & full names
+\newcommand{\fsc}{F.\ Scala\xspace}
+\newcommand{\fscf}{Fabio Scala\xspace}
+
+\newcommand{\rli}{R.\ Liebi\xspace}
+\newcommand{\rlif}{Remo Liebi\xspace}
+
+\newcommand{\chu}{C.\ Hüsler\xspace}
+\newcommand{\chuf}{Christoph Hüsler\xspace}
+
+\newcommand{\proff}{Prof.\ Stefan Keller\xspace}
+\newcommand{\prof}{Prof.\ S.\ Keller\xspace}
+
+
+
+% \mytable{cols}{content}{caption}{lbl}
+\newcommand{\mytable}[4]{
+	\begin{table}[H]
+		\centering
+		\begin{tabularx}{\textwidth}{#1}
+			\toprule
+			#2
+			\bottomrule
+		\end{tabularx}
+		\caption{#3}
+\label{tab:#4}
+	\end{table}
+}
+
+
+% uses todonotes
+\newcommand{\xxx}[1][]{
+	\ifthenelse{\equal{#1}{}}{\todo[inline]{TODO}}{\todo[inline]{TODO:\ #1}}	
+}
+
+% pretty url without http://
+\newcommand{\purl}[1]{%
+	\href{#1}{\StrBehind{#1}{http://}}%
+}

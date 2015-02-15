@@ -10,6 +10,7 @@
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
+/main.pdf
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
@@ -85,6 +86,10 @@
 
 # minted
 *.pyg
+*.pygtex
+*.pygstyle
+*.listing
+*.minted
 
 # morewrites
 *.mw
@@ -107,3 +112,19 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# standalone
+*.sta
+
+# index
+*.scrumstory
+*.decisions
+*.pseudocode
+
+# OS
+.DS_Store
+thumbs.db
+Thumbs.db
+
+# other
+node_modules

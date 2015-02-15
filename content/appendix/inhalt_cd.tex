@@ -1,0 +1,71 @@
+\chapter{Inhalt der CD}
+
+%, rounded corners
+\tikzstyle{every node}=[ultra thick,anchor=west, font={\scriptsize\ttfamily}, inner sep=4pt]
+
+\tikzstyle{selected}=[ultra thick, draw=black]
+\tikzstyle{thisdoc}=[ultra thick, selected, draw=red!90!black, fill=red!30]
+\tikzstyle{comment}=[ultra thick, selected, font={\scriptsize}]
+\tikzstyle{root}=[ultra thick, selected, fill=gray!30]
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+	%scale=.7,
+	grow via three points={one child at (1,-0.7) and
+		two children at (1,-0.7) and (1,-1.4)},
+	edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
+	
+	\node [root] {CD}
+	child { node [thisdoc] {sa-poitour\_fscala.pdf {\normalfont$\rightarrow$ Dieses Dokument}}}
+	child { node [selected] {0\_INFO}
+		child { node [comment] {Diverse Info- und Best-Practice Dokumente für die SA}}
+	}
+	child [missing] {}
+	child { node [selected] {1\_AUFGABE}
+		child { node [comment] {Original Aufgabenstellung}}
+	}
+	child [missing] {}
+	child { node [selected] {2\_DOC}
+		child { node [comment] {Quellen der \LaTeX\ Dokumentation inkl. Sitzungsprotokollen}}
+		child { node [selected] {main.pdf}}
+	}
+	child [missing] {}
+	child [missing] {}
+	child { node [selected] {3\_SRC}
+		child { node [selected] {poitour}
+			child { node [selected] {backend}}
+			child { node [selected] {frontend}}
+			child { node [selected] {osrm}}
+			child { node [selected] {install.sh}}
+		}
+	}
+	child [missing] {}
+	child [missing] {}
+	child [missing] {}
+	child [missing] {}
+	child [missing] {}
+	child { node [selected] {4\_DIST}
+		child { node [selected] {frontend}
+			child { node [comment] {''Kompiliertes'' Frontend}}
+		}child [missing] {}
+		child { node [selected] {doc}
+			child { node [comment] {Generierte Sphinx Dokumentation des Backends}}
+		}
+	}
+	child [missing] {}
+	child [missing] {}
+	child [missing] {}
+	child [missing] {}
+	child { node [selected] {5\_ABSTRACT}}
+	child { node [selected] {6\_POSTER}}
+	child { node [selected] {7\_MISC}
+		child { node [selected] {perftest\_osrm.py}}
+		child { node [selected] {perftest\_pgrouting.py}}
+	}	
+	child [missing] {};
+	\end{tikzpicture}
+	\caption{Inhalte der beigefügten CD}
+
+\label{fig:inhalt-cd}
+\end{figure}
