@@ -1,3 +1,8 @@
+language: python
+
+python:
+    - 2.7
+
 env:
     - PATH: /opt/texbin:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
 
@@ -12,6 +17,7 @@ install:
     - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --all
     - sudo /usr/local/texlive/2014/bin/x86_64-linux/texhash
     - cd $TRAVIS_BUILD_DIR
+    - pip install pygments
 
 script:
     - pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
