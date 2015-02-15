@@ -1,6 +1,17 @@
+env:
+    - PATH: /opt/texbin:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
+
 install:
-    - sudo apt-get install texlive-full chktex
-    - sudo tlmgr update --self --all --reinstall-forcibly-removed
+    - cd ..
+    - wget -c http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+    - mkdir texlive
+    - tar -zxf install-tl-unx.tar.gz -C ./texlive --strip-components=1
+    - cd texlive
+    - sudo ./install-tl -profile $TRAVIS_BUILD_DIR/texlive.profile
+    - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --self
+    - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --all
+    - sudo /usr/local/texlive/2014/bin/x86_64-linux/texhash
+    - cd $TRAVIS_BUILD_DIR
 
 script:
     - pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
