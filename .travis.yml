@@ -1,6 +1,6 @@
 install:
-    - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended 
-    - sudo apt-get install chktex
+    - sudo apt-get install texlive-full chktex
+    - sudo tlmgr update --self --all --reinstall-forcibly-removed
 
 script:
     - pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
