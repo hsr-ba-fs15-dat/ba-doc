@@ -14,7 +14,7 @@ install:
   - mkdir texlive
   - tar -zxf install-tl-unx.tar.gz -C ./texlive --strip-components=1
   - cd texlive
-  - sudo ./install-tl -profile $TRAVIS_BUILD_DIR/texlive.profile
+  - sudo ./install-tl -profile $TRAVIS_BUILD_DIR/.travis/texlive.profile
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --self
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/tlmgr update --all
   - sudo /usr/local/texlive/2014/bin/x86_64-linux/texhash
@@ -22,8 +22,5 @@ install:
   - pip install pygments
 
 script:
-  - pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
-  - makeglossaries main
-  - biber main
-  - pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
-  - ./deploy.sh
+  - make
+  - .travis/deploy.sh

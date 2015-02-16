@@ -17,9 +17,8 @@ require('load-grunt-tasks')(grunt);
 
 var latexCallback = function(err, stdout, stderr, cb) {
   if(err) {
-    var errs = stdout.split('! ')
-    errs = errs[errs.length - 1].split('\r\n')
-  
+    var errs = stdout.split('! ');
+    errs = errs[errs.length - 1].split('\n');
     notifier.notify({
       title: 'LaTeX build failed',
       message: errs[0]
@@ -33,38 +32,32 @@ var latexCallback = function(err, stdout, stderr, cb) {
 
 
 grunt.initConfig({
-  latex: ['main.tex'],
   watch: {
     default: {
       files: ['**/*.tex'],
       tasks: ['shell:pdflatex']
     },
     
-    draft: {
+   check: {
       files: ['**/*.tex'],
-      tasks: ['shell:draft']
+      tasks: ['shell:check']
     }
 
   },
   
   shell: {
     pdflatex: {
-      command: 'pdflatex -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex',
+      command: 'make main',
       options: {
         callback: latexCallback
       }
     },
     
-    draft: {
-      command: 'pdflatex -draftmode -interaction=nonstopmode -halt-on-error -shell-escape main.tex',
+    check: {
+      command: 'make no-output',	
       options: {
         callback: latexCallback
       }
-    },
-
-    // pre-compiles preamble for faster latex compilation
-    preamble: {
-      command: 'etex -shell-escape -interaction=nonstopmode -initialize -jobname="precompiled" "&pdflatex" mylatexformat.ltx """main.tex"""'
     }
   
   }
@@ -73,8 +66,7 @@ grunt.initConfig({
 
 
 grunt.registerTask('default', ['watch:default']);
-grunt.registerTask('draft', ['watch:draft']);
-grunt.registerTask('preamble', ['shell:preamble']);
+grunt.registerTask('check', ['watch:check']);
 
 };
 

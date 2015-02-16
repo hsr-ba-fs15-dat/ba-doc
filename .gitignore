@@ -121,6 +121,9 @@ sympy-plots-for-*.tex/
 *.decisions
 *.pseudocode
 
+# precompile preamble
+preamble.fmt
+
 # OS
 .DS_Store
 thumbs.db
