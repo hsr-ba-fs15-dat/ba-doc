@@ -23,6 +23,7 @@ install:
 
 script:
   - make
+  - make protocols
   - ".travis/deploy.sh"
 
 notifications:
