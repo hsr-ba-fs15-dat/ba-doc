@@ -3,16 +3,16 @@
 
 %\RequirePackage[l2tabu, orthodox]{nag}
 
-\documentclass[paper=a4,fontsize=11pt,twoside,openany,final]{scrbook}
+\documentclass{scrbook}
 % http://tex.stackexchange.com/questions/21854/automatically-make-footnote-carrying-pages-vertically-stretchable
 \raggedbottom
 \usepackage[bottom]{footmisc}
 
 \usepackage{style}
-\usepackage[subpreambles=true]{standalone}
+\usepackage[subpreambles=false]{standalone}
 
-\input{./macros.tex}
-\input{./content/glossary_acronyms.tex}
+\input{./macros}
+\input{./content/glossary_acronyms}
 \addbibresource{./bibliography/bibliography.bib}
 
 \newcommand{\version}{\textcolor{red}{DRAFT}}

@@ -12,6 +12,10 @@ preamble:
 main:
 	$(TEX) -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
 
+protocols:
+	cd content/projektmanagement/sitzungsprotokolle/; \
+	find . -name "protokoll-*.tex" -exec $(TEX) -interaction=nonstopmode -halt-on-error -shell-escape {} \;
+
 no-output:
 	$(TEX) -draftmode -interaction=nonstopmode -halt-on-error -shell-escape main.tex
 
