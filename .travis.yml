@@ -5,8 +5,8 @@ python:
 
 env:
   global:
-      - PATH: /opt/texbin:/usr/local/texlive/2014/bin/x86_64-linux:$PATH
-      - secure: BqTquD24xLwjcQ/zgFx9yApUvDMrn5tncC8sEe0J41ozQiGIqIz78SRHda8G89gXuQSrS33gJeZJe2mcsQArfw7rbn034ee9Tcn3S+OFNFNWPN5tG9+OCnrSRRGD48NRiBpdkOYG5gWLXvOolCm9PBrxZik0QPFnOJ06y2WwfaM=
+    - PATH: "/opt/texbin:/usr/local/texlive/2014/bin/x86_64-linux:$PATH"
+    - secure: BqTquD24xLwjcQ/zgFx9yApUvDMrn5tncC8sEe0J41ozQiGIqIz78SRHda8G89gXuQSrS33gJeZJe2mcsQArfw7rbn034ee9Tcn3S+OFNFNWPN5tG9+OCnrSRRGD48NRiBpdkOYG5gWLXvOolCm9PBrxZik0QPFnOJ06y2WwfaM=
 
 install:
   - cd ..
@@ -23,4 +23,8 @@ install:
 
 script:
   - make
-  - .travis/deploy.sh
+  - ".travis/deploy.sh"
+
+notifications:
+  slack:
+    secure: DZ6bF+lgkE5b/YgAmp5e2+D3QdUkl/O9BatmRm/WUL0g/kV7khlvY9W9PDjGTQNgxJc0B472xpGx1yBe834vS/wK9+XGnoERqjpbX4qcMP4uUHzJk7FpMq1bJNTXZeE5NnfgX4G6uliFEixvB66ljtdLLsNLYpKYCX0WR68PHHc=
