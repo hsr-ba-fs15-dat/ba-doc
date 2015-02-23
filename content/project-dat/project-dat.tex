@@ -2,17 +2,49 @@
 
 \chapter{Einführung}
 
-\section{Was ist dat?}
+In der heutigen Gesellschaft wird der Austausch von Daten immer wichtiger. Vermehrt bieten werden grosse Datenmengen unterschiedlichster Art - aus Forschung, Regierung oder zivilen Kreisen - zur allgemeinen Verwendung angeboten. Nicht nur die Art der Daten ist jedoch vielfältig, sondern auch Datenformat oder Zugriffsart unterscheiden sich.
+
+Das \gls{dat}-Projekt will die Integration verschiedener solcher Datenquellen vereinfachen.
+
+\section{Was ist dat?} % https://github.com/maxogden/dat/blob/master/docs/what-is-dat.md
+
+Das dat-Projekt hat folgende Ziele: 
+
+\begin{itemize}
+\item Daten sollen automatisch zwischen unterschiedlichen dat-Instanzen synchronisiert werden können. 
+\item Unterstützung grosser Datenmengen (Milliarden von Datensätzen bzw. Speicherbedarf im TB-Bereich), evtl. mit häufigen Aktualisierungen
+\item Unterstützung von Daten in Tabellenform oder unstrukturiert
+\item Plugin-basierte Schnittstelle zu bestehenden Datenbanken/formaten
+\item Unterstützung für automatisierte Workflows
+\end{itemize}
 
 \section{Architektur}
 % diagramm, requirements, interfaces, ...
 
-\section{Use Cases}
-% wofür zum teufel ist das teil gedacht. einige use cass sind online beschrieben
+\xxx[Architektur-doc finden]
+
+\section{Use Cases} % wofür zum teufel ist das teil gedacht. einige use cass sind online beschrieben
+
+\subsection{Astronomie: Trillian} % https://github.com/maxogden/dat/issues/172, https://github.com/trillian/trillian
+In der Astronomie fallen riesige Datenmengen an. Teilweise werden diese als grosse Daten-Releases zur Verfügung gestellt (z.B. Sloan Digital Sky Survey), welche frühere Releases komplett ersetzen. Andere Projekte stellen inkrementelle Updates zur Verfügung (z.B. Hubble). Viele Astronomie-Institute haben weder die Mittel noch das Know-How, mit solchen Datenmengen umgehen zu können. Das Trillian-Projekt kümmert sich um die Verwaltung dieser Daten und bietet eine Compute-Engine an, um neue Modelle anhand der vorhandenen Daten zu testen.
+
+dat soll für den Import und die Indexierung der Daten verwendet werden.
+
+\subsection{Regierung: Sammlung von Daten} % https://github.com/maxogden/dat/issues/153
+Für Statistik- oder Regulierungszwecke sammeln Regierungen Daten von unterschiedlichsten Betrieben. Diese Daten müssen oft über ein mehr oder weniger brauchbares Portal abgeliefert werden.
+
+Die Verwendung von dat bringt folgende Vorteile:
+\begin{itemize}
+\item Ermöglicht die Prüfung von Daten beim Import, bereits vor der Ablieferung der Daten
+\item Ermöglicht Ergänzung oder Korrektur von bereits abgelieferten Daten.
+\item Ersatz der bisher verwendeten, für jede Regierungsstelle neu kreierten und teuren, Portale durch eine standardisierte Lösung.
+\end{itemize}
 
 \chapter{Erweiterung}
 
-\section{Datscript}
+\section{Datskript}
+
+\section{Gasket}
 
 %https://github.com/datproject/datscript
 
