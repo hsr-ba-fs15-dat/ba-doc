@@ -24,14 +24,25 @@ Für den Umgang mit verschiedenen Datenformaten können Transformationen definie
 \section{Architektur}
 % diagramm, requirements, interfaces, ...
 
+% http://dat-data.com/docs.html: "Q:If I have multiple different tables that I want to store, would I create a separate dat repo for each? Can a single dat repo store multiple tables? A: Each dat repo is only one table."
+
 \xxx[Architektur-doc finden/erstellen]
 
 \section{Use Cases} % wofür zum teufel ist das teil gedacht. einige use cass sind online beschrieben
 
-\subsection{Astronomie: Trillian} % https://github.com/maxogden/dat/issues/172, https://github.com/trillian/trillian
+\subsection{Astronomie: Trillian} 
+% https://github.com/maxogden/dat/issues/172
+% https://github.com/trillian/trillian
+% http://trillianverse.com (nicht verfügbar 2015-02-23)
 In der Astronomie fallen riesige Datenmengen an. Teilweise werden diese als grosse Daten-Releases zur Verfügung gestellt (z.B. Sloan Digital Sky Survey), welche frühere Releases komplett ersetzen. Andere Projekte stellen inkrementelle Updates zur Verfügung (z.B. Hubble). Viele Astronomie-Institute haben weder die Mittel noch das Know-How, mit solchen Datenmengen umgehen zu können. Das Trillian-Projekt kümmert sich um die Verwaltung dieser Daten und bietet eine Compute-Engine an, um neue Modelle anhand der vorhandenen Daten zu testen.
 
 dat soll für den Import und die Indexierung der Daten verwendet werden.
+
+\subsection{Biologie: Integration verschiedener Datenquellen} 
+% https://github.com/maxogden/dat/issues/129
+Unterschiedliche Datenbanken (USA: Gene Expression Omnibus, EU: ArrayExpress), unterschiedliche Datentypen. Anforderung: Integration der Daten von den verschiedenen Quellen, Query
+
+\xxx[Ausformulieren]
 
 \subsection{Regierung: Sammlung von Daten} % https://github.com/maxogden/dat/issues/153
 Für Statistik- oder Regulierungszwecke sammeln Regierungen Daten von unterschiedlichsten Betrieben. Diese Daten müssen oft über ein mehr oder weniger brauchbares Portal abgeliefert werden.
@@ -45,16 +56,135 @@ Die Verwendung von dat bringt folgende Vorteile:
 
 \chapter{Erweiterung}
 
-\section{Datskript}
+\section{Datscript} %https://github.com/datproject/datscript
+Auf der Website des dat-Projektes wird Datscript als Modul zur Erstellung von Daten-Pipelines erwähnt. Im verlinkten Git-Repository ist jedoch lediglich eine Serie von Beispielen zu finden, mit dem letzten Commit vom November 2014 (Stand 23. Februar 15).
 
-\section{Gasket}
+In aktuelleren Diskussionen wird für Pipelines jeweils auf Gasket verwiesen.
 
-%https://github.com/datproject/datscript
+\section{Gasket} % https://github.com/datproject/gasket
+Gasket ist eine Node.js-basierte Pipeline-Engine. Die Konfiguration geschieht entweder im JSON-Format direkt in package.json, oder aber in einem Node.js-Modul. Unterstützt wird die Ausführung von externen Programmen, oder die Verwendung von Node.js-Modulen.
 
 \section{Schnittstellen / API}
 
 \subsection{REST}
-%https://github.com/maxogden/dat/blob/master/docs/rest-api.md
+% https://github.com/maxogden/dat/blob/master/docs/rest-api.md
+
+Der dat-Server kann von jeder dat-Instanz durch \mintinline{console}{$ dat listen} gestartet werden.
+
+dat implementiert aktuell nur HTTP Basic Authentication mit einem einzelnen Benutzer, welcher in dat.json konfiguriert werden kann. 
+
+Falls ein Admin-Benutzer konfiguriert ist, können nur angemeldete Sessions Daten ändern, es können jedoch immer noch alle Daten von allen Benutzern gelesen werden.
+% https://github.com/maxogden/dat/blob/master/docs/dat-json-config.md#adminuser-adminpass
+
+SSL wird bisher nicht unterstützt.
+
+\paragraph{GET /}
+Liefert die dat-editor Webapplikation aus.
+
+\paragraph{GET /api} Liefert allgemeine Informationen zur dat-Instanz
+\begin{srclst}{json}{GET /api}
+    {
+        "dat":"Hello",
+        "version":"6.9.6",
+        "changes":2,
+        "name":"dat-test",
+        "rows":53,
+        "approximateSize":{
+            "rows":"3 kB"
+        }
+    }
+\end{srclst}
+
+\paragraph{GET /api/rows} 
+Liefert eine Liste von Einträgen (Default: 50 Einträge).
+% http://www.fakenamegenerator.com/gen-random-gr-sz.php ftw
+\begin{srclst}{json}{GET /api/rows}
+{
+    "rows": [
+        {
+            "prename":"Leonie", "surname":"Hahn", 
+            "street":"Via Camischolas sura", "nr":"86", 
+            "zip":"1135", "city":"Denens", 
+            "key":"ci6huzf52000057coxym5lgy7", "version":1
+        },
+        {
+            "prename":"Manuela", "surname":"Eichel", 
+            "street":"Vallerstrasse", "nr":"115",
+            "zip":"3765", "city":"Pfaffenried", 
+            "key":"ci6hv0d0a00005vco99jxr7w0", "version":1
+        },
+        //...
+    ]
+}
+\end{srclst}
+
+\paragraph{GET /api/rows/:key}
+Liefert den Eintrag mit dem angegebenen Schlüssel, oder eine Fehlermeldung.
+
+\begin{srclst}{json}{GET /api/rows/ci6huzf52000057coxym5lgy7}
+{
+    "prename":"Leonie", "surname":"Hahn", 
+    "street":"Via Camischolas sura", "nr":"86", 
+    "zip":"1135", "city":"Denens", 
+    "key":"ci6huzf52000057coxym5lgy7", "version":1
+}
+\end{srclst}
+
+\paragraph{POST /api/rows}
+Fügt einen neuen Datensatz hinzu. Die Daten müssen als JSON vorliegen.
+
+Die Antwort besteht entweder aus einer Konflikt-Meldung, oder aus dem neu hinzu gefügten Datensatz.
+
+\begin{srclst}{console}{POST /api/rows}
+$ curl -H 'Content-Type: application/json' -d '{"prename":"Markus", "surname":"Maier", "street":"Dreibündenstrasse", "nr":"135", "zip":"6774", "city":"Dalpe"}' -X POST localhost:6461/api/rows
+{"prename":"Markus", "surname":"Maier", "street":"Dreibündenstrasse", "nr":"135", "zip":"6774", "city":"Dalpe", "key":"ci6hw717u0004x0cocfquv0j9", "version":1}
+\end{srclst}
+
+\paragraph{GET /api/rows/:key/:filename}
+Liefert das Blob mit dem entsprechenden Filenamen, oder eine Fehlermeldung falls nicht verfügbar.
+
+\paragraph{POST /api/rows/:key/:filename}
+Fügt ein neues Blob zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \mintinline{http}{POST /api/rows/foo/photo.jpg?version=1 HTTP/1.1}
+
+\paragraph{GET /api/session}
+Liefert Informationen zur aktuellen Session. Dieser Aufruf kann auch zur Anmeldung per Basic Authentication verwendet werden.
+
+\paragraph{GET /api/login}
+Selbe Funktionalität wie /api/session, setzt jedoch den HTTP-Header ``Basic realm="Secure Area"'', so dass Browser ein Login-Fenster anzeigen.
+
+\paragraph{GET /api/logout}
+Zerstört die aktuelle Session und entfernt Client-Side Cookies.
+
+\paragraph{GET /api/changes}
+Liefert eine Json-formatierte Version des Change Streams (siehe auch JavaScript-API createChangesStream) \xxx[proper ref]
+
+\paragraph{GET /api/csv}
+Liefert eine CSV-Datei mit der letzten Version der Daten.
+
+\paragraph{POST /api/bulk}
+Ermöglicht das Einfügen von mehreren Datensätzen gleichzeitig. Unterstützt werden JSON (Content-Type \texttt{application/json}) und CSV (Content-Type \texttt{text/csv}).
+
+Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-Objekten mit Key und Version für die neu eingefügten Datensätze, andernfalls aus einem HTTP-Fehler.
+
+\begin{srclst}{json}{GET /api/metadata}
+{
+    "changes":15, 
+    "liveBackup":false, 
+    "columns":["prename","surname","street","nr","zip","city","version:"]
+}
+\end{srclst}
+
+\paragraph{GET /api/manifest}
+Liefert ein JSON-Objekt mit Informationen zum DB-Backend. Dies wird für RPC verwendet (siehe nächsten Befehl).
+
+\paragraph{POST /api/rpc}
+Ein Server-Endpunkt für multilevel (ein Node.js-Modul).
+
+\paragraph{GET /api/metadata}
+Liefert Informationen zum Schema. Diese Daten werden während der Replikation verwendet.
+
+\paragraph{GET /api/replicater/receive und GET /api/replicator/send}
+Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
@@ -64,4 +194,3 @@ Die Verwendung von dat bringt folgende Vorteile:
 
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
-
