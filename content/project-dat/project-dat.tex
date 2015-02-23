@@ -254,25 +254,44 @@ Folgende Datentypen sind möglich:
 %https://github.com/pkafei/Dat-Python
 
 
-Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche einige Grundlegende Operationen mittels \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
+Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende Grundlegende Operationen mittels \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
+
+\begin{description}
+	\item[\path{info()}] Generelle Informationen über das \gls{dat} Repository.
+	\item[\path{diff()}] Gibt alle Änderungen zurück.
+	\item[\path{csv()}] Gibt die Daten aus dem dat Repository als \gls{csv} formatierte Zeichenkette zurück.
+	\item[\path{rows()}] Gibt alle Zeilen im dat Repository zurück.
+	\item[\path{dict()}] Dasselbe wie \path{rows()} jedoch als Dictionary.
+	\item[\path{put_json()}] Importiert alle Datensätze einer JSON Datei.
+	\item[\path{put_csv()}] Importiert alle Datensätze einer \gls{csv} Datei.
+\end{description}
 
 datPython ist zurzeit lediglich ein minimaler HTTP Wrapper und besteht aus knapp 60 Programmcodezeilen. Die Installation mittels \gls{pypi} bzw. \texttt{pip} wäre zwar möglich, jedoch nicht Funktionsfähig. Bei Verwendung dieses noch kleinen Moduls wäre die Erstellung eines eigenen Forks zum jetzigen Zeitpunkt die beste Lösung.
 
-\begin{srclst}{python}{Kurzübersicht aller datPython Methoden}
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+\begin{srclst}{pycon}{datPython Verwendung}
+>>> from datPython import Dat
+>>> dat = Dat('http://7hhtoqpk6c8wu3di.c.try-dat.com')
 
-from datPython import Dat
+>>> dat.info()
+{"dat":"Hello","version":"6.8.4","changes":2,"name":"root","rows":1,"approximateSize":{"rows":"502 B"}}
 
-dat = Dat('http://7hhtoqpk6c8wu3di.c.try-dat.com')
-print 'info():', dat.info()
-print 'diff():', dat.diff()
-print 'session()', dat.session()
-print 'csv()', dat.csv()
-print 'rows()', dat.rows()
-print 'dict():', dat.dict()
+>>> dat.diff()
+{"change":1,"key":"schema","from":0,"to":1,"subset":"internal"}
+{"change":2,"key":"ci6i1errr000012t5m9ggeh6h","from":0,"to":1}
 
-dat.put_json('test.json')
-dat.put_csv('test.csv')
+>>> dat.csv()
+key,version,name,age
+ci6i1errr000012t5m9ggeh6h,1,alice,35
+
+>>> dat.rows()
+{"rows": [
+	{"name":"alice","age":"35","key":"ci6i1errr000012t5m9ggeh6h","version":1}
+	]}
+
+>>> dat.dict()
+{u'rows': [{u'age': u'35', u'version': 1, u'name': u'alice', u'key': u'ci6i1errr000012t5m9ggeh6h'}]}
+
+>>> dat.put_json('test.json')
+>>> dat.put_csv('test.csv')
 \end{srclst}
 
