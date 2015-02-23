@@ -188,6 +188,64 @@ Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
+dat ist ein Node.js-Modul.
+
+\begin{srclst}{js}{Laden des dat-Moduls}
+var dat = require('dat')
+\end{srclst}
+
+\paragraph{Konstruktor}
+
+Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Parameter sind optional.
+
+\begin{srclst}{js}{Konstruktor}
+var db = dat([path], [options], [onReady])
+\end{srclst}
+
+\begin{description}
+\item[path (string)] Pfad zum Verzeichnis, welches das \texttt{.dat}-Verzeichnis enthält. Falls kein \texttt{.dat}-Verzeichnis existiert wird ein neues erstellt. Default ist \mintinline{js}{process.cwd()}.
+\item[options (object)] Weitere Konfigurations-Parameter:
+    \begin{description}
+    \item[init] Wenn \mintinline{js}{false} erstellt dat keine neue Datenbank beim Initialisieren. Default: \mintinline{js}{true}.
+    \item[storage] Wenn \mintinline{js}{false} versucht dat nicht, die Datenbank zu lesen beim Initialisieren. Default: \mintinline{js}{true}.
+    \item[path] Alternative zum Konstruktor-Argument.
+    \item[adminUser, adminPass] Wird als Benutzer/Passwort verwendet fúr HTTP Basic Authentication wenn beide konfiguriert sind.
+    \item[leveldown] Benutzerdefiniertes \texttt{leveldown}-Backend. Default: \mintinline{js}{require('leveldown-prebuilt')}
+    \item[db] Benutzerdefinierte \texttt{levelup}-Instanz. Wenn diese Option vorhanden ist wird die \texttt{leveldown}-Option ignoriert und alle Tabellen-basierte Daten werden in dieser DB-Instanz gespeichert.
+    \item[blobs] Benutzerdefinierte \texttt{blob}-Datenbank. Default: \mintinline{js}{require('lib/blobs.js')}
+    \item[replicator] Benutzerdefinierte Replicator-Instanz. Default: \mintinline{js}{require('lib/replicator.js')}
+    \item[remoteAddress] Falls angegeben started dat im RPC Client-Modus. Default: \mintinline{js}{undefined}
+    \item[manifest] Wenn \texttt{remoteAddress} gesetzt ist wird dies als Manifest für RPC verwendet.
+    \item[skim] Wenn \mintinline{js}{true} wird lazy auf Blobs von einer nicht-lokalen Quelle zugegriffen. Default: \mintinline{js}{false}.
+    \item[transformations] siehe unten
+    \item[hooks] siehe unten
+    \end{description}
+\item[onReady (err) $\to$ ()] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
+\end{description}
+\xxx[Syntax für Funktionsaufrufe festlegen]
+
+\paragraph{Transformationen}
+Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen ausgeführt werden. Die Konfiguration erfolgt über den \texttt{options}-Parameter im Konstruktor.
+
+\begin{srclst}{js}{Beispiel einer Transformations-Konfiguration}
+{
+  "transformations": {
+    "get": "transform-uppercase",
+    "put": [{"module": "./lowercase-stream.js"}]
+  }
+}
+\end{srclst}
+
+Folgende Datentypen sind möglich:
+\begin{description}
+\item[string] Ausführbarer Befehl, um die Daten zu transformieren. Der Befehl erhält durch Zeilenumbrüche getrennte JSON-Datensätze (NDJSON) in \texttt{STDIN}. Nach der Transformation werden die Daten wieder als JSON auf \texttt{STDOUT} erwartet.
+\item[object] Objekt mit einem der folgenden Feldern:
+    \begin{description}
+    \item[command] Gleiche Funktionalität wie oben
+    \item[module] Per \mintinline{js}{require()} ladbares Node.js-Modul. Das Modul muss einen Streams2-Passthrough Stream exportieren mit \mintinline{js}{objectMode: true}.
+    \end{description}
+\item[array] Array von Transformationen, welche nacheinander ausgeführt werden.
+\end{description}
 
 \subsection{CLI}
 %https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
