@@ -8,6 +8,8 @@
 
 \chapter{Risiken}\label{sec:risiken}
 
+Für die Abschätzung der Projektrisiken wurde auf existierende \cite{risk} Risikochecklisten gesetzt um möglichst keine potenziellen Risiken bei der Analyse auszulassen. Die sehr umfangreiche Risikoliste von \citeauthor{Wallace:2004:SPR:975817.975819} \cite{Wallace:2004:SPR:975817.975819} wurde mit den bekannten Top Zehn Software-Projektrisiken aus dem Jahre \citeyear{boehm} \cite{boehm} sowie mit eigenen, Projektspezifischen Risiken ergänzt.
+Auch die aus der Sicht des Teams, für das Projekt nicht relevante Risiken, wurden protokolliert und gelten als Nachweis, dass auch diese miteinbezogen und nicht etwa ignoriert oder gar vergessen wurden.
 
 \newpage
 \begin{landscape}
@@ -19,6 +21,66 @@
 	\end{table}
 \end{landscape}
 \newpage
+
+
+\section{Kritische Risiken}
+Nach bzw. während der Einarbeitung in \gls{dat} wurde eine erste Abschätzung der Risiken vorgenommen. Alle irrelevanten oder ausschliessbare Risiken wurden dabei einer Eintrittswahrscheinlichkeit und Schadenspotenzial von 0 bewertet.
+
+Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren Massnahmen genauer beschrieben. Schon jetzt ist klar, dass das grösste Risiko das Projekt \gls{dat} selbst ist.
+
+
+\begin{tabularx}{\linewidth}{lX}
+	\toprule
+	Risiko & R02\\
+	\midrule
+	Titel & Konflikte im Team\\
+	Beschreibung & Das Projektteam kennt sich erst seit kurzem und hat davor noch nie zusammengearbeitet. Somit besteht ein erhöhten Risiko von Meinungsverschiedenheiten während des Projektverlaufs.\\
+	Prävention/Massnahme & Frühzeitige Kontaktaufnahme mit dem Betreuer falls die Konflikte nicht intern gelöst werden können.\\
+	\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{lX}
+	\toprule
+	Risiken & R10, R12, R13\\
+	\midrule
+	Titel & Verwendung neuer oder unreifer Technologien\\
+	Beschreibung & Es werden unreife ''bleeding Edge'' Technologien verwendet welche die Entwicklung und Handhabung erheblich erschweren. Siehe auch \gls{dat}-spezifische Risiken R31, R32 und R33.\\
+	Prävention/Massnahme & Es werden vor allem Technologien verwendet die dem Team bereits bekannt sind oder das Risiko durch eine Kurzevaluation reduziert.\\
+	\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{lX}
+	\toprule
+	Risiko & R31\\
+	\midrule
+	Titel & \gls{dat} erfüllt nicht die Anforderungen\\
+	Beschreibung & \gls{dat} und dessen Funktionalität ist nur sehr spärlich beschrieben. Selbst dem Auftraggeber ist der Umfang von \gls{dat} nicht vollständig bekannt. Es besteht das Risiko, dass \gls{dat} sich nicht für die Use Cases der Aufgabenstellung eignet.\\
+	Prävention/Massnahme & Da es sich bei dieser Arbeit unter Anderem spezifisch um eine Evaluation von \gls{dat} und dessen Möglichkeiten handelt, ist eine Evaluation von alternativen Technologien zunächst zu vermeiden. Durch eine frühzeitige Einarbeitung in \gls{dat} mit kleineren Prototypen/Use Cases soll die Machbarkeit abgeschätzt werden.\\
+	\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{lX}
+	\toprule
+	Risiko & R32\\
+	\midrule
+	Titel & \gls{dat} ist zu unreif. Fehlende Dokumentation.\\
+	Beschreibung & \gls{dat} besitzt viele unbekannte Fehler und die Dokumentation ist unzureichend. Bereits während des ersten Sprints hat die spärliche Dokumentation von \gls{dat} zu Bedenken im Team geführt.\\
+	Prävention/Massnahme & Dasselbe wie bei R31\\
+	\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{lX}
+	\toprule
+	Risiko & R33\\
+	\midrule
+	Titel & \gls{dat} wird nicht weiterentwickelt\\
+	Beschreibung & Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community nicht weiterentwickelt.\\
+	Prävention/Massnahme & Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.\\
+	\bottomrule
+\end{tabularx}
+
+
+
 
 \chapter{Entwicklungsumgebung}
 
