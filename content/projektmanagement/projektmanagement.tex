@@ -1,32 +1,124 @@
 \part{Projektmanagement}
 
 \chapter{Vorgehensmodell}
+Als Vorgehensmodell für die \acl{ba} wurde Scrum verwendet. Scrum ist ein agiles, iteratives Modell, welches sich aufgrund dessen Einfachheit und nicht besonders strikter Vorgaben sehr gut für kleinere, gut überschaubare Projekte eignet. Scrum basiert wie viele andere agile Projektmanagementmethoden auf den vier Grundsätzen die im Agilen Manifest~\cite{agilemanifesto} beschrieben sind:
+
+\begin{itemize}
+	\item Individuals and interactions over processes and tools
+	\item Working software over comprehensive documentation
+	\item Customer collaboration over contract negotiation
+	\item Responding to change over following a plan
+\end{itemize}
+
+Wobei der Punkt \blockquote{Working software over comprehensive documentation} aufgrund der Tatsache, dass es sich um eine akademische Arbeit handelt, vernachlässigt wird.
+
+\section{Rollen}
+\mytable{lX}{
+	\textbf{Rolle}  & \textbf{Beschreibung}\\
+	\midrule
+	
+	\textbf{Product Owner} & Der Product Owner bestimmt die Anforderungen (User Stories) und priorisiert diese. Die Priorität gibt an, welche User Stories es im nächsten Sprint zu erledigt gilt.\\
+	
+	\textbf{Team} & Das Team besteht aus allen für das Projekt tätige Entwickler.\\
+	
+	\textbf{Scrum Master} & Der Scrum Master kümmert sich um die fortlaufende Kontrolle des Fortschritts sowie Optimierungsmöglichkeiten. In der Praxis ist er zudem für die Leitung der Daily Scrum Meetings, welche in diesem Projekt wegfallen, zuständig.\\
+}{Scrum Projektrollen}{scrum-roles}
+
+\section{Artefakte}
+\mytable{lX}{
+	\textbf{Artefakt}  & \textbf{Beschreibung}\\
+	\midrule
+	
+	\textbf{Product Backlog} & Der Product Backlog enthält alle noch nicht abgeschlossenen User Stories des Projekts. Vor Beginn des neuen Sprints werden die noch offenen User Stories vom Product Owner repriorisiert und dessen Aufwand vom Team geschätzt.\\
+	
+	\textbf{Sprint Backlog} & Der Sprint Backlog enthält alle für einen bestimmten Sprint ausgewählte User Stories. Das Team setzt die Quantität fest und der Product Owner bestimmt den Inhalt und somit welche User Stories in den nächsten Sprint einfliessen.\\
+	
+	\textbf{Burndown Charts} & Mittels Jira werden laufend die Ist- und Sollstunden des Sprints addiert und daraus ein regressives Diagramm erstellt. Dies soll aufzeigen wie man zeitlich steht um mögliche Zeitprobleme zu vermeiden.\\
+}{Scrum Artefakte}{scrum-artifacts}
+
+\section{Sprints}
+
+Die Iterationen, bei Scrum Sprint genannt und in \cref{fig:scrum} dargestellt, dauerten mit Ausnahme der ersten Woche jeweils zwei Wochen. So konnte, wie bei Scrum üblich, zum Ende jedes Sprints ein Deliverable, sei es eine lauffähige Applikation oder ein anderes Resultat, zur Verfügung gestellt werden.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/scrum}
+	\caption[Scrum Sprint]{Scrum Sprint \cite{scrum}}
+	\label{fig:scrum}
+\end{figure}
 
 
 \chapter{Rollen und Verantwortlichkeiten}
 
+\section{\proff}
+
+\begin{minipage}[t]{0.25\textwidth}
+	\vspace{0pt}
+	\includegraphics[width=0.8\textwidth]{fig/sfkeller}
+\end{minipage}
+\begin{minipage}[t]{0.8\textwidth}
+	\vspace{0pt}
+	\prof, Mitarbeiter des \gls{ifs} und Dozent an der \gls{hsr} übernimmt im Projekt eine Doppelrolle:
+	\begin{itemize}
+		\item Als Experte bzw. Betreuer übernimmt er eine die Aufsicht und Bewertung der \acl{ba}
+		\item und als fiktiver Kunde die Kontaktperson zur Aufnahme der Anforderungen (Product Owner).
+	\end{itemize}
+\end{minipage}
+
+
+\section{\rlif}
+\xxx
+\begin{minipage}[t]{0.25\textwidth}
+	\vspace{0pt}
+	%\includegraphics[width=0.8\textwidth]{fig/rliebi}
+\end{minipage}
+\begin{minipage}[t]{0.8\textwidth}
+	\vspace{0pt}
+	\rlif, \lipsum[1]
+\end{minipage}
+
+\section{\chuf}
+\xxx
+\begin{minipage}[t]{0.25\textwidth}
+	\vspace{0pt}
+	%\includegraphics[width=0.8\textwidth]{fig/chuesler}
+\end{minipage}
+\begin{minipage}[t]{0.8\textwidth}
+	\vspace{0pt}
+	\chuf, \lipsum[1]
+\end{minipage}
+
+
+\section{\fscf}
+\begin{minipage}[t]{0.25\textwidth}
+	\vspace{0pt}
+	\includegraphics[width=0.8\textwidth]{fig/fscala}
+\end{minipage}
+\begin{minipage}[t]{0.8\textwidth}
+	\vspace{0pt}
+	\fscf, Teilzeitstudent an der \gls{hsr} und Banking Software Engineer bei Swisscom IT Serivces, ist Teil des Entwicklungsteams und übernimmt zusätzlich die Rolle des Scrum Masters.
+\end{minipage}
 
 \chapter{Risiken}\label{sec:risiken}
 
 Für die Abschätzung der Projektrisiken wurde auf existierende \cite{risk} Risikochecklisten gesetzt um möglichst keine potenziellen Risiken bei der Analyse auszulassen. Die sehr umfangreiche Risikoliste von \citeauthor{Wallace:2004:SPR:975817.975819} \cite{Wallace:2004:SPR:975817.975819} wurde mit den bekannten Top Zehn Software-Projektrisiken aus dem Jahre \citeyear{boehm} \cite{boehm} sowie mit eigenen, Projektspezifischen Risiken ergänzt.
 Auch die aus der Sicht des Teams, für das Projekt nicht relevante Risiken, wurden protokolliert und gelten als Nachweis, dass auch diese miteinbezogen und nicht etwa ignoriert oder gar vergessen wurden.
 
-\newpage
 \begin{landscape}
-	\begin{table}
+	\begin{table}[H]
 		\centering
-		\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{risikoanalyse.pdf}
+		\includegraphics[height=.9\textheight,keepaspectratio]{risikoanalyse.pdf}
 		\caption{Alle berücksichtigten Risiken}
 		\label{tab:risikoanalyse}
 	\end{table}
 \end{landscape}
-\newpage
+
 
 
 \section{Kritische Risiken}
 Nach bzw. während der Einarbeitung in \gls{dat} wurde eine erste Abschätzung der Risiken vorgenommen. Alle irrelevanten oder ausschliessbare Risiken wurden dabei einer Eintrittswahrscheinlichkeit und Schadenspotenzial von 0 bewertet.
 
-Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren Massnahmen genauer beschrieben. Schon jetzt ist klar, dass das grösste Risiko das Projekt \gls{dat} selbst ist.
+Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren Massnahmen genauer beschrieben. Schon jetzt ist klar, dass das grösste Risiko das Projekt \gls{dat} selbst darstellt.
 
 
 \begin{tabularx}{\linewidth}{lX}
@@ -104,7 +196,7 @@ Um die Qualität der umgesetzten Tasks zu erhöhen und sicherzustellen wurde ein
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\linewidth]{content/projektmanagement/fig/jira-workflow}
+\includegraphics[width=0.7\linewidth]{fig/jira-workflow}
 \caption{Jira Review-Workflow}
 \label{fig:jira-workflow}
 \end{figure}
