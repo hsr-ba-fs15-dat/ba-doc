@@ -54,6 +54,19 @@ Die Verwendung von dat bringt folgende Vorteile:
 \item Ersatz der bisher verwendeten, für jede Regierungsstelle neu kreierten und teuren, Portale durch eine standardisierte Lösung.
 \end{itemize}
 
+\subsection{Verwendung}
+\xxx[move to fazit]
+Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
+\begin{itemize}
+\item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
+\item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
+\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes gemerged.
+\end{itemize}
+
+Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
+
+Wir entschieden uns daher, auf die Verwendung von dat zu verzichten, und allenfalls ein anderes/eigenes Synchronisations-Protokoll zu verwenden.
+
 \chapter{Erweiterung}
 
 \section{Datscript} %https://github.com/datproject/datscript
@@ -496,7 +509,7 @@ datPython ist zurzeit lediglich ein minimaler HTTP Wrapper und besteht aus knapp
 >>> dat = Dat('http://7hhtoqpk6c8wu3di.c.try-dat.com')
 
 >>> dat.info()
-{"dat":"Hello","version":"6.8.4","changes":2,"name":"root","rows":1,"approximateSize":{"rows":"502 B"}}
+{"dat":"Hello","version":"6.8.4","changes":2,"name":"root","rows":1, "approximateSize":{"rows":"502 B"}}
 
 >>> dat.diff()
 {"change":1,"key":"schema","from":0,"to":1,"subset":"internal"}
