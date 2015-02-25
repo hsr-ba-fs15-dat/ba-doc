@@ -270,7 +270,7 @@ Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} unbedingt auf
 \paragraph{\texttt{\parahighlight{get}(key, [options], callback: (error, value))}}
 Findet den zum Key gehörenden Datensatz, falls vorhanden, und übergibt das Resultat an den callback.
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
 \begin{description}
 \item[version] Erlaubt das finden einer spezifischen Version. Default: aktuellste Version.
 \end{description}
@@ -283,7 +283,7 @@ Fügt einen neuen Datensatz in die Datenbank ein. Der Key kann optional als Para
 Bereits bestehende Einträge werden nur überschrieben, wenn \texttt{value.version} mit der aktuellsten in der Datenbank existierenden Version übereinstimmt. Andernfalls tritt ein Konflikt-Fehler auf.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[force] Wenn \mintinline{js}{true} wird der Versions-Check übersprungen und Konflikte ignoriert. Für die neuen Daten wird eine neue Version erzeugt.
     \end{description}
@@ -302,7 +302,7 @@ Liefert einen lesbaren Stream \footnote{https://github.com/rvagg/node-levelup\#c
 Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[start] Start-Key. Default: Erster Key.
     \item[end] End-Key. Default: Letzter Key.
@@ -318,7 +318,7 @@ Liefert einen lesbaren Stream \footnote{\url{https://github.com/rvagg/node-level
 Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \mintinline{js}{createValueStream} unterstützt die selben Optionen wie \mintinline{js}{createReadStream}, sowie zusätzlich folgende:
     \begin{description}
     \item[format] Wenn diese Option auf \mintinline{js}{csv} oder \mintinline{js}{json} gesetzt wird, werden die Daten serialisiert anstatt als Objekte geliefert.
@@ -340,7 +340,7 @@ Optionen sind identisch zu \mintinline{js}{createReadStream}.
 Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die Form \texttt{{change: changeId, key: key, version: number}}.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[data] Wenn \mintinline{js}{true} enthalten die gelieferten Objekte das Attribut \mintinline{js}{value}. Default: \mintinline{js}{false}.
     \item[since] Change-Id, ab welcher Daten geliefert werden sollen. Default: 0.
@@ -356,7 +356,7 @@ Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die 
 Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[format] Teilt dem Stream mit, welches Format geschrieben werden soll. Erlaubte Werte: \mintinline{js}{'csv'}, \mintinline{js}{'json'}, \mintinline{js}{'protobuf'} oder \mintinline{js}{'objectMode'} (default).
     \item[csv, json, protobuf] Equivalent zu \mintinline{js}{format:'csv'}, \mintinline{js}{format:'json'} bzw. \mintinline{js}{format:'protobuf'}
@@ -375,7 +375,7 @@ Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Infor
 \paragraph{\texttt{var versions = db.\parahighlight{createVersionStream}(key, [options])}}
 Liefert alle Versionen zum angegebenen Key.
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[start] Start-Version.
     \item[end] End-Version
@@ -388,7 +388,7 @@ Liefert alle Versionen zum angegebenen Key.
 Liefert einen lesbaren Stream mit Blob-Daten.
 
 \begin{description}
-\item[options]
+\item[options] Objekt mit folgenden Feldern:
     \begin{description}
     \item[version] Version des Datensatzes. Default: Aktuellste Version.
     \end{description}
@@ -474,6 +474,10 @@ Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
 
 \subsection{CLI}
 %https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
+
+Das Kommandozeilen-Tool \texttt{dat} kann zur Erstelleung oder für rudimentäre Inspektion einer dat-Instanz verwendet werden. Für fortgeschrittenere Benutzung ist es jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+
+Hilfe zu den Befehlen wird ausgegeben, wenn \texttt{dat} ohne Argumente aufgerufen wird. Hilfe zu einzelnen Sub-Befehlen ist mit dem Parameter \texttt{-h} erhältlich.
 
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
