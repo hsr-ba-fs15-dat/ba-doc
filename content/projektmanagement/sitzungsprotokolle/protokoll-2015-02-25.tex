@@ -1,0 +1,50 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 25. Februar 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum} & 25.02.2015 \\
+		\textbf{Zeit} & 13:30\textendash15:00 Uhr \\
+		\textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+		\textbf{Anwesende} & \proff \\ & \chuf \\ & \rlif \\ & \fscf
+	\end{tabular}
+	
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Bericht erster Erfahrungen mit \gls{dat}
+		\item Projektrisiken besprechen, vor allem das Risiko ''\gls{dat}''
+		\item Scope der Arbeit nochmals besprechen
+		\item Erste simple User Story ''Weihnachtskartenversand'' aufnehmen
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Projektinfrastruktur / Collaboration Plattform vollständig eingerichtet
+		\item Erste Erfahrungen und Tests mit \gls{dat}
+		\item Erste Risikoabschätzung
+	\end{itemize}
+	
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item \gls{dat} hat Potenzial, steckt jedoch noch in den Kinderschuhen. Aus diesem Grund wird auf \gls{dat} verzichtet und neu ein eigener ''Data Hub'' in Form einer modernen Webapplikation umgesetzt.
+		\item Der Datenhub soll die Exportformate von \purl{http://openpoimap.ch} sowie GeoPackage\footnote{\url{http://www.geopackage.org/}} und weitere gängige Formate\footnote{\acs{csv}, JSON, \dots} beherrschen.
+		\item Der Datenhub soll ein mit \gls{wfs} kompatibles \acs{rest} API bieten.
+		\item Der Benutzer will beim Abruf der Daten entscheiden können, was er alles sehen will (Felder).
+		\item Die nächste Sitzung findet am Mittwoch, 4. März um 09:30 Uhr statt.
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Einführende Dokumentation über \gls{dat} (Deliverable) abschliessen und zurück auf Start.
+		\item Sprint 1 wird vorzeitig beendet aufgrund der Entscheidung \gls{dat} nicht zu verwenden.
+		\item Alternative Lösungsvorschläge erarbeiten.
+	\end{itemize}
+	
+\end{document}
+
+
+
