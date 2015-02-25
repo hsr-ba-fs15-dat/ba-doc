@@ -139,6 +139,8 @@
 \usepackage{array}
 \usepackage{colortbl}
 \usepackage{xcolor}
+
+\definecolor{paragraphTitle}{HTML}{4A00F3}
 % -----------------------------------------------------------------------------
 
 
@@ -189,6 +191,7 @@
 % http://tex.stackexchange.com/questions/139547/latex-sublist-numbering
 \usepackage{enumitem}
 \setlist[enumerate]{label*=\arabic*.}
+\setlist[description]{leftmargin=0.5cm, labelindent=0.5cm}
 % ------------------------------------------------------------------------------
 
 
@@ -487,3 +490,6 @@ bindingoffset=5mm
 
 % after everything else
 \usepackage{scrhack}
+
+
+\newcommand*{\parahighlight}[1]{\textcolor{paragraphTitle}{#1}}

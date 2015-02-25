@@ -199,7 +199,7 @@ var dat = require('dat')
 Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Parameter sind optional.
 
 \begin{srclst}{js}{Konstruktor}
-var db = dat([path], [options], [onReady])
+var db = \parahighlight{dat}([path], [options], [onReady])
 \end{srclst}
 
 \begin{description}
@@ -220,11 +220,11 @@ var db = dat([path], [options], [onReady])
     \item[transformations] siehe unten
     \item[hooks] siehe unten
     \end{description}
-\item[onReady (err) $\to$ ()] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
+\item[onReady: (err)] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
 \end{description}
 \xxx[Syntax für Funktionsaufrufe festlegen]
 
-\paragraph{Transformationen}
+\subparagraph{Transformationen}
 Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen ausgeführt werden. Die Konfiguration erfolgt über den \texttt{options}-Parameter im Konstruktor.
 
 \begin{srclst}{js}{Beispiel einer Transformations-Konfiguration}
@@ -242,17 +242,239 @@ Folgende Datentypen sind möglich:
 \item[object] Objekt mit einem der folgenden Feldern:
     \begin{description}
     \item[command] Gleiche Funktionalität wie oben
-    \item[module] Per \mintinline{js}{require()} ladbares Node.js-Modul. Das Modul muss einen Streams2-Passthrough Stream exportieren mit \mintinline{js}{objectMode: true}.
+    \item[module] Per \texttt{require()} ladbares Node.js-Modul. Das Modul muss einen Streams2-Passthrough Stream exportieren mit \mintinline{js}{objectMode: true}. Falls das Modul installiert werden muss, sollte die Abhängigkeit direkt in package.json eingetragen werden.
     \end{description}
 \item[array] Array von Transformationen, welche nacheinander ausgeführt werden.
 \end{description}
+
+\subparagraph{Hooks}
+Aktuell existiert nur ein einzelner Hook:
+\begin{description}
+\item[listen] Wird ausgeführt, wenn der dat-Server an einen Port bindet.
+\end{description}
+
+Ein Hook muss als Node.js-Modul vorliegen:
+\begin{srclst}{js}{Hook-Beispiel}
+module.exports = function hook(dat, done) {
+  // do stuff with dat
+
+  // must call done when the hook is done initializing, even if you call it immediately
+  done()
+}
+\end{srclst}
+
+Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} unbedingt aufgerufen werden!
+
+% get
+
+\paragraph{\texttt{\parahighlight{get}(key, [options], callback: (error, value))}}
+Findet den zum Key gehörenden Datensatz, falls vorhanden, und übergibt das Resultat an den callback.
+\begin{description}
+\item[options]
+\begin{description}
+\item[version] Erlaubt das finden einer spezifischen Version. Default: aktuellste Version.
+\end{description}
+\end{description}
+% put 
+
+\paragraph{\texttt{\parahighlight{put}([key], value, [options], callback: (error, newVersion))}}
+Fügt einen neuen Datensatz in die Datenbank ein. Der Key kann optional als Parameter oder als \texttt{value.key} übergeben werden.
+
+Bereits bestehende Einträge werden nur überschrieben, wenn \texttt{value.version} mit der aktuellsten in der Datenbank existierenden Version übereinstimmt. Andernfalls tritt ein Konflikt-Fehler auf.
+
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[force] Wenn \mintinline{js}{true} wird der Versions-Check übersprungen und Konflikte ignoriert. Für die neuen Daten wird eine neue Version erzeugt.
+    \end{description}
+\end{description}
+
+% delete
+
+\paragraph{\texttt{\parahighlight{delete}(key, callback: (error, newVersion))}}
+Markiert den Key als gelöscht. Achtung: Alte Versionen bleiben erhalten und können weiterhin abgerufen werden.
+
+% createReadStream
+
+\paragraph{\texttt{var readStream = db.\parahighlight{createReadStream}([options])}}
+Liefert einen lesbaren Stream \footnote{https://github.com/rvagg/node-levelup\#createReadStream} der neusten Versionen aller Datensätze.
+
+Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
+
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[start] Start-Key. Default: Erster Key.
+    \item[end] End-Key. Default: Letzter Key.
+    \item[limit] Anzahl Datensätze, die geliefert werden sollen. Default: Unlimitiert.
+    \end{description}
+\end{description}
+
+% createValueStream
+
+\paragraph{\texttt{var valueStream = db.\parahighlight{createValueStream}([options])}}
+Liefert einen lesbaren Stream \footnote{\url{https://github.com/rvagg/node-levelup\#createValueStream}} über die Werte der aktuellsten Versionen.
+
+Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
+
+\begin{description}
+\item[options]
+    \mintinline{js}{createValueStream} unterstützt die selben Optionen wie \mintinline{js}{createReadStream}, sowie zusätzlich folgende:
+    \begin{description}
+    \item[format] Wenn diese Option auf \mintinline{js}{csv} oder \mintinline{js}{json} gesetzt wird, werden die Daten serialisiert anstatt als Objekte geliefert.
+    \item[csv] Identisch zu \mintinline{js}{format:'csv'}.
+    \item[json] Identisch zu \mintinline{js}{format:'json'}
+    \end{description}
+\end{description}
+
+% createKeyStream
+
+\paragraph{\texttt{var keyStream = db.\parahighlight{createKeyStream}([options])}}
+Liefert einen Stream über die Schlüssel der Datensätze. Der Stream liefert ein Objekt pro Zeile, in der Form \texttt{{key: key, version: number, deleted: boolean}}.
+
+Optionen sind identisch zu \mintinline{js}{createReadStream}.
+
+% createChangesStream
+
+\paragraph{\texttt{var changes = db.\parahighlight{createChangesStream}([options])}}
+Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die Form \texttt{{change: changeId, key: key, version: number}}.
+
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[data] Wenn \mintinline{js}{true} enthalten die gelieferten Objekte das Attribut \mintinline{js}{value}. Default: \mintinline{js}{false}.
+    \item[since] Change-Id, ab welcher Daten geliefert werden sollen. Default: 0.
+    \item[tail] Wenn \mintinline{js}{true} wird \mintinline{js}{since} auf die letzte Change-Id gesetzt, so dass nur neue Änderungen geliefert werden. Default: \mintinline{js}{false}.
+    \item[limit] Limitiert die Anzahl der zu liefernden Änderungen. Default: unlimitiert.
+    \item[live] Wenn \mintinline{js}{true} werden neue Änderungen geliefert sobald sie auftreten und der Stream endet nicht (bzw. muss manuell geschlossen werden).
+    \end{description}
+\end{description}
+
+% createWriteStream
+
+\paragraph{\texttt{var writeStream = db.\parahighlight{createWriteStream}([options])}}
+Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
+
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[format] Teilt dem Stream mit, welches Format geschrieben werden soll. Erlaubte Werte: \mintinline{js}{'csv'}, \mintinline{js}{'json'}, \mintinline{js}{'protobuf'} oder \mintinline{js}{'objectMode'} (default).
+    \item[csv, json, protobuf] Equivalent zu \mintinline{js}{format:'csv'}, \mintinline{js}{format:'json'} bzw. \mintinline{js}{format:'protobuf'}
+    \item[primary] Spalte bzw. Array von Spalten, welche als Primary Key verwendet werden soll. Default: \mintinline{js}{key}.
+    \item[hash] Wenn \mintinline{js}{true} wird als Primary Key der Hex-formatierte MD5-Hash der Primary Key-Spalten verwendet.
+    \item[primaryFormat] Funktion, welche den Key formattiert bevor er eingefügt wird. Als Rückgabewert muss ein String geliefert werden. Akzeptiert \mintinline{js}{(val)}.
+    \item[columns] Liste von Spalten-Bezeichnungen, welche für CSV/MultiBuffer verwendet werden sollen.
+    \item[headerRow] Muss auf \mintinline{js}{false} gesetzt werden, wenn der CSV-Input keine Titel-Zeile enthält. In diesem Fall sollte auch \texttt{columns} gesetzt
+    \item[separator] Feld-Separator für CSV. Default: \texttt{','}
+    \item[delimiter] Record-Separator für CSV. Default: \path{'\n'}
+    \end{description}
+\end{description}
+
+% createVersionStream
+
+\paragraph{\texttt{var versions = db.\parahighlight{createVersionStream}(key, [options])}}
+Liefert alle Versionen zum angegebenen Key.
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[start] Start-Version.
+    \item[end] End-Version
+    \end{description}
+\end{description}
+
+% createBlobReadStream
+
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobReadStream}(key, filename, [options])}}
+Liefert einen lesbaren Stream mit Blob-Daten.
+
+\begin{description}
+\item[options]
+    \begin{description}
+    \item[version] Version des Datensatzes. Default: Aktuellste Version.
+    \end{description}
+\end{description}
+
+% createBlobWriteStream
+
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobWriteStream}(filename, [row], [callback])}}
+Liefert einen schreibbaren Stream, welcher Blob-Daten annimmt.
+
+\begin{description}
+\item[filename] Ein String oder ein Objekt mit einem \texttt{filename}-Attribut: \texttt{{filename:'example.png'}}.
+\item[row] Objekt, welches den Datensatz identifiziert an den dieses Blob angehängt werden soll. Es gelten die selben Regeln wie bei \texttt{put()}. Falls nicht angegeben wird ein neuer Datensatz erstellt.
+\item[callback: (error, updated)] Wird nach der Schreiboperation mit dem aktualisierten Datensatz aufgerufen.
+\end{description}
+
+% listen
+
+\paragraph{\texttt{dat.\parahighlight{listen}([port], [callback: (error)])}}
+Startet den HTTP-Server.
+
+\begin{description}
+\item[port] Zu verwendender Port. Default: 6461, bzw. der nächsthöhere freie Port.
+\end{description}
+
+% clone
+
+\paragraph{\texttt{dat.\parahighlight{clone}(remote, [callback])}}
+Initialisiert ein neues dat (falls nicht bereits vorhanden) und erstellt einen lokalen Klon von \texttt{remote}. Kann schneller sein als \texttt{pull()}, falls der Server schnellere clone-Fähigkeiten hat (z.B. \texttt{liveBackup} von hyperleveldb).
+
+% push
+
+\paragraph{\texttt{dat.\parahighlight{push}(remote, [callback: (error)])}}
+Synchronisiert das lokale dat mit dem \texttt{remote}-Server, indem die lokalen Änderungen über HTTP gepusht werden.
+
+\begin{description}
+\item[remote] HTTP-Basis-Adresse des Servers (z.B. \path{http://localhost:6461}).
+\end{description}
+
+\paragraph{\texttt{dat.\parahighlight{pull}([remote], [callback])}}
+Synchronisiert das lokale dat mit dem angegebenen Server, indem die Änderungen vom Server übernommen werden.
+
+\begin{description}
+\item[remote] HTTP-Basis-Adresse des Servers. Default: Adresse des Server, von dem diese dat-Instanz geklont wurde, falls vorhanden.
+\end{description}
+
+\paragraph{\texttt{dat.\parahighlight{init}(path, [callback])}}
+Erstellt eine neue dat-Datenbank in \path{path/.dat}. Diese Methode wird Standardmässig aufgerufen bei der Erstellung einer dat-Instanz.
+
+\paragraph{\texttt{var paths = dat.\parahighlight{paths}(path)}}
+Liefert ein Objekt mit diversen relevanten Pfaden, mit \texttt{path} als Basis.
+
+\begin{srclst}{js}{Beispiel: Pfade mit \texttt{.} als Basis}
+{ 
+    dir: '.',
+    dat: '.dat',
+    level: '.dat/store.dat',
+    port: '.dat/PORT',
+    blobs: '.dat/objects',
+    package: 'dat.json' 
+}
+\end{srclst}
+
+\paragraph{\texttt{dat.\parahighlight{exists}(path, callback: (error, exists))}}
+Prüft ob eine dat-Datenbank am angegebenen Pfad existiert.
+
+\paragraph{\texttt{dat.\parahighlight{close}(callback: (error))}}
+Beendet den HTTP-Server, den RPC-Client (falls vorhanden) und die Datenbank und räumt die \path{.dat/PORT}-Datei auf.
+
+\paragraph{\texttt{dat.\parahighlight{destroy}(path, callback: (error))}}
+Ruft \texttt{close()} auf und entfernt das \path{.dat}-Verzeichnis in \path{path}.
+
+\paragraph{\texttt{var headers = dat.\parahighlight{headers}()}}
+Liefert ein Array mit den aktuellen Spalten-Namen.
+
+% these don't actually exist
+% \paragraph{cat}
+% \paragraph{dump}
+% \paragraph{getRowCount}
+% \paragraph{config}
 
 \subsection{CLI}
 %https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
 
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
-
 
 Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende Grundlegende Operationen mittels \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
 
