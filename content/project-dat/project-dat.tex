@@ -194,13 +194,9 @@ dat ist ein Node.js-Modul.
 var dat = require('dat')
 \end{srclst}
 
-\paragraph{Konstruktor}
+\paragraph{\texttt{var db = \parahighlight{dat}([path], [options], [onReady])}}
 
 Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Parameter sind optional.
-
-\begin{srclst}{js}{Konstruktor}
-var db = \parahighlight{dat}([path], [options], [onReady])
-\end{srclst}
 
 \begin{description}
 \item[path (string)] Pfad zum Verzeichnis, welches das \texttt{.dat}-Verzeichnis enthält. Falls kein \texttt{.dat}-Verzeichnis existiert wird ein neues erstellt. Default ist \mintinline{js}{process.cwd()}.
@@ -222,7 +218,6 @@ var db = \parahighlight{dat}([path], [options], [onReady])
     \end{description}
 \item[onReady: (err)] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
 \end{description}
-\xxx[Syntax für Funktionsaufrufe festlegen]
 
 \subparagraph{Transformationen}
 Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen ausgeführt werden. Die Konfiguration erfolgt über den \texttt{options}-Parameter im Konstruktor.
@@ -482,19 +477,19 @@ Hilfe zu den Befehlen wird ausgegeben, wenn \texttt{dat} ohne Argumente aufgeruf
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
 
-Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende Grundlegende Operationen mittels \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
+Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende grundlegenden Operationen mittels der \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
 
 \begin{description}
 	\item[\path{info()}] Generelle Informationen über das \gls{dat} Repository.
 	\item[\path{diff()}] Gibt alle Änderungen zurück.
 	\item[\path{csv()}] Gibt die Daten aus dem dat Repository als \gls{csv} formatierte Zeichenkette zurück.
 	\item[\path{rows()}] Gibt alle Zeilen im dat Repository zurück.
-	\item[\path{dict()}] Dasselbe wie \path{rows()} jedoch als Dictionary.
+	\item[\path{dict()}] Dasselbe wie \path{rows()}, jedoch als Dictionary.
 	\item[\path{put_json()}] Importiert alle Datensätze einer JSON Datei.
 	\item[\path{put_csv()}] Importiert alle Datensätze einer \gls{csv} Datei.
 \end{description}
 
-datPython ist zurzeit lediglich ein minimaler HTTP Wrapper und besteht aus knapp 60 Programmcodezeilen. Die Installation mittels \gls{pypi} bzw. \texttt{pip} wäre zwar möglich, jedoch nicht Funktionsfähig. Bei Verwendung dieses noch kleinen Moduls wäre die Erstellung eines eigenen Forks zum jetzigen Zeitpunkt die beste Lösung.
+datPython ist zurzeit lediglich ein minimaler HTTP Wrapper und besteht aus knapp 60 Programmcodezeilen. Die Installation mittels \gls{pypi} bzw. \texttt{pip} wäre zwar möglich, jedoch nicht funktionsfähig. Bei Verwendung dieses noch kleinen Moduls wäre die Erstellung eines eigenen Forks zum jetzigen Zeitpunkt die beste Lösung.
 
 \begin{srclst}{pycon}{datPython Verwendung}
 >>> from datPython import Dat
