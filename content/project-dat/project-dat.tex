@@ -1,4 +1,4 @@
-\part{Project DAT}
+\part{Project dat}
 
 \chapter{Einführung}
 
@@ -53,19 +53,6 @@ Die Verwendung von dat bringt folgende Vorteile:
 \item Ermöglicht Ergänzung oder Korrektur von bereits abgelieferten Daten.
 \item Ersatz der bisher verwendeten, für jede Regierungsstelle neu kreierten und teuren, Portale durch eine standardisierte Lösung.
 \end{itemize}
-
-\subsection{Verwendung}
-\xxx[move to fazit]
-Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
-\begin{itemize}
-\item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
-\item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
-\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes gemerged.
-\end{itemize}
-
-Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
-
-Wir entschieden uns daher, auf die Verwendung von dat zu verzichten, und allenfalls ein anderes/eigenes Synchronisations-Protokoll zu verwenden.
 
 \chapter{Erweiterung}
 
@@ -531,3 +518,15 @@ ci6i1errr000012t5m9ggeh6h,1,alice,35
 >>> dat.put_csv('test.csv')
 \end{srclst}
 
+\chapter{Fazit: dat}
+\section{Verwendung}
+Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
+\begin{itemize}
+\item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
+\item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
+\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes gemerged.
+\end{itemize}
+
+Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
+
+Wir haben uns daher am 25.Februar 2015 entschieden, auf die Verwendung von dat zu verzichten, und allenfalls ein anderes/eigenes Synchronisations-Protokoll zu verwenden.
