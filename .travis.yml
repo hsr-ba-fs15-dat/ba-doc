@@ -28,6 +28,6 @@ script:
 
 notifications:
   slack:
-    secure: DZ6bF+lgkE5b/YgAmp5e2+D3QdUkl/O9BatmRm/WUL0g/kV7khlvY9W9PDjGTQNgxJc0B472xpGx1yBe834vS/wK9+XGnoERqjpbX4qcMP4uUHzJk7FpMq1bJNTXZeE5NnfgX4G6uliFEixvB66ljtdLLsNLYpKYCX0WR68PHHc=
     on_failure: always
     on_success: change
+    secure: VBTfkdECN8/8UMuoU/e/T3QZIQLjevpzL9JhYDCRjOaey2oby2LdWptJaKzczsR0y2rSHQga5LG/Zg96bZgaW7cK1abgxuxYge/DQtq3Wvln7lW0m8aJZaOk/fHhFi5I/daYTN0bJMo/pmUSxlk2PMK6AhuChVdIMBk5sQxlg2s=
