@@ -131,3 +131,5 @@ Thumbs.db
 
 # other
 node_modules
+*.sublime-project
+*.sublime-workspace
