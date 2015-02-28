@@ -63,12 +63,61 @@ Die Verwendung von dat bringt folgende Vorteile:
 Dieses Kapitel beschreibt die Möglichkeiten wie \gls{dat} mittels Schnittstellen und Konfiguration über dessen Basisfunktionalität eines simplen tabellen-artigen Speichers hinaus verwendet werden kann.
 
 \section{Datscript} %https://github.com/datproject/datscript
-Auf der Website des dat-Projektes wird Datscript als Modul zur Erstellung von Daten-Pipelines erwähnt. Im verlinkten Git-Repository ist jedoch lediglich eine Serie von Beispielen zu finden, mit dem letzten Commit vom November 2014 (Stand 23. Februar 15).
 
-In aktuelleren Diskussionen wird für Pipelines jeweils auf Gasket verwiesen.
+Datscript ist eine für spezielle \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:gasket} beschriebene Gasket ersetzt wurde.
 
-\section{Gasket} % https://github.com/datproject/gasket
-Gasket ist eine Node.js-basierte Pipeline-Engine. Die Konfiguration geschieht entweder im JSON-Format direkt in package.json, oder aber in einem Node.js-Modul. Unterstützt wird die Ausführung von externen Programmen, oder die Verwendung von Node.js-Modulen.
+
+\begin{srclst}{bash}{Datscript Beispiel}
+# validate cli args
+args [url]
+
+# import another datscript file
+import foo.ds
+
+# set env var for all run commands to use
+env foo = "bar"
+
+# run a pipeline (hoists)
+run pipeline import
+
+# run a command (from node_modules/.bin or PATH)
+run foobar
+
+# define main (default) pipeline
+pipeline main
+  run pipeline import
+
+# define pipeline w/ piping
+pipeline import
+  run foobar | run dat import --json
+\end{srclst}
+
+\section{Gasket}\label{sec:gasket} % https://github.com/datproject/gasket
+Gasket ist eine Node.js-basierte Pipeline-Engine. Die Konfiguration geschieht entweder im JSON-Format direkt in \path{package.json}, oder aber in einem Node.js-Modul. Unterstützt wird die Ausführung von externen Programmen, oder die Verwendung von Node.js-Modulen.
+
+Ein Beispiel einer trivialen \path{package.json} Konfiguration wird in \cref{lst:gasket-beispiel} aufgezeigt und gibt lediglich ``HELLO WORLD'' aus .
+
+\begin{srclst}[label=lst:gasket-beispiel]{json}{Offizielles Gasket Beispiel}
+{
+  "name": "my-test-app",
+  "dependencies" : {
+    "transform-uppercase": "^1.0.0"
+  },
+  "gasket": {
+    "example": [
+      {
+        "command": "echo hello world",
+        "type": "pipe"
+      },
+      {
+        "command": "transform-uppercase",
+        "type": "pipe"
+      }
+    ]
+  }
+}
+\end{srclst}
+
 
 \section{Schnittstellen / API}
 
@@ -87,7 +136,7 @@ SSL wird bisher nicht unterstützt.
 \paragraph{GET /}
 Liefert die dat-editor Webapplikation aus.
 
-\paragraph{GET /api} Liefert allgemeine Informationen zur dat-Instanz
+\paragraph{Antwort GET /api} Liefert allgemeine Informationen zur dat-Instanz
 \begin{srclst}{json}{GET /api}
     {
         "dat":"Hello",
@@ -104,7 +153,7 @@ Liefert die dat-editor Webapplikation aus.
 \paragraph{GET /api/rows} 
 Liefert eine Liste von Einträgen (Default: 50 Einträge).
 % http://www.fakenamegenerator.com/gen-random-gr-sz.php ftw
-\begin{srclst}{json}{GET /api/rows}
+\begin{srclst}{json}{Antwort GET /api/rows}
 {
     "rows": [
         {
@@ -119,7 +168,7 @@ Liefert eine Liste von Einträgen (Default: 50 Einträge).
             "zip":"3765", "city":"Pfaffenried", 
             "key":"ci6hv0d0a00005vco99jxr7w0", "version":1
         },
-        //...
+        // ...
     ]
 }
 \end{srclst}
@@ -127,7 +176,7 @@ Liefert eine Liste von Einträgen (Default: 50 Einträge).
 \paragraph{GET /api/rows/:key}
 Liefert den Eintrag mit dem angegebenen Schlüssel, oder eine Fehlermeldung.
 
-\begin{srclst}{json}{GET /api/rows/ci6huzf52000057coxym5lgy7}
+\begin{srclst}{json}{Antwort GET /api/rows/ci6huzf52000057coxym5lgy7}
 {
     "prename":"Leonie", "surname":"Hahn", 
     "street":"Via Camischolas sura", "nr":"86", 
@@ -181,20 +230,22 @@ Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-O
 \end{srclst}
 
 \paragraph{GET /api/manifest}
-Liefert ein JSON-Objekt mit Informationen zum DB-Backend. Dies wird für RPC verwendet (siehe nächsten Befehl).
+Liefert ein JSON-Objekt mit Informationen zum DB-Backend. Dies wird für RPC verwendet (siehe \path{/api/rpc}).
 
 \paragraph{POST /api/rpc}
-Ein Server-Endpunkt für multilevel (ein Node.js-Modul).
+Ein Server-Endpunkt für multilevel (Node.js-Modul).
 
 \paragraph{GET /api/metadata}
 Liefert Informationen zum Schema. Diese Daten werden während der Replikation verwendet.
 
-\paragraph{GET /api/replicater/receive und GET /api/replicator/send}
+\paragraph{GET /api/replicator/receive und GET /api/replicator/send}
 Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
 dat ist ein Node.js-Modul.
+\xxx[intro]
+
 
 \begin{srclst}{js}{Laden des dat-Moduls}
 var dat = require('dat')
@@ -209,9 +260,9 @@ Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Para
 \item[options (object)] Weitere Konfigurations-Parameter:
     \begin{description}
     \item[init] Wenn \mintinline{js}{false} erstellt dat keine neue Datenbank beim Initialisieren. Default: \mintinline{js}{true}.
-    \item[storage] Wenn \mintinline{js}{false} versucht dat nicht, die Datenbank zu lesen beim Initialisieren. Default: \mintinline{js}{true}.
+    \item[storage] Wenn \mintinline{js}{false} versucht dat nicht beim Initialisieren die Datenbank zu lesen. Default: \mintinline{js}{true}.
     \item[path] Alternative zum Konstruktor-Argument.
-    \item[adminUser, adminPass] Wird als Benutzer/Passwort verwendet fúr HTTP Basic Authentication wenn beide konfiguriert sind.
+    \item[adminUser, adminPass] Wird als Benutzer/Passwort verwendet für HTTP Basic Authentication wenn beide konfiguriert sind.
     \item[leveldown] Benutzerdefiniertes \texttt{leveldown}-Backend. Default: \mintinline{js}{require('leveldown-prebuilt')}
     \item[db] Benutzerdefinierte \texttt{levelup}-Instanz. Wenn diese Option vorhanden ist wird die \texttt{leveldown}-Option ignoriert und alle Tabellen-basierte Daten werden in dieser DB-Instanz gespeichert.
     \item[blobs] Benutzerdefinierte \texttt{blob}-Datenbank. Default: \mintinline{js}{require('lib/blobs.js')}
@@ -219,12 +270,12 @@ Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Para
     \item[remoteAddress] Falls angegeben started dat im RPC Client-Modus. Default: \mintinline{js}{undefined}
     \item[manifest] Wenn \texttt{remoteAddress} gesetzt ist wird dies als Manifest für RPC verwendet.
     \item[skim] Wenn \mintinline{js}{true} wird lazy auf Blobs von einer nicht-lokalen Quelle zugegriffen. Default: \mintinline{js}{false}.
-    \item[transformations] siehe unten
-    \item[hooks] siehe unten
+    \item[transformations] siehe Transformationen
+    \item[hooks] siehe Transformationen
     \end{description}
 \item[onReady: (err)] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
 \end{description}
-
+ 
 \subparagraph{Transformationen}
 Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen ausgeführt werden. Die Konfiguration erfolgt über den \texttt{options}-Parameter im Konstruktor.
 
@@ -239,7 +290,7 @@ Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen au
 
 Folgende Datentypen sind möglich:
 \begin{description}
-\item[string] Ausführbarer Befehl, um die Daten zu transformieren. Der Befehl erhält durch Zeilenumbrüche getrennte JSON-Datensätze (NDJSON) in \texttt{STDIN}. Nach der Transformation werden die Daten wieder als JSON auf \texttt{STDOUT} erwartet.
+\item[string] Ausführbarer Befehl, um die Daten zu transformieren. Der Befehl erhält durch Zeilenumbrüche getrennte JSON-Datensätze (\acs{ndjson}) in \texttt{STDIN}. Nach der Transformation werden die Daten wieder als JSON auf \texttt{STDOUT} erwartet.
 \item[object] Objekt mit einem der folgenden Feldern:
     \begin{description}
     \item[command] Gleiche Funktionalität wie oben
@@ -254,8 +305,9 @@ Aktuell existiert nur ein einzelner Hook:
 \item[listen] Wird ausgeführt, wenn der dat-Server an einen Port bindet.
 \end{description}
 
-Ein Hook muss als Node.js-Modul vorliegen:
-\begin{srclst}{js}{Hook-Beispiel}
+Ein Hook muss als Node.js-Modul, wie in \cref{lst:dat-hook} gezeigt, vorliegen.
+
+\begin{srclst}[label=lst:dat-hook]{js}{Hook-Beispiel}
 module.exports = function hook(dat, done) {
   // do stuff with dat
 
@@ -264,7 +316,7 @@ module.exports = function hook(dat, done) {
 }
 \end{srclst}
 
-Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} unbedingt aufgerufen werden!
+Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} zwingend aufgerufen werden!
 
 % get
 
@@ -298,7 +350,7 @@ Markiert den Key als gelöscht. Achtung: Alte Versionen bleiben erhalten und kö
 % createReadStream
 
 \paragraph{\texttt{var readStream = db.\parahighlight{createReadStream}([options])}}
-Liefert einen lesbaren Stream \footnote{https://github.com/rvagg/node-levelup\#createReadStream} der neusten Versionen aller Datensätze.
+Liefert einen lesbaren Stream der neusten Versionen aller Datensätze.
 
 Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
 
@@ -314,7 +366,7 @@ Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
 % createValueStream
 
 \paragraph{\texttt{var valueStream = db.\parahighlight{createValueStream}([options])}}
-Liefert einen lesbaren Stream \footnote{\url{https://github.com/rvagg/node-levelup\#createValueStream}} über die Werte der aktuellsten Versionen.
+Liefert einen lesbaren Stream über die Werte der aktuellsten Versionen.
 
 Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
 
@@ -476,9 +528,9 @@ Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
 \subsection{CLI}
 %https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
 
-Das Kommandozeilen-Tool \texttt{dat} kann zur Erstelleung oder für rudimentäre Inspektion einer dat-Instanz verwendet werden. Für fortgeschrittenere Benutzung ist es jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+Das Kommandozeilen-Tool \texttt{dat} kann zur Erstellung oder für rudimentäre Inspektion einer dat-Instanz verwendet werden. Für fortgeschrittenere Benutzung ist es jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
 
-Hilfe zu den Befehlen wird ausgegeben, wenn \texttt{dat} ohne Argumente aufgerufen wird. Hilfe zu einzelnen Sub-Befehlen ist mit dem Parameter \texttt{-h} erhältlich.
+Zudem ermöglicht es, entfernte \gls{dat} Repositories analog git zu ``klonen'' und Änderungen ebenfalls analog git wieder zu ``pushen''. Spätere Versionen sollen auch Branches erlauben sowie Konflikte behandeln können.
 
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
@@ -524,15 +576,18 @@ ci6i1errr000012t5m9ggeh6h,1,alice,35
 >>> dat.put_csv('test.csv')
 \end{srclst}
 
-\chapter{Fazit: dat}
-\section{Verwendung}
+\chapter{Fazit}
+%\section{Verwendung}
 Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
 \begin{itemize}
 \item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
 \item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
-\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes gemerged.
+\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
 \end{itemize}
 
 Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
 
-Wir haben uns daher am 25.Februar 2015 entschieden, auf die Verwendung von dat zu verzichten, und allenfalls ein anderes/eigenes Synchronisations-Protokoll zu verwenden.
+\begin{decision}{Projekt dat}
+Aufgrund der Tatsache, dass \gls{dat} obschon vielversprechend noch sehr unausgereift und undokumentiert ist, sowie das API noch ständigen Änderungen unterzogen wird, wurde nach Rücksprache mit dem Betreuer gegen den Einsatz von \gls{dat} entschieden. Das Projektrisiko ist zu gross und es wird nach einer alternativen Lösungen zur Implementation eines Datenhubs gesucht.
+\end{decision}
+
