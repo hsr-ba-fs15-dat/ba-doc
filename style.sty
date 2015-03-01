@@ -357,6 +357,7 @@ bindingoffset=5mm
 \Crefname{lst}{Programmcode}{Programmcodes}
 
 
+
 \newtcolorbox[auto counter,number within=chapter,list inside=decisions,Crefname={Entscheid}{Entscheide},crefname={Entscheid}{Entscheide}]{tcbdecision}[2][]{%
 	beamer,
 	before=\par\medskip,
@@ -370,6 +371,10 @@ bindingoffset=5mm
 
 % Im Kontext <ctx> wurde, um <nfr> für <sol> und gegen <other> entschieden und akzeptieren, dass <cons>
 \newenvironment{decision}[2][]{\begin{tcbdecision}[#1]{#2}}{\end{tcbdecision}}
+
+\crefname{dec}{Entscheid}{Entscheide}
+\Crefname{dec}{Entscheid}{Entscheide}
+
 
 \newcounter{scrumstories}
 \newtcolorbox[use counter=scrumstories, list inside=scrumepic,Crefname={Epic}{Epics},crefname={Epic}{Epics}]{tcbscrumepic}[2][]{%

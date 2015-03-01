@@ -1,3 +1,4 @@
+% label prefix for this part: pm
 \part{Projektmanagement}
 
 \chapter{Vorgehensmodell}
@@ -67,7 +68,7 @@ Die Iterationen, bei Scrum Sprint genannt und in \cref{fig:scrum} dargestellt, d
 
 
 \section{\rlif}
-\xxx
+\xxx[remo]
 \begin{minipage}[t]{0.25\textwidth}
 	\vspace{0pt}
 	%\includegraphics[width=0.8\textwidth]{fig/rliebi}
@@ -78,7 +79,7 @@ Die Iterationen, bei Scrum Sprint genannt und in \cref{fig:scrum} dargestellt, d
 \end{minipage}
 
 \section{\chuf}
-\xxx
+\xxx[christoph]
 \begin{minipage}[t]{0.25\textwidth}
 	\vspace{0pt}
 	%\includegraphics[width=0.8\textwidth]{fig/chuesler}
@@ -121,73 +122,92 @@ Nach bzw. während der Einarbeitung in \gls{dat} wurde eine erste Abschätzung d
 Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren Massnahmen genauer beschrieben. Schon jetzt ist klar, dass das grösste Risiko das Projekt \gls{dat} selbst darstellt.
 
 
+\newcommand{\projectrisk}[4]{
 \begin{tabularx}{\linewidth}{lX}
 	\toprule
-	Risiko & R02\\
+	\textbf{Risiko} & #1\\
 	\midrule
-	Titel & Konflikte im Team\\
-	Beschreibung & Das Projektteam kennt sich erst seit kurzem und hat davor noch nie zusammengearbeitet. Somit besteht ein erhöhten Risiko von Meinungsverschiedenheiten während des Projektverlaufs.\\
-	Prävention/Massnahme & Frühzeitige Kontaktaufnahme mit dem Betreuer falls die Konflikte nicht intern gelöst werden können.\\
+	\textbf{Titel} & #2\\
+	\textbf{Beschreibung} & #3\\
+	\textbf{Prävention/Massnahme} & #4\\
 	\bottomrule
-\end{tabularx}
+\end{tabularx}	
+}
 
-\begin{tabularx}{\linewidth}{lX}
-	\toprule
-	Risiken & R10, R12, R13\\
-	\midrule
-	Titel & Verwendung neuer oder unreifer Technologien\\
-	Beschreibung & Es werden unreife ''bleeding Edge'' Technologien verwendet welche die Entwicklung und Handhabung erheblich erschweren. Siehe auch \gls{dat}-spezifische Risiken R31, R32 und R33.\\
-	Prävention/Massnahme & Es werden vor allem Technologien verwendet die dem Team bereits bekannt sind oder das Risiko durch eine Kurzevaluation reduziert.\\
-	\bottomrule
-\end{tabularx}
 
-\begin{tabularx}{\linewidth}{lX}
-	\toprule
-	Risiko & R31\\
-	\midrule
-	Titel & \gls{dat} erfüllt nicht die Anforderungen\\
-	Beschreibung & \gls{dat} und dessen Funktionalität ist nur sehr spärlich beschrieben. Selbst dem Auftraggeber ist der Umfang von \gls{dat} nicht vollständig bekannt. Es besteht das Risiko, dass \gls{dat} sich nicht für die Use Cases der Aufgabenstellung eignet.\\
-	Prävention/Massnahme & Da es sich bei dieser Arbeit unter Anderem spezifisch um eine Evaluation von \gls{dat} und dessen Möglichkeiten handelt, ist eine Evaluation von alternativen Technologien zunächst zu vermeiden. Durch eine frühzeitige Einarbeitung in \gls{dat} mit kleineren Prototypen/Use Cases soll die Machbarkeit abgeschätzt werden.\\
-	\bottomrule
-\end{tabularx}
+\projectrisk{R02}{Konflikte im Team}
+{Das Projektteam kennt sich erst seit kurzem und hat davor noch nie zusammengearbeitet. Somit besteht ein erhöhten Risiko von Meinungsverschiedenheiten während des Projektverlaufs.}
+{Frühzeitige Kontaktaufnahme mit dem Betreuer falls die Konflikte nicht intern gelöst werden können.}
 
-\begin{tabularx}{\linewidth}{lX}
-	\toprule
-	Risiko & R32\\
-	\midrule
-	Titel & \gls{dat} ist zu unreif. Fehlende Dokumentation.\\
-	Beschreibung & \gls{dat} besitzt viele unbekannte Fehler und die Dokumentation ist unzureichend. Bereits während des ersten Sprints hat die spärliche Dokumentation von \gls{dat} zu Bedenken im Team geführt.\\
-	Prävention/Massnahme & Dasselbe wie bei R31\\
-	\bottomrule
-\end{tabularx}
+\projectrisk{R10, R12, R13}{Verwendung neuer oder unreifer Technologien}
+{Es werden unreife ``bleeding Edge'' Technologien verwendet welche die Entwicklung und Handhabung erheblich erschweren. Siehe auch \gls{dat}-spezifische Risiken R31, R32 und R33.}
+{Es werden vor allem Technologien verwendet die dem Team bereits bekannt sind oder das Risiko durch eine Kurzevaluation reduziert.}
 
-\begin{tabularx}{\linewidth}{lX}
-	\toprule
-	Risiko & R33\\
-	\midrule
-	Titel & \gls{dat} wird nicht weiterentwickelt\\
-	Beschreibung & Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community nicht weiterentwickelt.\\
-	Prävention/Massnahme & Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.\\
-	\bottomrule
-\end{tabularx}
+\projectrisk{R31}{\gls{dat} erfüllt nicht die Anforderungen}
+{\gls{dat} und dessen Funktionalität ist nur sehr spärlich beschrieben. Selbst dem Auftraggeber ist der Umfang von \gls{dat} nicht vollständig bekannt. Es besteht das Risiko, dass \gls{dat} sich nicht für die Use Cases der Aufgabenstellung eignet.}
+{Da es sich bei dieser Arbeit unter Anderem spezifisch um eine Evaluation von \gls{dat} und dessen Möglichkeiten handelt, ist eine Evaluation von alternativen Technologien zunächst zu vermeiden. Durch eine frühzeitige Einarbeitung in \gls{dat} mit kleineren Prototypen/Use Cases soll die Machbarkeit abgeschätzt werden.}
 
-\xxx[fabio -> nachtrag dat]
+
+\projectrisk{R32}{\gls{dat} ist zu unreif. Fehlende Dokumentation.}
+{\gls{dat} besitzt viele unbekannte Fehler und die Dokumentation ist unzureichend. Bereits während des ersten Sprints hat die spärliche Dokumentation von \gls{dat} zu Bedenken im Team geführt.}
+{Dasselbe wie bei R31}
+
+
+\projectrisk{R33}{\gls{dat} wird nicht weiterentwickelt}
+{Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community nicht weiterentwickelt.}
+{Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.}
+
+
+\section{Risikoüberwachung}
+
+Die Risiken wurden während des gesamten Projektverlaufs periodisch überwacht und Änderungen entsprechend protokolliert. Idealerweise sollten die Risiken über Zeit hinweg sinken.
+
+\subsection{1. März 2015}
+
+Wie sich herausgestellt hat, ist \gls{dat} noch weit davon entfernt um es produktiv Verwenden zu können. Ständige API Änderungen und fehlende Dokumentation machen es zu einem untragbaren Risiko. In \vref{dec:dat:fazit} wurde gegen den Einsatz von \gls{dat} Entschieden und somit die Risisken R31 bis R33 eliminiert.
+
 
 
 
 \chapter{Entwicklungsumgebung und Infrastruktur}
 
-
 \section{Projektmanagement}
-\section{Kommunikation}
-Bei der Durchführung der Bachelorarbeit DAT wollten wir auf die Kommunikation per E-Mail verzichten. Wir haben unsere Informationen zwischen Mitarbeitern und Dozenten, wie zur Protokollierung der Sitzungen mittels \purl{http://slack.com} ausgetauscht. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub oder Travis zu integrieren. So konnte an einem Zentralen Ort Bezug auf Commits und Build Results genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor relevanten Themen frei gehalten werden und direkt Bezug auf konkrete Ereignisse genommen werden. \vref{fig:slack} \\
+
+Zur Planung der Ressourcen und Zeit sowie Zuständigkeiten der Tasks wurde das kommerzielle Tool Atlassian Jira verwendet. Jira ist kompatibel mit Agilen Vorgehensweisen, insbesondere Scrum und erlaubt mit dessen intuitivem User Interface die Planung von Sprints sowie eine Fortschrittsüberwachung mittels Burndown Charts. \cref{fig:pm:jira-agile} zeigt das sogenannte Agile Board im ``Work'' Modus während eines Sprints. Die Kopplung von Jira mit GitHub bietet mit der Verwendung von sog. Smart Commits\footnote{Beispiel: ``DAT-18 added project risks \#time 3h \#comment first draft''\newline\url{https://confluence.atlassian.com/display/FISHEYE/Using+smart+commits}} eine noch komfortablere Möglichkeit um Aufwände zu verbuchen oder Tasks zu kommentieren oder schliessen.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{fig/slack}
-	\caption{Screenshot Slack}
-	\label{fig:slack}
+	\includegraphics[width=0.95\textwidth]{fig/jira-agile}
+	\caption{Jira Agile Board}
+	\label{fig:pm:jira-agile}
 \end{figure}
+
+Jira wurde auf einer virtuelle Maschine der \acs{hsr} betrieben und dessen Daten täglich und automatisiert gesichert.
+
+
+
+\section{Kommunikation}
+Bei der Durchführung der Bachelorarbeit \gls{dat} wollten wir auf die Kommunikation per E-Mail verzichten. Das Team hat sich mittels \purl{http://slack.com} ausgetauscht sowie als zur Protokollierung von Sitzungen, Weblinks und weitere Informationen verwendet. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub, Jira, Travis-CI, E-Mails usw.\footnote{\url{https://slack.com/integrations}} zu integrieren. So konnte an einem zentralen Ort Bezug auf Commits, E-Mails vom Betreuer und Failing-Builds genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor relevanten Themen freigehalten und direkten Bezug auf konkrete Ereignisse genommen werden.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/slack-git-travis}
+		\caption{Git und Travis}
+		\label{fig:pm:slack-git-travis}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{fig/slack-email}
+		\caption{Automatische E-Mail Weiterleitung}
+		\label{fig:pm:slack-email}
+	\end{subfigure}
+	\caption{Slack Screenshots}
+	\label{fig:pm:slack}
+\end{figure}
+
+
 
 \chapter{Qualitätsmanagement}
 
@@ -202,7 +222,7 @@ Um die Qualität der umgesetzten Tasks zu erhöhen und sicherzustellen wurde ein
 \label{fig:jira-workflow}
 \end{figure}
 
-Der in \cref{fig:jira-workflow} dargestellte Prozess stellt sicher, dass alle Tasks erst in den Review Status versetzt werden müssen. Von diesem Status aus kann der Task entweder durch den Reviewer geschlossen oder zurück in den Status ''To Do'' versetzt werden, wobei bei letzterem der Tasks automatisch dem ursprünglichen Teammitglied zugewiesen wird.
+Der in \cref{fig:jira-workflow} dargestellte Prozess stellt sicher, dass alle Tasks erst in den Review Status versetzt werden müssen. Von diesem Status aus kann der Task entweder durch den Reviewer geschlossen oder zurück in den Status ``To Do'' versetzt werden, wobei bei letzterem der Tasks automatisch dem ursprünglichen Teammitglied zugewiesen wird.
 
 
 \section{Vagrant}

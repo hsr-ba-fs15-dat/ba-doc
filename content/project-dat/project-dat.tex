@@ -1,3 +1,4 @@
+% label prefix for this part: dat
 \part{Project dat}
 
 \chapter{Einführung}
@@ -23,7 +24,38 @@ Das dat-Projekt hat folgende Ziele\cite{what-is-dat}:
 % https://github.com/maxogden/dat/blob/master/docs/js-api.md#transformations
 Für den Umgang mit verschiedenen Datenformaten können Transformationen\cite[transformations]{dat-js-api} definiert werden, welche entweder vor Schreib- oder nach Lese-Operationen ausgeführt werden.
 
-\xxx[screenshot webfrontend]
+
+\section{CLI}
+
+%https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
+
+Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
+
+\begin{itemize}
+  \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
+  \item Import von CSV oder JSON Dateien mit \mintinline{console}{$ dat import}
+  \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
+  \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
+  \item Lokale Änderungen ebenfalls analog Git wieder zurück ins remote Repository synchronisieren mit \mintinline{console}{$ dat push}
+  \item Rudimentäre Manipulation und Ausgabe von einzelnen Zeilen des Repositories mit \mintinline{console}{$ dat rows} bzw. \mintinline{console}{$ dat cat}
+\end{itemize}
+
+Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
+\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+
+Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten umgehen können.
+
+\section{Frontend}
+
+\Gls{dat} bietet ein minimales Webfrontend welches ähnliche Operationen wie mit dem \gls{cli} wie z.B. Import/Export sowie betrachten der Datensätze ermöglicht. Einen Ausschnitt ist folgender \cref{fig:dat:webfrontend} zu sehen.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig/webfrontend}
+  \caption{dat Webfrontend}
+  \label{fig:dat:webfrontend}
+\end{figure}
+
 
 \section{Architektur}
 % diagramm, requirements, interfaces, ...
@@ -67,7 +99,7 @@ Dieses Kapitel beschreibt die Möglichkeiten wie \gls{dat} mittels Schnittstelle
 
 \section{Datscript} %https://github.com/datproject/datscript
 
-Datscript ist eine für spezielle \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:gasket} beschriebene Gasket ersetzt wurde.
+Datscript ist eine für spezielle \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:dat:gasket} beschriebene Gasket ersetzt wurde.
 
 
 \begin{srclst}{bash}{Datscript Beispiel}
@@ -95,12 +127,12 @@ pipeline import
   run foobar | run dat import --json
 \end{srclst}
 
-\section{Gasket}\label{sec:gasket} % https://github.com/datproject/gasket
+\section{Gasket}\label{sec:dat:gasket} % https://github.com/datproject/gasket
 Gasket ist eine Node.js-basierte Pipeline-Engine. Die Konfiguration geschieht entweder im JSON-Format direkt in \path{package.json}, oder aber in einem Node.js-Modul. Unterstützt wird die Ausführung von externen Programmen, oder die Verwendung von Node.js-Modulen.
 
-Ein Beispiel einer trivialen \path{package.json} Konfiguration wird in \cref{lst:gasket-beispiel} aufgezeigt und gibt lediglich ``HELLO WORLD'' aus .
+Ein Beispiel einer trivialen \path{package.json} Konfiguration wird in \cref{lst:dat:gasket-example} aufgezeigt und gibt lediglich ``HELLO WORLD'' aus .
 
-\begin{srclst}[label=lst:gasket-beispiel]{json}{Offizielles Gasket Beispiel}
+\begin{srclst}[label=lst:dat:gasket-example]{json}{Offizielles Gasket Beispiel}
 {
   "name": "my-test-app",
   "dependencies" : {
@@ -246,9 +278,7 @@ Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
-dat ist ein Node.js-Modul.
-\xxx[intro]
-
+dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript API. Dieser Abschnitt zeigt auf welche Interaktionsmöglichkeit mit dem Repository via JavaScript API möglich ist.
 
 \begin{srclst}{js}{Laden des dat-Moduls}
 var dat = require('dat')
@@ -308,9 +338,9 @@ Aktuell existiert nur ein einzelner Hook:
 \item[listen] Wird ausgeführt, wenn der dat-Server an einen Port bindet.
 \end{description}
 
-Ein Hook muss als Node.js-Modul, wie in \cref{lst:dat-hook} gezeigt, vorliegen.
+Ein Hook muss als Node.js-Modul, wie in \cref{lst:dat:hook} gezeigt, vorliegen.
 
-\begin{srclst}[label=lst:dat-hook]{js}{Hook-Beispiel}
+\begin{srclst}[label=lst:dat:hook]{js}{Hook-Beispiel}
 module.exports = function hook(dat, done) {
   // do stuff with dat
 
@@ -528,12 +558,6 @@ Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
 % \paragraph{dump}
 % \paragraph{config}
 
-\subsection{CLI}
-%https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
-
-Das Kommandozeilen-Tool \texttt{dat} kann zur Erstellung oder für rudimentäre Inspektion einer dat-Instanz verwendet werden. Für fortgeschrittenere Benutzung ist es jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
-
-Zudem ermöglicht es, entfernte \gls{dat} Repositories analog git zu ``klonen'' und Änderungen ebenfalls analog git wieder zu ``pushen''. Spätere Versionen sollen auch Branches erlauben sowie Konflikte behandeln können.
 
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
@@ -590,7 +614,7 @@ Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Fe
 
 Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
 
-\begin{decision}{Projekt dat}
+\begin{decision}[label=dec:dat:fazit]{Projekt dat}
 Aufgrund der Tatsache, dass \gls{dat} obschon vielversprechend noch sehr unausgereift und undokumentiert ist, sowie das API noch ständigen Änderungen unterzogen wird, wurde nach Rücksprache mit dem Betreuer gegen den Einsatz von \gls{dat} entschieden. Das Projektrisiko ist zu gross und es wird nach einer alternativen Lösungen zur Implementation eines Datenhubs gesucht.
 \end{decision}
 
