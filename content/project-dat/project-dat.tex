@@ -62,8 +62,29 @@ Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten 
 
 % http://dat-data.com/docs.html: "Q:If I have multiple different tables that I want to store, would I create a separate dat repo for each? Can a single dat repo store multiple tables? A: Each dat repo is only one table."
 
-\xxx[Architektur-doc finden/erstellen (evtl selbstgemachte grafik mit tiers/zusammenspiel apis (levelup-leveldown/sqldown-leveldb/sql))]
+dat speichert Daten auf zwei verschiedene Arten:
+\begin{itemize}
+\item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat können diese Daten auch in einer SQL-Datenbank wie Postgres gespeichert werden.
+\item Blob-Daten werden standardmässig im File-System per local-blob-store gespeichert. Dies kann ebenfalls durch eine kompatible Implementation ausgetauscht werden.
+\end{itemize}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth,clip]{fig/dat-architecture}
+  \caption{dat Architektur-Übersicht}
+  \label{fig:dat-architecture-overview}
+\end{figure}
+
+Direkt mit dat wird auch der dat-editor geliefert, welcher als rudimentäres Web-GUI dient. Der Editor sowie das REST-API werden gestartet, wenn \mintinline{console}{dat listen} aufgerufen wird. Andere dat-Instanzen verwenden das REST-API für die Synchronisation.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth,clip]{fig/dat-pipeline}
+  \caption{dat Daten-Pipelines}
+  \label{fig:dat-architecture-pipeline}
+\end{figure}
+
+Mithilfe des Sub-Projekts \texttt{gasket} können sogenannte Daten-Pipelines definiert werden. Diese dienen dazu, Daten abzurufen, zu transformieren und schliesslich in dat zu speichern, bzw. Daten aus dat zu lesen, zu transformieren und schliesslich abzuliefern.
 
 \section{Use Cases}
 In diesem Abschnitt werden mögliche Verwendungszwecke von \gls{dat} aufgezeigt.
