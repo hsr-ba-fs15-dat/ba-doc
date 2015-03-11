@@ -1,0 +1,51 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 11. März 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum} & 11.03.2015 \\
+		\textbf{Zeit} & 09:30\textendash10:30 Uhr \\
+		\textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+		\textbf{Anwesende} & \proff \\ & \chuf \\ & \rlif \\ & \fscf
+	\end{tabular}
+	
+
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Aktuellen Stand besprechen
+		\item Demo Prototyp / Heroku-Deployment
+		\item Abklärungen Datenschutz
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Heroku-Deployment
+		\item Prototyp CSV-Daten einlesen
+		\item Prototyp REST API
+		\item Prototyp User Management
+	\end{itemize}
+	
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item Für Benutzer-Anmeldung ist OAuth2 zu verwenden, keine eigene Benutzerverwaltung.
+		\item Keine Gruppenverwaltung. Dies soll mit gemeinsam verwendeten OAuth2-IDs realisiert werden.
+		\item Daten sollen als Private/Public markiert werden können.
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Refactoring Prototypen
+		\item Liste von ``Documents'' (Daten), ähnlich ckan\footnote{\url{http://ckan.org/}}.
+		\item Berechtigungskonzept
+		\item Plugin-System für Konverter
+		\item Kurze Übersicht über ckan (Datenmodell, Features)
+	\end{itemize}
+	
+\end{document}
+
+
+
