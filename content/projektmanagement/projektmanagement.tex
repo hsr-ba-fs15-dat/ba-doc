@@ -313,18 +313,64 @@ end
 \end{src}
 \section{Tests}
 
-\section{Coding-Richtlinien}
+\section{Programmierrichtlinien}
+Jeder Entwickler hat seine eigenen Vorstellungen davon wie Programmcode aussehen soll bzw. welche Richtlinien\footnote{Namenskonventionen, Modularität, \dots} bei der Entwicklung einzuhalten sind. Aus diesem Grund wurden frühzeitig Programmierrichtlinien inkl. Coding Style Guidelines bestimmt und mittels Entwicklungsumgebung\footnote{PyCharm von JetBrains (IntelliJ IDEA)} sowie Build-Server forciert.
+
 
 \subsection{Python}
-\xxx[pep8?]
+Für den Python Quellcode wurden die in der Python Community verbreiteten \gls{pep8} Richtlinien angewendet. Die einzige Ausnahme stellt hierbei eine Zeilenlänge von 120 statt den nur 80 Zeichen dar. Die \gls{pep8} Regeln werden teilweise durch die verwendete Entwicklungsumgebung sowie Flake8\footnote{\url{http://flake8.readthedocs.org}} und PyLint\footnote{\url{http://www.pylint.org/}} auf dem \gls{ci} Server streng erzwungen. Bei Verstoss versagt der Build und der Entwickler wird Benachrichtigt. Ein Beispiel-Output auf dem Build-Server sieht folgendermassen aus:
+
+\begin{src}{console}
+[INFO]  Executing flake8 on project sources.
+[WARN]  flake8: src/main/python/authentication/tests.py:5:9: W292 no newline at end of file
+[WARN]  flake8: src/main/python/authentication/tests.py:1:1: F401 'TestCase' imported but unused
+[WARN]  flake8: src/main/python/authentication/admin.py:1:1: F401 'admin' imported but unused
+[WARN]  flake8: src/main/python/opendatahub/urls.py:8:1: F401 'IndexView' imported but unused
+------------------------------------------------------------
+BUILD FAILED - flake8 found 4 warning(s)
+\end{src}
 
 
 \subsection{JavaScript}
+\xxx[falls tests in js]
+
+
+\subsection{TypeScript}
+Zur Formatierung des Quellcodes wurden die Standardregeln der Entwicklungsumgebung angewendet. Diese sind unter \path{opendatahub/idea/formatter} abgelegt. Auch hier wurde zur Prüfung und Einhaltung von TypeScript-spezifischen Regeln ein Linter (tslint) verwendet und mittels Build-Server erzwungen. Die Regeln sind in \path{opendatahub/src/main/webapp/tslint.json} konfiguriert. Da eine Typisierung in TypeScript optional ist, gilt der Grundsatz ``dort wo es Sinn macht'', das heisst konkret
+\begin{itemize}
+\item alle Variablen die ein TypeScript Interface besitzen (z.B. AngularJS Services),
+\item alle public Funktionen und Methoden die auch exportiert werden und somit irgendwo Wiederverwendung finden sowie deren Attribute.
+\end{itemize}
+
+Nicht zu annotieren sind inline Lambda-Funktionen ausser deren Parameter sofern ein bestehendes Interface existiert. Ein Beispiel-Output von tslint sieht folgendermassen aus:
+
+\begin{src}{console}
+Running "tslint:files" (tslint) task
+app/scripts/app.config.ts[2, 3]: comment must start with a space
+app/scripts/app.config.ts[21, 3]: comment must start with a space
+app/scripts/app.config.ts[21, 8]: file should end with a newline
+app/scripts/app.ts[37, 11]: comment must start with lowercase letter
+app/scripts/app.ts[5, 9]: unused variable: 'openDataHu
+app/scripts/auth/controllers/account-settings.controller.ts[30, 15]: comment must start with lowercase letter
+app/scripts/auth/controllers/account-settings.controller.ts[34, 19]: comment must start with a space
+7 errors in 3 files
+Warning: Task "tslint:files" failed. Use --force to continue.
+Aborted due to warnings.
+------------------------------------------------------------
+BUILD FAILED - Errors while running grunt, see /home/travis/build/hsr-ba-fs15-dat/opendatahub/target/reports/grunt.err
+\end{src}
 
 
 \subsection{AngularJS}
-\xxx[scaffolding, controller as, kein dom in controllern]
+Bei AngularJS gibt es eine Vielzahl von Möglichkeiten ein und dasselbe zu erreichen. Aus diesem Grund ist es umso wichtiger sich auf bestimmte Vorgehensweisen bei der Entwicklung mit AngularJS zu einigen. Grundsätzlich gelten die mittlerweile etablierten und nahezu offiziellen AngularJS Richtlinien und Best Practices von ``John Papa''\cite{angular-styleguide}. Die Richtlinien sind auf JavaScript ausgelegt. Da wir TypeScript verwenden sind nur diejenigen anzuwenden die auch im TypeScript Kontext zutreffen bzw. noch Sinn machen. Besonders zu beachten sind folgende Regeln:
 
+\begin{itemize}
+	\item Verwendung der ``controller as'' Syntax um Scope-Vererbung zu vermeiden
+	\item DOM Manipulationen finden ausschliesslich in AngularJS Direktiven statt
+	\item Single Responsibility Priciple \textendash\ Eine Klasse/Service/Controller pro Datei mit Ausnahme von kleinen ``Sub-Controllern'' die zu einem anderen gehören oder nicht exportierte (private) Klassen.
+\end{itemize}
+
+Es wurden eigene TypeScript ``New File'' IntelliJ Templates für AngularJS Services, Controller und Direktiven erstellt und stellen sicher, dass jeder Entwickler immer wieder dieselbe Grundstruktur verwendet. Diese sind unter \path{opendatahub/idea/templates} abgelegt.
 
 
 
