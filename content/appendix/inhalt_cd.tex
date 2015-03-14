@@ -1,5 +1,7 @@
 \chapter{Inhalt der CD}
 
+\xxx[last minute: anpassen]
+
 %, rounded corners
 \tikzstyle{every node}=[ultra thick,anchor=west, font={\scriptsize\ttfamily}, inner sep=4pt]
 
@@ -17,9 +19,9 @@
 	edge from parent path={(\tikzparentnode.south) |- (\tikzchildnode.west)}]
 	
 	\node [root] {CD}
-	child { node [thisdoc] {sa-poitour\_fscala.pdf {\normalfont$\rightarrow$ Dieses Dokument}}}
+	child { node [thisdoc] {ba-opendatahub\_chuesler\_rliebi\_fscala.pdf {\normalfont$\rightarrow$ Dieses Dokument}}}
 	child { node [selected] {0\_INFO}
-		child { node [comment] {Diverse Info- und Best-Practice Dokumente für die SA}}
+		child { node [comment] {Diverse Info- und Best-Practice Dokumente für die \acs{ba}}}
 	}
 	child [missing] {}
 	child { node [selected] {1\_AUFGABE}
@@ -33,21 +35,17 @@
 	child [missing] {}
 	child [missing] {}
 	child { node [selected] {3\_SRC}
-		child { node [selected] {poitour}
-			child { node [selected] {backend}}
-			child { node [selected] {frontend}}
-			child { node [selected] {osrm}}
-			child { node [selected] {install.sh}}
+		child { node [selected] {opendatahub}
+			child { node [selected] {vagrant}}
+			child { node [selected] {README.md}}
 		}
 	}
 	child [missing] {}
 	child [missing] {}
 	child [missing] {}
-	child [missing] {}
-	child [missing] {}
 	child { node [selected] {4\_DIST}
-		child { node [selected] {frontend}
-			child { node [comment] {''Kompiliertes'' Frontend}}
+		child { node [selected] {app}
+			child { node [comment] {Deploybare Applikation}}
 		}child [missing] {}
 		child { node [selected] {doc}
 			child { node [comment] {Generierte Sphinx Dokumentation des Backends}}
@@ -59,10 +57,7 @@
 	child [missing] {}
 	child { node [selected] {5\_ABSTRACT}}
 	child { node [selected] {6\_POSTER}}
-	child { node [selected] {7\_MISC}
-		child { node [selected] {perftest\_osrm.py}}
-		child { node [selected] {perftest\_pgrouting.py}}
-	}	
+	child { node [selected] {7\_MISC}}	
 	child [missing] {};
 	\end{tikzpicture}
 	\caption{Inhalte der beigefügten CD}
