@@ -168,8 +168,24 @@ Wie sich herausgestellt hat, ist \gls{dat} noch weit davon entfernt um es produk
 
 
 
-
 \chapter{Entwicklungsumgebung und Infrastruktur}
+In diesem Kapitel wird die Entwicklungsumgebung inkl. verwendete Tools beschrieben. \cref{fig:pm:entwicklungsumgebung} zeigt eine Übersicht der Entwicklungsumgebung und den groben Prozess.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{fig/entwicklungsumgebung}
+	\caption{Entwicklungsumgebung}
+	\label{fig:pm:entwicklungsumgebung}
+\end{figure}
+
+\section{IDE}
+\xxx[more, why? pros/cons, use decision box?]
+Als IDE wurde JetBrains PyCharm verwendet.
+
+\section{SCM}
+\xxx[more, why? pros/cons, use decision box?]
+Als \gls{scm} wurden GitHub Repositories innerhalb einer eigenen GitHub Organisation ``hsr-ba-fs15-dat'' verwendet.
+
 
 \section{Projektmanagement}
 
@@ -182,8 +198,7 @@ Zur Planung der Ressourcen und Zeit sowie Zuständigkeiten der Tasks wurde das k
 	\label{fig:pm:jira-agile}
 \end{figure}
 
-Jira wurde auf einer virtuelle Maschine der \acs{hsr} betrieben und dessen Daten täglich und automatisiert gesichert.
-
+Jira wurde auf einer virtuellen Maschine der \acs{hsr} betrieben und dessen Daten täglich und automatisiert via cronjob gesichert.
 
 
 \section{Kommunikation}
@@ -208,6 +223,9 @@ Bei der Durchführung der Bachelorarbeit \gls{dat} wollten wir auf die Kommunika
 \end{figure}
 
 
+\section{Integrationsumgebung}
+Die Applikation wird nach jedem erfolgreichen Build von Travis auf Heroku deployed. Die Integrationsinstanz dient zu Demozwecken an Sitzungen und stellt zudem sicher, dass die Webapplikation auch im Kompilierten\footnote{Transpilierung von TypeScript sowie Konkatentierung und ``Minification'' aller Ressourcen} funktioniert.
+
 
 \chapter{Qualitätsmanagement}
 
@@ -224,94 +242,6 @@ Um die Qualität der umgesetzten Tasks zu erhöhen und sicherzustellen wurde ein
 
 Der in \cref{fig:jira-workflow} dargestellte Prozess stellt sicher, dass alle Tasks erst in den Review Status versetzt werden müssen. Von diesem Status aus kann der Task entweder durch den Reviewer geschlossen oder zurück in den Status ``To Do'' versetzt werden, wobei bei letzterem der Tasks automatisch dem ursprünglichen Teammitglied zugewiesen wird.
 
-\pagebreak
-\section{Vagrant}
-\subsection{Überblick}
-Vagrant ist eine auf Ruby basierte, freie Anwendung, die das Verwalten und Erstellen von virtuellen Maschinen ermöglicht. Vagrant dient eigentlich als Wrapper zwischen der Virtualisierungssoftware (Virtualbox, VMware, Parallels, etc.) und Systemkonfiguartionswerkzeugen (in unserem Fall Puppet).
-Der grosse Mehrwert von Vagrant ergibt sich dadurch, dass es komplett programmiersprachenunabhängig ist und somit für verschiedene Softwareprojekte verwendet werden kann. Im Vagrantfile wird eine virtuelle Maschine definiert und konfiguriert. Dieses File wird mit dem Projekt in der Versonskontrolle abgelet, so kann auf den unterschiedlichen Host Systemen gewährleistet werden, dass mit der selben Entwicklungsumgebung gearbeitet werden kann und so alle Abhängigkeiten, ohne das Hostsystem zu beeinflussen, gewährleistet werden.
-\subsection{Projektinitalisierung}
-Ein Projekt wird mit folgendem Befehl initialisiert
-\begin{src}{shell}
-vagrant init [box-name] [box-url]
-\end{src}
- Durch die Angabe des ``box-name'' kann direkt eine entsprechende Vorlage ins Vagrantfile geladen werden. Die URL kann dazu verwendet werden, den Ort an dem sich das Image befindet anzugeben, und diese direkt herunterzuladen. Diese Angaben haben wir im Vagrantfile, bzw. mittels Puppet konfiguriert.
-\subsection{Konfiguration}
-Die gesamte Konfiguration erfolgt im Vagrantfile. 
-\begin{srclst}{ruby}{Syntax-Beispiel eines Vagrantfile (generiert von puphpet.com)}
-require 'yaml'
-
-dir = File.dirname(File.expand_path(__FILE__))
-
-configValues = YAML.load_file("#{dir}/puphpet/config.yaml")
-data         = configValues['vagrantfile-local']
-
-Vagrant.require_version '>= 1.6.0'
-
-Vagrant.configure('2') do |config|
-  config.vm.box     = "#{data['vm']['box']}"
-  config.vm.box_url = "#{data['vm']['box_url']}"
-
-  if data['vm']['hostname'].to_s.strip.length != 0
-    config.vm.hostname = "#{data['vm']['hostname']}"
-  end
-  [...]
-end
-\end{srclst}
-\subsection{Provisioning}
-In der Phase Provisioning werden andere Programme, zumeist SCM-Software wie aptitude, aber auch grundlegende Anwendungen wie Shell konfiguriert und parameter übergeben.
-Hier ein Auszug eines unsere provisioning files:
-\begin{src}{shell}
-#!/bin/sh
-
-sudo apt-get update
-sudo apt-get upgrade
-source ~/.bashrc
-sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-# ------ Frontend
-cd /vagrant/webapp/frontend
-
-# Required for SASS
-sudo `which gem` install compass
-
-# Cleanup
-rm -rf bower_components node_modules
-
-# Install deps
-
-npm install
-bower install --config.analytics=false --allow-root
-
-
-# ------ Backend
-cd /vagrant/webapp/backend
-
-# Cleanup
-rm -rf env target
-
-# Create virtualenv with existing packages (see config.yaml)
-virtualenv --system-site-packages env
-source env/bin/activate
-
-# Install all requirements.txt and requirements_dev.txt dependencies
-pyb install_dependencies
-
-\end{src}
-\subsection{Arbeiten mit Vagrant}
-Um eine \gls{vm} zu starten, führt man den Befehl \mintinline{shell}{vagrant up} aus. Beim Ausführen des Befehles wird die \gls{vm} gemäss den Vorgaben im Vagrantfile initialisiert. Später kann man mittels \mintinline{shell}{vagrant ssh} per SSH direkt in die \gls{vm} verbunden werden. Wird die Maschine (vorübergehend) nicht mehr gebraucht, kann mittels \mintinline{shell}{vagrant suspend} die \gls{vm} in den Ruhezustand gebracht werden.
-\subsection{Deployment}
-Seit der Vagrant Version 1.7 vom Dezember 2014 ist Deployment mittels Vagrant möglich. Durch den Befehl \mintinline{shell}{vagrant push} kann, je nach Konfiguration, auf Heroku, SFTP und FTP sowie durch selbstgeschriebene Kommandozeilenskripte oder Atlas deployed werden.
-\\Syntaxbeispiel für einen FTP-push: \cite{vagrant-deployment}
-\begin{src}{ruby}
-config.push.define "ftp" do |push|
-  push.host = "ftp.test.com"
-  push.username = "benutzer1"
-  push.password = "Passwort1"
-  push.secure = false
-  push.destination = "/"
-  push.dir = "/"
-end
-\end{src}
-\section{Tests}
 
 \section{Programmierrichtlinien}
 Jeder Entwickler hat seine eigenen Vorstellungen davon wie Programmcode aussehen soll bzw. welche Richtlinien\footnote{Namenskonventionen, Modularität, \dots} bei der Entwicklung einzuhalten sind. Aus diesem Grund wurden frühzeitig Programmierrichtlinien inkl. Coding Style Guidelines bestimmt und mittels Entwicklungsumgebung\footnote{PyCharm von JetBrains (IntelliJ IDEA)} sowie Build-Server forciert.
