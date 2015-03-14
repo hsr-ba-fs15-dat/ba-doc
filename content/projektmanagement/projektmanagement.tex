@@ -266,7 +266,7 @@ BUILD FAILED - flake8 found 4 warning(s)
 
 
 \subsection{TypeScript}
-Zur Formatierung des Quellcodes wurden die Standardregeln der Entwicklungsumgebung angewendet. Diese sind unter \path{opendatahub/idea/formatter} abgelegt. Auch hier wurde zur Prüfung und Einhaltung von TypeScript-spezifischen Regeln ein Linter (tslint) verwendet und mittels Build-Server erzwungen. Die Regeln sind in \path{opendatahub/src/main/webapp/tslint.json} konfiguriert. Da eine Typisierung in TypeScript optional ist, gilt der Grundsatz ``dort wo es Sinn macht'', das heisst konkret
+Zur Formatierung des Quellcodes wurden die Standardregeln der Entwicklungsumgebung angewendet. Diese sind unter \path{opendatahub/idea/settings.jar} abgelegt. Auch hier wurde zur Prüfung und Einhaltung von TypeScript-spezifischen Regeln ein Linter (tslint) verwendet und mittels Build-Server erzwungen. Die Regeln sind in \path{opendatahub/src/main/webapp/tslint.json} konfiguriert. Da eine Typisierung in TypeScript optional ist, gilt der Grundsatz ``dort wo es Sinn macht'', das heisst konkret
 \begin{itemize}
 \item alle Variablen die ein TypeScript Interface besitzen (z.B. AngularJS Services),
 \item alle public Funktionen und Methoden die auch exportiert werden und somit irgendwo Wiederverwendung finden sowie deren Attribute.
@@ -300,7 +300,7 @@ Bei AngularJS gibt es eine Vielzahl von Möglichkeiten ein und dasselbe zu errei
 	\item Single Responsibility Priciple \textendash\ Eine Klasse/Service/Controller pro Datei mit Ausnahme von kleinen ``Sub-Controllern'' die zu einem anderen gehören oder nicht exportierte (private) Klassen.
 \end{itemize}
 
-Es wurden eigene TypeScript ``New File'' IntelliJ Templates für AngularJS Services, Controller und Direktiven erstellt und stellen sicher, dass jeder Entwickler immer wieder dieselbe Grundstruktur verwendet. Diese sind unter \path{opendatahub/idea/templates} abgelegt.
+Es wurden eigene TypeScript ``New File'' IntelliJ Templates für AngularJS Services, Controller und Direktiven erstellt und stellen sicher, dass jeder Entwickler immer wieder dieselbe Grundstruktur verwendet. Diese sind unter \path{opendatahub/idea/settings.jar} abgelegt.
 
 
 
