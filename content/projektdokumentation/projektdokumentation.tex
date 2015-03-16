@@ -109,8 +109,9 @@ Code-Analyse (Metriken).
 
 
 \section{User Interface}
-
-
+\subsection{Authentifizierung}
+Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standart auf der REST Seite mit hilfe von verschiedenen Django Plugins. 
+Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichtert.
 
 
 \section{Testing}
