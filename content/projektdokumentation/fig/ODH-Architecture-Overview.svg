@@ -1,4 +1,4 @@
-<svg version="1.1" x="0" y="0" id="i7biq3wz2" diagram-revision="10" width="1065.05" height="560" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg version="1.1" x="0" y="0" id="i7biq3wz2" diagram-revision="11" width="1065.05" height="560" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs/>
   <g id="Vertical Rounded Rectangle-i7bj9q4d-ko2" transform="translate(330.05,209.95)">
     <desc>root/abstractShapes/vRoundedRectangle?version=4&amp;author=Cinergix</desc>
@@ -89,11 +89,11 @@
     <g id="image" transform="scale(1.5908966064453125,1.7222137451171875)">
       <polygon vector-effect="non-scaling-stroke" fill="#ffffff" stroke="#3298da" points="27.082,89.5 0.582,45 27.082,0.5 80.082,0.5 109.5,45 80.082,89.5 27.082,89.5 " style="stroke-width:1.5;fill:#ffffff;stroke:#3298da;" stroke-width="1.5"/>
     </g>
-    <text x="0" y="0" width="106" height="77.7" transform="translate(34.45,38.95)">
-      <tspan x="4.2" y="17.88952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">Transformations</tspan>
-      <tspan x="40" y="36.83952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">CSV</tspan>
-      <tspan x="35.8" y="55.78952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">JSON</tspan>
-      <tspan x="48.4" y="74.73952503204345" style="font-family:Lato;font-size:14px;fill:#3a87bd;">...</tspan>
+    <text x="0" y="0" width="76.3" height="77.7" transform="translate(49.3,38.1)">
+      <tspan x="5.25" y="17.88952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">Formatters</tspan>
+      <tspan x="25.25" y="36.83952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">CSV</tspan>
+      <tspan x="21.05" y="55.78952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">JSON</tspan>
+      <tspan x="33.65" y="74.73952503204345" style="font-family:Lato;font-size:14px;fill:#3a87bd;">...</tspan>
     </text>
   </g>
   <g id="Connector-i7bj9q4d-ko19" transform="translate(-119.95,-185)">
@@ -186,7 +186,7 @@
       <tspan x="5.25" y="17.88952503204346" style="font-family:Lato;font-size:14px;fill:#3a87bd;">ETL</tspan>
     </text>
   </g>
-  <creately-doc updated-user="Fabio Scala" format-version="1.0" projectid="pi77danyu" owner-name="Fabio Scala" id="i7biq3wz2" sync="false" revision="11">
+  <creately-doc updated-user="Fabio Scala" format-version="1.0" projectid="pi77danyu" owner-name="Fabio Scala" id="i7biq3wz2" sync="false" revision="12">
     <viewHash/>
     <embedHash>JFFMlvUWYI0NO1IYyPS6lcaSZM=</embedHash>
     <dtLastEdit>LAST_EDIT_AUTO</dtLastEdit>
@@ -195,7 +195,7 @@
     <comments/>
     <creatorUid>PHPAFB72-16BF-61B9-788A-2F6AB1C25774</creatorUid>
     <save-type/>
-    <date-updated>Mon Mar 16 2015 09:05:45 AM</date-updated>
+    <date-updated>Mon Mar 16 2015 09:36:59 AM</date-updated>
     <editHash/>
     <libraries>
       <lib-ID>
@@ -303,9 +303,9 @@
         <kobject-def-id>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</kobject-def-id>
         <style fill-gradient="GRADIENT_FILL_SOLID" alpha="1" fill="true" fill-color="16777215" line-thickness="1.5" line-style="" line-color="3315930"/>
         <text position="CENTRE" text-rotation="NaN" wrapping="true">
-          <content>Transformations(~!nl!~)CSV(~!nl!~)JSON(~!nl!~)...</content>
+          <content>Formatters(~!nl!~)CSV(~!nl!~)JSON(~!nl!~)...</content>
           <text-formats>
-            <text-format under-line="false" bold="false" block-indent="0" font="Lato" italic="false" bullet="false" align="center" display="block" order="0" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="28" kerning="false" begin-index="0" indent="0" color="3835837" leading="2">
+            <text-format under-line="false" bold="false" block-indent="0" font="Lato" italic="false" bullet="false" align="center" display="block" order="0" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="23" kerning="false" begin-index="0" indent="0" color="3835837" leading="2">
               <url/>
               <target/>
             </text-format>
@@ -777,7 +777,7 @@
     <kodefs/>
     <description/>
     <save-comments/>
-    <date-created>Mon Mar 16 2015 09:05:45 AM</date-created>
+    <date-created>Mon Mar 16 2015 09:36:59 AM</date-created>
     <docname>ODH Architecture Overview</docname>
     <source-tool/>
     <koDefIDList>

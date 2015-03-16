@@ -98,6 +98,14 @@ Code-Analyse (Metriken).
 
 \section{Architektur}
 
+Daten-Lieferanten liefern ihre Daten per Web-Interface oder REST-Api. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese Daten wieder über das Web-Interface oder per REST-Api ab. 
+
+Entwickler können eigene Komponenten entwickeln und beisteuern:
+\begin{description}
+\item[Parser] nehmen Daten entgegen und bereiten sie zum Speichern auf
+\item[Formatter] formattieren gespeicherte Daten in das vom Benutzer gewünschte Format
+\end{description}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/ODH-Architecture-Overview}
