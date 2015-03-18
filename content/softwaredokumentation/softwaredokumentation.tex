@@ -58,7 +58,7 @@ exit #Verlassen der Umgebung
 vagrant ssh #Erneutes Verbinden. venv ist nun aktiviert.
 \end{src}
 \subsection{IDE}
-Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man \mintinline{shell}{Datei -> öffnen} und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. In den Projekteinstellungen muss nun noch der Projektinterpreter auf die Vagrant instanz gelegt werden, damit alle Debugging Features funktionieren.
+Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. In den Projekteinstellungen muss nun noch der Projektinterpreter auf die Vagrant instanz gelegt werden, damit alle Debugging Features funktionieren.
 \subsection{Deployment}
 Seit der Vagrant Version 1.7 vom Dezember 2014 ist Deployment mittels Vagrant möglich. Durch den Befehl \mintinline{shell}{vagrant push} kann, je nach Konfiguration, auf Heroku, SFTP und FTP sowie durch selbstgeschriebene Kommandozeilenskripte oder Atlas deployed werden.
 \\Syntaxbeispiel für einen FTP-push: \cite{vagrant-deployment}
