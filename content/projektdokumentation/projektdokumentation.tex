@@ -98,6 +98,47 @@ Code-Analyse (Metriken).
 
 \section{Architektur}
 
+Daten-Lieferanten liefern ihre Daten per Web-Interface oder REST-Api. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese Daten wieder über das Web-Interface oder per REST-Api ab. 
+
+Entwickler können eigene Komponenten entwickeln und beisteuern:
+\begin{description}
+\item[Parser] nehmen Daten entgegen und bereiten sie zum Speichern auf
+\item[Formatter] formattieren gespeicherte Daten in das vom Benutzer gewünschte Format
+\end{description}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{fig/ODH-Architecture-Overview}
+    \caption{Grobe Architektur-Übersicht}
+\end{figure}
+
+\subsection{Datenspeicherung}
+Ein Ziel dieser Arbeit ist die Erstellung eines Daten-Hubs, welcher es Anbietern ermöglicht, ihre Daten anderen zur Verfügung zu stellen. Zur Speicherung der Daten stehen folgende Varianten zur Auswahl.
+
+\subsubsection{File-basiert}
+Die Daten werden direkt im Datei-System gespeichert. Um Konflikte zwischen Datei-Namen zu vermeiden muss ein Hashing-Schema definiert und verwendet werden. Metadaten zu den Dokumenten werden in einer Datenbank hinterlegt.
+
+Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Datei-System gecached werden um weiter Abfragen nach der selben Transformation zu beschleunigen.
+
+Die Tatsache, dass die Daten im Datei-System liegen vereinfacht die Einbindung von Software von Drittanbietern.
+
+\xxx[note that heroku has a read-only/ephemeral file system, so for this to work we'd need S3 or something like that which throws performance benefits over the last version right out the window]
+
+\subsubsection{Datenbank-basiert, einzelne Records}
+Die Daten werden in einzelne Records zerlegt und zusammen mit den Metadaten in einer Datenbank gespeichert. Dies erfordert, dass bereits der Daten-Anbieter eine Transformation in das Record-Format auswählen muss. Falls sich herausstellt, dass dies zu langsam ist um es direkt im HTTP-Request des Anbieters durchzuführen, müssen die Daten vor der Transformation zwischengespeichert werden.
+
+Falls die Transformations-Resultate auf der Nutzer-Seite gecached werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
+
+Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten.
+
+Laut \prof wird diese Version bereits von diversen Schema Mapping-Tools verwendet (\gls{kettle}, \gls{fme}).
+
+\subsubsection{Datenbank-basiert, Schema-los}
+Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der File-basierten Version, es ist jedoch ein Performance-Verlust zu erwarten.
+
+\subsubsection{Fazit}
+\xxx
+
 \subsection{Komponenten}
 
 
@@ -109,8 +150,9 @@ Code-Analyse (Metriken).
 
 
 \section{User Interface}
-
-
+\subsection{Authentifizierung}
+Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standart auf der REST Seite mit hilfe von verschiedenen Django Plugins. 
+Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichtert.
 
 
 \section{Testing}
