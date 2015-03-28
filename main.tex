@@ -12,7 +12,7 @@
 \usepackage[subpreambles=false]{standalone}
 
 \input{./macros}
-\input{./content/glossary_acronyms}
+\input{./content/glossary-acronyms}
 \addbibresource{./bibliography/bibliography.bib}
 
 \newcommand{\version}{\textcolor{red}{DRAFT}}
@@ -29,7 +29,7 @@
 \newtoggle{isprint}
 \newtoggle{isdigital}
 
-\togglefalse{isprint}
+\togglefalse{isprint} 
 %\toggletrue{isprint}
 \toggletrue{isdigital}
 
@@ -38,7 +38,7 @@
 
 \begin{document}
 	\frontmatter
-		\import{content/}{title.tex}
+		\import{content/}{title.tex} 
 		\cleardoublepage
 		%\import{content/}{history.tex}
 		%\cleardoublepage

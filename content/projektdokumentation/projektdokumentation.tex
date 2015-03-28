@@ -88,57 +88,37 @@ Code-Analyse (Metriken).
 \chapter{Analyse}
 
 
-\chapter{Design und Implementation}
-
-
-\section{Architektur}
-
-Daten-Lieferanten liefern ihre Daten per Web-Interface oder REST-Api. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese Daten wieder über das Web-Interface oder per REST-Api ab. 
-
-Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \cref{fig:arch-overview} zu sehen ist:
-\begin{description}
-\item[Parser] nehmen Daten entgegen und bereiten sie zur Weiterverarbeitung auf
-\item[Formatter] formattieren Daten in das vom Benutzer gewünschte Format
-\end{description}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{fig/ODH-Architecture-Overview}
-    \caption{Grobe Architektur-Übersicht}
-    \label{fig:arch-overview}
-\end{figure}
-
-\subsection{Datenspeicherung}
+\section{Datenspeicherung}
 Ein Ziel dieser Arbeit ist die Erstellung eines Daten-Hubs, welcher es Anbietern ermöglicht, ihre Daten anderen zur Verfügung zu stellen. Zur Speicherung der Daten stehen folgende Varianten zur Auswahl.
 
-\subsubsection{File-basiert}
-Die Daten werden direkt im Datei-System gespeichert. Um Konflikte zwischen Datei-Namen zu vermeiden muss ein Hashing-Schema definiert und verwendet werden. Metadaten zu den Dokumenten werden in einer Datenbank hinterlegt.
+\subsection{File-basiert}
+Die Daten werden direkt im Dateisystem gespeichert. Um Konflikte zwischen Datei-Namen zu vermeiden muss ein Hashing-Schema definiert und verwendet werden. Metadaten zu den Dokumenten werden in einer Datenbank hinterlegt.
 
-Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Datei-System gecached werden um weiter Abfragen nach der selben Transformation zu beschleunigen.
+Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Dateisystem zwischengespeichert werden um weiter Abfragen nach der selben Transformation zu beschleunigen.
 
-Die Tatsache, dass die Daten im Datei-System liegen vereinfacht die Einbindung von Software von Drittanbietern.
+Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern.
 
-Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren bzw. keine beständigen Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.\footnote{siehe \url{https://devcenter.heroku.com/articles/read-only-filesystem} bzw. \url{https://devcenter.heroku.com/articles/dynos\#ephemeral-filesystem}}
+Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren bzw. keine beständigen Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.\footnote{Siehe \url{https://devcenter.heroku.com/articles/read-only-filesystem} bzw.\newline\url{https://devcenter.heroku.com/articles/dynos\#ephemeral-filesystem}}
 
-Metadaten sollten weiterhin in einer Datenbank gehalten werden.
+Metadaten wie Format oder original Dateinamen würden weiterhin in einer Datenbank gehalten werden.
 
-\subsubsection{Datenbank-basiert, einzelne Records}
+\subsection{Datenbank-basiert, einzelne Records}\label{sec:pd:datenbank-records}
 Die Daten werden in einzelne Records zerlegt und zusammen mit den Metadaten in einer Datenbank gespeichert. Dies erfordert, dass bereits der Daten-Anbieter eine Transformation in das Record-Format auswählen muss. Falls sich herausstellt, dass dies zu langsam ist um es direkt im HTTP-Request des Anbieters durchzuführen, müssen die Daten vor der Transformation zwischengespeichert werden.
 
-Falls die Transformations-Resultate auf der Nutzer-Seite gecached werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
+Falls die Transformationsresultate auf der Nutzer-Seite zwischengespeichert werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
 
 Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten.
 
-Laut \prof wird diese Version bereits von diversen Schema Mapping-Tools verwendet (\gls{kettle}, \gls{fme}).
+Laut \prof wird diese Methode bereits von diversen Schema Mapping-Tools verwendet (\gls{kettle}, \gls{fme}).
 
-\subsubsection{Datenbank-basiert, Dokument als Blob}
+\subsection{Datenbank-basiert, Dokument als Blob}
 Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der File-basierten Version.
 
 Falls Dritt-Anbieter-Software nur auf Datei-basis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
 
 Für diese Variante existieren folgende Möglichkeiten:
 \begin{description}
-\item[Daten und Metadaten in der selben Tabelle] Daten und Metadaten werden in der selben Tabelle gespeichert. Dies bietet ein einfacheres Schema, erlaubt jedoch nur ein Daten-Objekt pro Dokument, was ungeeignet ist für Dokument-Typen wie ESRI Shapefile, welche aus mehr als einer Datei bestehen.
+\item[Daten und Metadaten in der selben Tabelle] Daten und Metadaten werden in der selben Tabelle gespeichert. Dies bietet ein einfacheres Schema, erlaubt jedoch nur ein Daten-Objekt pro Dokument, was ungeeignet ist für Dokument-Typen wie ESRI Shapefiles, welche aus mehr als einer Datei bestehen.
 \item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehen aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Record. Dies erlaubt es auch, Django-Models zu erstellen welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
 \end{description}
 
@@ -150,9 +130,183 @@ Die Speicherung von Daten auf Record-Basis weist unserer Meinung nach diverse Na
 \end{itemize}
 
 \xxx[document decision to support cloud service providers/heroku]
-Wir entschieden uns bereits zu einem früheren Zeitpunkt, zu Cloud-Anbietern, insbesondere Heroku, kompatibel sein zu wollen. Da bei der File-basierten Version ausserdem neben dem File-Backend trotzdem noch eine Datenbank verwendet wird, entschieden wir uns für einen Datenbank-basierten Ansatz.
 
-Um Dokument-Typen wie ESRI Shapefile einfacher unterstützen zu können kommt die Version mit separaten Tabellen für Daten und Metadaten zum Einsatz.
+\begin{decision}[label=dec:pd:datenspeicherung]{Datenspeicherung}
+Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
+\end{decision}
+
+
+\section{Intermediäres Format}
+
+Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt würden um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne jenes eine generische Transformation unmöglich wäre.
+
+In diesem Abschnitt werden diverse Optionen im Hinblick auf deren Vor- und Nachteile sowie Eignung beschrieben. 
+
+\subsection{Datenbank}
+Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie Sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. Der grosse Vorteil dieser Variante ist, dass die Transformationen dann mittels SQL Abfragen auf die diversen Datenbanktabellen erfolgen kann. Man ist dabei jedoch auf die Funktionalität der Datenbank limitiert und kann nur sehr schlecht Transformationen anbieten die dessen Fähigkeiten übersteigen.
+
+
+\subsection{ogrtools}
+
+Ogrtools ist eine Python Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die Kompilierte OGR/GDAL Bibliotheken welches 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann durch durchaus zum Verlust von Informationen kommen.
+
+Sollte die ogrtools Bibliothek verwendet werden, so würde man auf der existierenden Transformationssprache bzw. Tranformationskonfiguration aufbauen und dieses um weitere Operationen wie beispielsweise Filterung oder Joins erweitern. Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
+
+
+\begin{srclst}[label=src:pd:ogrtools]{json}{ogrtools Mapping-Konfiguration}
+{
+  "//": "OGR transformation configuration",
+  "src_format": "Interlis 2",
+  "dst_format": "PostgreSQL",
+  "dst_dsco": {},
+  "dst_lco": {
+    "SCHEMA": "public"
+  },
+  "layers": {
+    "roadsexdm2ben_roads_streetnameposition": {
+      "fields": {
+        "tid": {
+          "src": "TID",
+          "type": "String"
+        },
+        "street": {
+          "src": "Street",
+          "type": "String"
+        },
+        "namori": {
+          "src": "NamOri",
+          "type": "Real"
+        }
+      },
+      "geometry_type": "Point",
+      "src_layer": "RoadsExdm2ben.Roads.StreetNamePosition",
+      "geom_fields": {
+        "nampos": {
+          "src": "NamPos",
+          "type": "Point"
+        }
+      }
+    },
+    "roadsexdm2ben_roads_streetaxis": {
+      "fields": {
+        "tid": {
+          "src": "TID",
+          "type": "String"
+        },
+        "street": {
+          "src": "Street",
+          "type": "String"
+        }
+      },
+      "geometry_type": "MultiLineString",
+      "src_layer": "RoadsExdm2ben.Roads.StreetAxis",
+      "geom_fields": {
+        "geometry": {
+          "src": "Geometry",
+          "type": "MultiLineString"
+        }
+      }
+    }
+  }
+  // ...
+}
+\end{srclst}
+
+
+
+\subsection{Python Tabellenstrukturen}
+
+\subsubsection{Petl}
+Petl\footnote{http://petl.readthedocs.org/} ist eine Python \acs{etl} Bibliothek. Petl erlaubt es diverse Formate in eine Tabellenstruktur zu laden und bietet ein \acs{api} um darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
+
+Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder Transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen ist aber im vergleich zur Konkurrenz langsamer und für Performance-Kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
+
+
+\subsubsection{Pandas}
+Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegende, ebenfalls Tabellen-artige Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden was zu einer für Python-Verhältnisse sehr hohen Performance führt.
+
+
+\begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
+>>> import geopandas
+>>> gdf = geopandas.GeoDataFrame.from_file('Bahnhoefe.shp')
+>>> gdf.columns
+Index([u'CNTRYNAME', u'CONURB', u'DUP_NAME', u'LEVEL', u'NAME', u'NATION', u'PROV1NAME', u'TYPE', u'geometry'], dtype='object')
+}
+>>> gdf.CONURB[:10]
+0         None
+1      Chiasso
+2      Balerna
+3    Mendrisio
+4     Capolago
+5     Capolago
+6     Capolago
+7     Capolago
+8     Capolago
+9     Maroggia
+>>> gdf[gdf.CONURB == 'Zürich'][:5]
+        CNTRYNAME  CONURB DUP_NAME  LEVEL                  NAME  NATION  \
+1317  Switzerland  Zürich        N     10     Sood Oberleimbach      41
+1346  Switzerland  Zürich        N     10       Zürich Leimbach      41
+1360  Switzerland  Zürich        N     10        Zürich Mannegg      41
+1373  Switzerland  Zürich        N     10    Zürich Wollishofen      41
+1374  Switzerland  Zürich        N     10  Zürich Tiefenbrünnen      41
+
+     PROV1NAME  TYPE                                     geometry
+1317    Zürich    30  POINT (681918.8961174991 241523.9264312923)
+1346    Zürich    30  POINT (681750.8866669014 243289.5358952266)
+1360    Zürich    30  POINT (681746.1775964648 244178.9977101207)
+1373    Zürich    30  POINT (682765.2814791016 244804.6936600676)
+1374    Zürich    30  POINT (685054.0860048197 244870.4588255175)
+>>> gdf[gdf.geometry.within(shapely.geometry.Polygon([(704940,231559), (704949,231559),(704945,231550),]))]
+        CNTRYNAME      CONURB DUP_NAME  LEVEL        NAME  NATION   PROV1NAME  \
+1196  Switzerland  Rapperswil        N     10  Rapperswil      41  Ostschweiz
+
+      TYPE                                     geometry
+1196    30  POINT (704945.8093275279 231556.7192434487)
+\end{srclst}
+
+
+\subsubsection{PyTables/HDF}
+PyTables ist eine high-performance Python Bibliothek die wie Pandas ebenfalls auf NumPy. Da das \acs{api} von PyTables im Vergleich zu Pandas eher low-level ist und weniger bietet wurde diese Bibliothek nicht weiter verfolgt.
+
+
+
+\subsection{Fazit}
+
+\xxx[was spricht gegen welche lösungen]
+
+\begin{decision}[label=dec:pd:format]{Intermediäres Format}
+Aufgrund der sowohl mächtigen \acs{api} wie auch der hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde...
+\xxx[wie wäre es denn, mit db?]
+\end{decision}
+
+
+
+\section{Transformation}
+
+\xxx[anforderungen an die ``sprache'', joins, prädikate, objekt navigation? string funktionen, geo funktionen]
+\xxx[sql, konfiguration, ogrtools]
+
+
+
+\chapter{Design und Implementation}
+
+\section{Architektur}
+
+Daten-Lieferanten liefern ihre Daten per Web-Interface oder REST-API. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese Daten wieder über das Web-Interface oder per REST-API ab. 
+
+Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \cref{fig:pd:arch-overview} zu sehen ist:
+\begin{description}
+\item[Parser] nehmen Daten entgegen und bereiten sie zur Weiterverarbeitung auf
+\item[Formatter] formatieren Daten in das vom Benutzer gewünschte Format
+\end{description}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{fig/ODH-Architecture-Overview}
+    \caption{Grobe Architektur-Übersicht}
+    \label{fig:pd:arch-overview}
+\end{figure}
 
 \subsection{Komponenten}
 
