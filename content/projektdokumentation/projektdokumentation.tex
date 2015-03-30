@@ -211,8 +211,6 @@ Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden
 }
 \end{srclst}
 
-
-
 \subsection{Python Tabellenstrukturen}
 
 \subsubsection{Petl}
@@ -222,7 +220,7 @@ Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluat
 
 
 \subsubsection{Pandas}
-Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegende, ebenfalls Tabellen-artige Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden was zu einer für Python-Verhältnisse sehr hohen Performance führt.
+Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden was zu einer für Python-Verhältnisse sehr hohen Performance führt.
 
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
@@ -266,9 +264,7 @@ Index([u'CNTRYNAME', u'CONURB', u'DUP_NAME', u'LEVEL', u'NAME', u'NATION', u'PRO
 
 
 \subsubsection{PyTables/HDF}
-PyTables ist eine high-performance Python Bibliothek die wie Pandas ebenfalls auf NumPy. Da das \acs{api} von PyTables im Vergleich zu Pandas eher low-level ist und weniger bietet wurde diese Bibliothek nicht weiter verfolgt.
-
-
+PyTables ist eine high-performance Python-Bibliothek die wie Pandas ebenfalls auf NumPy aufbaut. Da das \acs{api} von PyTables im Vergleich zu Pandas eher low-level ist und weniger bietet wurde diese Bibliothek nicht weiter verfolgt.
 
 \subsection{Fazit}
 
@@ -279,14 +275,53 @@ Aufgrund der sowohl mächtigen \acs{api} wie auch der hohen Performance und Inte
 \xxx[wie wäre es denn, mit db?]
 \end{decision}
 
-
-
 \section{Transformation}
 
 \xxx[anforderungen an die ``sprache'', joins, prädikate, objekt navigation? string funktionen, geo funktionen]
 \xxx[sql, konfiguration, ogrtools]
 
+\subsection{Anforderungen}
+Folgende Daten-Arten sind zu unterscheiden:
+\begin{itemize}
+\item Tabellarische Daten (z.B. CSV, Excel)
+\item Baum-artige Daten (z.B. XML)
+\item Unstrukturierte Daten (z.B. Bilder, unstrukturierter Text)
+\end{itemize}
 
+Diese Arbeit befasst sich nur mit tabellarischen Daten. 
+
+\mytable{lX}{
+  \textbf{Anforderung} & \textbf{Beschreibung}\\
+  \midrule
+  \textbf{Mapping} & Felder müssen 1:1 auf andere Felder gemappt werden können (Feld umbenennen) \\
+  \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
+  \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine karthesischen Produkte) \\
+  \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
+  \textbf{String-Operationen} & Folgende Operationen sollen unterstützt werden: find, substring, replace, trim \\
+  \textbf{Geo-Operationen} & \\
+  \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
+}{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
+
+\xxx[geo-ops: was für operationen sind üblich?]
+
+\xxx[Ausformulieren. Can't find the words right now.]
+\subsection{Vereinfachtes SQL}
+Dieses Format lehnt sich an SQL an, ohne für die Transformation unnötige Features zu unterstützen.
+
+Vorteil: Familiarität für Personen mit Datenbank-Erfahrung
+Nachteil: SQL ist zwar standardisiert, das bedeutet jedoch nicht, dass nicht grosse Unterschiede zwischen verschiedenen Anbietern bestünden. Dies wird durch Einschränkung auf ein vereinfachtes Format gemildert.
+
+\subsection{ogrtools: ogrtransform}
+Erweiterung und Verwendung des ogrtransform-Formats. Dies limitiert die Transformation auf von OGR/GDAL unterstützte Daten-Arten.
+
+Vorteil: Bereits existierende Basis.
+Nachteil: ogrtransform ist momentan limitiert auf das Mappen von Feldern sowie das hinzufügen von neuen Feldern mit Default-Werten.
+
+\subsection{Eigenes Format}
+Eigenes Format.
+
+Vorteil: Komplette Freiheit
+Nachteil: Eigener Parser (vereinfacht durch pyparsing)
 
 \chapter{Design und Implementation}
 
