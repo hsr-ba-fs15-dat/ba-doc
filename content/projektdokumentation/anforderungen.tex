@@ -1,5 +1,3 @@
-\chapter{Anforderungen}
-
 \chapter{Vision}
 Die Vision von OpenDataHub ist in \cref{part:tb}, \vref{sec:tb:vision} beschrieben.
 
@@ -37,13 +35,13 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 
 	\textbf{Datenanbieter} & Ist diejenige Person oder gar Unternehmen/Behörde die daran interessiert ist, eigene Daten zur Verfugung zu stellen ohne sich um dessen Format oder Schnittstellen zum Bezug kümmern zu müssen.\\
 
-	\textbf{Schema/Format Experte} & Ist oftmals ein Datenanbieter selbst bzw. eine Person innerhalb dessen Organisation. Kann Schema-Transformationen mit OpenDataHub durchführen und ist dafür zuständig dem Administrator von OpenDataHub allfällige Module zu liefern zur Unterstützung deren Format(e) innerhalb der Applikation.\\
+	\textbf{Schema/Format-Experte} & Ist oftmals ein Datenanbieter selbst bzw. eine Person innerhalb dessen Organisation. Kann Schema-Transformationen mit OpenDataHub durchführen und ist dafür zuständig dem Administrator von OpenDataHub allfällige Module zur Unterstützung deren Format(e) innerhalb der Applikation zu liefern.\\
 
 	\textbf{Datenbezieher} & Der Datenbezieher ist lediglich an einzelnen angebotenen Daten interessiert und möchte diese für eigene Zwecke weiterverwenden.\\
 
 	\textbf{Drittentwickler} & Andere Entwickler welche die Funktionalität der Applikation via \acs{rest} \acs{api} nutzen wollen.\\
 
-	\textbf{Administrator} & Der Applikationsverantwortliche, welche die Applikation betreibt und wartet.\\
+	\textbf{Administrator} & Der Applikationsverantwortliche, welcher die Applikation betreibt und wartet.\\
 }{Rollen/Akteure}{pd:rollen}
 
 
@@ -58,34 +56,34 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 
 
 \begin{scrumstory}[label=story:pd:suisseid]{SuisseID}
-	Als Datenanbieter, will ich mich mittels SuisseID registrieren/anmelden können, sodass ich als Behörde einen Zugriff erlange ohne einen Social-Account zu benötigen.
+	Als Datenanbieter will ich mich mittels SuisseID registrieren/anmelden können, sodass ich als Behörde einen Zugriff erlange ohne einen Social-Account zu benötigen.
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:github]{GitHub}
-	Als Datenanbieter oder Drittentwickler, will ich mich mittels GitHub-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
+	Als Datenanbieter oder Drittentwickler will ich mich mittels GitHub-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:facebook]{Facebook}
-	Als Datenanbieter oder Drittentwickler, will ich mich mittels Facebook-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
+	Als Datenanbieter oder Drittentwickler will ich mich mittels Facebook-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
 \end{scrumstory}
 
 
 \subsection{Daten publizieren}
 
 \begin{scrumepic}[label=epic:pd:publizieren]{Daten publizieren}
-	Als Datenanbieter, will ich die Daten in diversen strukturierten Formaten anbieten können, sodass ich diese der Öffentlichkeit ohne zusätzlichen Aufwand bereitstellen kann.
+	Als Datenanbieter will ich die Daten in diversen strukturierten Formaten anbieten können, sodass ich diese der Öffentlichkeit ohne zusätzlichen Aufwand bereitstellen kann.
 	\storyacceptance	
 	Gegeben
-	\storyitem{einer oder mehreren Dateien in einem von der Applikation unterstützten Formaten}
+	\storyitem{eine oder mehrere Dateien in einem von der Applikation unterstützten Formaten}
 	wenn der Datenanbieter die Datei via Webapplikation publiziert, dann soll diese in OpenDataHub abgespeichert werden und in einer Liste von verfügbaren Daten ersichtlich sein.
 \end{scrumepic}
 
 \begin{scrumstory}[label=story:pd:hochladen]{Datei hochladen}
-	Als Datenanbieter, will ich eine oder mehrere Dateien in einem strukturierten Format via Browser hochladen können, sodass ich diese auf der Plattform weiterverwenden kann.
+	Als Datenanbieter will ich eine oder mehrere Dateien in einem strukturierten Format via Browser hochladen können, sodass ich diese auf der Plattform weiterverwenden kann.
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:online-quelle]{Online Quellen}
-	Als Datenanbieter, will ich Daten in einem strukturierten Format mit Angabe einer Online Quelle (HTTP, FTP, WFS) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
+	Als Datenanbieter will ich Daten in einem strukturierten Format mit Angabe einer Online Quelle (HTTP, FTP, WFS) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Daten sind Online in einem von der Applikation unterstützten Format verfügbar}
@@ -93,15 +91,15 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:private-daten]{Private Daten}
-	Als Datenanbieter, will ich Daten als ``Privat'' markieren können, sodass diese nur von mir ersichtlich und Beziehbar sind und nicht der öffentlichkeit zur Verfügung stehen.
+	Als Datenanbieter will ich Daten als ``Privat'' markieren können, sodass diese nur von mir ersichtlich und beziehbar sind und nicht der Öffentlichkeit zur Verfügung stehen.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Dem Formular zur Publikation von Daten}
-	wenn ich den Eintrag als Privat markieren, dann sollen die Daten für anonyme oder andere Benutzer nicht (mehr) in der Liste von verfügbaren Daten gelistet sein und jeglicher Zugriff darauf verweigert werden.
+	wenn ich den Eintrag als Privat markiere, dann sollen die Daten für anonyme oder andere Benutzer nicht (mehr) in der Liste von verfügbaren Daten gelistet sein und jeglicher Zugriff darauf verweigert werden.
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:parser]{Modul anbieten}
-	Als Datenanbieter bzw. Schema/Format Experte, will ich Python-Module (Plugins) die eine bestimmte Schnittstelle implementieren, anbieten können, um die bereitgestellten Daten/Formate unterstützen zu können.
+	Als Datenanbieter bzw. Schema/Format-Experte will ich Python-Module (Plugins) welche eine gegebene Schnittstelle implementieren, anbieten, um die bereitgestellten Daten/Formate unterstützen zu können.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Einer vordefinierten Schnittstelle zur Programmierung eines solchen Moduls,}
@@ -116,9 +114,9 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 	Als Experte will ich Transformationen mittels einer vorgegebenen Sprache oder Konfiguration erstellen können, sodass diverse heterogene Daten homogenisiert und in einem einheitlichen Format bezogen werden können.
 	\storyacceptance	
 	Gegeben
-	\storyitem{Einer dokumentierten Schema-Mapping Sprache oder Konfiguration,}
+	\storyitem{Einer dokumentierten Schema-Mapping-Sprache oder -Konfiguration,}
 	\storyitem{einem Beispiel eines solchen Mappings/Transformation,}
-	wenn eine solche Transformation an die Applikation übergebe, dann soll diese auf die ausgewählten Daten angewendet werden und das Resultat analog wie einzelne Daten in \cref{epic:pd:datenbezug} in diversen Formaten beziehen können.
+	wenn ich eine solche Transformation an die Applikation übergebe, dann soll diese auf die ausgewählten Daten angewendet werden. Das Resultat will ich analog wie einzelne Daten in \cref{epic:pd:datenbezug} in diversen Formaten beziehen können.
 \end{scrumepic}
 
 \begin{scrumstory}[label=story:pd:views]{Transformation publizieren}
@@ -152,7 +150,7 @@ In diesem Abschnitt werden zusätzliche, aus der Aufgabenstellung entnommene sow
 Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} ist teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der HSR wie folgt eingeschränkt:
 
 \begin{itemize}
-	\item Python als Programmiersprache
+	\item Python als Programmiersprache %TODO python 2?
 	\item Deployment der Applikation muss via \gls{wsgi} möglich sein
 	\item \gls{psql} als Datenbank oder SQLite bei kleineren Aufgaben
 \end{itemize}
