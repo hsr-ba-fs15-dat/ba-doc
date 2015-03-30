@@ -80,27 +80,26 @@ Code-Analyse (Metriken).
 
 \part{Projektdokumentation}
 
-\chapter{Vision}
-
-
 \subimport{}{anforderungen.tex}
 
 \chapter{Analyse}
 
 
 \section{Datenspeicherung}
-Ein Ziel dieser Arbeit ist die Erstellung eines Daten-Hubs, welcher es Anbietern ermöglicht, ihre Daten anderen zur Verfügung zu stellen. Zur Speicherung der Daten stehen folgende Varianten zur Auswahl.
+Ein Ziel dieser Arbeit ist die Erstellung eines Daten-Hubs, welcher es Anbietern ermöglicht, ihre Daten anderen zur Verfügung zu stellen. 
+
+Zur Speicherung der Daten stehen folgende Varianten zur Auswahl.
 
 \subsection{File-basiert}
 Die Daten werden direkt im Dateisystem gespeichert. Um Konflikte zwischen Datei-Namen zu vermeiden muss ein Hashing-Schema definiert und verwendet werden. Metadaten zu den Dokumenten werden in einer Datenbank hinterlegt.
 
-Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Dateisystem zwischengespeichert werden um weiter Abfragen nach der selben Transformation zu beschleunigen.
+Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Dateisystem zwischengespeichert werden um weitere Abfragen nach der selben Transformation zu beschleunigen.
 
-Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern.
+Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern, insbesondere wenn diese Software nur direkt auf Datei-Basis arbeitet (z.B. OGR).
 
 Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren bzw. keine beständigen Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.\footnote{Siehe \url{https://devcenter.heroku.com/articles/read-only-filesystem} bzw.\newline\url{https://devcenter.heroku.com/articles/dynos\#ephemeral-filesystem}}
 
-Metadaten wie Format oder original Dateinamen würden weiterhin in einer Datenbank gehalten werden.
+Metadaten wie Format oder Original-Dateinamen würden weiterhin in einer Datenbank gehalten werden.
 
 \subsection{Datenbank-basiert, einzelne Records}\label{sec:pd:datenbank-records}
 Die Daten werden in einzelne Records zerlegt und zusammen mit den Metadaten in einer Datenbank gespeichert. Dies erfordert, dass bereits der Daten-Anbieter eine Transformation in das Record-Format auswählen muss. Falls sich herausstellt, dass dies zu langsam ist um es direkt im HTTP-Request des Anbieters durchzuführen, müssen die Daten vor der Transformation zwischengespeichert werden.
@@ -138,19 +137,19 @@ Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gl
 
 \section{Intermediäres Format}
 
-Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt würden um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne jenes eine generische Transformation unmöglich wäre.
+Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt würden um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne welches eine generische Transformation unmöglich wäre.
 
 In diesem Abschnitt werden diverse Optionen im Hinblick auf deren Vor- und Nachteile sowie Eignung beschrieben. 
 
 \subsection{Datenbank}
-Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie Sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. Der grosse Vorteil dieser Variante ist, dass die Transformationen dann mittels SQL Abfragen auf die diversen Datenbanktabellen erfolgen kann. Man ist dabei jedoch auf die Funktionalität der Datenbank limitiert und kann nur sehr schlecht Transformationen anbieten die dessen Fähigkeiten übersteigen.
+Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. Der grosse Vorteil dieser Variante ist, dass die Transformationen dann mittels SQL Abfragen auf die diversen Datenbanktabellen erfolgen kann. Man ist dabei jedoch auf die Funktionalität der Datenbank limitiert und kann nur sehr schlecht Transformationen anbieten die dessen Fähigkeiten übersteigen.
 
 
 \subsection{ogrtools}
 
-Ogrtools ist eine Python Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die Kompilierte OGR/GDAL Bibliotheken welches 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann durch durchaus zum Verlust von Informationen kommen.
+Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die Kompilierte OGR/GDAL Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann es durchaus zum Verlust von Informationen kommen.
 
-Sollte die ogrtools Bibliothek verwendet werden, so würde man auf der existierenden Transformationssprache bzw. Tranformationskonfiguration aufbauen und dieses um weitere Operationen wie beispielsweise Filterung oder Joins erweitern. Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
+Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden Transformationssprache bzw. Tranformationskonfiguration aufgebaut und dieses um weitere Operationen wie beispielsweise Filterung oder Joins erweitert. Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
 
 
 \begin{srclst}[label=src:pd:ogrtools]{json}{ogrtools Mapping-Konfiguration}
@@ -208,7 +207,7 @@ Sollte die ogrtools Bibliothek verwendet werden, so würde man auf der existiere
       }
     }
   }
-  // ...
+  "..."
 }
 \end{srclst}
 
@@ -219,7 +218,7 @@ Sollte die ogrtools Bibliothek verwendet werden, so würde man auf der existiere
 \subsubsection{Petl}
 Petl\footnote{http://petl.readthedocs.org/} ist eine Python \acs{etl} Bibliothek. Petl erlaubt es diverse Formate in eine Tabellenstruktur zu laden und bietet ein \acs{api} um darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
 
-Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder Transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen ist aber im vergleich zur Konkurrenz langsamer und für Performance-Kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
+Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen ist aber im vergleich zur Konkurrenz langsamer und für Performance-Kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
 
 \subsubsection{Pandas}
