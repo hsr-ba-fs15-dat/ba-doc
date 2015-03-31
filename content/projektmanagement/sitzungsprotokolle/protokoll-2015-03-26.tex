@@ -1,0 +1,47 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 26. März 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum} & 26.03.2015 \\
+		\textbf{Zeit} & 14:00\textendash15:30 Uhr \\
+		\textbf{Ort} & Restaurant im Seminarhotel Spirgarten in Zürich Altstetten \\
+		\textbf{Anwesende} & \proff \\ & Sepp Dorfschmid\footnotemark{} \\ & \rlif \\ & \fscf
+	\end{tabular}
+	\footnotetext{Autor des INTERLIS Austauschformat. Siehe auch \purl{http://www.adasys.ch} bzw. \purl{http://www.interlis.ch}}
+	
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Aktueller Stand besprechen
+		\item Anforderungen bei Herrn Sepp Dorfschmid aufnehmen
+		\item Lösungsansätze für die Datenintegration/Schematransformation diskutieren
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Authentifizierung via Facebook und GitHub
+		\item Parsen diverser Formate\footnote{GML, KML, XML, JSON, CSV, \dots} in DataFrame Objekte von Pandas\footnote{http://pandas.pydata.org/}
+		\item Konversion/Formatierung der DataFrame Objekte wiederum in diverse Formate
+	\end{itemize}
+	
+	\subsection*{Ablauf und Beschlüsse}
+	\begin{itemize}
+		\item Das Projektteam erläutert die Aufgabenstellung aus deren Sicht sowie die bisherige Architektur und potenzielle Erweiterungsmöglichkeiten mit IPython um die Daten ad-hoc manipulieren zu können.
+		\item Herr Dorfschmid bespricht mit dem Projektteam seine Sicht bzw. Anforderungen an eine solche Integrationsplattform und gibt sogleich Vorschläge für die Transformation bzw. Mapping der Daten
+		\item Die Lösung gleicht im Prinzip einer ``SQL-View'' wobei die Daten selektiv mit einer Mapping-Konfiguration bzw. Query-Language in das gewünschte Format (View) gebracht werden.
+		\item Die Sprache sollte nebst der Selektion auch Joins bzw. Unions und einige String Operationen beherrschen.
+		\item Aus Sicht von Herrn Dorfschmid wären auch Geo-Funktionen sowie eine Navigation über Attribute/Felder sinnvoll. Letzteres setzt voraus, dass komplexe (geschachtelte) Objekte in einem Feld gespeichert werden können.
+		\item Der Fokus wird ab jetzt, vor allem auch aufgrund der Zeitbegrenzung, auf die Transformation gesetzt. Analysemöglichkeiten der Daten und weitere Features sind nice to have.
+		\item Die nächste Sitzung findet am Mittwoch 1. April um 10:00 Uhr im \acs{ifs} statt.
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item SuisseID Authentifizierung
+		\item Entwurf und Implementation einer Mapping-Sprache
+	\end{itemize}
+\end{document}
