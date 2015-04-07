@@ -277,9 +277,6 @@ Aufgrund der sowohl mächtigen \acs{api} wie auch der hohen Performance und Inte
 
 \section{Transformation}
 
-\xxx[anforderungen an die ``sprache'', joins, prädikate, objekt navigation? string funktionen, geo funktionen]
-\xxx[sql, konfiguration, ogrtools]
-
 \subsection{Anforderungen}
 Folgende Daten-Arten sind zu unterscheiden:
 \begin{itemize}
@@ -288,7 +285,9 @@ Folgende Daten-Arten sind zu unterscheiden:
 \item Unstrukturierte Daten (z.B. Bilder, unstrukturierter Text)
 \end{itemize}
 
-Diese Arbeit befasst sich nur mit tabellarischen Daten. 
+Diese Arbeit befasst sich aus Zeitgründen nur mit tabellarischen Daten.
+
+In \cref{tab:pd:transformation-lang-req} werden die Anforderungen an die Transformations-Sprache zusammengefasst.
 
 \mytable{lX}{
   \textbf{Anforderung} & \textbf{Beschreibung}\\
@@ -297,34 +296,32 @@ Diese Arbeit befasst sich nur mit tabellarischen Daten.
   \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
   \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine karthesischen Produkte) \\
   \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
-  \textbf{String-Operationen} & Folgende Operationen sollen unterstützt werden: find, substring, replace, trim \\
-  \textbf{Geo-Operationen} & \\
+  \textbf{Erweiterbare Operationen} & Es sollen neue Operationen definiert werden können (in Python) \\
   \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
 }{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
 
-\xxx[geo-ops: was für operationen sind üblich?]
-
 \xxx[Ausformulieren. Can't find the words right now.]
 \subsection{Vereinfachtes SQL}
-Dieses Format lehnt sich an SQL an, ohne für die Transformation unnötige Features zu unterstützen.
+Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das erlernen dieser Query-Sprache sehr vereinfachen würde.
 
-Vorteil: Familiarität für Personen mit Datenbank-Erfahrung
-Nachteil: SQL ist zwar standardisiert, das bedeutet jedoch nicht, dass nicht grosse Unterschiede zwischen verschiedenen Anbietern bestünden. Dies wird durch Einschränkung auf ein vereinfachtes Format gemildert.
+Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden sind einige kleinere Differenzen zu SQL unvermeidbar.
 
 \subsection{ogrtools: ogrtransform}
-Erweiterung und Verwendung des ogrtransform-Formats. Dies limitiert die Transformation auf von OGR/GDAL unterstützte Daten-Arten.
-
-Vorteil: Bereits existierende Basis.
-Nachteil: ogrtransform ist momentan limitiert auf das Mappen von Feldern sowie das hinzufügen von neuen Feldern mit Default-Werten.
+Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Aktuell werden aber diverse der gewünschten Features nicht unterstützt, wie z.B. Joins oder Filter. Ausserdem basiert die Implementation auf OGR, was die Datentypen, auf die Transformationen angewendet werden können, massiv limitiert.
 
 \subsection{Eigenes Format}
+\xxx[Words.]
 Eigenes Format.
 
 Vorteil: Komplette Freiheit
 Nachteil: Eigener Parser (vereinfacht durch pyparsing)
 
-\chapter{Design und Implementation}
+\subsection{Fazit}
+Ogrtransform unterstützt nur Geo-Daten. Da OpenDataHub jedoch auch andere Daten unterstützten soll, kommt es als Transformations-Sprache nicht in Frage.
 
+Ein eigenes Format würde die grösste Flexibilität bieten. SQL ist jedoch perfekt geeignet für die Aufgabe und bietet ausserdem den Vorteil, dass es bereits bekannt ist. Daher entscheiden wir uns für eine an SQL angelehnte Sprache.
+
+\chapter{Design und Implementation}
 
 \section{Authentifizierung}
 In diesem Kapitel werden verscheidene Methoden der Authentifizierung beleuchtet.

@@ -78,6 +78,26 @@
                     <h1>Architektur</h1>
                     <img src="../../content/projektdokumentation/fig/ODH-Architecture-Overview.svg" />
                 </section>
+                <section>
+                    <h1>Transformationen</h1>
+                    <a href="syntax/index.html">Syntax</a>
+                    <p>Beispiel:</p>
+                    <pre>
+SELECT v1.beschreibung, 
+       v1.geometry
+  FROM ODH16 AS v1
+ UNION
+SELECT v2.text, 
+       ST_SetSRDIST(ST_GeomFromText(
+           CONCAT('Point(', v2.x, ' ', v2.y, ')')), 3395) 
+           AS geometry
+  FROM ODH17 AS v2
+ UNION
+SELECT v3.Projektbeschrieb,
+       v3.geometry
+  FROM ODH18 as v3
+                    </pre>
+                </section>
             </div>
 		</div>
 
