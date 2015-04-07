@@ -45,14 +45,14 @@
 				<section>
                     <h1>Inhalt</h1>
                     <ol>
-                        <li>Motivation für die Aufgabe</li>
+                        <li>Motivation</li>
                         <li>Aufgabenstellung</li>
                         <li>Demo</li>
                         <li>Architektur-Übersicht</li>
                     </ol>
                 </section>
                 <section>
-                    <h1>Motivation für die Aufgabe</h1>
+                    <h1>Motivation</h1>
                     <ul>
                         <li>Datenaustausch zwischen Organisationen schwierig</li>
                         <li>Unkooperative Software-Anbieter</li>
@@ -66,8 +66,8 @@
                         <li>Überblick über vorhandene Produkte (dat, CKAN)</li>
                         <li>Erstellung Datenaustausch-Portal (OpenDataHub)</li>
                         <li>Formatkonversion und Schematransformation lösen</li> <!-- WTB writing skills -->
-                        <li>Endnutzer kümmern sich nur um Daten</li>
-                        <li>Benutzerverwaltung mittels SuisseID und oAuth2</li>
+                        <li>Endnutzer kümmern sich nur um Bereitstellung der Daten</li>
+                        <li>Benutzerverwaltung mittels SuisseID und OAuth2</li>
                     </ul>
                 </section>
                 <section>
@@ -78,26 +78,57 @@
                     <h1>Architektur</h1>
                     <img src="../../content/projektdokumentation/fig/ODH-Architecture-Overview.svg" />
                 </section>
+
                 <section>
-                    <h1>Transformationen</h1>
-                    <a href="syntax/index.html">Syntax</a>
-                    <p>Beispiel:</p>
+                <h1>Beispiel TROBDB</h1>
+                <h2>Excel-Austausch via Mail</h2>
+                <img src="trobdb-src/excel.png" />
+                </section>
+                <section>
+                <h2>WFS Baustellen Kantonsstrassen <a href="http://www.geolion.zh.ch/geodatenservice/show?nbid=1217">geolion.zh.ch</a></h2>
+                <img src="trobdb-src/gml.png" />
+                </section>
+                <section>
+                <h2>Webservice von <a href="http://truckinfo.ch/">truckinfo.ch</a></h2>
+                <img src="trobdb-src/xml.png" />
+                </section>
+                <section>
+                <h2>Onine Verfügbar in diversen Formaten: <a href="http://www.stadt-zuerich.ch/opendata">stadt-zuerich.ch</a></h2>
+                <img src="trobdb-src/geojson.png" />
+                </section>
+
+                <section>
+                    <h2>Integration mit <a href="syntax/index.html">OdhQL</a></h2>
                     <pre>
-SELECT v1.beschreibung, 
-       v1.geometry
+SELECT v0.Bauarbeiten AS Beschreibung, 
+       ST_SetSRID(ST_GeomFromText(CONCAT(
+       'POINT(', CAST(v0."Zentroid X [m]", 'string'), ' ', 
+       CAST(v0."Zentroid Y [m]", 'string'), ')')), 21781) 
+       AS geometry 
+  FROM ODH15 AS v0
+ UNION
+SELECT v1.beschreibu,
+       ST_Centroid(v1.geometry) AS geometry 
   FROM ODH16 AS v1
  UNION
 SELECT v2.text, 
-       ST_SetSRDIST(ST_GeomFromText(
-           CONCAT('Point(', v2.x, ' ', v2.y, ')')), 3395) 
-           AS geometry
+       ST_SetSRID(ST_GeomFromText(CONCAT(
+       'POINT(', v2.x, ' ', v2.y, ')')), 3395) 
+       AS geometry 
   FROM ODH17 AS v2
  UNION
-SELECT v3.Projektbeschrieb,
-       v3.geometry
-  FROM ODH18 as v3
+SELECT v3.Projektbeschrieb, 
+       v3.geometry 
+  FROM ODH18 AS v3
                     </pre>
                 </section>
+
+                <section>
+                <h2>Resultat</h2>
+                <img src="trobdb-src/odhql-result.png" />
+                </section>
+                    
+
             </div>
 		</div>
 
