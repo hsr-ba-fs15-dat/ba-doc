@@ -2,20 +2,23 @@
 <html lang="en">
 
 	<head>
-		<meta charset="utf-8">
+		<meta charset="utf-8"/>
 
 		<title>OpenDataHub</title>
 
-		<meta name="description" content="OpenDataHub - A Hub For Your Open Data">
-		<meta name="author" content="R. Liebi, F. Scala, C. Hüsler">
+		<meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
+		<meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
-		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css">
-		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="custom.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
+
+        <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css" />
 
         <!-- Printing and PDF exports -->
         <script>
@@ -99,7 +102,7 @@
 
                 <section>
                     <h2>Integration mit <a href="syntax/index.html">OdhQL</a></h2>
-                    <pre>
+                    <pre><code style="">
 SELECT v0.Bauarbeiten AS Beschreibung, 
        ST_SetSRID(ST_GeomFromText(CONCAT(
        'POINT(', CAST(v0."Zentroid X [m]", 'string'), ' ', 
@@ -120,7 +123,7 @@ SELECT v2.text,
 SELECT v3.Projektbeschrieb, 
        v3.geometry 
   FROM ODH18 AS v3
-                    </pre>
+                    </code></pre>
                 </section>
 
                 <section>
@@ -159,7 +162,6 @@ SELECT v3.Projektbeschrieb,
 					{ src: 'reveal.js-3.0.0/plugin/markdown/markdown.js', 
                         condition: function() { return !!document.querySelector('[data-markdown]'); } },
 					{ src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true, 
-                        condition: function() { return !!document.querySelector( 'pre code' ); }, 
                         callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					{ src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }

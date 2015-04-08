@@ -1,0 +1,4 @@
+pre code {
+    overflow: inherit !important; 
+    max-height: inherit !important;
+}
