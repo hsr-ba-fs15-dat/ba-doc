@@ -1,0 +1,41 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 8. April 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum} & 8.4.2015 \\
+		\textbf{Zeit} & 9:30\textendash11:30 Uhr \\
+        \textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+        \textbf{Anwesende} & \proff \\ & \mstolze \\ & \chuf \\ & \rlif \\ & \fscf 
+	\end{tabular}
+	
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Aktuellen Stand besprechen
+		\item Präsentation, Demo mit \mstolze
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Parser (mehr oder weniger vollständig) und Interpreter (work in progress) für unsere Transformations-Sprache OdhQL. Die Sprache ist durch eigene Funktionen erweiterbar. Bereits implementiert sind einige String- und Geometriefunktionen.
+		\item Erstes UI für Transformationen
+	\end{itemize}
+
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item Erstellen eines Domänen-spezifischen Gloassars (Transformer, Quellen, Senken, etc.)
+		\item Transformationen sollen als Input für andere Transformationen dienen und gruppiert werden können (analog Dokumente/FileGroups)
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Dokumentation: NFRs, Motivation (Inter-Organisations-Kommunikation, evtl. Presseberichte), Abgrenzung Konkurrenz
+		\item Interpreter und UI für Transformationen erweitern/finalisieren
+		\item Bessere Integration von WFS/Online-Quellen: Format-Erkennung, Periodisches Abrufen, Erkennen von Änderungen, etc.
+		\item SuisseID \& OpenID Authentifizierung
+	\end{itemize}
+\end{document}
