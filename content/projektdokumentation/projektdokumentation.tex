@@ -323,20 +323,32 @@ Neue Funktionen können in Python definiert werden.
 Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basierte DSL. Dieser gegenüber entfällt jedoch das Familiaritäts-Argument. Ausserdem muss eine passende, einfach zu erlernende Syntax definiert werden.
 
 \subsection{Fazit}
+\cref{tab:pd:transformation-lang-criteria} erläutert die Kriterien für die Bewertung der verschiedenen Varianten.
+\mytable{lXc}{
+  \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
+  \midrule
+  \textbf{Features} & Bereits vorhandene Unterstützung für die in \cref{tab:pd:transformation-lang-req} aufgelisteten Features & \oneOfThree \\
+  \textbf{Geo-Daten} & Unterstützung für Geo-Daten & \threeOfThree \\
+  \textbf{Allgemeine Daten} & Unterstützung für Nicht-Geo-Daten & \threeOfThree \\
+  \textbf{Performance} & Performance der Transformation. Da diese Arbeit vor allem als Prototyp dienen soll ist dies nicht erste Priorität, soll aber auch nicht komplett Vernachlässigt werden. & \oneOfThree \\
+  \textbf{Funktionen} & Erweiterbarkeit um eigene bzw. benutzerdefinierte Funktionen (in externer Sprache) & \twoOfThree \\
+  \textbf{Familiarität} & Wie gut kennen Experten auf dem Gebiet Datentransformation diese Sprache, bzw. wie viel Lernaufwand ist notwendig, um die Sprache zu erlernen & \oneOfThree \\
+}{Bewertungs-Kriterien mit Gewichtung}{pd:transformation-lang-criteria}
+
 \cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lXXXX}{
-  & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes~Format} \\
+  & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes Format} \\
   \midrule
+  \textbf{Features} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
   \textbf{Geo-Daten} & \threeOfThree & \threeOfThree & \threeOfThree & \threeOfThree\\
-  \textbf{Allgemeine Daten} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
+  \textbf{Allgemeine Daten} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree\\
   \textbf{Performance} & \oneOfThree & \oneOfThree & \twoOfThree & \twoOfThree \\
   \textbf{Funktionen} & \twoOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
   \textbf{Familiarität} & \threeOfThree & \oneOfThree & \threeOfThree & \oneOfThree \\
+  \textbf{Total} & \twoOfThree & \oneOfThree & \threeOfThree & \twoOfThree \\
 }{Auswertung verschiedener Transformations-Sprachen}{pd:transformation-lang-results}
 
-Ogrtransform unterstützt nur Geo-Daten. Da OpenDataHub jedoch auch andere Daten unterstützten soll, kommt es als Transformations-Sprache nicht in Frage.
-
-Ein eigenes Format würde die grösste Flexibilität bieten. SQL ist jedoch perfekt geeignet für die Aufgabe und bietet ausserdem den Vorteil, dass es bereits bekannt ist. Daher entscheiden wir uns für eine an SQL angelehnte Sprache.
+Aufgrund dieser Auswertung fällt die Wahl auf eine SQL-basierte DSL.
 
 \chapter{Design und Implementation}
 
@@ -392,6 +404,44 @@ Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \c
 
 \subsection{Sequenzdiagramm}
 
+
+\section{Transformationssprache OdhQL}
+
+\subsection{Syntax}
+
+Die Syntax von OdhQL orientiert sich stark an ANSI SQL.
+
+Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
+
+\subsection{Unterstützte Features}
+
+\cref{tab:pd:transformation-lang-impl} beschreibt die unterstützten Features:
+\mytable{lX}{
+  \textbf{Anforderung} & \textbf{Beschreibung}\\
+  \midrule
+  \textbf{Mapping} & Felder können mit oder ohne Alias angegeben werden. Falls kein Alias vorhanden ist wird der Feldname beibehalten. Es ist möglich, Sonder- und Leerzeichen zu verwenden, indem der Feldname in doppelten Anführungszeichen geschrieben wird. \\
+  \textbf{Default-Werte} & Unterstützt werden Integer, Float, sowie Strings (in einfachen Anführungszeichen). \\
+  \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpung) \\
+  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc, ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
+  \textbf{Erweiterbare Funktionen} & Alle Funktionen werden über eine Function Registry in Python aufgerufen und können daher einfach erweitert werden. \\
+  \textbf{Sortierung} & Es kann eine Order By-Klausel angegeben werden. Falls Unions verwendet werden muss die Order By-Klausel am Ende angegeben werden, nicht pro Query. \\
+  \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Hierbei werden lediglich die Resultate der Queries aneinandergehängt, es findet anders als in SQL keine deduplizierung (distinct) statt. \\
+}{Durch OdhQL implementierte Features}{pd:transformation-lang-impl}
+\xxx[adjust statement about unions if we implement deduplication]
+%Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
+%
+%Folgende Items sind in der Feld-Liste erlaubt:
+%\begin{description}
+%\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Prefix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. \\
+%Beispiel: \texttt{a.beschreibung}, \texttt{a.geom as geometry}, \texttt{a.``Zentroid X [m]''}
+%\item[Wert] Integer, Float oder String (in einfachen Anführungszeichen). Es muss zwingend ein Alias angegeben werden. \\
+%Beispiel: \texttt{1 as one}, \texttt{3.14 as pi}, \texttt{`moon' as cheesefactory} \xxx[fix joke. it's broken.]
+%\item[Funktion] Ein Funktionsaufruf besteht aus einem Namen sowie einer Liste von Argumenten in runden Klammern. Funktionsaufrufe können verschachtelt werden. \\
+%Beispiel: \texttt{cast(a.pi, `float') as pi}, \\
+%          \texttt{concat('POINT(', cast(v0.x, `string'), ` ', cast(v0.y, `string'), `)')) as geometry}
+%\end{description}
+%
+%Die Liste der Datenquellen besteht aus einer Datenquelle sowie optional einer Liste von Join-Definitionen. 
 
 
 \section{User Interface}

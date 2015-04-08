@@ -1,0 +1,75 @@
+\chapter{OdhQL-Syntax}\label{app:odhql-syntax}
+\xxx[update to most current version at the end]
+\begin{grammar}
+\small
+<UnionQuery> ::= <Query> ( "union" <Query> )* ( <OrderByList> )?
+
+<Query> ::= <FieldSelection> <DataSourceSelection> ( <FilterList> )?
+
+<FieldSelection> ::= "select" <AliasedFieldEquiv> ( "," <AliasedFieldEquiv> )*
+
+<AliasedFieldEquiv> ::= <FieldEquiv> "as" <Alias>
+
+<FieldEquiv> ::= <Function> | <Value> | <Field>
+
+<Function> ::= <Identifier> "(" ( <ListOfFunctionArguments> )? ")"
+
+<ListOfFunctionArguments> ::= <FieldEquiv> ( ( "," <FieldEquiv> )* )?
+
+<DataSourceName> ::= <Identifier>
+
+<FieldName> ::= <Identifier>
+
+<Alias> ::= <Identifier>
+
+<Field> ::= <DataSourceNameOrAlias> "." <FieldName>
+
+<DataSourceNameOrAlias> ::= <DataSourceName> | <Alias>
+
+<DataSourceSelection> ::= "from" <DataSourceName> ( "as" <Alias> )? ( <JoinDefinition> )*
+
+<JoinDefinition> ::= "join" <DataSourceName> ( "as" <Alias> )? "on" <JoinCondition>
+
+<JoinCondition> ::= <SingleJoinCondition> | "(" <SingleJoinCondition> ( "and" <SingleJoinCondition> )* ")"
+
+<SingleJoinCondition> ::= <Field> "=" <Field>
+
+<FilterList> ::= "where" <FilterAlternative>
+
+<FilterAlternative> ::= <FilterCombination> ( "or" <FilterCombination> )*
+
+<FilterCombination> ::= <FilterDefinition> ( "and" <FilterDefinition> )*
+
+<FilterDefinition> ::= <BinaryCondition> | <InCondition> |
+                   <IsNullCondition> | "(" <FilterAlternative> ")"
+
+<BinaryCondition> ::= <FieldEquiv> <BinaryOperator> <FieldEquiv>
+
+<BinaryOperator> ::= "=" | "!=" | "<" | "<=" | ">" | ">=" | "like"
+
+<InCondition> ::= <FieldEquiv> ( "not" )? "in" "(" <Value> ( "," <Value> )* ")"
+
+<IsNullCondition> ::= <Field> "is" ( "not" )? <Null>
+
+<OrderByList> ::= "order" "by" <OrderByField> ( "," <OrderByField> )*
+
+<OrderByField> ::= ( <Field> | <Alias> | <Position>) ( "asc" | "desc" )?
+
+<Integer> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )*
+
+<Value> ::= <SingleQuotedString> | <Number> | <Boolean> | <Null>
+
+<Number> ::= <Integer> | <Float>
+
+<Float> ::= <Integer> "." <Integer>
+
+<Boolean> ::= "true" | "false"
+
+<Null> ::= "null"
+
+<SingleQuotedString> ::= "string in single quotes"
+
+<DoubleQuotedString> ::= "string in double quotes"
+
+<Identifier> ::= ( "a..z" | "A..Z" | "_" ) ( "a..z" | "A..Z" | "_" | <Integer> )* | <DoubleQuotedString>
+\end{grammar}
