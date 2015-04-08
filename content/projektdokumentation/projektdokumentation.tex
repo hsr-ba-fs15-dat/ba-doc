@@ -300,23 +300,40 @@ In \cref{tab:pd:transformation-lang-req} werden die Anforderungen an die Transfo
   \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
 }{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
 
-\xxx[Ausformulieren. Can't find the words right now.]
-\subsection{Vereinfachtes SQL}
-Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das erlernen dieser Query-Sprache sehr vereinfachen würde.
+\subsection{Datenbank-basiert: SQL}
+Die Daten werden in einer Datenbank gespeichert, dort transformiert, und wieder herausgelesen.
 
-Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden sind einige kleinere Differenzen zu SQL unvermeidbar.
+Vorteile dieser Variante sind, dass die Abfrage-Sprache bereits vorhanden und bekannt ist und dass je nach verwendeter Datenbank auf vorhandene Funktionen und Optimierungen zurückgegriffen werden kann. Falls Postgres mit PostGIS zum Einsatz kommt, kann auch im Geo-Bereich eine umfassende Funktions-Bibliothek verwendet werden. 
+
+Da die Daten jedoch vor der Transformation geparst, und anschliessend wieder formatiert werden müssen, entsteht ein beträchtlicher Performance-Verlust alleine durch das Abspeichern und Auslesen der Daten. Hinzu kommt, dass grosse Performance-Vorteile durch z.B. durch Indizes, nicht realisiert werden können, da nur eine einmalige Transformation stattfindet und daher die Kosten für die Erstellung des Indexes nicht amortisiert werden.
 
 \subsection{ogrtools: ogrtransform}
-Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Aktuell werden aber diverse der gewünschten Features nicht unterstützt, wie z.B. Joins oder Filter. Ausserdem basiert die Implementation auf OGR, was die Datentypen, auf die Transformationen angewendet werden können, massiv limitiert.
+Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Aktuell werden aber diverse der gewünschten Features nicht unterstützt, wie z.B. Joins oder Filter. Ausserdem basiert die Implementation auf ogr2ogr, was die Daten-Arten, auf welche Transformationen angewendet werden können, massiv limitiert.
 
-\subsection{Eigenes Format}
-\xxx[Words.]
-Eigenes Format.
+Da ogr2ogr nur auf Datei-Basis arbeitet, müssen die Daten, falls sie nicht in einem von ogr2ogr unterstützten Format vorliegen, erst geparst und formattiert und anschliessend ins Datei-System geschrieben werden. Nach der Transformation muss das Resultat wieder geparst werden, um in das vom Benutzer gewünschte Format konvertiert werden zu können. 
 
-Vorteil: Komplette Freiheit
-Nachteil: Eigener Parser (vereinfacht durch pyparsing)
+\subsection{DSL: Vereinfachtes SQL}
+Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das erlernen dieser Query-Sprache sehr vereinfachen würde. Dies wurde durch \prof bestätigt.
+
+Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden sind einige kleinere Differenzen zu SQL unvermeidbar. Zur Performance von Joins mit Pandas DataFrame, siehe \cite{pandasMergePerformance}.
+
+Neue Funktionen können in Python definiert werden.
+
+\subsection{DSL: Eigenes Format}
+Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basierte DSL. Dieser gegenüber entfällt jedoch das Familiaritäts-Argument. Ausserdem muss eine passende, einfach zu erlernende Syntax definiert werden.
 
 \subsection{Fazit}
+\cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
+\mytable{lXXXX}{
+  & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes~Format} \\
+  \midrule
+  \textbf{Geo-Daten} & \threeOfThree & \threeOfThree & \threeOfThree & \threeOfThree\\
+  \textbf{Allgemeine Daten} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
+  \textbf{Performance} & \oneOfThree & \oneOfThree & \twoOfThree & \twoOfThree \\
+  \textbf{Funktionen} & \twoOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
+  \textbf{Familiarität} & \threeOfThree & \oneOfThree & \threeOfThree & \oneOfThree \\
+}{Auswertung verschiedener Transformations-Sprachen}{pd:transformation-lang-results}
+
 Ogrtransform unterstützt nur Geo-Daten. Da OpenDataHub jedoch auch andere Daten unterstützten soll, kommt es als Transformations-Sprache nicht in Frage.
 
 Ein eigenes Format würde die grösste Flexibilität bieten. SQL ist jedoch perfekt geeignet für die Aufgabe und bietet ausserdem den Vorteil, dass es bereits bekannt ist. Daher entscheiden wir uns für eine an SQL angelehnte Sprache.
