@@ -99,16 +99,14 @@ Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung vo
 
 Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren bzw. keine beständigen Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.\footnote{Siehe \url{https://devcenter.heroku.com/articles/read-only-filesystem} bzw.\newline\url{https://devcenter.heroku.com/articles/dynos\#ephemeral-filesystem}}
 
-Metadaten wie Format oder Original-Dateinamen würden weiterhin in einer Datenbank gehalten werden.
+Metadaten wie Format oder Original-Dateinamen würden aus Performance-Gründen weiterhin in einer Datenbank gehalten werden.
 
 \subsection{Datenbank-basiert, einzelne Records}\label{sec:pd:datenbank-records}
 Die Daten werden in einzelne Records zerlegt und zusammen mit den Metadaten in einer Datenbank gespeichert. Dies erfordert, dass bereits der Daten-Anbieter eine Transformation in das Record-Format auswählen muss. Falls sich herausstellt, dass dies zu langsam ist um es direkt im HTTP-Request des Anbieters durchzuführen, müssen die Daten vor der Transformation zwischengespeichert werden.
 
-Falls die Transformationsresultate auf der Nutzer-Seite zwischengespeichert werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
+Falls die Transformationsresultate zwischengespeichert werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
 
-Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten.
-
-Laut \prof wird diese Methode bereits von diversen Schema Mapping-Tools verwendet (\gls{kettle}, \gls{fme}).
+Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten. In diesem Fall müssen die Daten erst wieder in ein geeignetes Format übersetzt werden, um nach der Transformation wieder in einzelne Records zerlegt zu werden.
 
 \subsection{Datenbank-basiert, Dokument als Blob}
 Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der File-basierten Version.
@@ -121,19 +119,34 @@ Für diese Variante existieren folgende Möglichkeiten:
 \item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehen aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Record. Dies erlaubt es auch, Django-Models zu erstellen welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
 \end{description}
 
-\subsubsection{Fazit}
-Die Speicherung von Daten auf Record-Basis weist unserer Meinung nach diverse Nachteile auf: 
-\begin{itemize}
-\item Es setzt eine Transformation voraus, welche die Daten ``flachklopft''. Dies kann verlustbehaftet sein.
-\item Die Transformation muss bereits beim Hochladen der Daten zur Verfügung stehen.
-\end{itemize}
+Da File-Formate existieren, welche aus mehr als einer Datei bestehen, ist die Option mit separaten Tabellen vorzuziehen.
 
-\xxx[document decision to support cloud service providers/heroku]
+\subsubsection{Fazit}
+\cref{tab:pd:filestorage-criteria} erläutert die Kriterien für die Bewertung der verschiedenen Varianten.
+\mytable{lXc}{
+  \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
+  \midrule
+  \textbf{Original bleibt erhalten} & Das Original-Dokument bleibt erhalten oder kann komplett rekonstruiert werden. Dies bietet folgende Vorteile: Verbesserungen an der Software (Parser) zeigt auch bei alten Daten Wirkung, ausserdem gehen keine Daten verloren durch den Upload. & \threeOfThree \\
+  \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf File-basis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
+  \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser geschrieben wird für das bisher unbekannte Format. & \twoOfThree \\
+  \textbf{Cloud} & Cloud-Anbieter wie Heroku bieten oft kein permanentes File-System, sondern verweisen auf Storage Provider wie Amazon S3 oder auf Datenbanken als Daten-Speicher. Unterstützung für Cloud-Anbieter ist kein zwingendes Kriterium für diese Arbeit, soll aber falls möglich erhalten bleiben. & \oneOfThree \\
+}{Bewertungs-Kriterien mit Gewichtung}{pd:filestorage-criteria}
+
+\cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
+\mytable{lXXX}{
+  \textbf{Kriterium} & \textbf{File} & \textbf{DB: Record} & \textbf{DB: Schhemalos} \\
+  \midrule
+  \textbf{Original bleibt erhalten} & \threeOfThree & \oneOfThree & \threeOfThree \\
+  \textbf{Einbindung Software} & \threeOfThree & \twoOfThree & \threeOfThree \\
+  \textbf{Beliebige Formate} & \threeOfThree & \oneOfThree & \threeOfThree \\
+  \textbf{Cloud} & \twoOfThree & \threeOfThree & \threeOfThree \\
+  \midrule
+  \textbf{Total} & \threeOfThree & \oneOfThree & \threeOfThree \\
+}{Auswertung verschiedener Speicher-Varianten}{pd:filestorage-results}
 
 \begin{decision}[label=dec:pd:datenspeicherung]{Datenspeicherung}
-Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
+Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen, wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
 \end{decision}
-
 
 \section{Intermediäres Format}
 
@@ -337,7 +350,7 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
 
 \cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lXXXX}{
-  & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes Format} \\
+  \textbf{Kriterium} & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes Format} \\
   \midrule
   \textbf{Features} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
   \textbf{Geo-Daten} & \threeOfThree & \threeOfThree & \threeOfThree & \threeOfThree\\
@@ -345,6 +358,7 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
   \textbf{Performance} & \oneOfThree & \oneOfThree & \twoOfThree & \twoOfThree \\
   \textbf{Funktionen} & \twoOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
   \textbf{Familiarität} & \threeOfThree & \oneOfThree & \threeOfThree & \oneOfThree \\
+  \midrule
   \textbf{Total} & \twoOfThree & \oneOfThree & \threeOfThree & \twoOfThree \\
 }{Auswertung verschiedener Transformations-Sprachen}{pd:transformation-lang-results}
 
