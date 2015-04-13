@@ -442,21 +442,61 @@ Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syn
   \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Hierbei werden lediglich die Resultate der Queries aneinandergehängt, es findet anders als in SQL keine deduplizierung (distinct) statt. \\
 }{Durch OdhQL implementierte Features}{pd:transformation-lang-impl}
 \xxx[adjust statement about unions if we implement deduplication]
-%Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
-%
-%Folgende Items sind in der Feld-Liste erlaubt:
-%\begin{description}
-%\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Prefix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. \\
-%Beispiel: \texttt{a.beschreibung}, \texttt{a.geom as geometry}, \texttt{a.``Zentroid X [m]''}
-%\item[Wert] Integer, Float oder String (in einfachen Anführungszeichen). Es muss zwingend ein Alias angegeben werden. \\
-%Beispiel: \texttt{1 as one}, \texttt{3.14 as pi}, \texttt{`moon' as cheesefactory} \xxx[fix joke. it's broken.]
-%\item[Funktion] Ein Funktionsaufruf besteht aus einem Namen sowie einer Liste von Argumenten in runden Klammern. Funktionsaufrufe können verschachtelt werden. \\
-%Beispiel: \texttt{cast(a.pi, `float') as pi}, \\
-%          \texttt{concat('POINT(', cast(v0.x, `string'), ` ', cast(v0.y, `string'), `)')) as geometry}
-%\end{description}
-%
-%Die Liste der Datenquellen besteht aus einer Datenquelle sowie optional einer Liste von Join-Definitionen. 
 
+Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
+
+\subsection{Beispiele}
+Folgende Items sind in der Feld-Liste erlaubt:
+\begin{description}
+\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Prefix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. Zu beachten ist, dass Feld-Namen immer einen Prefix brauchen, auch ausserhalb der Feld-Liste.
+\begin{src}{sql}
+a.beschreibung, a.geom as geometry, a."Zentroid X [m]"
+\end{src}
+\item[Wert] Integer, Float, Boolean oder String in einfachen Anführungszeichen. Es muss zwingend ein Alias angegeben werden. 
+\begin{src}{sql}
+1 as one, 3.14 as pi, false as active, 'moon' as cheesefactory
+\end{src}
+ \xxx[fix joke. it's broken.]
+\item[Funktion] Ein Funktionsaufruf besteht aus einem Namen sowie einer Liste von Argumenten in runden Klammern. Funktionsaufrufe können verschachtelt werden.
+\begin{src}{sql}
+ cast(a.pi, `float') as pi,
+ concat('POINT(', cast(v0.x, 'string'), '', cast(v0.y, 'string'), '')')) as geometry
+\end{src}
+\end{description}
+
+Als Filter können folgende Ausdrücke verwendet werden:
+\begin{description}
+\item[Relationale Operatoren] Unterstützt werden die Operatoren `=', `!=', `<', `>', `<=', `>='.
+\begin{src}{sql}
+a.nr > 4, a.active = false
+\end{src}
+\item[Like] Anders als bei SQL verwendet der Like-Operator von OdhQL implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
+\begin{src}{sql}
+a.beschreibung like 'Z[uü]rich', a.beschreibung not like 'Z[uü]rich'
+\end{src}
+\item[In] Sucht den Ausdruck in einer Liste von Elementen.
+\begin{src}{sql}
+a.nr in (3, 4, 5), a.nr not in (2, 6, 7)
+\end{src}
+\item[Null-Check] Prüft, ob ein Ausdruch Null (bzw. None) ist.
+\begin{src}{sql}
+a.optional_field is null, a.mandatory_field is not null
+\end{src}
+\end{description}
+
+Datenquellen können per Join verknüpft werden.
+\begin{src}{sql}
+  from "Gebäude" as geb join Strassen as str on geb.str_id = str.id
+\end{src}
+
+Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält sich wie ``union all'' in SQL, d.h. es findet keine Deduplikation der Daten statt.
+\begin{src}{sql}
+  select a.description, a.geometry from A as a
+   union
+  select b.description, b.geometry from B as b
+\end{src}
+Zu beachten ist, dass die Feld-Listen der Queries alle gleich viele Einträge enthalten müssen.
+\newline
 
 \section{User Interface}
 \subsection{Authentifizierung}
