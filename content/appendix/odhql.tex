@@ -1,75 +1,83 @@
 \chapter{OdhQL-Syntax}\label{app:odhql-syntax}
+% in python console:
+
+% grammar = """ <copy grammar from parser.py here """
+% print '\n\n'.join([re.sub('\s?([a-zA-Z]+)\s', ' <\\1> ', l) for l in grammar.splitlines() if len(l) > 0])
+
+% copy result into the grammar env below
+
 \xxx[update to most current version at the end]
 \begin{grammar}
 \small
-<UnionQuery> ::= <Query> ( "union" <Query> )* ( <OrderByList> )?
 
-<Query> ::= <FieldSelection> <DataSourceSelection> ( <FilterList> )?
+    <UnionQuery> ::= <Query> ( "union" <Query> )* ( <OrderByList> )?
 
-<FieldSelection> ::= "select" <AliasedFieldEquiv> ( "," <AliasedFieldEquiv> )*
+    <Query> ::= <FieldSelection>  <DataSourceSelection> ( <FilterList> )?
 
-<AliasedFieldEquiv> ::= <FieldEquiv> "as" <Alias>
+    <FieldDeclarationList> ::= "select" <FieldDeclaration> ( "," <FieldDeclaration> )*
 
-<FieldEquiv> ::= <Function> | <Value> | <Field>
+    <FieldDeclaration> ::= <FieldEquiv> "as" Alias
 
-<Function> ::= <Identifier> "(" ( <ListOfFunctionArguments> )? ")"
+    <FieldEquiv> ::= <Function> | <Value> | Field
 
-<ListOfFunctionArguments> ::= <FieldEquiv> ( ( "," <FieldEquiv> )* )?
+    <Function> ::= <Identifier> "(" ( <FunctionArgumentList> )? ")"
 
-<DataSourceName> ::= <Identifier>
+    <FunctionArgumentList> ::= <FieldEquiv> ( ( "," <FieldEquiv> )* )?
 
-<FieldName> ::= <Identifier>
+    <DataSourceName> ::= Identifier
 
-<Alias> ::= <Identifier>
+    <FieldName> ::= Identifier
 
-<Field> ::= <DataSourceNameOrAlias> "." <FieldName>
+    <Alias> ::= Identifier
 
-<DataSourceNameOrAlias> ::= <DataSourceName> | <Alias>
+    <Field> ::= <DataSourceNameOrAlias> "." FieldName
 
-<DataSourceSelection> ::= "from" <DataSourceName> ( "as" <Alias> )? ( <JoinDefinition> )*
+    <DataSourceNameOrAlias> ::= <DataSourceName> | Alias
 
-<JoinDefinition> ::= "join" <DataSourceName> ( "as" <Alias> )? "on" <JoinCondition>
+    <DataSourceSelection> ::= "from" <DataSourceName> ( "as" <Alias> )? ( <JoinDefinition> )*
 
-<JoinCondition> ::= <SingleJoinCondition> | "(" <SingleJoinCondition> ( "and" <SingleJoinCondition> )* ")"
+    <JoinDefinition> ::= "join" <DataSourceName> ( "as" <Alias> )? "on" JoinCondition
 
-<SingleJoinCondition> ::= <Field> "=" <Field>
+    <JoinCondition> ::= <SingleJoinCondition> | "(" <SingleJoinCondition> ( "and" <SingleJoinCondition> )* ")"
 
-<FilterList> ::= "where" <FilterAlternative>
+    <SingleJoinCondition> ::= <Field> "=" Field
 
-<FilterAlternative> ::= <FilterCombination> ( "or" <FilterCombination> )*
+    <FilterList> ::= "where" FilterAlternative
 
-<FilterCombination> ::= <FilterDefinition> ( "and" <FilterDefinition> )*
+    <FilterAlternative> ::= <FilterCombination> ( "or" <FilterCombination> )*
 
-<FilterDefinition> ::= <BinaryCondition> | <InCondition> |
-                   <IsNullCondition> | "(" <FilterAlternative> ")"
+    <FilterCombination> ::= <FilterDefinition> ( "and" <FilterDefinition> )*
 
-<BinaryCondition> ::= <FieldEquiv> <BinaryOperator> <FieldEquiv>
+    <FilterDefinition> ::= <BinaryCondition> | <InCondition> | <IsNullCondition> | "(" <FilterAlternative> ")"
 
-<BinaryOperator> ::= "=" | "!=" | "<" | "<=" | ">" | ">=" | "like"
+    <BinaryCondition> ::= <FieldEquiv>  <BinaryOperator> FieldEquiv
 
-<InCondition> ::= <FieldEquiv> ( "not" )? "in" "(" <Value> ( "," <Value> )* ")"
+    <BinaryOperator> ::= "=" | "!=" | "<=" | "<"| ">=" | ">" | "like"
 
-<IsNullCondition> ::= <Field> "is" ( "not" )? <Null>
+    <InCondition> ::= <FieldEquiv> ( "not" )? "in" "(" <Value> ( "," <Value> )* ")"
 
-<OrderByList> ::= "order" "by" <OrderByField> ( "," <OrderByField> )*
+    <IsNullCondition> ::= <Field> "is" ( "not" )? Null
 
-<OrderByField> ::= ( <Field> | <Alias> | <Position>) ( "asc" | "desc" )?
+    <OrderByList> ::= "order" "by" <OrderByField> ( "," <OrderByField> )*
 
-<Integer> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )*
+    <OrderByField> ::= ( <Field> | <Alias> | Position) ( "asc" | "desc" )?
 
-<Value> ::= <SingleQuotedString> | <Number> | <Boolean> | <Null>
+    <Integer> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )*
 
-<Number> ::= <Integer> | <Float>
+    <Value> ::= <SingleQuotedString> | <Number> | <Boolean> | Null
 
-<Float> ::= <Integer> "." <Integer>
+    <Number> ::= <Integer> | Float
 
-<Boolean> ::= "true" | "false"
+    <Float> ::= <Integer> "." Integer
 
-<Null> ::= "null"
+    <Boolean> ::= "true" | "false"
 
-<SingleQuotedString> ::= "string in single quotes"
+    <Null> ::= "null"
 
-<DoubleQuotedString> ::= "string in double quotes"
+    <SingleQuotedString> ::= " <string>  <in>  <single> quotes"
 
-<Identifier> ::= ( "a..z" | "A..Z" | "_" ) ( "a..z" | "A..Z" | "_" | <Integer> )* | <DoubleQuotedString>
+    <DoubleQuotedString> ::= " <string>  <in>  <double> quotes"
+
+    <Identifier> ::= ( "a..z" | "A..Z" | "_" ) ( "a..z" | "A..Z" | "_" | <Integer> )* | DoubleQuotedString
+
 \end{grammar}
