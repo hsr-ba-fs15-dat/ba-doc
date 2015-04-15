@@ -1,0 +1,44 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 15. April 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum} & 15.4.2015 \\
+		\textbf{Zeit} & 14:00\textendash15:30 Uhr \\
+        \textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+        \textbf{Anwesende} & \proff \\ & \chuf \\ & \rlif \\ & \fscf 
+	\end{tabular}
+
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Aktuellen Stand besprechen
+		\item Probleme mit Interlis 2
+		\item UI besprechen
+		\item Scope DSL-Syntax (anhand Vergleich mit Pentaho Kettle)
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Dokumentation der diversen Optionen (Transformationssprache)
+		\item Erstes UI für Transformation
+		\item Support für Interlis 1
+		\item Interpreter auf dem selben Stand wie der Parser
+	\end{itemize}
+
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item Begriff ``Dokumente'' ersetzen da missverständlich. CKAN verwendet ``Package''.
+		\item Interlis 2 wird vorerst nicht unterstützt.
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Implementation von ``kaskadierenden'' Online-Quellen (Auto-Update)
+		\item Persistente Transformationen
+		\item Caching
+	\end{itemize}
+\end{document}
