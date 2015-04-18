@@ -130,7 +130,7 @@ Da File-Formate existieren, welche aus mehr als einer Datei bestehen, ist die Op
   \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf File-basis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
   \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser geschrieben wird für das bisher unbekannte Format. & \twoOfThree \\
   \textbf{Cloud} & Cloud-Anbieter wie Heroku bieten oft kein permanentes File-System, sondern verweisen auf Storage Provider wie Amazon S3 oder auf Datenbanken als Daten-Speicher. Unterstützung für Cloud-Anbieter ist kein zwingendes Kriterium für diese Arbeit, soll aber falls möglich erhalten bleiben. & \oneOfThree \\
-}{Bewertungs-Kriterien mit Gewichtung}{pd:filestorage-criteria}
+}{Bewertungskriterien Datenspeicherung}{pd:filestorage-criteria}
 
 \cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lXXX}{
@@ -281,11 +281,41 @@ PyTables ist eine high-performance Python-Bibliothek die wie Pandas ebenfalls au
 
 \subsection{Fazit}
 
-\xxx[was spricht gegen welche lösungen]
+\cref{tab:pd:format-criteria} erläutert die wichtigsten Kriterien für die Bewertung der beschriebenen Lösungen.
+
+\mytable{lXc}{
+  \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
+  \midrule
+  \textbf{Performance} & Wie performant ist die Lösung. Wichtig aufgrund des Effizienz \acs{nfr} welches beim Treffen mit Herrn Dorfschmid geäussert wurde. & \twoOfThree \\
+
+  \textbf{Machbarkeit} & Die generelle Umsetzbarkeit der funktionalen Anforderungen mit dieser Lösung. & \threeOfThree \\
+
+  \textbf{Aufwand / Komplexität} & Der benötigte Aufwand um Applikation der Lösung umzusetzen. & \twoOfThree \\
+
+}{Bewertungskriterien Intermediäres Format}{pd:format-criteria}
+
+
+\cref{tab:pd:format-results} fasst die verschiedenen Optionen zusammen.
+\mytable{lXXXXX}{
+
+  \textbf{Kriterium} & \textbf{Datenbank} & \textbf{ogrtools} & \textbf{Petl} & \textbf{Pandas} & \textbf{PyTables} \\
+
+  \midrule
+
+  \textbf{Performance} & \oneOfThree & ? & \oneOfThree & \twoOfThree & \oneOfThree \\
+
+  \textbf{Machbarkeit} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree  & \twoOfThree \\
+
+  \textbf{Aufwand / Komplexität} & \twoOfThree & \oneOfThree & \twoOfThree & \twoOfThree & \oneOfThree \\
+
+  \midrule
+
+  \textbf{Total} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree & \twoOfThree \\
+}{Auswertung verschiedener Format-Varianten}{pd:format-results}
+
 
 \begin{decision}[label=dec:pd:format]{Intermediäres Format}
-Aufgrund der sowohl mächtigen \acs{api} wie auch der hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde...
-\xxx[wie wäre es denn, mit db?]
+Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde obschon der Aufwand für die Transformationen komplett entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
 \end{decision}
 
 \section{Transformation}
@@ -346,7 +376,7 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
   \textbf{Performance} & Performance der Transformation. Da diese Arbeit vor allem als Prototyp dienen soll ist dies nicht erste Priorität, soll aber auch nicht komplett Vernachlässigt werden. & \oneOfThree \\
   \textbf{Funktionen} & Erweiterbarkeit um eigene bzw. benutzerdefinierte Funktionen (in externer Sprache) & \twoOfThree \\
   \textbf{Familiarität} & Wie gut kennen Experten auf dem Gebiet Datentransformation diese Sprache, bzw. wie viel Lernaufwand ist notwendig, um die Sprache zu erlernen & \oneOfThree \\
-}{Bewertungs-Kriterien mit Gewichtung}{pd:transformation-lang-criteria}
+}{Bewertungskriterien Transformationssprache}{pd:transformation-lang-criteria}
 
 \cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lXXXX}{
@@ -361,7 +391,7 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
   \midrule
   \textbf{Total} & \twoOfThree & \oneOfThree & \threeOfThree & \twoOfThree \\
 }{Auswertung verschiedener Transformations-Sprachen}{pd:transformation-lang-results}
-
+\xxx[@chuesler irgendwie überlappen die intermediäres format und sprache zu sehr. wo gehören z.B. performance und geo-daten hin? geht es hier nur um die sprache oder auch um die implementation dessen?]
 Aufgrund dieser Auswertung fällt die Wahl auf eine SQL-basierte DSL.
 
 \chapter{Design und Implementation}
