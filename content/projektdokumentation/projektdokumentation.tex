@@ -509,7 +509,7 @@ a.beschreibung like 'Z[uü]rich', a.beschreibung not like 'Z[uü]rich'
 \begin{src}{sql}
 a.nr in (3, 4, 5), a.nr not in (2, 6, 7)
 \end{src}
-\item[Null-Check] Prüft, ob ein Ausdruch Null (bzw. None) ist.
+\item[Null-Check] Prüft, ob ein Ausdruck Null (bzw. None) ist.
 \begin{src}{sql}
 a.optional_field is null, a.mandatory_field is not null
 \end{src}
@@ -529,10 +529,72 @@ Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält 
 Zu beachten ist, dass die Feld-Listen der Queries alle gleich viele Einträge enthalten müssen.
 \newline
 
+\subsection{Interpreter}
+\xxx[fscala]
+Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung sowie der Erweiterbarkeit durch eigene Funktionen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{fig/odhql-flow.pdf}
+\caption{High-level Ablauf der Abfrage-Interpretation}
+\label{fig:pd:odhql-flow}
+\end{figure}
+
+
+\subsection{Funktionen}
+Die Funktionen der OdhQL wurden möglichst erweiterbar implementiert. Jede Funktion ist als Python Klasse zu implementieren, welche von der Klasse \path{VectorizedFunction} erben und die Methode \path{apply} zu implementieren hat. Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann jedoch durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
+
+Ein Beispiel einer solchen Funktion ist in \cref{src:pd:odhql-function} ersichtlich. Hierbei wird nach der Überprüfung der Argumente direkt an die Pandas-Methode \path{str.pad} weiterdelegiert.
+
+
+\begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der OdhQL Funktion \texttt{PAD()}}
+from hub.odhql.functions.core import VectorizedFunction
+
+class Pad(VectorizedFunction):
+    name = 'PAD'
+
+    def apply(self, strings, width, side):
+        self.assert_str('string', strings)
+        self.assert_in('side', side, ['left', 'right', 'both'])
+        self.assert_int('width', width)
+        return strings.str.pad(width, side)
+\end{srclst}
+
+
+\section{Caching}
+Aufgrund der Entscheidung alle Daten Verlustfrei im Originalformat zu speichern sowie der Verwendung von In-Memory Tabellen-artigen Datenstrukturen, muss sichergestellt werden, dass nicht bei jeder Operation die Originaldaten von Format-Parser neu eingelesen werden müssen.
+
+Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applikation implementiert. Es werden die Caching-Mechanismen von Django mit eingen Modifikationen/Erweiterungen verwendet. Aus diesem Grund können die Caching-Backends jederzeit durch beliebige von Django Unterstützte Backends wie z.B. Memcached, Filesystem, etc. verwendet werden.
+
+\subsection{Caches}
+
+\xxx[ref]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/caching.pdf}
+\caption{Übersicht der Caches}
+\label{fig:pd:caches}
+\end{figure}
+
+\xxx[ref]
+\mytable{lX}{
+  \textbf{Cache} & \textbf{Beschreibung}\\
+  \midrule
+  Level 1 & Der Level 1 Cache ist ein In-Memory Cache der Applikation und sehr kurzlebig (\SI{60}{\second}). Dieser wird hauptsächlich verwenden um Zwischenresultate wie Formatkonversionen oder Resultate einer Abfrage zu speichern, damit der Benutzer im Webfrontend die Daten sofort mittels Pagination anschauen kann.\\
+
+  Level 2 & Im Cache zweiter Stufe werden hauptsächlich Daten des Level 3 Caches für mehrere Minuten zwischengespeichert um den Overhead der Abfrage inkl. potenziellem Transfer mehrerer Megabytes sowie Deserialisierung der Python Objekte aus der Datenbank zu vermeiden.\\
+
+  Level 3 & Im persistenten Cache werden eingelesene Dateien im intermediären Format (d.h. DataFrame Objekte) sowie gespeicherte Transformationen ohne Online-Datenquellen persistiert.\\
+}{Beschreibung der Caches}{pd:caches}
+
+\subsection{Invalidierung}
+\xxx[fscala: cache key]
+
+
 \section{User Interface}
 \subsection{Authentifizierung}
-Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standart auf der REST Seite mit hilfe von verschiedenen Django Plugins. 
-Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichtert.
+Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standard auf der REST Seite mit Hilfe von verschiedenen Django Plugins. 
+Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichert.
 
 
 \section{Testing}
