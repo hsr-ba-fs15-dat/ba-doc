@@ -529,6 +529,36 @@ Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält 
 Zu beachten ist, dass die Feld-Listen der Queries alle gleich viele Einträge enthalten müssen.
 \newline
 
+\subsection{Abstrakter Syntax-Baum (AST)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/odhql-ast-union.pdf}
+\caption{AST: Unions}
+\label{fig:pd:odhql-flow}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/odhql-ast-expression.pdf}
+\caption{AST: Ausdrücke}
+\label{fig:pd:odhql-flow}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/odhql-ast-datasources.pdf}
+\caption{AST: Datenquellen}
+\label{fig:pd:odhql-flow}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig/odhql-ast-filter.pdf}
+\caption{AST: Filter}
+\label{fig:pd:odhql-flow}
+\end{figure}
+
 \subsection{Interpreter}
 \xxx[fscala]
 Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung sowie der Erweiterbarkeit durch eigene Funktionen.

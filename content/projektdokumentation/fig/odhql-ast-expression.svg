@@ -1,0 +1,1103 @@
+<svg version="1.1" x="0" y="0" id="i8sd176o3" diagram-revision="10" width="930" height="470" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="i8sd176o-ko82" transform="translate(460,110)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="44" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="45" width="177.99842834472656" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="96" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 45 L 178.99842834472656 45 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="92" height="18" transform="translate(42.95,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">&lt;&lt;Interface&gt;&gt;</tspan>
+      </text>
+      <text x="0" y="0" width="71" height="18" transform="translate(53.45,22)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Expression</tspan>
+      </text>
+      <text x="0" y="0" width="7" height="18" transform="translate(6,48)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko83" transform="translate(365,265)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="34" height="18" transform="translate(71.95,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Field</tspan>
+      </text>
+      <text x="0" y="0" width="51" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">+ prefix</tspan>
+      </text>
+      <text x="0" y="0" width="49" height="18" transform="translate(6,53)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">+ name</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko81" transform="translate(555,265)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="111" height="18" transform="translate(33.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">LiteralExpression</tspan>
+      </text>
+      <text x="0" y="0" width="48" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">+ value</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko84" transform="translate(745,265)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="59" height="18" transform="translate(59.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Function</tspan>
+      </text>
+      <text x="0" y="0" width="7" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko86" transform="translate(175,265)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="101" height="18" transform="translate(38.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">CaseExpression</tspan>
+      </text>
+      <text x="0" y="0" width="7" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko85" transform="translate(5,115)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="61" height="18" transform="translate(58.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">CaseRule</tspan>
+      </text>
+      <text x="0" y="0" width="7" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko87" transform="translate(250,5)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="117" height="18" transform="translate(30.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">AliasedExpression</tspan>
+      </text>
+      <text x="0" y="0" width="42" height="18" transform="translate(6,35)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">+ alias</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko98" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 720 760 L 720 786.5 L 435 786.5 L 435 815 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="fromIcon" transform="translate(720,760)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke-width:1.5;stroke:#f6902a;fill:#ffffff;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko97" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 720 760 L 720 786.5 L 1005 786.5 L 1005 815 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="fromIcon" transform="translate(720,760)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke-width:1.5;stroke:#f6902a;fill:#ffffff;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko96" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 720 760 L 720 786.5 L 815 786.5 L 815 815 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="fromIcon" transform="translate(720,760)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke-width:1.5;stroke:#f6902a;fill:#ffffff;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko95" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 720 760 L 720 786.5 L 625 786.5 L 625 815 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="fromIcon" transform="translate(720,760)">
+      <metadata id="metadata3277">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3273" showgrid="true" aab:zoom="45.254834" aab:cx="5.3422801" aab:cy="5.5253458" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 -8,8 8,8 " id="polygon3271" transform="translate(0.00396088,0.7512019)" style="stroke-width:1.5;stroke:#f6902a;fill:#ffffff;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko105" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 600 625 L 720 625 L 720 660 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="58" height="16" transform="translate(616.55,614.5)"/>
+    <text x="0" y="0" width="62" height="20" transform="translate(616.55,614.5)">
+      <tspan x="5" y="16" style="font-family:Arial;font-size:12px;fill:#000000;">expression</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="6" height="16" transform="translate(715,624.5)"/>
+    <text x="0" y="0" width="10" height="20" transform="translate(715,624.5)">
+      <tspan x="5" y="16" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko101" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 345 830 L 265 830 L 265 750 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="toIcon" transform="translate(265,750)">
+      <metadata id="metadata3157">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3153" showgrid="true" aab:zoom="256" aab:cx="1.1414314" aab:cy="9.6660507" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polyline points="-8,8 0,0 8,8  " id="polyline3151" transform="translate(0.00331331,0.73371025)" style="stroke-width:1.5;stroke:#f6902a;fill:none;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="26" height="16" transform="translate(300,819.5)"/>
+    <text x="0" y="0" width="30" height="20" transform="translate(300,819.5)">
+      <tspan x="5" y="15" style="font-family:Arial;font-size:12px;fill:#000000;">rules</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="18" height="16" transform="translate(254,764.5)"/>
+    <text x="0" y="0" width="22" height="20" transform="translate(254,764.5)">
+      <tspan x="5" y="16" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1..*</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko102" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 1060 815 L 1060 710 L 810 710 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="toIcon" transform="translate(810,710) rotate(-90)">
+      <metadata id="metadata3157">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3153" showgrid="true" aab:zoom="256" aab:cx="1.1414314" aab:cy="9.6660507" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polyline points="-8,8 0,0 8,8  " id="polyline3151" transform="translate(0.00331331,0.73371025)" style="stroke-width:1.5;stroke:#f6902a;fill:none;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="23" height="16" transform="translate(1046.5,779.5)"/>
+    <text x="0" y="0" width="27" height="20" transform="translate(1046.5,779.5)">
+      <tspan x="4" y="15" style="font-family:Arial;font-size:12px;fill:#000000;">args</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="4" height="16" transform="translate(825,699.5)"/>
+    <text x="0" y="0" width="8" height="20" transform="translate(825,699.5)">
+      <tspan x="4" y="15" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">*</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko104" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 355 710 L 630 710 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="toIcon" transform="translate(630,710) rotate(90)">
+      <metadata id="metadata3157">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3153" showgrid="true" aab:zoom="256" aab:cx="1.1414314" aab:cy="9.6660507" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polyline points="-8,8 0,0 8,8  " id="polyline3151" transform="translate(0.00331331,0.73371025)" style="stroke-width:1.5;stroke:#f6902a;fill:none;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="58" height="16" transform="translate(370,699.5)"/>
+    <text x="0" y="0" width="62" height="20" transform="translate(370,699.5)">
+      <tspan x="5" y="15" style="font-family:Arial;font-size:12px;fill:#000000;">expression</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="6" height="16" transform="translate(605,699.5)"/>
+    <text x="0" y="0" width="10" height="20" transform="translate(605,699.5)">
+      <tspan x="4" y="15" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1</tspan>
+    </text>
+  </g>
+  <g id="Interface-i8sd176o-ko106" transform="translate(175,365)">
+    <desc>root/umlClass/interface?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99771118164063" height="44" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="45" width="177.99771118164063" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99771118164063" height="96" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 45 L 178.99771118164063 45 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="89" height="18" transform="translate(44.45,4)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">&lt;&lt;Abstract&gt;&gt;</tspan>
+      </text>
+      <text x="0" y="0" width="65" height="18" transform="translate(56.45,22)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Condition</tspan>
+      </text>
+      <text x="0" y="0" width="7" height="18" transform="translate(6,48)">
+        <tspan x="0" y="13" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko107" transform="translate(-170,-550)">
+    <g id="graphics">
+      <path d="M 210 750 L 210 965 L 345 965 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <g id="toIcon" transform="translate(345,965) rotate(90)">
+      <metadata id="metadata3157">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3153" showgrid="true" aab:zoom="256" aab:cx="1.1414314" aab:cy="9.6660507" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polyline points="-8,8 0,0 8,8  " id="polyline3151" transform="translate(0.00331331,0.73371025)" style="stroke-width:1.5;stroke:#f6902a;fill:none;" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="20" height="12" transform="translate(198,914.5)"/>
+    <text x="0" y="0" width="24" height="16" transform="translate(198,914.5)">
+      <tspan x="0" y="13" style="font-family:Lato;font-size:12px;fill:#000000;">text</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="49" height="14" transform="translate(183.5,764.5)"/>
+    <text x="0" y="0" width="53" height="18" transform="translate(183.5,764.5)">
+      <tspan x="5" y="15" style="font-family:Lato;font-size:12px;fill:#000000;">condition</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="19" height="14" transform="translate(307,955.5)"/>
+    <text x="0" y="0" width="23" height="18" transform="translate(307,955.5)">
+      <tspan x="4" y="14" style="font-family:Lato;font-size:12px;fill:#000000;">0..1</tspan>
+    </text>
+  </g>
+  <creately-doc format-version="1.0" updated-user="Fabio Scala" id="i8sd176o3" owner-name="Fabio Scala" revision="11" projectid="pi77danyu" sync="false">
+    <creatorUid>PHPAFB72-16BF-61B9-788A-2F6AB1C25774</creatorUid>
+    <tags>class,uml,tech,software</tags>
+    <embedHash>aGy8H6u6j6lxg7Hr64nvSKdKvo=</embedHash>
+    <notes/>
+    <dtLastEdit>LAST_EDIT_CREATION</dtLastEdit>
+    <viewHash/>
+    <canvas-height>1500</canvas-height>
+    <description/>
+    <libraries>
+      <lib-ID>
+        <id>uml-class</id>
+      </lib-ID>
+    </libraries>
+    <kodefs/>
+    <date-created>Wed Apr 22 2015 10:20:34 AM</date-created>
+    <comments/>
+    <creator/>
+    <connectors>
+      <connector end-point-one-y="830" end-point-two-y="750" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko101" model-type="CONNECTOR" end-point-one-x="345" zorder="12" end-point-two-x="265">
+        <object-one-id>i8sd176o-ko86</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko85</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="265" index="0" y="830"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_3</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf102" location="0" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="5" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>rules</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf103" location="1" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="true" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="5" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>1..*</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf114" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>true</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne/>
+        <toIconSource>ArrowHead3</toIconSource>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource/>
+      </connector>
+      <connector end-point-one-y="760" end-point-two-y="815" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko98" model-type="CONNECTOR" end-point-one-x="720" zorder="7" end-point-two-x="435">
+        <object-one-id>i8sd176o-ko82</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko86</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="720" index="0" y="786.5"/>
+          <point x="435" index="1" y="786.5"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf94" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_3</anchPntIDObjOne>
+        <toIconSource/>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource>ArrowHead8</fromIconSource>
+      </connector>
+      <connector end-point-one-y="710" end-point-two-y="710" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko104" model-type="CONNECTOR" end-point-one-x="355" zorder="14" end-point-two-x="630">
+        <object-one-id>i8sd176o-ko85</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko82</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points/>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_4</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf109" location="0" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="10" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>expression</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf110" location="1" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="true" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="1" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>1</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf116" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne/>
+        <toIconSource>ArrowHead3</toIconSource>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource/>
+      </connector>
+      <connector end-point-one-y="760" end-point-two-y="815" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko96" model-type="CONNECTOR" end-point-one-x="720" zorder="9" end-point-two-x="815">
+        <object-one-id>i8sd176o-ko82</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko81</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="720" index="0" y="786.5"/>
+          <point x="815" index="1" y="786.5"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf96" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_3</anchPntIDObjOne>
+        <toIconSource/>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource>ArrowHead8</fromIconSource>
+      </connector>
+      <connector end-point-one-y="760" end-point-two-y="815" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko97" model-type="CONNECTOR" end-point-one-x="720" zorder="8" end-point-two-x="1005">
+        <object-one-id>i8sd176o-ko82</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko84</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="720" index="0" y="786.5"/>
+          <point x="1005" index="1" y="786.5"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf95" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_3</anchPntIDObjOne>
+        <toIconSource/>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource>ArrowHead8</fromIconSource>
+      </connector>
+      <connector end-point-one-y="815" end-point-two-y="710" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko102" model-type="CONNECTOR" end-point-one-x="1060" zorder="13" end-point-two-x="810">
+        <object-one-id>i8sd176o-ko84</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko82</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="1060" index="0" y="710"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_2</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf105" location="0" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="4" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>args</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf106" location="1" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="true" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="1" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>*</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf115" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_6</anchPntIDObjOne>
+        <toIconSource>ArrowHead3</toIconSource>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource/>
+      </connector>
+      <connector end-point-one-y="625" end-point-two-y="660" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko105" model-type="CONNECTOR" end-point-one-x="600" zorder="11" end-point-two-x="720">
+        <object-one-id>i8sd176o-ko87</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko82</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="720" index="0" y="625"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf112" location="0.018808777429467086" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="10" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>expression</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf113" location="1" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="true" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="1" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>1</text>
+          </line-text>
+        </text-data-list>
+        <text position="CENTRE" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="true" block-indent="0" order="0" font="Arial" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="1" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>root/umlClass/conn/associate</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne/>
+        <toIconSource/>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource/>
+      </connector>
+      <connector end-point-one-y="750" end-point-two-y="965" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko107" model-type="CONNECTOR" end-point-one-x="210" zorder="16" end-point-two-x="345">
+        <object-one-id>i8sd176o-ko85</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>Interface-i8sd176o-ko106</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="210" index="0" y="965"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_4</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf117" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf117" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf127" location="0" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="10" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>condition</text>
+          </line-text>
+          <line-text position="" id="i8sd176o-tf128" location="1" isPrimary="false">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="4" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text>0..1</text>
+          </line-text>
+        </text-data-list>
+        <text position="CENTRE" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="4" kerning="false" begin-index="0" indent="0" color="0" leading="2">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>true</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_11</anchPntIDObjOne>
+        <toIconSource>ArrowHead3</toIconSource>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/implements</String>
+          <String>root/umlClass/conn/associate</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource/>
+      </connector>
+      <connector end-point-one-y="760" end-point-two-y="815" bi-directional="false" show-obj-one-img="false" show-obj-two-img="false" id="Connector-i8sd176o-ko95" model-type="CONNECTOR" end-point-one-x="720" zorder="10" end-point-two-x="625">
+        <object-one-id>i8sd176o-ko82</object-one-id>
+        <drawStyle>0</drawStyle>
+        <comments/>
+        <object-two-id>i8sd176o-ko83</object-two-id>
+        <style line-thickness="1.5" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="16158762"/>
+        <anchor-points>
+          <point x="720" index="0" y="786.5"/>
+          <point x="625" index="1" y="786.5"/>
+        </anchor-points>
+        <isVisible>false</isVisible>
+        <ownerDiagID>i8sd176o3</ownerDiagID>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <isLocked>false</isLocked>
+        <text-data-list>
+          <line-text position="" id="i8sd176o-tf97" location="0.5" isPrimary="true">
+            <text-formats>
+              <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+            <text/>
+          </line-text>
+        </text-data-list>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <content/>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="center" display="block" left-margin="0" size="12" letter-spacing="0" right-margin="0" end-index="-1" kerning="false" begin-index="-1" indent="0" color="0" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <connection-def-id>Just a line</connection-def-id>
+        <anchorsCustomized>false</anchorsCustomized>
+        <group-id/>
+        <connection-desc/>
+        <connection-name/>
+        <anchPntIDObjOne>flowPort_3</anchPntIDObjOne>
+        <toIconSource/>
+        <compatibleConnDefs>
+          <String>root/umlClass/conn/associate</String>
+          <String>root/umlClass/conn/extends</String>
+          <String>root/umlClass/conn/aggregation</String>
+          <String>root/umlClass/conn/composition</String>
+          <String>root/umlClass/conn/packageConnection</String>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <fromIconSource>ArrowHead8</fromIconSource>
+      </connector>
+    </connectors>
+    <canvas-width>1500</canvas-width>
+    <revision-user>fabio.scala@gmail.com</revision-user>
+    <save-type/>
+    <source-tool/>
+    <revisionUserId>PHPAFB72-16BF-61B9-788A-2F6AB1C25774</revisionUserId>
+    <diagramTypeId>class-diagram</diagramTypeId>
+    <docname>AST - Expression</docname>
+    <koDefIDList>
+      <def-ID>root/umlClass/conn/associate</def-ID>
+      <def-ID>root/umlClass/conn/extends</def-ID>
+      <def-ID>root/umlClass/conn/aggregation</def-ID>
+      <def-ID>root/umlClass/conn/composition</def-ID>
+      <def-ID>root/umlClass/conn/packageConnection</def-ID>
+      <def-ID>root/umlClass/class?version=3&amp;author=Cinergix</def-ID>
+      <def-ID>root/umlClass/conn/implements</def-ID>
+      <def-ID>root/umlClass/interface?version=3&amp;author=Cinergix</def-ID>
+    </koDefIDList>
+    <save-comments/>
+    <editHash/>
+    <app-version/>
+    <published>false</published>
+    <objects>
+      <object locked="false" name="" id="i8sd176o-ko87" model-type="NORMAL" type="NORMAL" zorder="6" visible="true">
+        <dimension scale-x="0.8530731201171875" x="420" width="179.99842834472656" y="555" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>AliasedExpression(~!nl!~)--(~!nl!~)+ alias</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="28" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="AliasedExpression(~!nl!~)--(~!nl!~)+ alias" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko85" model-type="NORMAL" type="NORMAL" zorder="5" visible="true">
+        <dimension scale-x="0.8530731201171875" x="175" width="179.99842834472656" y="665" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>CaseRule(~!nl!~)--(~!nl!~)</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="12" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="CaseRule(~!nl!~)--(~!nl!~)" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko86" model-type="NORMAL" type="NORMAL" zorder="4" visible="true">
+        <dimension scale-x="0.8530731201171875" x="345" width="179.99842834472656" y="815" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>CaseExpression(~!nl!~)--(~!nl!~)</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="18" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="CaseExpression(~!nl!~)--(~!nl!~)" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko81" model-type="NORMAL" type="NORMAL" zorder="2" visible="true">
+        <dimension scale-x="0.8530731201171875" x="725" width="179.99842834472656" y="815" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>LiteralExpression(~!nl!~)--(~!nl!~)+ value</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="28" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="LiteralExpression(~!nl!~)--(~!nl!~)+ value" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko84" model-type="NORMAL" type="NORMAL" zorder="3" visible="true">
+        <dimension scale-x="0.8530731201171875" x="915" width="179.99842834472656" y="815" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>Function(~!nl!~)--(~!nl!~)</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="12" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="Function(~!nl!~)--(~!nl!~)" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko83" model-type="NORMAL" type="NORMAL" zorder="1" visible="true">
+        <dimension scale-x="0.8530731201171875" x="535" width="179.99842834472656" y="815" height="85.00446419278853" angle="0" scale-y="0.19631515979858782">
+          <default-bounds x="0" width="211" y="0" height="433.0227411232639"/>
+          <matrix ty="0" b="0" tx="0" d="0.1963043212890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>Field(~!nl!~)--(~!nl!~)+ prefix(~!nl!~)+ name</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="24" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="Field(~!nl!~)--(~!nl!~)+ prefix(~!nl!~)+ name" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="Interface-i8sd176o-ko106" model-type="NORMAL" type="NORMAL" zorder="15" visible="true">
+        <dimension scale-x="0.886688232421875" x="345" width="179.99771118164063" y="915" height="98" angle="0" scale-y="0.5297297297297298">
+          <default-bounds x="0" width="203" y="0" height="185"/>
+          <matrix ty="0" b="0" tx="0" d="0.52972412109375" a="0.886688232421875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>&lt;&lt;Abstract&gt;&gt;(~!nl!~)Condition(~!nl!~)--(~!nl!~)</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="26" kerning="false" begin-index="0" indent="0" color="4934475" leading="2">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/interface?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="&lt;&lt;Abstract>>(~!nl!~)Condition(~!nl!~)--(~!nl!~)" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+      <object locked="false" name="" id="i8sd176o-ko82" model-type="NORMAL" type="NORMAL" zorder="0" visible="true">
+        <dimension scale-x="0.8530731201171875" x="630" width="179.99842834472656" y="660" height="98" angle="0" scale-y="0.22632794457274827">
+          <default-bounds x="0" width="211" y="0" height="499.2429709765727"/>
+          <matrix ty="0" b="0" tx="0" d="0.1962890625" a="0.8530731201171875" c="0"/>
+        </dimension>
+        <collapse collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" collapsed-x-pos="NaN" expanded-y-pos="NaN" collapsed-y-pos="NaN" collapsed-width="NaN" collapsed="false"/>
+        <text position="COVER" text-rotation="NaN" wrapping="false">
+          <content>&lt;&lt;Interface&gt;&gt;(~!nl!~)Expression(~!nl!~)--(~!nl!~)</content>
+          <text-formats>
+            <text-format under-line="false" bold="false" block-indent="0" order="0" font="Lato" italic="false" bullet="false" align="left" display="block" left-margin="0" size="14" letter-spacing="0" right-margin="0" end-index="28" kerning="false" begin-index="0" indent="0" color="4934475" leading="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+        </text>
+        <comments/>
+        <children/>
+        <group-id/>
+        <kobject-def-id>root/umlClass/class?version=3&amp;author=Cinergix</kobject-def-id>
+        <style line-thickness="2" fill="true" fill-color="16777215" line-style="LINESTYLE_NAME_SOLID" alpha="1" fill-gradient="GRADIENT_FILL_SOLID" line-color="3516130"/>
+        <container-id/>
+        <libraries/>
+        <data-items>
+          <data-item type="" value="" name="DiagramLinkURL"/>
+          <data-item type="" value="&lt;&lt;Interface>>(~!nl!~)Expression(~!nl!~)--(~!nl!~)" name="classData"/>
+          <data-item type="" value="Fixed" name="classStyle"/>
+        </data-items>
+      </object>
+    </objects>
+    <inSync>false</inSync>
+    <date-updated>Wed Apr 22 2015 10:20:34 AM</date-updated>
+    <resources/>
+  </creately-doc>
+</svg>

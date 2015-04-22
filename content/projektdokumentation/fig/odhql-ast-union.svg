@@ -1,0 +1,294 @@
+<svg version="1.1" x="0" y="0" id="i8sd176o2" diagram-revision="12" width="690" height="555" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="i8sd176o-ko62" transform="translate(190,305)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="42.2" height="17.65" transform="translate(67.45,4)"/>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko66" transform="translate(505,95)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="105.8" height="17.65" transform="translate(34.95,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">OrderByPosition</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko64" transform="translate(505,185)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="84.9" height="17.65" transform="translate(45.45,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">OrderByAlias</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko63" transform="translate(190,215)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="55.8" height="17.65" transform="translate(60.45,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">OrderBy</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko69" transform="translate(505,5)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00446419278853" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00446419278853" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="33.1" height="17.65" transform="translate(71.95,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Field</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="Enumeration-i8sd176o-ko79" transform="translate(505,275)">
+    <desc>root/umlClass/enumClass?version=1&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99771118164063" height="44" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="45" width="177.99771118164063" height="84" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99771118164063" height="128" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 45 L 178.99771118164063 45 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="113.1" height="17.65" transform="translate(30.95,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">&lt;&lt;Enumeration&gt;&gt;</tspan>
+      </text>
+      <text x="0" y="0" width="60.35" height="17.65" transform="translate(57.95,22)">
+        <tspan x="0" y="12.709182357788087" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Direction</tspan>
+      </text>
+      <text x="0" y="0" width="71.25" height="17.65" transform="translate(6,48)">
+        <tspan x="0" y="12.709182357788087" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">- ascending</tspan>
+      </text>
+      <text x="0" y="0" width="79.45" height="17.65" transform="translate(6,66)">
+        <tspan x="0" y="12.709182357788087" style="font-family:Lato;font-size:14px;fill:#4b4b4b;">- descending</tspan>
+      </text>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko80" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 700 655 L 767.4992141723633 655 L 767.4992141723633 710 L 835 710 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="49.1" height="15.45" transform="translate(715,644.75)"/>
+    <text x="0" y="0" width="53.1" height="19.45" transform="translate(715,644.75)">
+      <tspan x="10.9" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">direction</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="6.35" height="15.45" transform="translate(809.65,699.75)"/>
+    <text x="0" y="0" width="10.3" height="19.45" transform="translate(809.65,699.75)">
+      <tspan x="10.9" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1</tspan>
+    </text>
+  </g>
+  <g id="i8sd176o-ko161" transform="translate(5,465)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="114" height="17.65" transform="translate(30.45,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">AliasedExpression</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko163" transform="translate(190,465)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="74.9" height="17.65" transform="translate(50.45,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">DataSource</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="i8sd176o-ko165" transform="translate(374.95000000000005,465)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="103.1" height="17.65" transform="translate(35.95,4)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">FilterAlternative</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="12.759182357788085" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko167" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 520 745 L 425 745 L 425 835 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="30" height="15.45" transform="translate(471,734.75)"/>
+    <text x="0" y="0" width="34" height="19.45" transform="translate(471,734.75)">
+      <tspan x="8.15" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">fields</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="17.25" height="11.8" transform="translate(414.35,803.7)"/>
+    <text x="0" y="0" width="21.2" height="15.8" transform="translate(414.35,803.7)">
+      <tspan x="8.15" y="10.940985298156736" style="font-family:Lato;font-size:12px;fill:#000000;">1..*</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko168" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 610 760 L 610 835 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="75.45" height="15.45" transform="translate(570.25,774.5)"/>
+    <text x="0" y="0" width="79.4" height="19.45" transform="translate(570.25,774.5)">
+      <tspan x="8.15" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">data_sources</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="17.25" height="15.45" transform="translate(599.35,800.05)"/>
+    <text x="0" y="0" width="21.2" height="19.45" transform="translate(599.35,800.05)">
+      <tspan x="8.2" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1..*</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko169" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 700 745 L 794.9999999999999 745 L 794.9999999999999 835 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="91.8" height="15.45" transform="translate(715,734.75)"/>
+    <text x="0" y="0" width="95.8" height="19.45" transform="translate(715,734.75)">
+      <tspan x="8.15" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">filter_definitions</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="6.35" height="15.45" transform="translate(789.8,800.05)"/>
+    <text x="0" y="0" width="10.3" height="19.45" transform="translate(789.8,800.05)">
+      <tspan x="8.15" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">1</tspan>
+    </text>
+  </g>
+  <g id="i8sd176o-ko176" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 700 600 L 767.4992141723633 600 L 767.4992141723633 509.99999999999994 L 835 509.99999999999994 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="0" height="15.45" transform="translate(715,589.75)"/>
+    <text x="0" y="0" width="4" height="19.45" transform="translate(715,589.75)"/>
+    <rect fill="#ffffff" x="0" y="0" width="19.1" height="15.45" transform="translate(796.9,499.75)"/>
+    <text x="0" y="0" width="23.1" height="19.45" transform="translate(796.9,499.75)">
+      <tspan x="6.4" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">0..1</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="19.1" height="15.45" transform="translate(796.9,499.75)"/>
+    <text x="0" y="0" width="23.1" height="19.45" transform="translate(796.9,499.75)">
+      <tspan x="6.4" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">0..1</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko177" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 700 600 L 767.4992141723633 600 L 767.4992141723633 420 L 835 420 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="0" height="15.45" transform="translate(715,589.75)"/>
+    <text x="0" y="0" width="4" height="19.45" transform="translate(715,589.75)"/>
+    <rect fill="#ffffff" x="0" y="0" width="19.1" height="15.45" transform="translate(796.9,409.75)"/>
+    <text x="0" y="0" width="23.1" height="19.45" transform="translate(796.9,409.75)">
+      <tspan x="5.45" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">0..1</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko175" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 700 600 L 835 600 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="23.65" height="15.45" transform="translate(714.95,589.75)"/>
+    <text x="0" y="0" width="27.6" height="19.45" transform="translate(714.95,589.75)">
+      <tspan x="6.35" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">field</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="19.1" height="15.45" transform="translate(796.9,589.75)"/>
+    <text x="0" y="0" width="23.1" height="19.45" transform="translate(796.9,589.75)">
+      <tspan x="6.4" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">0..1</tspan>
+    </text>
+  </g>
+  <g id="i8sd176o-ko178" transform="translate(5,100)">
+    <desc>root/umlClass/class?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="1" y="1" width="177.99842834472656" height="31" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="32" width="177.99842834472656" height="52.00423529893173" fill="none" stroke="#35a6e2" stroke-width="2" stroke-opacity="0" stroke-linejoin="round" stroke-linecap="round"/>
+        <rect x="1" y="1" width="177.99842834472656" height="83.00423529893173" fill="#ffffff" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 1 32 L 178.99842834472656 32 " fill="none" stroke="#35a6e2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+      <text x="0" y="0" width="40.35" height="17.65" transform="translate(68.45,4)">
+        <tspan x="0" y="12.709182357788087" style="font-family:Lato;font-size:14px;fill:#4b4b4b;font-weight:bold;">Union</tspan>
+      </text>
+      <text x="0" y="0" width="6.75" height="17.65" transform="translate(6,35)">
+        <tspan x="0" y="13.659182357788087" style="font-family:Lato;font-size:14px;fill:#4b4b4b;"/>
+      </text>
+    </g>
+  </g>
+  <g id="Connector-i8sd176o-ko180" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 425 555 L 425 600 L 520 600 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="30" height="15.45" transform="translate(408,569.5)"/>
+    <text x="0" y="0" width="34" height="19.45" transform="translate(408,569.5)">
+      <tspan x="3.65" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">order</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="17.25" height="15.45" transform="translate(473,589.75)"/>
+    <text x="0" y="0" width="21.2" height="19.45" transform="translate(473,589.75)">
+      <tspan x="3.65" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">0..*</tspan>
+    </text>
+  </g>
+  <g id="Connector-i8sd176o-ko181" transform="translate(-330,-370)">
+    <g id="graphics">
+      <path d="M 370 555 L 370 690 L 520 690 " fill="none" stroke="#f6902a" stroke-width="1.5"/>
+    </g>
+    <rect fill="#ffffff" x="0" y="0" width="41.8" height="15.45" transform="translate(347.1,569.5)"/>
+    <text x="0" y="0" width="45.8" height="19.45" transform="translate(347.1,569.5)">
+      <tspan x="3.65" y="14.577379417419436" style="font-family:Arial;font-size:12px;fill:#000000;font-weight:bold;">queries</tspan>
+    </text>
+    <rect fill="#ffffff" x="0" y="0" width="17.25" height="11.8" transform="translate(483.75,681.6)"/>
+    <text x="0" y="0" width="21.2" height="15.8" transform="translate(483.75,681.6)">
+      <tspan x="3.65" y="10.890985298156739" style="font-family:Lato;font-size:12px;fill:#000000;">1..*</tspan>
+    </text>
+  </g>
+</svg>

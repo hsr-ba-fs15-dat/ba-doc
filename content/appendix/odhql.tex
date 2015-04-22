@@ -1,6 +1,7 @@
 \chapter{OdhQL-Syntax}\label{app:odhql-syntax}
 % in python console:
 
+% import re
 % grammar = """ <copy grammar from parser.py here """
 % print '\n\n'.join([re.sub('\s?([a-zA-Z]+)\s', ' <\\1> ', l) for l in grammar.splitlines() if len(l) > 0])
 
@@ -9,7 +10,6 @@
 \xxx[update to most current version at the end]
 \begin{grammar}
 \small
-
     <UnionQuery> ::= <Query> ( "union" <Query> )* ( <OrderByList> )?
 
     <Query> ::= <FieldSelection>  <DataSourceSelection> ( <FilterList> )?
@@ -18,11 +18,13 @@
 
     <FieldDeclaration> ::= <FieldEquiv> "as" Alias
 
-    <FieldEquiv> ::= <Function> | <Value> | Field
+    <CaseExpression> ::= "case" ( "when" <Condition> "then" <Expression> )+  ( "else" <Expression> )? "end"
+
+    <Expression> ::= <Function> | <LiteralExpression> | <Field> | CaseExpression
 
     <Function> ::= <Identifier> "(" ( <FunctionArgumentList> )? ")"
 
-    <FunctionArgumentList> ::= <FieldEquiv> ( ( "," <FieldEquiv> )* )?
+    <FunctionArgumentList> ::= <Expression> ( ( "," <Expression> )* )?
 
     <DataSourceName> ::= Identifier
 
@@ -46,25 +48,27 @@
 
     <FilterAlternative> ::= <FilterCombination> ( "or" <FilterCombination> )*
 
-    <FilterCombination> ::= <FilterDefinition> ( "and" <FilterDefinition> )*
+    <FilterCombination> ::= <Condition> ( "and" <Condition> )*
 
-    <FilterDefinition> ::= <BinaryCondition> | <InCondition> | <IsNullCondition> | "(" <FilterAlternative> ")"
+    <Condition> ::= <BinaryCondition> | <InCondition> | <IsNullCondition> | <PredicateCondition> | "(" <FilterAlternative> ")"
 
-    <BinaryCondition> ::= <FieldEquiv>  <BinaryOperator> FieldEquiv
+    <BinaryCondition> ::= <Expression>  <BinaryOperator> Expression
 
-    <BinaryOperator> ::= "=" | "!=" | "<=" | "<"| ">=" | ">" | "like"
+    <BinaryOperator> ::= "=" | "!=" | "<=" | "<"| ">=" | ">" | ( "not" )? "like"
 
-    <InCondition> ::= <FieldEquiv> ( "not" )? "in" "(" <Value> ( "," <Value> )* ")"
+    <InCondition> ::= <Expression> ( "not" )? "in" "(" <Expression> ( "," <Expression> )* ")"
 
     <IsNullCondition> ::= <Field> "is" ( "not" )? Null
+
+    <PredicateCondition> ::= ( "not" )? Function
 
     <OrderByList> ::= "order" "by" <OrderByField> ( "," <OrderByField> )*
 
     <OrderByField> ::= ( <Field> | <Alias> | Position) ( "asc" | "desc" )?
 
-    <Integer> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )*
+    <Integer> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )+
 
-    <Value> ::= <SingleQuotedString> | <Number> | <Boolean> | Null
+    <LiteralExpression> ::= <SingleQuotedString> | <Number> | <Boolean> | Null
 
     <Number> ::= <Integer> | Float
 
@@ -79,5 +83,4 @@
     <DoubleQuotedString> ::= " <string>  <in>  <double> quotes"
 
     <Identifier> ::= ( "a..z" | "A..Z" | "_" ) ( "a..z" | "A..Z" | "_" | <Integer> )* | DoubleQuotedString
-
 \end{grammar}
