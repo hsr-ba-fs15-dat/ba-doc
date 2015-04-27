@@ -450,11 +450,11 @@ Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \c
 \subsection{Sequenzdiagramm}
 
 
-\section{Transformationssprache OdhQL}
+\section{Transformationssprache ODHQL}
 
 \subsection{Syntax}
 
-Die Syntax von OdhQL orientiert sich stark an ANSI SQL.
+Die Syntax von \acs{odhql} orientiert sich stark an ANSI SQL.
 
 Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
 
@@ -471,7 +471,7 @@ Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syn
   \textbf{Erweiterbare Funktionen} & Alle Funktionen werden über eine Function Registry in Python aufgerufen und können daher einfach erweitert werden. \\
   \textbf{Sortierung} & Es kann eine Order By-Klausel angegeben werden. Falls Unions verwendet werden muss die Order By-Klausel am Ende angegeben werden, nicht pro Query. \\
   \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Hierbei werden lediglich die Resultate der Queries aneinandergehängt, es findet anders als in SQL keine deduplizierung (distinct) statt. \\
-}{Durch OdhQL implementierte Features}{pd:transformation-lang-impl}
+}{Durch \acs{odhql} implementierte Features}{pd:transformation-lang-impl}
 \xxx[adjust statement about unions if we implement deduplication]
 
 Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
@@ -501,7 +501,7 @@ Als Filter können folgende Ausdrücke verwendet werden:
 \begin{src}{sql}
 a.nr > 4, a.active = false
 \end{src}
-\item[Like] Anders als bei SQL verwendet der Like-Operator von OdhQL implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
+\item[Like] Anders als bei SQL verwendet der Like-Operator von \acs{odhql} implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
 \begin{src}{sql}
 a.beschreibung like 'Z[uü]rich', a.beschreibung not like 'Z[uü]rich'
 \end{src}
@@ -572,12 +572,12 @@ Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen w
 
 
 \subsection{Funktionen}
-Die Funktionen der OdhQL wurden möglichst erweiterbar implementiert. Jede Funktion ist als Python Klasse zu implementieren, welche von der Klasse \path{VectorizedFunction} erben und die Methode \path{apply} zu implementieren hat. Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann jedoch durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
+Die Funktionen der \acs{odhql} wurden möglichst erweiterbar implementiert. Jede Funktion ist als Python Klasse zu implementieren, welche von der Klasse \path{VectorizedFunction} erben und die Methode \path{apply} zu implementieren hat. Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann jedoch durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
 
 Ein Beispiel einer solchen Funktion ist in \cref{src:pd:odhql-function} ersichtlich. Hierbei wird nach der Überprüfung der Argumente direkt an die Pandas-Methode \path{str.pad} weiterdelegiert.
 
 
-\begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der OdhQL Funktion \texttt{PAD()}}
+\begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der \acs{odhql} Funktion \texttt{PAD()}}
 from hub.odhql.functions.core import VectorizedFunction
 
 class Pad(VectorizedFunction):
