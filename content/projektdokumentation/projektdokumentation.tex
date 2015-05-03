@@ -626,6 +626,40 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standard auf der REST Seite mit Hilfe von verschiedenen Django Plugins. 
 Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichert.
 
+\subsection{Transformationen erstellen}
+Im Grundsatz wollten wir das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen, einen Wizard zu schreiben, welcher die Aktion vereinfachen soll. In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden.
+ \xxx[ref]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/odhql_wizard_early.png}
+\caption{Tabellen können per Klick verbunden werden }
+\label{fig:pd:caches}
+\end{figure}
+
+
+ \xxx[ref]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/wizard-step-one.png}
+\caption{Einleitung in den Wizard}
+\label{fig:pd:caches}
+\end{figure}
+In einem ersten Schritt kann eine Transformation grundlegend erstellt werden. Einfache JOIN und UNION Operationen werden vom Benutzer konfiguriert.
+
+ \xxx[ref]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/wizard-manual.png}
+\caption{Einleitung in den Wizard}
+\label{fig:pd:caches}
+\end{figure}
+
+Später können dann die komplexeren Operationen auf die Daten angewendet werden. Hierfür wird der manuelle Modus verwendet. Im manuellen Modus steht eine Hilfe Seite zur Verfügung, welche sämtliche erweiterten Operationen erklärt.\\
+Wird eine Transformation ``als Template'' verwendet, wird beim Speichern keine Prüfung der zugrunde legenden Daten durchgeführt. So können Syntaktisch korrekte, aber noch mit fehlenden Daten belastete Transformationen erstellt werden.
+
+\subsection{Transformationen bearbeiten}
+\xxx[remo]
+
 
 \section{Testing}
 
