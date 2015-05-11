@@ -661,8 +661,81 @@ Wird eine Transformation ``als Template'' verwendet, wird beim Speichern keine P
 Transformationen können entweder geklont oder überschrieben werden. Beim Klonen legt der Benutzer eine neue Transformation auf Grund der Daten einer Bestehenden Transformation an. Beim Überschreiben kann der Besitzer einer Transformation diese verändern. Es kann bei diesen Operationen allerdings kein Wizard mehr verwendet werden, da dieser alle manuellen Änderungen überschreiben würde.
 
 
-\section{Testing}
+\chapter{Testing}
+\section{User Interface}
 
+Bei allen folgenden Tests wird angenommen, dass der Benutzer die Web-Applikation bereits geladen hat. Für die Tests wird entweder \url{http://dev.opendatahub.ch} oder eine lokale Instanz (erreichbar unter \url{http://localhost:5000/}) verwendet.
+
+\subsection{UI01: Anmelden}
+Anmeldestatus: Nicht angemeldet.
+
+Aufgabe: Der Benutzer will sich anmelden.
+
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Anmelden/Registrieren''.
+\item Der Benutzer meldet sich mit einem der angebotenen OAuth-Providern an.
+\item Ein Pop-Up mit dem normalen Login UI des Providers erscheint. Der Benutzer meldet sich an.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Anmeldung bei Facebook schlägt fehl. Der Anmelde-Vorgang wird abgebrochen.
+  \end{enumerate}
+\item Nach kurzer Wartezeit ist der Benutzer bei OpenDataHub angemeldet.
+\end{enumerate}
+
+\subsection{UI02: Daten bereitstellen}
+Anmeldestatus: Angemeldet.
+
+Aufgabe: Der Benutzer will die Daten aus der Datei ``Baustellen Mai 2015.xls'' mit einer Liste von Baustellen im Appenzell Ausserrhoden anbieten.
+
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Teilen''.
+\item Der Benutzer füllt die Felder ``Name/Titel'' sowie ``Beschreibung'' aus. \\
+      Zum Beispiel: Name: ``Baustellen Mai 2015'', Beschreibung: ``Baustellen-Liste Appenzell Ausserrhoden Mai 2015''
+\item Die Felder ``Privat'' sowie ``Format'' werden ignoriert.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Daten sollen privat bleiben. Der Benutzer klickt das Feld ``Privat'' an.
+  \item Der Benutzer will sicherstellen, dass das Format richtig erkannt wird und wählt aus der Liste das Format ``Excel'' aus.
+  \end{enumerate}
+\item Da die Daten als Datei vorliegen wählt der Benutzer ``Dateien hochladen'' aus.
+\item Anschliessend zieht er die Datei von einem File-Browser direkt auf das Upload-Feld.
+\item Ein Klick auf den Button ``Teilen'' lädt die Datei hoch. Eine grün hinterlegte Nachricht ``Ihre Daten wurden gespeichert'' erscheint.  
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Daten liegen in einem Format vor, welches von OpenDataHub nicht erkannt wird. Die rot hinterlegte Fehlermeldung ``Ups! Irgendwas ist schief gelaufen!'' erscheint.
+  \xxx[``Ups! Irgendwas ist schief gelaufen!''? srsly?]
+  \end{enumerate}
+\item Nach kurzer Zeit wird der Benutzer auf die Detail-Ansicht seiner Daten weitergeleitet und sieht eine Vorschau seiner Daten.
+\end{enumerate}
+
+\subsection{UI03: Daten transformieren (Mit Assistent)}
+Anmeldestatus: Angemeldet.
+
+Aufgabe: Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten sowie den Strassennamen jeweils mit Menschen-lesbaren Namen und erstellt dazu eine Transformation.
+
+Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assistenten.
+
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Neue Transformation''.
+\item In typischer Benutzer-Manier wird die Anleitung auf der Einstiegs-Seite ignoriert.
+\item Der Benutzer klickt auf ``Assistent''.
+\item Die gewünschten Daten sind nicht auf der ersten Seite zu finden. Daher verwendet der Benutzer das Suchfeld.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Der Benutzer übersieht das Suchfeld und klickt durch die Seiten bis er die gewünschten Daten findet.
+  \end{enumerate}
+\item Nach erfolgreicher Suche klickt der Benutzer auf den Namen des Packages (Dokument/Transformation).
+\item Ein Klick auf den Tabellen-Namen ``ODH18\_baustellen\_detailansicht'' fügt die Tabelle zur Abfrage hinzu.
+\item Der Benutzer wählt die in der Aufgabe erwähnten Felder durch einen Klick auf ``Feld hinzufügen'' aus.
+\item Durch bearbeiten der Text-Felder in den Spalten-Titeln benennt der Benutzer die Felder um.
+\item Der Benutzer vergibt einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
+\end{enumerate}
+
+\subsection{UI04: Daten transformieren (Ohne Assistent)}
+Anmeldestatus: Angemeldet.
+
+Aufgabe: Der Benutzer hat Daten gesehen, welche ihn interessieren. Diverse der Spalten sind jedoch nicht im von ihm gewünschten Format. Da er bereits Erfahrung mit ODHQL oder SQL hat schreibt er die Transformation selbst.
+
+
+
+\subsection{UI05: Daten beziehen}
+Anmeldestatus: Angemeldet.
 
 \chapter{Resultate und Ausblick}
 
