@@ -664,7 +664,7 @@ Transformationen können entweder geklont oder überschrieben werden. Beim Klone
 \chapter{Testing}
 \section{User Interface}
 
-Bei allen folgenden Tests wird angenommen, dass der Benutzer die Web-Applikation bereits geladen hat. Für die Tests wird entweder \url{http://dev.opendatahub.ch} oder eine lokale Instanz (erreichbar unter \url{http://localhost:5000/}) verwendet.
+Bei allen folgenden Tests wird angenommen, dass der Benutzer die Web-Applikation bereits geladen hat. Für die Tests wird entweder \url{https://dev.opendatahub.ch} oder eine lokale Instanz (erreichbar unter \url{http://localhost:5000/}) verwendet.
 
 \subsection{UI01: Anmelden}
 \paragraph{Anmeldestatus} Nicht angemeldet.
@@ -726,7 +726,7 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 \item Der Benutzer wählt die in der Aufgabe erwähnten Felder durch einen Klick auf ``Feld hinzufügen'' aus.
 \item \label{ui-test-ass-end}Durch bearbeiten der Text-Felder in den Spalten-Titeln benennt der Benutzer die Felder um.
 \item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
-\item Eine grüne Erfolgs-Meldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
+\item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
 \end{enumerate}
 
 \subsection{UI04: Daten transformieren (Ohne Assistent)}
@@ -745,13 +745,24 @@ Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilf
 \item Der Benutzer klickt auf ``Neue Transformation'' und liest sich den Informations-Text durch.
 \item Um die Liste der Spalten zu erhalten verwendet er den Assistenten (siehe \cref{sec:ui-test-trf-ass}, Schritte \crefrange{ui-test-ass-begin}{ui-test-ass-end}).
 \item Durch Klick auf ``Manuelles Bearbeiten'' wechselt der Benutzer in den Editier-Modus.
-\item Mit Hilfe der ODHQL-Referenz ergänzt der Benutzer die fehlenden Funktionen (ST\_Centroid, To\_Date, To\_Char).
+\item Mit Hilfe der ODHQL-Referenz ergänzt der Benutzer die fehlenden Funktionen (ST\_Centroid, To\_Date, To\_Char). Zur Überprüfung der Abfrage verwendet der Benutzer periodisch den ``Vorschau''-Knopf.
 \item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
-\item Eine grüne Erfolgs-Meldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
+\item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Transformation ist fehlerhaft. Éine rote Fehlermeldung zeigt detailliertere Informationen zum Problem an.
+  \end{enumerate}
 \end{enumerate}
 
 \subsection{UI05: Daten beziehen}
-Anmeldestatus: Angemeldet.
+\paragraph{Anmeldestatus} Nicht angemeldet.
+\paragraph{Aufgabe} Um die Daten in seinem System weiterverwenden zu können will der Benutzer die Resultate der vorhin erstellten Transformationen als GML-Datei herunterladen.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer sucht die Transformation in der Daten-Liste und klickt auf den Namen.
+\item Ein Klick auf ``Herunterladen'' öffnet die Format-Auswahl.
+\item Die Auswahl von ``GML'' führt zu einem erfolgreichen Download der Daten.
+\end{enumerate}
 
 \chapter{Resultate und Ausblick}
 
