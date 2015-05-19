@@ -1,0 +1,49 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 5./6. Mai 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum/Zeit} & 5.5.2015 15:00\textendash16:00 Uhr \& 6.5.2015 14:30\textendash15:00 Uhr \\
+        \textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+        \textbf{Anwesende} & \proff \\ & \chuf \\ & \rlif \\ & \fscf 
+	\end{tabular}
+
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Aktuellen Stand mit Demo \& Feedback
+		\item Fragen bzgl. GeoCSV Format
+		\item Letzte Möglichkeit für ``must'' Features
+		\item Wenn Zeit: Stand Dokumentation (evtl. nur Inhaltsverzeichnis) besprechen.
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item Transformationen für alle TROBDB Datenquellen
+		\item Nested ("kaskadierende") Transformationen (Transformation als Input für Transformation)
+		\item Refactoring Transformations-GUI
+		\item Generierung ODHQL Dokumentation/Referenz
+		\item Diverse kleine Verbesserungen
+		\item Neu wird KML als Zwischenformat für ogr2ogr verwenden
+	\end{itemize}
+
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item GeoCSV Unterstützung als letztes Feature dieses Sprints
+		\item UTF-8 für GeoCSV verwenden
+		\item Nur GitHub und Facebook als oAuth Provider
+	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Letzter Feature-Sprint bis 11.05
+		\begin{itemize}
+			\item INTERLIS Schema-Generierung
+			\item Evtl. GeoCSV Unterstützung
+		\end{itemize}
+		\item Danach folgt ein Bugfixing Sprint
+	\end{itemize}
+\end{document}

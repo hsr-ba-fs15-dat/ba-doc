@@ -1,0 +1,41 @@
+\documentclass[class=scrbook,crop=false]{standalone}
+
+\input{./preamble}
+
+\begin{document}
+	
+	\section{Projektsitzung 12. Mai 2015}
+	
+	\begin{tabular}{ll}
+		\textbf{Datum/Zeit} & 12.5.2015 15:00\textendash16:00 Uhr \\
+        \textbf{Ort} & \acs{ifs} an der \acs{hsr} \\
+        \textbf{Anwesende} & \proff \\ & \chuf \\ & \fscf \\ & (\rlif wegen Militär abwesend)
+	\end{tabular}
+
+	\subsection*{Traktanden}
+	\begin{itemize}
+		\item Prototyp GeoCSV besprechen
+		\item (UI) Testing besprechen
+		\item Screencast: Was wird erwartet?
+	\end{itemize}
+	
+	\subsection*{Was wurde erreicht}
+	\begin{itemize}
+		\item GeoCSV Export/Import
+		\item INTERLIS Modell-Generierung
+		\item Testing, z.B. Formattieren aller Testdaten mit allen Formaten
+	\end{itemize}
+
+	\subsection*{Beschlüsse}
+	\begin{itemize}
+		\item CSVT-Support auch für normale CSV-Dateien
+        \item Nach Verbesserung des INTERLIS Modell-Generators soll dieser beim Download von Daten im Format INTERLIS1 direkt verwendet werden. Falls das generierte Modell fehlerhaft ist, Fallback auf den bisher verwendeten Modell-losen Export.
+        \item Screencast: Transformation mit Adress-Daten, anschliessed mit Geo-Daten um weitere Funktionalität zu demonstrieren.
+   	\end{itemize}
+	
+	\subsubsection*{Weiteres Vorgehen}
+	\begin{itemize}
+		\item Bugfixing
+		\item (UI) Testing
+	\end{itemize}
+\end{document}

@@ -661,9 +661,151 @@ Wird eine Transformation ``als Template'' verwendet, wird beim Speichern keine P
 Transformationen können entweder geklont oder überschrieben werden. Beim Klonen legt der Benutzer eine neue Transformation auf Grund der Daten einer Bestehenden Transformation an. Beim Überschreiben kann der Besitzer einer Transformation diese verändern. Es kann bei diesen Operationen allerdings kein Wizard mehr verwendet werden, da dieser alle manuellen Änderungen überschreiben würde.
 
 
-\section{Testing}
+\chapter{Testing}
+\section{User Interface}
 
+Bei allen folgenden Tests wird angenommen, dass der Benutzer die Web-Applikation bereits geladen hat. Für die Tests wird entweder \url{https://dev.opendatahub.ch} oder eine lokale Instanz (erreichbar unter \url{http://localhost:5000/}) verwendet.
 
+Als Testpersonen stellten sich zur Verfügung:
+\begin{enumerate}
+\item Philipp Christen
+\end{enumerate}
+
+\subsection{UI01: Anmelden}
+\paragraph{Anmeldestatus} Nicht angemeldet.
+
+\paragraph{Aufgabe} Der Benutzer will sich anmelden.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Anmelden/Registrieren''.
+\item Der Benutzer meldet sich mit einem der angebotenen OAuth-Providern an.
+\item Ein Pop-Up mit dem normalen Login UI des Providers erscheint. Der Benutzer meldet sich an.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Anmeldung beim Provider schlägt fehl. Der Anmelde-Vorgang wird abgebrochen.
+  \end{enumerate}
+\item Nach kurzer Wartezeit ist der Benutzer bei OpenDataHub angemeldet.
+\end{enumerate}
+
+\paragraph{Testperson 1}
+\begin{enumerate}
+\item Der Benutzer sieht den ``Anmelden''-Button und klickt darauf.
+\item Da er einen Github-Account hat und dort bereits angemeldet ist, wählt er diesen Provider.
+\item Die Anmeldung erfolgt problemlos. Der Benutzer wünscht sich anschliessend zu sehen, wer eingeloggt ist (Name fehlt).
+\end{enumerate}
+
+\subsection{UI02: Daten bereitstellen}
+\paragraph{Anmeldestatus} Angemeldet.
+
+\paragraph{Aufgabe} Der Benutzer will die Daten aus der Datei ``Baustellen Mai 2015.xls'' mit einer Liste von Baustellen im Appenzell Ausserrhoden anbieten.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Teilen''.
+\item Der Benutzer füllt die Felder ``Name/Titel'' sowie ``Beschreibung'' aus. \\
+      Zum Beispiel: Name: ``Baustellen Mai 2015'', Beschreibung: ``Baustellen-Liste Appenzell Ausserrhoden Mai 2015''.
+\item Die Felder ``Privat'' sowie ``Format'' werden ignoriert.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Daten sollen privat bleiben. Der Benutzer klickt das Feld ``Privat'' an.
+  \item Der Benutzer will sicherstellen, dass das Format richtig erkannt wird und wählt aus der Liste das Format ``Excel'' aus.
+  \end{enumerate}
+\item Da die Daten als Datei vorliegen wählt der Benutzer ``Dateien hochladen'' aus.
+\item Anschliessend zieht er die Datei von einem File-Browser direkt auf das Upload-Feld.
+\item Ein Klick auf den Button ``Teilen'' lädt die Datei hoch. Eine grün hinterlegte Nachricht ``Ihre Daten wurden gespeichert'' erscheint.  
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Daten liegen in einem Format vor, welches von OpenDataHub nicht erkannt wird. Es wird eine rot hinterlegte Fehlermeldung angezeigt.
+  \end{enumerate}
+\item Nach kurzer Zeit wird der Benutzer auf die Detail-Ansicht seiner Daten weitergeleitet und sieht eine Vorschau seiner Daten.
+\end{enumerate}
+
+\paragraph{Testperson 1}
+\begin{enumerate}
+\item Der Benutzer interpretiert ``Anbieten'' korrekt als ``Teilen'' und klickt den entsprechenden Menu-Eintrag an.
+\item Als Format belässt er ``Auto'', da er ``faul'' sei.
+\item Bei der Datei-Auswahl bemängelt der Benutzer, dass der Datei-Name abgeschnitten wird, obwohl noch genug Platz vorhanden ist.
+\item Beim Speichern freut er sich über die Toast-Message (``grün!''), liest den Text jedoch nicht durch.
+\item Nach erfolgreichem Speichern ist der Benutzer unsicher, ob die Aufgabe abgeschlossen ist und sucht nach Share-/Social-Buttons.
+\end{enumerate}
+
+\subsection{UI03: Daten transformieren (Mit Assistent)}\label{ui-test-trf-ass}
+\paragraph{Anmeldestatus} Angemeldet.
+\paragraph{Aufgabe} Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten sowie den Strassennamen, jeweils mit Menschen-lesbaren Feld-Bezeichnungen, und erstellt dazu eine Transformation.
+
+Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assistenten.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Neue Transformation''.
+\item In typischer Benutzer-Manier wird die Anleitung auf der Einstiegs-Seite ignoriert.
+\item Der Benutzer klickt auf ``Assistent''.
+\item \label{ui-test-assist-begin} Die gewünschten Daten sind nicht auf der ersten Seite zu finden. Daher verwendet der Benutzer das Suchfeld.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Der Benutzer übersieht das Suchfeld und klickt durch die Seiten bis er die gewünschten Daten findet.
+  \end{enumerate}
+\item Nach erfolgreicher Suche klickt der Benutzer auf den Namen des Packages (Dokument/Transformation).
+\item Ein Klick auf den Tabellen-Namen ``ODH18\_baustellen\_detailansicht'' fügt die Tabelle zur Abfrage hinzu.
+\item Der Benutzer wählt die in der Aufgabe erwähnten Felder durch einen Klick auf ``Feld hinzufügen'' aus.
+\item \label{ui-test-assist-end}Durch bearbeiten der Text-Felder in den Spalten-Titeln benennt der Benutzer die Felder um.
+\item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
+\item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
+\end{enumerate}
+
+\paragraph{Testperson 1}
+\begin{enumerate}
+\item Nach kurzer Orientierung in der Benutzeroberfläche findet der Benutzer das Suchfeld.
+\item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen.
+\item Er ist unsicher, wo er klicken muss um die Felder hinzuzufügen. Nach kurzer Orientierung findet er die richtige Stelle (alles ausser Alias-Feld).
+\item Bei der Eingabe der Aliases ist der Benutzer enttäuscht, dass die Tabelle nicht automatisch weiterscrollt. 
+\item Das Speichern der Tranformation funktioniert problemlos.
+\end{enumerate}
+
+\subsection{UI04: Daten transformieren (Ohne Assistent)}
+\paragraph{Anmeldestatus} Angemeldet.
+
+\paragraph{Aufgabe} Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten, den Strassennamen sowie die Geometrie als Punkt, jeweils mit Menschen-lesbaren Namen, und erstellt dazu eine Transformation.
+
+Das Datums-Format soll dem Format ``Tag. Monat. Jahr'' entsprechen.
+
+Da er bereits Erfahrung mit ODHQL oder SQL hat schreibt er die Transformation selbst. Der Assistent kann als Startpunkt verwendet werden, unterstützt jedoch nicht alle benötigte Funktionalität.
+
+Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilfe eine ODHQL-Referenz enthalten.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer klickt auf ``Neue Transformation'' und liest sich den Informations-Text durch.
+\item Um die Liste der Spalten zu erhalten verwendet er den Assistenten (siehe \cref{sec:ui-test-trf-ass}, Schritte \crefrange{ui-test-assist-begin}{ui-test-assist-end}).
+\item Durch Klick auf ``Manuelles Bearbeiten'' wechselt der Benutzer in den Editier-Modus.
+\item Mit Hilfe der ODHQL-Referenz ergänzt der Benutzer die fehlenden Funktionen (ST\_Centroid, To\_Date, To\_Char). Zur Überprüfung der Abfrage verwendet der Benutzer periodisch den ``Vorschau''-Knopf.
+\item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
+\item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
+  \begin{enumerate}[label=\labelenumi\alph*.]
+  \item Die Transformation ist fehlerhaft. Éine rote Fehlermeldung zeigt detailliertere Informationen zum Problem an.
+  \end{enumerate}
+\end{enumerate}
+
+\paragraph{Testperson 1}
+\begin{enumerate}
+\item Der Benutzer verwendet den Assistenten als Startpunkt und will anschliessend in den Editier-Modus wechseln. Dazu muss er erst nach oben scrollen, was er als ``mühsam'' bezeichnet.
+\item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammenklicken.
+\item Nach der Eingabe eines fehlerhaften Queries stellt der Benutzer fest, dass die Fehlermeldung ungünstig platziert ist (unterhalb der Vorschau).
+\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar DB1 besucht, verwendet SQL aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
+\end{enumerate}
+
+\subsection{UI05: Daten beziehen}
+\paragraph{Anmeldestatus} Nicht angemeldet.
+\paragraph{Aufgabe} Um die Daten in seinem System weiterverwenden zu können will der Benutzer die Resultate der vorhin erstellten Transformationen als GML-Datei herunterladen.
+
+\paragraph{Walkthrough}
+\begin{enumerate}
+\item Der Benutzer sucht die Transformation in der Daten-Liste und klickt auf den Namen.
+\item Ein Klick auf ``Herunterladen'' öffnet die Format-Auswahl.
+\item Die Auswahl von ``GML'' führt zu einem erfolgreichen Download der Daten.
+\end{enumerate}
+
+\paragraph{Testperson 1}
+Die Erfüllung der Aufgabe stellte kein Problem dar.
+
+Nach Abschluss des Tests experimentierte der Benutzer ein wenig mit exotischeren Unicode-Namen. Namen komplett ohne Zeichen im ASCII-Bereich stellten ein Problem dar - der Download schlägt in diesen Fällen fehl. 
 \chapter{Resultate und Ausblick}
 
 \section{Resultate}
