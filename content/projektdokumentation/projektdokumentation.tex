@@ -620,6 +620,51 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 \subsection{Invalidierung}
 \xxx[fscala: cache key]
 
+\section{Format-Unterstützung}
+\xxx[Moar text!]
+\subsection{Struktur}
+Die Format-Unterstützung basiert auf drei Klassen: Format, Parser und Formatter.
+
+\subsection{Unterstützte Formate}
+\cref{tab:pd:formats} beschreibt die implementierten Formate.
+
+\mytable{lX}{
+  \textbf{Format} & \textbf{Implementiert via}\\
+  \midrule
+  CSV (inkl. GeoCSV) & (Geo)Pandas \\
+  Excel (xls, xlsx) & Pandas \\
+  GeoJSON & GeoPandas \\
+  GML & ogr2ogr \\
+  Interlis 1 & ogr2ogr \\
+  Interlis Modell (ili) & custom \\
+  JSON & Pandas \\
+  KML  & fastkml, custom \\
+  ESRI Shapefile & GeoPandas \\
+  WFS (nur Client) & ogr2ogr \\
+  XML & custom \\
+}{Beschreibung der implementierten Formate}{pd:formats}
+
+GeoPandas verwendet via fiona ebenfalls GDAL.
+
+\subsubsection{Probleme mit GDAL}
+Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04.01 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. Dieser Version fehlt jedoch die vom Betreuer gewünschte Unterstützung für GeoPackage.
+
+Aus diesem Grund kompilierten wir GDAL 1.11.1 selbst.
+
+Dies führte zu folgenden Problemen:
+\begin{itemize}
+\item In GDAL 1.11.0 bis 1.11.2 führt der Versuch, nach Interlis 1 zu konvertieren, zu einem Segmentation Fault. Das Problem wurde vom Betreuer weitergemeldet.
+\item GeoPackage-Support wurde in GDAL 1.11.0 hinzugefügt und kann in dieser Version nur als unausgereift bezeichnet werden:
+  \begin{itemize}
+  \item Layer-Namen werden ohne Bereinigung oder Maskierung als Tabellen-Namen verwendet, was zu Exceptions seitens SQLite führt
+  \item Wenn die Ursprungs-Daten bereits eine Spalte namens ``fid'' beinhalten, bricht die Konvertierung ab wegen doppelter Spalten-Namen
+  \end{itemize}
+\end{itemize}
+
+GeoPackage-Support wurde in GDAL 2.0.0 massiv verbessert. Diese Version ist bei Abschluss der Arbeit noch in der Beta-Phase.
+
+\subsubsection{Interlis 2}
+Aufgrund von Problemen mit dem Format-Support in ogr2ogr wurde in Absprache mit dem Betreuer entschieden, Unterstützung für Interlis 2 nicht zu implementieren. Siehe dazu das Sitzungsprotokoll vom 15.04.2015.
 
 \section{User Interface}
 \subsection{Authentifizierung}
