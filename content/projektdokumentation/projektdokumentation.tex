@@ -621,10 +621,6 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 \xxx[fscala: cache key]
 
 \section{Format-Unterstützung}
-\xxx[Moar text!]
-\subsection{Struktur}
-Die Format-Unterstützung basiert auf drei Klassen: Format, Parser und Formatter.
-
 \subsection{Unterstützte Formate}
 \cref{tab:pd:formats} beschreibt die implementierten Formate.
 
@@ -633,38 +629,120 @@ Die Format-Unterstützung basiert auf drei Klassen: Format, Parser und Formatter
   \midrule
   CSV (inkl. GeoCSV) & (Geo)Pandas \\
   Excel (xls, xlsx) & Pandas \\
-  GeoJSON & GeoPandas \\
   GML & ogr2ogr \\
+  GeoJSON & GeoPandas \\
+  GeoPackage & GeoPandas \\
   Interlis 1 & ogr2ogr \\
   Interlis Modell (ili) & custom \\
   JSON & Pandas \\
   KML  & fastkml, custom \\
   ESRI Shapefile & GeoPandas \\
-  WFS (nur Client) & ogr2ogr \\
+  WFS (nur Parser) & ogr2ogr \\
   XML & custom \\
 }{Beschreibung der implementierten Formate}{pd:formats}
+\xxx[figure out footnotes in that env]
+% \footnote{deaktiviert, siehe \cref{sec:pd:format-gdal-problems}}
 
-GeoPandas verwendet via fiona ebenfalls GDAL.
+GeoPandas verwendet (via fiona) ebenfalls GDAL.
 
-\subsubsection{Probleme mit GDAL}
-Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04.01 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. Dieser Version fehlt jedoch die vom Betreuer gewünschte Unterstützung für GeoPackage.
+\subsubsection{Probleme mit GDAL}\label{sec:pd:format-gdal-problems}
+Für einen grossen Teil der Formate wird GDAL verwendet, entweder via GeoPandas/fiona oder direkt per ogr2ogr. 
 
-Aus diesem Grund kompilierten wir GDAL 1.11.1 selbst.
-
-Dies führte zu folgenden Problemen:
+Folgende GDAL-Versionen stehen zum aktuellen Zeitpunkt zur Verfügung:
 \begin{itemize}
-\item In GDAL 1.11.0 bis 1.11.2 führt der Versuch, nach Interlis 1 zu konvertieren, zu einem Segmentation Fault. Das Problem wurde vom Betreuer weitergemeldet.
-\item GeoPackage-Support wurde in GDAL 1.11.0 hinzugefügt und kann in dieser Version nur als unausgereift bezeichnet werden:
+\item 1.10.1
+\item 1.11.0 - 1.11.2
+\item 2.0.0beta1
+\end{itemize}
+
+Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. 
+
+Der Betreuer wünschte jedoch, dass wenn möglich Unterstützung für das relativ neue Format GeoPackage eingebaut wird. GDAL 1.10.1 unterstützt GeoPackage nicht.
+
+Im Versuch, diese Unterstützung einzubauen wurde GDAL selbst kompiliert. Dem Betreuer waren Probleme mit GDAL 1.11.2 bekannt, weswegen 1.11.1 gewählt wurde.
+
+In Tests wurden folgende Probleme gefunden:
+\begin{itemize}
+\item In GDAL 1.11.0 bis 2.0.0beta1 führt der Versuch, nach Interlis 1 zu konvertieren, zu einem Segmentation Fault. Das Problem wurde vom Betreuer weitergemeldet. In aktuellen nightly-Versionen soll dies behoben sein - dies wurde nicht verifiziert.
+\item Der GeoPackage-Treiber wurde in GDAL 1.11.0 hinzugefügt. Leider kann er in dieser Version nur als unausgereift bezeichnet werden:
   \begin{itemize}
-  \item Layer-Namen werden ohne Bereinigung oder Maskierung als Tabellen-Namen verwendet, was zu Exceptions seitens SQLite führt
-  \item Wenn die Ursprungs-Daten bereits eine Spalte namens ``fid'' beinhalten, bricht die Konvertierung ab wegen doppelter Spalten-Namen
+  \item Layer-Namen werden ohne Bereinigung oder Maskierung als Tabellen-Namen verwendet, was zu Exceptions seitens SQLite führt.
+  \item Wenn die Ursprungs-Daten bereits eine Spalte namens ``fid'' beinhalten, bricht die Konvertierung ab wegen doppelter Spalten-Namen, da der Treiber diese selbst nochmals hinzugeneriert.
+  \item Reine Daten-Tabellen werden nicht unterstützt. Diese sind zwar nicht Bestandteil des reinen GeoPackage-Standards, können aber mit Extended GeoPackage realisiert werden. Dies ist in GDAL erst ab Version 2.0.0 möglich.
   \end{itemize}
 \end{itemize}
 
-GeoPackage-Support wurde in GDAL 2.0.0 massiv verbessert. Diese Version ist bei Abschluss der Arbeit noch in der Beta-Phase.
+GeoPackage-Support wurde in GDAL 2.0.0 massiv verbessert. Diese Version ist bei Abschluss der Arbeit jedoch noch in der Beta-Phase, weshalb diverse unserer Abhängigkeiten noch nicht dazu kompatibel sind.
+
+\xxx[Reword. I'm srsly bad at this o.O]
+\begin{decision}[label=dec:pd:gdal-version]{GDAL-Version}
+Zum Abgabe-Zeitpunkt sind folgende GDAL-Versionen verfügbar: 1.10.1, 1.11.0 - .2 und 2.0.0beta1.
+
+Wegen Problemen mit mehreren Treibern entfallen die Versionen 1.11.x.
+
+Version 2.0.0beta1 entfällt wegen mangelnder Unterstützung in unseren Abhängigkeiten.
+
+Daher wird vorerst GDAL 1.10.1 eingesetzt.
+\end{decision}
 
 \subsubsection{Interlis 2}
 Aufgrund von Problemen mit dem Format-Support in ogr2ogr wurde in Absprache mit dem Betreuer entschieden, Unterstützung für Interlis 2 nicht zu implementieren. Siehe dazu das Sitzungsprotokoll vom 15.04.2015.
+
+\subsubsection{Erweiterung}
+Die Unterstützung für neue Formate kann relativ einfach hinzugefügt werden. Dazu müssen Subklassen für folgende Python-Klassen erstellt werden:
+
+\begin{description}
+\item[hub.formats.core.Format] Dient zur Identifikation des Formats von Datenquellen (z.B. Dateien)
+\item[hub.formats.core.Formatter] Erhält DataFrames und produziert Dateien, welche der Benutzer herunterladen kann.
+\item[hub.formats.core.Parser] Erhält Daten (aus Dateien, WFS, ...) und produziert DataFrames, welche von ODH weiterverwendet werden können.
+\end{description}
+
+Für die Implementation via ogr2ogr stehen im Modul hub.formats.geobase Hilfsklassen zur Verfügung.
+
+Durch Vererbung und die verwendete Python-Metaklasse wird das neue Format automatisch registriert und kann sofort verwendet werden.
+
+Ein Beispiel ist in \cref{src:pd:format-example} zu sehen. Darin wird die Unterstützung für ESRI Shapefile implementiert. Der Formatter verwendet hierzu die Hilfsklasse GeoFormatterBase, der Parser jedoch direkt GeoPandas.
+
+\begin{srclst}[label=src:pd:format-example]{python}{Beispiel-Implementation der Format-Unterstützung für ESRI Shapefile}
+import geopandas as gp
+import os
+
+from hub.formats import Format, Parser
+from hub.formats.geobase import GeoFormatterBase
+from hub.utils import ogr2ogr
+
+if 'ESRI Shapefile' in ogr2ogr.SUPPORTED_DRIVERS:
+    class Shapefile(Format):
+        label = 'ESRI Shapefile'
+        ogr_format = ogr2ogr.SHP
+
+        description = """
+        Ein ursprünglich für die Firma ESRI entwickeltes Format für Geodaten.
+        """
+
+        extension = 'shp'
+
+        @classmethod
+        def is_format(cls, file, *args, **kwargs):
+            return file.extension == 'shp'
+
+    class ShapefileFormatter(GeoFormatterBase):
+        targets = Shapefile,
+
+        supported_types = {'Point', 'LineString', 'LinearRing', 'Polygon', 'MultiPoint'}
+
+        @classmethod
+        def format(cls, dfs, name, format, *args, **kwargs):
+            return super(ShapefileFormatter, cls).format(dfs, name, format, 'ESRI Shapefile', 'shp', *args, **kwargs)
+
+    class ShapefileParser(Parser):
+        accepts = Shapefile,
+
+        @classmethod
+        def parse(cls, file, format, *args, **kwargs):
+            with file.file_group.on_filesystem() as temp_dir:
+                return gp.read_file(os.path.join(temp_dir, file.name), driver='ESRI Shapefile')
+\end{srclst}
 
 \section{User Interface}
 \subsection{Authentifizierung}
