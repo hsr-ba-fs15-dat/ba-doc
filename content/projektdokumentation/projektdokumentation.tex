@@ -97,7 +97,7 @@ Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transfor
 
 Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern, insbesondere wenn diese Software nur direkt auf Datei-Basis arbeitet (z.B. OGR).
 
-Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren bzw. keine beständigen Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.\footnote{Siehe \url{https://devcenter.heroku.com/articles/read-only-filesystem} bzw.\newline\url{https://devcenter.heroku.com/articles/dynos\#ephemeral-filesystem}}
+Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren\cite{herokuReadOnlyFilesystem} bzw. keine beständigen\cite{herokuEphemeralFilesystem} Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.
 
 Metadaten wie Format oder Original-Dateinamen würden aus Performance-Gründen weiterhin in einer Datenbank gehalten werden.
 
@@ -116,7 +116,7 @@ Falls Dritt-Anbieter-Software nur auf Datei-basis arbeitet kann ein temporäres 
 Für diese Variante existieren folgende Möglichkeiten:
 \begin{description}
 \item[Daten und Metadaten in der selben Tabelle] Daten und Metadaten werden in der selben Tabelle gespeichert. Dies bietet ein einfacheres Schema, erlaubt jedoch nur ein Daten-Objekt pro Dokument, was ungeeignet ist für Dokument-Typen wie ESRI Shapefiles, welche aus mehr als einer Datei bestehen.
-\item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehen aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Record. Dies erlaubt es auch, Django-Models zu erstellen welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
+\item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehend aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Record. Dies erlaubt es auch, Django-Models zu erstellen welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
 \end{description}
 
 Da File-Formate existieren, welche aus mehr als einer Datei bestehen, ist die Option mit separaten Tabellen vorzuziehen.
@@ -150,17 +150,18 @@ Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gl
 
 \section{Intermediäres Format}
 
-Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt würden um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne welches eine generische Transformation unmöglich wäre.
+Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt, um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne welches eine generische Transformation unmöglich wäre.
 
 In diesem Abschnitt werden diverse Optionen im Hinblick auf deren Vor- und Nachteile sowie Eignung beschrieben. 
 
 \subsection{Datenbank}
 Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. Der grosse Vorteil dieser Variante ist, dass die Transformationen dann mittels SQL Abfragen auf die diversen Datenbanktabellen erfolgen kann. Man ist dabei jedoch auf die Funktionalität der Datenbank limitiert und kann nur sehr schlecht Transformationen anbieten die dessen Fähigkeiten übersteigen.
 
+\xxx[Braucht noch Anmerkungen zu Performance, weil unten nur 1 von 3 Sternen vergeben wurde. Verluste in in Konversion Python -> SQL/SQL -> Python sind evtl. nicht offensichtlich - dies wird erst in der nächsten Section erwähnt.]
 
 \subsection{ogrtools}
 
-Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die Kompilierte OGR/GDAL Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann es durchaus zum Verlust von Informationen kommen.
+Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die kompilierten OGR/GDAL Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann es durchaus zum Verlust von Informationen kommen.
 
 Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden Transformationssprache bzw. Tranformationskonfiguration aufgebaut und dieses um weitere Operationen wie beispielsweise Filterung oder Joins erweitert. Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
 
@@ -229,11 +230,11 @@ Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden
 \subsubsection{Petl}
 Petl\footnote{http://petl.readthedocs.org/} ist eine Python \acs{etl} Bibliothek. Petl erlaubt es diverse Formate in eine Tabellenstruktur zu laden und bietet ein \acs{api} um darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
 
-Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen ist aber im vergleich zur Konkurrenz langsamer und für Performance-Kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
+Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
 
 \subsubsection{Pandas}
-Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden was zu einer für Python-Verhältnisse sehr hohen Performance führt.
+Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt.
 
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
@@ -356,9 +357,9 @@ Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransfo
 Da ogr2ogr nur auf Datei-Basis arbeitet, müssen die Daten, falls sie nicht in einem von ogr2ogr unterstützten Format vorliegen, erst geparst und formattiert und anschliessend ins Datei-System geschrieben werden. Nach der Transformation muss das Resultat wieder geparst werden, um in das vom Benutzer gewünschte Format konvertiert werden zu können. 
 
 \subsection{DSL: Vereinfachtes SQL}
-Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das erlernen dieser Query-Sprache sehr vereinfachen würde. Dies wurde durch \prof bestätigt.
+Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das Erlernen dieser Query-Sprache sehr vereinfachen würde. Dies wurde durch \prof bestätigt. \xxx[\prof rausnehmen?]
 
-Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden sind einige kleinere Differenzen zu SQL unvermeidbar. Zur Performance von Joins mit Pandas DataFrame, siehe \cite{pandasMergePerformance}.
+Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden, sind einige kleinere Differenzen zu SQL unvermeidbar. Zur Performance von Joins mit Pandas DataFrame, siehe \cite{pandasMergePerformance}.
 
 Neue Funktionen können in Python definiert werden.
 
@@ -377,7 +378,7 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
   \textbf{Funktionen} & Erweiterbarkeit um eigene bzw. benutzerdefinierte Funktionen (in externer Sprache) & \twoOfThree \\
   \textbf{Familiarität} & Wie gut kennen Experten auf dem Gebiet Datentransformation diese Sprache, bzw. wie viel Lernaufwand ist notwendig, um die Sprache zu erlernen & \oneOfThree \\
 }{Bewertungskriterien Transformationssprache}{pd:transformation-lang-criteria}
-
+\xxx[Gewichtung der Kriterien abstimmen zwischen einzelnen Bereichen]
 \cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lXXXX}{
   \textbf{Kriterium} & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes Format} \\
@@ -425,7 +426,7 @@ Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der 
     \label{fig:pd:cookie-token-auth}
 \end{figure}
 \section{Architektur}
-
+\xxx
 Daten-Lieferanten liefern ihre Daten per Web-Interface oder REST-API. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese Daten wieder über das Web-Interface oder per REST-API ab. 
 
 Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \cref{fig:pd:arch-overview} zu sehen ist:
@@ -454,7 +455,7 @@ Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \c
 
 \subsection{Syntax}
 
-Die Syntax von \acs{odhql} orientiert sich stark an ANSI SQL.
+Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus ANSI SQL.
 
 Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
 
@@ -466,34 +467,37 @@ Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syn
   \midrule
   \textbf{Mapping} & Felder können mit oder ohne Alias angegeben werden. Falls kein Alias vorhanden ist wird der Feldname beibehalten. Es ist möglich, Sonder- und Leerzeichen zu verwenden, indem der Feldname in doppelten Anführungszeichen geschrieben wird. \\
   \textbf{Default-Werte} & Unterstützt werden Integer, Float, sowie Strings (in einfachen Anführungszeichen). \\
-  \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpung) \\
-  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc, ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
+  \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpung). Neben Inner Joins werden auch Left, Right und Full Outer Joins unterstützt. \\
+  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc, Prädikate und ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
   \textbf{Erweiterbare Funktionen} & Alle Funktionen werden über eine Function Registry in Python aufgerufen und können daher einfach erweitert werden. \\
   \textbf{Sortierung} & Es kann eine Order By-Klausel angegeben werden. Falls Unions verwendet werden muss die Order By-Klausel am Ende angegeben werden, nicht pro Query. \\
-  \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Hierbei werden lediglich die Resultate der Queries aneinandergehängt, es findet anders als in SQL keine deduplizierung (distinct) statt. \\
+  \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Die Implementation entspricht dem UNION ALL aus SQL, es findet also keine Deduplizierung statt. \\
 }{Durch \acs{odhql} implementierte Features}{pd:transformation-lang-impl}
-\xxx[adjust statement about unions if we implement deduplication]
 
 Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
 
 \subsection{Beispiele}
 Folgende Items sind in der Feld-Liste erlaubt:
 \begin{description}
-\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Prefix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. Zu beachten ist, dass Feld-Namen immer einen Prefix brauchen, auch ausserhalb der Feld-Liste.
+\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Präfix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. Zu beachten ist, dass Feld-Namen immer einen Präfix brauchen, auch ausserhalb der Feld-Liste.
 \begin{src}{sql}
 a.beschreibung, a.geom as geometry, a."Zentroid X [m]"
 \end{src}
-\item[Wert] Integer, Float, Boolean oder String in einfachen Anführungszeichen. Es muss zwingend ein Alias angegeben werden. 
+\item[Wert] Integer, Float, Boolean, Null oder String in einfachen Anführungszeichen. Es muss zwingend ein Alias angegeben werden. 
 \begin{src}{sql}
-1 as one, 3.14 as pi, false as active, 'moon' as cheesefactory
+1 as one, 3.14 as pi, false as active, 'sun' as local_star
 \end{src}
- \xxx[fix joke. it's broken.]
 \item[Funktion] Ein Funktionsaufruf besteht aus einem Namen sowie einer Liste von Argumenten in runden Klammern. Funktionsaufrufe können verschachtelt werden.
 \begin{src}{sql}
- cast(a.pi, `float') as pi,
- concat('POINT(', cast(v0.x, 'string'), '', cast(v0.y, 'string'), '')')) as geometry
+ cast(a.pi, 'float') as pi,
+ concat('POINT(', cast(v0.x, 'string'), ' ', cast(v0.y, 'string'), ')')) as geometry
 \end{src}
 \end{description}
+
+Datenquellen können per Join verknüpft werden.
+\begin{src}{sql}
+  from "Gebäude" as geb join Strassen as str on geb.str_id = str.id
+\end{src}
 
 Als Filter können folgende Ausdrücke verwendet werden:
 \begin{description}
@@ -515,48 +519,48 @@ a.optional_field is null, a.mandatory_field is not null
 \end{src}
 \end{description}
 
-Datenquellen können per Join verknüpft werden.
-\begin{src}{sql}
-  from "Gebäude" as geb join Strassen as str on geb.str_id = str.id
-\end{src}
-
-Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält sich wie ``union all'' in SQL, d.h. es findet keine Deduplikation der Daten statt.
+Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält sich wie ``union all'' in SQL, d.h. es findet keine Deduplizierung der Daten statt.
 \begin{src}{sql}
   select a.description, a.geometry from A as a
    union
   select b.description, b.geometry from B as b
 \end{src}
-Zu beachten ist, dass die Feld-Listen der Queries alle gleich viele Einträge enthalten müssen.
+Zu beachten ist, dass die Feld-Listen der Queries kompatibel sein müssen.
 \newline
 
 \subsection{Abstrakter Syntax-Baum (AST)}
+Der ODHQL-Parser analysiert die Abfrage in Text-Form und wandelt diese in einen Abstrakten Syntax Baum (AST) um. Dieser wird anschliessend vom Interpreter verwendet, um die Transformation auf die Daten anzuwenden.
 
+\cref{fig:pd:odhql-ast-toplevel} zeigt die Toplevel-Struktur des Abstrakten Syntax-Baums.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{fig/odhql-ast-union.pdf}
 \caption{AST: Unions}
-\label{fig:pd:odhql-flow}
+\label{fig:pd:odhql-ast-toplevel}
 \end{figure}
 
+Die in \cref{fig:pd:odhql-ast-expressions} beschriebenen Ausdrücke repräsentieren Felder, Werte, Funktionsaufrufe, etc.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{fig/odhql-ast-expression.pdf}
 \caption{AST: Ausdrücke}
-\label{fig:pd:odhql-flow}
+\label{fig:pd:odhql-ast-expressions}
 \end{figure}
 
+\cref{fig:pd:odhql-ast-datasources} zeigt auf, wie Datenquellen repräsentiert werden.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{fig/odhql-ast-datasources.pdf}
 \caption{AST: Datenquellen}
-\label{fig:pd:odhql-flow}
+\label{fig:pd:odhql-ast-datasources}
 \end{figure}
 
+Filter werden wie in \cref{fig:pd:odhql-ast-filter} beschrieben dargestellt.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\linewidth]{fig/odhql-ast-filter.pdf}
 \caption{AST: Filter}
-\label{fig:pd:odhql-flow}
+\label{fig:pd:odhql-ast-filter}
 \end{figure}
 
 \subsection{Interpreter}

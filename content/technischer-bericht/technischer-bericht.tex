@@ -55,7 +55,7 @@ Langfristig sollen sich die beteiligten Fachstellen um ihr Fachgebiet kümmern k
 
 \section{Ziele}
 
-
+Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- und Implementations-Details, statt sich mit Modell- oder Fach-Fragen zu beschäftigen. Um Bewegung in diese Situation zu bringen soll ein Prototyp einer Konvertierungs- und Transformations-Plattform implementiert werden. Dieser dient als Demonstrationsobjekt für spätere Weiterentwicklungen und soll aufzeigen, wie eine solche Plattform aussehen könnte und wo allfällige Stolpersteine zu finden sind.
 
 \section{Rahmenbedingungen}
 
@@ -63,6 +63,20 @@ Langfristig sollen sich die beteiligten Fachstellen um ihr Fachgebiet kümmern k
 
 \section{Stand der Technik}
 
+\xxx[dies muss wahrscheinlich woanders hin, mind. in eine tiefere hierarchiestufe.]
+\subsection{dat}
+Das ``dat''-Projekt will den Bezug und Austausch von Daten vereinfachen. Zusätzlich zum Datenspeicher wird dazu ein Synchronisierungsprotokoll angelehnt an Replikationsprotokolle von bekannten Datenbanksystemen verwendet.
+
+Leider befindet sich das Projekt noch in den Kinderschuhen. Daher wurde beschlossen, Projekt dat nicht zu verwenden.
+
+Für eine detailliertere Erläuterung, siehe \cref{part:dat}.
+
+\subsection{CKAN}
+CKAN ist ein Software-System zur Datenverwaltung, insbesondere von öffentlichen Daten. Schwerpunkte sind das Anbieten, Indexieren und Verwalten von Daten, welche von Benutzern zur Verfügung gestellt werden. Dahingehend kann eine grosse Menge an Meta-Informationen zusammen mit den Daten erfasst werden. 
+
+CKAN wird unter anderem für \url{http://www.opendata.admin.ch/} verwendet.
+
+Leider wurden wir erst relativ spät auf CKAN aufmerksam. Daher wurde zusammen mit dem Betreuer beschlossen, bei dieser Arbeit den Schwerpunkt auf die Konvertierung und Transformation der Daten zu legen und allenfalls in einer späteren Arbeit CKAN und ODH zu integrieren.
 
 \chapter{Resultate und Ausblick}
 

@@ -21,6 +21,7 @@ Die User Stories wurden aufgrund der zunächst unbekannten bzw. relativ knapp au
 
 \subsubsection{Post- und Gebäudeadressen}
 Adressen im Allgemeinen können auf unterschiedliche Art und Weise modelliert und abgespeichert werden. Das klassische Beispiel ist die Adresse inklusive Hausnummer gegenüber zwei separaten Feldern. Ziel wäre es unterschiedliche Schemas von Postadressen als integriertes \acs{csv} oder Gebäudeadressen im \gls{mopublic} Format beziehen zu können.
+\xxx[evtl anpassen an realität? bezug der daten in mopub ist eher unrealistisch da zu viele tabellen? (lesen kein problem/implementiert)]
 
 \subsubsection{Verkehrshindernisse}
 Die Webapplikation \gls{trobdb} stellt Verkehrshindernisse der Schweiz auf einer Karte dar. Diese Verkehrshindernisse werden von diversen Datenlieferanten in unterschiedlichen Datei- und Schemaformaten angeliefert. Ziel ist es alle diese Verkehrshindernisse in einem einheitlichen Datei- und Schemaformat beziehen zu können.
@@ -51,10 +52,10 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \subsection{Registrierung / Authentifizierung}
 
 \begin{scrumepic}[label=epic:pd:registrieren]{Benutzer registrieren}
-	Als Datenanbieter, will ich mich in der Applikation registrieren können, sodass ich Daten unter meiner Person/Organisation publizieren kann.
+	Als Datenanbieter will ich mich in der Applikation registrieren können, sodass ich Daten unter meiner Person/Organisation publizieren kann.
 \end{scrumepic}
 
-
+\xxx
 \begin{scrumstory}[label=story:pd:suisseid]{SuisseID}
 	Als Datenanbieter will ich mich mittels SuisseID registrieren/anmelden können, sodass ich als Behörde einen Zugriff erlange ohne einen Social-Account zu benötigen.
 \end{scrumstory}
@@ -74,7 +75,7 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 	Als Datenanbieter will ich die Daten in diversen strukturierten Formaten anbieten können, sodass ich diese der Öffentlichkeit ohne zusätzlichen Aufwand bereitstellen kann.
 	\storyacceptance	
 	Gegeben
-	\storyitem{eine oder mehrere Dateien in einem von der Applikation unterstützten Formaten}
+	\storyitem{eine oder mehrere Dateien in einem von der Applikation unterstützten Format}
 	wenn der Datenanbieter die Datei via Webapplikation publiziert, dann soll diese in OpenDataHub abgespeichert werden und in einer Liste von verfügbaren Daten ersichtlich sein.
 \end{scrumepic}
 
@@ -83,7 +84,7 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:online-quelle]{Online Quellen}
-	Als Datenanbieter will ich Daten in einem strukturierten Format mit Angabe einer Online Quelle (HTTP, FTP, WFS) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
+	Als Datenanbieter will ich Daten in einem strukturierten Format mit Angabe einer Online-Quelle (HTTP, WFS) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Daten sind Online in einem von der Applikation unterstützten Format verfügbar}
@@ -120,7 +121,7 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \end{scrumepic}
 
 \begin{scrumstory}[label=story:pd:views]{Transformation publizieren}
-	Als Experte will ich diese Transformationen (``Views'' auf die Daten) analog wie die einzelnen Daten, speichern und publizieren können, sodass diese einerseits immer wieder per Knopfdruck angewendet werden können und andererseits auch von anderen, nicht-Experten verwendet werden können.
+	Als Experte will ich diese Transformationen (``Views'' auf die Daten) analog wie die einzelnen Daten speichern und publizieren können, sodass diese einerseits immer wieder per Knopfdruck angewendet und andererseits auch von anderen, nicht-Experten verwendet werden können.
 \end{scrumstory}
 
 
@@ -128,7 +129,7 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \subsection{Daten beziehen}
 
 \begin{scrumepic}[label=epic:pd:datenbezug]{Datenbezug}
-	Als Endbenutzer will ich die bereitgestellten Daten in einem von mir gewünschten, strukturierten Format, beziehen können.
+	Als Endbenutzer will ich die bereitgestellten Daten in einem von mir gewünschten, strukturierten Format beziehen können.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Eine in der Applikation von einem Datenanbieter abgelegten Datei,}
@@ -147,7 +148,7 @@ Die nicht-funktionalen Anforderungen der einzelnen User Stories sind Grundsätzl
 In diesem Abschnitt werden zusätzliche, aus der Aufgabenstellung entnommene sowie bei dem Betreuer aufgenommene nicht-funktionale Anforderungen, ergänzt durch sinnvolle Anforderungen moderner Software-Entwicklung beschrieben.
 
 \subsection{Technologien}
-Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} ist teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der HSR wie folgt eingeschränkt:
+Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} sind teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der HSR wie folgt eingeschränkt:
 
 \begin{itemize}
 	\item Python als Programmiersprache %TODO python 2?
