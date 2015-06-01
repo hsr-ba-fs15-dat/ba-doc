@@ -40,13 +40,15 @@ Persönlicher Bericht der Studierenden zu ihren Erfahrungen bei der Arbeit. Bei
 \chapter{Einführung}
 
 \section{Vision}\label{sec:tb:vision}
-\paragraph{Rückblick} \footnote{In Anlehnung an \cite{rahmenvorst-interlisopen}}
-In der Schweiz existieren diverse öffentliche Stellen, die sich mit Geo-Daten beschäftigen. Seit der Reform der Amtlichen Vermessung steht ihnen offen, welche Software-Systeme sie für die Erfüllung ihrer Aufgabe einsetzen. Um trotzdem Daten austauschen zu können wurde beschlossen, \gls{interlis} als gemeinsamen Datenaustausch-Mechanismus zu verwenden.
+\paragraph{Rückblick}
+\blockquote[aus \cite{rahmenvorst-interlisopen}]{Im Rahmen der Reform der Amtlichen Vermessung (RAV) war die Methodenfreiheit ein zentrales Stichwort. Man meinte damit insbesondere auch die Freiheit, ein für die Aufgabe geeignetes Programm-System frei wählen zu können, ohne deswegen Probleme mit dem Datenaustausch mit anderen Systemen zu haben und sagte darum: In der (öffentlichen) GeoSzene-Schweiz einigt man sich auf den Datenaustausch-Mechanismus INTERLIS.}
 
-Für den Austausch mit \gls{interlis} wird als erstes ein gemeinsames Modell definiert. Anschliessend kümmern sich die beteiligten Systeme nur noch um den Import von \gls{interlis}-Daten in das eigene System, bzw. aus dem eigenen System nach \gls{interlis}.
+Für den Datenaustausch kümmern sich die beteiligten Systeme dann nur noch um die Konvertierung von bzw. nach Interlis. Optimalerweise wird Interlis von den beteiligten Systemen bereits unterstützt.
 
 \paragraph{Realität}
-In der Realität interessieren sich die Anbieter von Geo-Software nicht für \gls{interlis}, welches praktisch ausschliesslich in der Schweiz verwendet wird. Als Folge davon muss die Konvertierung von und zu \gls{interlis} von den jeweils beteiligten Stellen vorgenommen werden.
+In der Realität interessieren sich die Anbieter von Geo-Software jedoch nicht für \gls{interlis}, welches praktisch ausschliesslich in der Schweiz verwendet wird. Als Folge davon muss die Konvertierung von und zu \gls{interlis} von den jeweils beteiligten Stellen vorgenommen werden.
+
+\blockquote[weiter aus \cite{rahmenvorst-interlisopen}]{Besonders gravierend wird die Situation, weil es eine Vielzahl von Systembetreibern und eine stets wachsende Zahl von Anwendungsbereichen gibt. All diese Systembetreiber (z.B. Amtsstellen von Bund, Kanton und Gemeinden, Netzbetreiber, SBB, private Firmen) sind auf den korrekten Austausch von Daten angewiesen. Es macht aber wenig Sinn, wenn sie sich alle mit all den verschiedenen technischen Fragen befassen müssen. Der Aufwand ist erheblich. Zudem darf das Fehlerrisiko nicht unterschätzt werden.}
 
 Da für verschiedene Anwendungsbereiche unterschiedliche Modelle notwendig sind entsteht ein beträchtlicher Aufwand. Erschwerend kommen Probleme bei Beschaffung und Betrieb von Konversions-Systemen oder die Unterstützung von Partnern welche nicht mit  \gls{interlis} umgehen können hinzu.
 
@@ -63,7 +65,6 @@ Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- 
 
 \section{Stand der Technik}
 
-\xxx[dies muss wahrscheinlich woanders hin, mind. in eine tiefere hierarchiestufe.]
 \subsection{dat}
 Das ``dat''-Projekt will den Bezug und Austausch von Daten vereinfachen. Zusätzlich zum Datenspeicher wird dazu ein Synchronisierungsprotokoll angelehnt an Replikationsprotokolle von bekannten Datenbanksystemen verwendet.
 
@@ -73,35 +74,58 @@ Für eine detailliertere Erläuterung, siehe \cref{part:dat}.
 
 \subsection{CKAN}
 CKAN ist ein Software-System zur Datenverwaltung, insbesondere von öffentlichen Daten. Schwerpunkte sind das Anbieten, Indexieren und Verwalten von Daten, welche von Benutzern zur Verfügung gestellt werden. Dahingehend kann eine grosse Menge an Meta-Informationen zusammen mit den Daten erfasst werden. 
-	
-CKAN wird unter anderem für \url{http://www.opendata.admin.ch/} verwendet.
+
+CKAN hat keine Unterstützung für Daten-Konvertierung oder -Transformation.
 
 Leider wurden wir erst relativ spät auf CKAN aufmerksam. Daher wurde zusammen mit dem Betreuer beschlossen, bei dieser Arbeit den Schwerpunkt auf die Konvertierung und Transformation der Daten zu legen und allenfalls in einer späteren Arbeit CKAN und ODH zu integrieren.
 
+\paragraph{opendata.admin.ch}
+Open Data-Portal des Bundes, basierend auf CKAN.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/opendata-admin-ch}
+    \caption{Ein Daten-Packet auf opendata.admin.ch}
+\end{figure}
+
+\paragraph{datahub.io}
+Datahub.io ist eine CKAN-basierte Plattform zum Anbieten von Daten.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/datahub-io}
+    \caption{Packet-Liste auf datahub.io}
+\end{figure}
+
+\paragraph{opendatahub.it}
+opendatahub.it ist eine italienische, ebenfalls CKAN-basierte Plattform.
+
 \subsection{Feature Manipulation Engine (FME)}
-\xxx
-\gls{fme} ...
+\gls{fme} ist ein komerzielles Produkt der Safe Software Inc. Der Fokus liegt auf der Transformation, Konvertierung und Integration von Daten in einer Desktop-Applikation.
+
+\paragraph{geopol.ch}
+Geopol ist eine Web-to-FME Schnittstelle.
 
 \subsection{Pentaho Kettle}
-\xxx
+Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
 
-\subsection{geopol.ch}
-\xxx
-
-\subsection{datahub.io}
-\xxx
-
-\subsection{opendatahub.it}
-
-\subsection{IBM Bluemix}
-\xxx
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/kettle-spoon-transformation}
+    \caption{Transformations-Beispiel aus der Pentaho Kettle-Dokumentation}
+\end{figure}
 
 \subsection{Yahoo! Pipes}
-\xxx
+Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor allem das User Interface, welches die grafische Verknüpfung von Datenquellen erlaubt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/yahoo-pipes}
+    \caption{Packet-Liste auf datahub.io}
+\end{figure}
 
 \subsection{OpenRefine.org}
-\xxx
-
+OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
 
 \chapter{Resultate und Ausblick}
 \xxx beschreiben (prototyp für xy) \& screenshots

@@ -934,7 +934,7 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 \paragraph{Testperson 1}
 \begin{enumerate}
 \item Nach kurzer Orientierung in der Benutzeroberfläche findet der Benutzer das Suchfeld.
-\item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen.
+\item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen. Dies ist eine Unschönheit im WFS von dem die Daten stammen und kein UI-Problem.
 \item Er ist unsicher, wo er klicken muss um die Felder hinzuzufügen. Nach kurzer Orientierung findet er die richtige Stelle (alles ausser Alias-Feld).
 \item Bei der Eingabe der Aliases ist der Benutzer enttäuscht, dass die Tabelle nicht automatisch weiterscrollt. 
 \item Das Speichern der Tranformation funktioniert problemlos.
@@ -945,7 +945,7 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 
 \paragraph{Aufgabe} Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten, den Strassennamen sowie die Geometrie als Punkt, jeweils mit Menschen-lesbaren Namen, und erstellt dazu eine Transformation.
 
-Das Datums-Format soll dem Format ``Tag. Monat. Jahr'' entsprechen.
+Das Datums-Format soll dem Format ``Tag. Monat. Jahr'' (z.B. ``01.01.1970'') entsprechen.
 
 Da er bereits Erfahrung mit ODHQL oder SQL hat schreibt er die Transformation selbst. Der Assistent kann als Startpunkt verwendet werden, unterstützt jedoch nicht alle benötigte Funktionalität.
 
@@ -969,7 +969,7 @@ Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilf
 \item Der Benutzer verwendet den Assistenten als Startpunkt und will anschliessend in den Editier-Modus wechseln. Dazu muss er erst nach oben scrollen, was er als ``mühsam'' bezeichnet.
 \item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammenklicken.
 \item Nach der Eingabe eines fehlerhaften Queries stellt der Benutzer fest, dass die Fehlermeldung ungünstig platziert ist (unterhalb der Vorschau).
-\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar DB1 besucht, verwendet SQL aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
+\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung DB1 besucht, verwendet SQL aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
 \end{enumerate}
 
 \subsection{UI05: Daten beziehen}
