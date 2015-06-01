@@ -112,15 +112,16 @@ Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten\cite{sfkeller} o
 \gls{geojson} ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten. Dieses Format ist heutzutage weit verbreitet und fast überall wo mit Geo-Daten hantiert wird unterstützt.
 
 \subsection{GeoPackage}
-\xxx chuesler
+GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe an SpatiaLite, welches mit Version 4.2 auf GeoPackage wechselt.
 
 \subsection{GML}
 \gls{gml} ist ein auf XML basierendes Format für Geo-Daten und ist das Standard-Ausgabeformat von \acs{wfs}-Servern.
 
 
 \subsection{INTERLIS}
-\xxx chuesler, 1, 2, modell?
+Interlis besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
 
+Interlis existiert in zwei Versionen: Interlis 1 verwendet ein Record-basiertes Transfer-Format, während für Interlis 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt Interlis 2 eine Erweiterung von Interlis 1 um Objekt-orientierte Features dar.
 
 \subsection{KML}
 \gls{kml} ist wie \gls{gml} ebenfalls ein auf \gls{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML, ist dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.

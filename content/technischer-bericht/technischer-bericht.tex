@@ -61,6 +61,16 @@ Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- 
 
 \section{Rahmenbedingungen}
 
+Folgende Rahmenbedingungen wurden durch den Betreuer\cite{sfkeller} vorgegeben:
+
+\begin{itemize}
+\item Python als Programmiersprache
+\item Postgres oder SQLite als Datenbank
+\item Deployment der Applikation muss via Web Server Gateway Interface (WSGI) möglich sein
+\end{itemize}
+
+Diese sind zugleich als Nicht-funktionale Anforderungen zu verstehen.
+
 \chapter{Umsetzung}
 
 \section{Stand der Technik}
@@ -85,7 +95,7 @@ Open Data-Portal des Bundes, basierend auf CKAN.
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/opendata-admin-ch}
-    \caption{Ein Daten-Packet auf opendata.admin.ch}
+    \caption{Ein Daten-Paket auf opendata.admin.ch}
 \end{figure}
 
 \paragraph{datahub.io}
@@ -94,7 +104,7 @@ Datahub.io ist eine CKAN-basierte Plattform zum Anbieten von Daten.
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/datahub-io}
-    \caption{Packet-Liste auf datahub.io}
+    \caption{Paket-Liste auf datahub.io}
 \end{figure}
 
 \paragraph{opendatahub.it}
@@ -121,19 +131,69 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/yahoo-pipes}
-    \caption{Packet-Liste auf datahub.io}
+    \caption{Pipe in Yahoo! Pipes}
 \end{figure}
 
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
 
 \chapter{Resultate und Ausblick}
-\xxx beschreiben (prototyp für xy) \& screenshots
+Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \cref{sec:pd:format-gdal-problems}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-package-list}
+    \caption{ODH: Paket-Liste}
+\end{figure}
+
+Ein Benutzer kann bereits vorhandene Daten durchsuchen und herunterladen. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-document-detail}
+    \caption{ODH: Detail zu hochgeladenen Daten}
+\end{figure}
+
+Daten können als Datei oder Gruppe von Dateien hochgeladen oder von einer URL bezogen werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-offer-data}
+    \caption{ODH: Daten anbieten}
+\end{figure}
+
+Die Resultate von Transformationen präsentieren sich ähnlich wie hochgeladene Dateien.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-transformation-detail}
+    \caption{ODH: Details einer Transformation (1)}
+\end{figure}
+
+Mit minimaler Einführung können einfache Transformationen zusammengeklickt werden, mit ODHQL-Kenntnissen können auch komplexe Transformationen geschrieben werden. Als Datenquellen dienen hochgeladene Daten, \acs{wfs}-Server oder bereits bestehende Transformationen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-transformation-assistant}
+    \caption{ODH: Transformations-Assistent}
+\end{figure}
+
+Bereits vorhandene Transformationen können geklont, oder bei eigenen Transformationen auch bearbeitet werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/odh-edit-transformation}
+    \caption{ODH: Details einer Transformation (2)}
+\end{figure}
 
 \section{Persönlicher Bericht}
 
 \subsection{Christoph Hüsler}
-\xxx chuesler
+Meine Python-Vorkenntnisse waren relativ beschränkt - ich kannte die Syntax von Code-Beispielen, die mir über die Jahre im Internet begegnet sind und ich hatte bereits ein paar kleinere Skripts angepasst, aber nie ein eigenens Projekt mit Python realisiert. Trotzdem gelang es mir schnell, mich einzuarbeiten.
+
+Highlight dieser Arbeit war für mich sicher die Implementation des ODHQL-Parsers mit pyparsing - ich kann dieses Modul nur empfehlen. 
+
+Auch die Zusammenarbeit im Team empfand ich als sehr positiv. Trotz einiger Differenzen konnten wir immer miteinander diskutieren und eine Lösung finden. 
 
 \subsection{Remo Liebi}
 \xxx rliebi

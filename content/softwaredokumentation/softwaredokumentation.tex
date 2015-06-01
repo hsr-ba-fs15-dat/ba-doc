@@ -2,23 +2,18 @@
 
 \chapter{Installation}
 In diesem Kapitel soll eine Schrittweise Anleitung zur Installation von OpenDataHub auf verschiedenen Plattformen wiedergeben werden.
-\section{vagrant}
-\xxx[Erstellen Vagrant Dokumentation]
-\section{Heroku}
-\xxx[evtl alles automatisch?]
-\begin{enumerate}
-\item Klonen des Git Repositories
-\shellcmd{git clone git@github.com:hsr-ba-fs15-dat/vm.git}
-\item Heroku toolkit installieren
-\item Namen des Servers von Heroku übernehmen.
-\xxx[Welche Config files müssen angepasst werden?]
-\item Vagrant konfiguration auf heroku pushen.
-\shellcmd{vagrant push}
-\end{enumerate}Klonen des Git-Repositorys
-
-\section{Deploy per FTP}
-\xxx[vagrant nach FTP deployen]
-
+\section{Deployment (WSGI)}
+Mittels dem vorkonfigurierten WSGI File kann opendatahub auf gängigen Webservern Deployed werden.
+\begin{srclst}[label=lst:wsgi-configuration]{apache}{Besipiel WSGI-Konfiguration für Apache2 Server}
+<VirtualHost beta.opendatahub.ch:80>
+	ServerAdmin devs@opendatahub.ch
+	WSGIDaemonProcess opendatahub python-path=/var/www/opendatahub:/var/www/opendatahub/venv/lib/python2.7/ site-packages
+	WSGIProcessGroup opendatahub
+	WSGIScriptAlias / /var/www/opendatahub/src/main/python/opendatahub/wsgi.py
+	ErrorLog ${APACHE_LOG_DIR}/opendatahub_error.log
+	CustomLog ${APACHE_LOG_DIR}/opendatahub_access.log combined
+</VirtualHost>
+\end{srclst}
 \chapter{Entwicklung}
 
 \section{Entwicklungsumgebung}
@@ -40,7 +35,6 @@ Der nächste Schritt ist das Klonen des Git Repositorys und starten der vagrant 
 \begin{src}{shell}
 git clone git@github.com:hsr-ba-fs15-dat/vm.git
 cd vm
-git clone git@github.com:hsr-ba-fs15-dat/opendatahub.git
 vagrant up
 \end{src}
 
@@ -53,9 +47,6 @@ Um eine \gls{vm} zu starten, führt man den Befehl \mintinline{shell}{vagrant up
 Um mit der Entwicklung starten, folgende Befehle in der Konsole eingeben:
 \begin{src}{shell}
 vagrant ssh #verbindet mit der SSH Umgebung
-make dev #initialisiert Django und die Virtual env
-exit #Verlassen der Umgebung
-vagrant ssh #Erneutes Verbinden. venv ist nun aktiviert.
 \end{src}
 \subsection{IDE}
 Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. In den Projekteinstellungen muss nun noch der Projektinterpreter auf die Vagrant instanz gelegt werden, damit alle Debugging Features funktionieren.
@@ -72,4 +63,5 @@ config.push.define "ftp" do |push|
   push.dir = "/"
 end
 \end{src}
+Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach FTP-Server oder Heroku Instanz noch konfiguriert werden.
 \section{Tests}
