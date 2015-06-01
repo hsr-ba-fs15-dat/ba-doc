@@ -29,7 +29,7 @@
 \newtoggle{isprint}
 \newtoggle{isdigital}
 
-%\togglefalse{isprint} 
+\togglefalse{isprint} 
 \toggletrue{isprint}
 \toggletrue{isdigital}
 
@@ -76,9 +76,10 @@
 		\tcblistof[\section*]{decisions}{Liste der Entscheidungen}
 		
 		%\clearpage
-		\phantomsection
-		\addcontentsline{toc}{section}{Pseudocodeverzeichnis}
-		\tcblistof[\section*]{pseudocode}{Pseudocodeverzeichnis}
+		% \phantomsection
+		% \addcontentsline{toc}{section}{Pseudocodeverzeichnis}
+		% \tcblistof[\section*]{pseudocode}{Pseudocodeverzeichnis}
+
 		\microtypesetup{protrusion=true}
 
 
@@ -95,7 +96,7 @@
 		\addcontentsline{toc}{part}{\appendixname}
 		\appendix
 		\import{content/appendix/}{appendix.tex}
-		\import{content/examples/}{examples.tex}
+		% \import{content/examples/}{examples.tex}
 		
 	\backmatter
 		\import{bibliography/}{bibliography.tex}
