@@ -937,21 +937,62 @@ Nach Abschluss des Tests experimentierte der Benutzer ein wenig mit exotischeren
 
 \section{Resultate}
 
-
 \section{Weiterentwicklung}
-\xxx native unterstützung formate interlis/gml
-\xxx unterstützung interlis2
-\xxx bessere CRUD möglichkeiten (z.b. files austauschen/hinzufügen)
-\xxx nach und nach mehr funktionen einbauen (nach bedarf)
-\xxx performance/streaming aspekt
-\xxx möglichkeit wie bei ogr sql auf der DB auszuführen mit kosten-penalty
-\xxx möglichkeit zur ``diskussion'' von transformationen/daten
-\xxx CKAN forken
-\xxx GDAL 2.0
-\xxx datentypen erweitern
-\xxx bessere handhabung geodaten
-\xxx support für nested daten
-\xxx mehr formate unterstützen (nach bedarf)
-\xxx flexiblere API (adhoc alles, odh nur noch als ``calc/transformation'' engine verwenden)
 
+\subsection{GDAL 2.0}
+Diverse Treiber wurden in GDAL 2.0 massiv verbessert (Interlis 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist sollte ein Upgrade in Betracht gezogen werden.
 
+\subsection{Native Unterstützung für via ogr2ogr implementierte Formate}
+Die Unterstützung für die Formate Interlis 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert müssen die Daten über ein Zwischenformat konvertiert werden.
+
+Für den Formatter sieht das wie folgt aus:
+$$ \text{ODH} \to \text{Zwischenformat} \to \text{ogr2ogr} \to \text{Zielformat} $$
+
+Analog für den Parser. Beide Konvertierungs-Schritte sind potentiell fehlerbehaftet, ausserdem sind nicht alle ogr2ogr-Treiber von gleicher Qualität.
+
+Daher wäre es wünschenswert, diese Formate mit nativen Parsern und Formattern zu unterstützen. 
+
+\subsection{Unterstützung für Interlis 2}
+Interlis 2 ist eine Weiterentwicklung von Interlis 1. Die uns zur Verfügung stehenden GDAL-Versionen hatten jedoch nur minimale Unterstützung für dieses Format.
+
+\subsection{Ausbau der Webapplikation}
+Nach Untersuchung der bereits vorhandenen Produkte wurde entschieden, die Webapplikation minimal zu halten. Die Konvertierung und Transformation von Daten hatte Priorität.
+
+Wir sehen folgende Optionen:
+\begin{itemize}
+\item Ausbau der verwalteten Metadaten
+\item Veränderung der Files, die zu einem Package gehören
+\item Diskussion von Daten/Transformationen, evtl. Issue-Tracker
+\item Integration von CKAN
+\end{itemize}
+
+\subsection{Mehr ODHQL-Funktionen}
+Bisher sind zwar diverse Funktionen implementiert, gerade im Geo-Bereich gibt es jedoch noch einiges an Erweiterungspotential.
+
+\subsection{Datentypen}
+ODHQL unterstützt bisher folgende Datentypen: Integer (32 Bit), SmallInt (16 Bit), BigInt (64 Bit), Float, DateTime, Boolean, Text und Geometry. (Date-/Time-)Interval wird theoretisch unterstützt, es gibt jedoch aktuell keine Funktionen welche diesen Typ verwenden.
+
+Mögliche Erweiterungen:
+\begin{itemize}
+\item Wertebereiche für bereits bestehende Datentypen, z.B. Längenbeschränkung für Text, oder Boundaries für Geometrien
+\item Subqueries bzw. Nested Tables
+\item Baumstrukturen, Key-Value-Pairs
+\end{itemize}
+
+Ausserdem sollte Untersucht werden, ob Geodaten in allen Fällen korrekt behandelt werden.
+
+\subsection{Mehr Formate}
+Nach Bedarf können weitere Formate implementiert werden.
+
+\subsection{ODH als WFS-Server}
+ODH unterstützt WFS als Daten-Quelle. Die Idee ist, dass eine API implementiert wird, welche eine Datenquelle oder WFS-Url und optional eine ODHQL-Abfrage entgegen nimmt, die Transformation durchführt und anschliessend das Resultat als WFS anbietet.
+
+\subsection{Performanz bei grossen Datenmengen}
+Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio Records) mit guten Resultaten getestet. Im Gespräch mit Herrn Dorfschmid wurde festgestellt, dass dies für viele Anwendungen ausreicht.
+
+Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur sub-optimal und limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
+
+Zu beachten ist, dass diverse verwendete Libraries (unter anderem auch GDAL) nicht Stream-orientiert arbeiten.
+
+\subsection{Unterstützung für weitere Transformations-Arten}
+Ogr2ogr ermöglicht es, Transformationen per SQL in einer Datenbank auszuführen. Dies könnte auch in ODH implementiert werden, würde jedoch zu Performance-Verlusten führen.
