@@ -27,8 +27,25 @@ Adressen im Allgemeinen können auf unterschiedliche Art und Weise modelliert un
 \subsubsection{Verkehrshindernisse}
 Die Webapplikation \gls{trobdb} stellt Verkehrshindernisse der Schweiz auf einer Karte dar. Diese Verkehrshindernisse werden von diversen Datenlieferanten in unterschiedlichen Datei- und Schemaformaten angeliefert. Ziel ist es alle diese Verkehrshindernisse in einem einheitlichen Datei- und Schemaformat beziehen zu können.
 
-\xxx[datenquellen beschreiben]
+Als Datenquellen dienen Datenangebote des Bundes, der Kantone sowie Lichtenstein. Als Demonstration sollen folgende Datenquellen verwendet werden:
+\begin{itemize}
+\item Daten von \url{http://www.truckinfo.ch/} in einem nicht weiter spezifizierten XML-Format (siehe \cref{src:pd:truckinfoxml})
+\item WFS des Kantons Zürich (Tiefbaustellen, Baustellen)
+\item Excel-Datei des Kantons Appenzell Ausserrhoden
+\item Für Google Earth erstelltes KML des Kantons Zürich
+\end{itemize}
 
+\begin{srclst}[label=src:pd:truckinfoxml]{xml}{XML von truckinfo.ch}
+<evts>
+<evt df="1430449200" dd="1430157600" r="A1" p="Switzerland" t="2" c="517" lar="3.7" cat="1_38" s="-1" x="539007" y="5257837" i="mapserver2/symbols/icone35.png">
+[Switzerland] contraflow |Zurich - St. Margrethen|between junction St. Gallen-Kreuzbleiche and junction St. Gallen-Neudorf in both directions contraflow, temporary width limit 3.7 metres, set of roadworks during the night, length of the route affected: 3.7 km, speed limit: 80 km/h, duration: April 27, 2015 08:00 pm until May 01, 2015 05:00 am|
+</evt>
+<evt df="1430794800" dd="1430762400" r="A1" p="Switzerland" t="2" c="503" lar="6" cat="1_38" s="-1" x="533526" y="5257414" i="mapserver2/symbols/icone35.png">
+[Switzerland] left lane(s) closed|St. Gallen - St. Margrethen|between junction St. Gallen-St. Fiden and junction St. Gallen-Neudorf in both directions left lane closed, temporary width limit 6.0 metres, set of roadworks during the night, length of the route affected: 1.3 km, speed limit: 80 km/h, duration: May 04, 2015 08:00 pm until May 05, 2015 05:00 am|
+</evt>
+<!-- ... -->
+</evts>
+\end{srclst}
 
 \subsection{Rollen}
 In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure aufgelistet. Diese werden in den nachfolgenden Abschnitten referenziert.
