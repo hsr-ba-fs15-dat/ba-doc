@@ -8,8 +8,19 @@ Der Begriff ‚Kurzfassung’ ist zuwenig genau definiert; er soll wenn möglic
 \phantomsection
 \addcontentsline{toc}{chapter}{Abstract}
 \chapter*{Abstract}
-In der Schweizer Geo-Szene wird eine Vielfalt an Geo-Software eingesetzt, welche eine grosse Anzahl Formate verwenden. Dies führt zu Problemen beim Datenaustausch. Um diese Probleme zu mildern wurde ein Prototyp für eine Konversions- und Transformationsplattform erstellt. Benutzer können Daten anbieten und beziehen, weitgehend ohne sich um Dateiformate kümmern zu müssen. Experten können anhand dieser Daten Transformationen erstellen, welche den Nutzern wiederum als Datenquellen dienen.
 
-Als Programmiersprache wurde Python 2.7 verwendet. Die Format-Konvertierung basiert vorwiegend auf Pandas und GDAL. Zur Transformation wurde eine eigene, stark an SQL angelehnte Sprache implementiert.
+Im digitalen Zeitalter spielen Daten jeglicher Art eine zentrale Rolle für die reibungslose Zusammenarbeit zwischen diverses Organisationen und deren Applikationen. Diese Daten kommen in einer Vielzahl an Formaten und unterschiedlichen Schemas daher, welche erst durch einen komplexen und oftmals individuellen Transformationsprozess zu eigenen Zwecken wiederverwendet werden können. Ziel dieser Arbeit ist die Abstrahierung von Dateiformat und Schema-Transformation, um einen Datenaustausch zwischen diversen Parteien mit Hilfe einer HTML5 Webappliktion zu vereinfachen \textendash\ OpenDataHub.
+
+\medskip
+Nach Evaluation von vorgegebenen (\purl{http://dat-data.com}) sowie weiteren Datenaustausch-Plattformen, wurde ein modulares und erweiterbares Konzept zur Konversion diverser Dateiformate sowie die Transformation mittels einer eigenen, an SQL angelehnten domain-specific language (DSL) mit dem Namen ``OpenDataHub Query Language'' (ODHQL) entworfen und umgesetzt.
+
+\medskip
+Das Resultat ist eine moderne, mit Python 2.7 (Django) und AngularJS umgesetzte HTML5 Webapplikation, mit der Daten diverser Formate öffentlich geteilt und durch Experten mit ODHQL-Kenntnissen transformiert werden können. Diese lassen sich dann wiederum zur Weiterverwendung in einem beliebigen Dateiformat beziehen.
+
+\medskip
+Die Erkenntnisse und das Resultat dieser Arbeit bestätigen die grundsätzliche Machbarkeit einer solchen Konversionsplattform und können als Grundlage für eine komplexere Webapplikation wiederverwendet werden.
+
+% In der Schweizer Geo-Szene wird eine Vielfalt an Geo-Software eingesetzt, welche eine grosse Anzahl Formate verwenden. Dies führt zu Problemen beim Datenaustausch. Um diese Probleme zu mildern wurde ein Prototyp für eine Konversions- und Transformationsplattform erstellt. Benutzer können Daten anbieten und beziehen, weitgehend ohne sich um Dateiformate kümmern zu müssen. Experten können anhand dieser Daten Transformationen erstellen, welche den Nutzern wiederum als Datenquellen dienen.
+
+% Als Programmiersprache wurde Python 2.7 verwendet. Die Format-Konvertierung basiert vorwiegend auf Pandas und GDAL. Zur Transformation wurde eine eigene, stark an SQL angelehnte Sprache implementiert.
 \glsresetall
-
