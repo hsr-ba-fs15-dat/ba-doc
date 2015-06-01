@@ -163,7 +163,7 @@ Falls die Transformationsresultate zwischengespeichert werden sollen ist eine we
 
 Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten. In diesem Fall müssen die Daten erst wieder in ein geeignetes Format übersetzt werden, um nach der Transformation wieder in einzelne Records zerlegt zu werden.
 
-\subsection{Datenbank-basiert, Dokument als Blob}
+\subsection{Datenbank-basiert, Dokument als BLOB}
 Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der File-basierten Version.
 
 Falls Dritt-Anbieter-Software nur auf Datei-basis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
@@ -477,7 +477,7 @@ Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/cookie-token-auth}
-    \caption{Vgl. Cokkie vs. Token Auth}
+    \caption{Vgl. Cookie vs. Token Auth}
     \label{fig:pd:cookie-token-auth}
 \end{figure}
 \section{Architektur}
@@ -560,7 +560,7 @@ Als Filter können folgende Ausdrücke verwendet werden:
 \begin{src}{sql}
 a.nr > 4, a.active = false
 \end{src}
-\item[Like] Anders als bei SQL verwendet der Like-Operator von \acs{odhql} implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
+\item[Like] Anders als bei SQL verwendet der Like-Operator von \acs{odhql} implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{Siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
 \begin{src}{sql}
 a.beschreibung like 'Z[uü]rich', a.beschreibung not like 'Z[uü]rich'
 \end{src}
@@ -702,10 +702,10 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 \xxx[figure out footnotes in that env]
 % \footnote{deaktiviert, siehe \cref{sec:pd:format-gdal-problems}}
 
-GeoPandas verwendet (via fiona) ebenfalls GDAL.
+GeoPandas verwendet (via Fiona) ebenfalls GDAL.
 
 \subsubsection{Probleme mit GDAL}\label{sec:pd:format-gdal-problems}
-Für einen grossen Teil der Formate wird GDAL verwendet, entweder via GeoPandas/fiona oder direkt per ogr2ogr. 
+Für einen grossen Teil der Formate wird GDAL verwendet, entweder via GeoPandas/Fiona oder direkt per ogr2ogr. 
 
 Folgende GDAL-Versionen stehen zum aktuellen Zeitpunkt zur Verfügung:
 \begin{itemize}
