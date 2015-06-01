@@ -63,7 +63,6 @@ Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- 
 
 \section{Stand der Technik}
 
-\xxx[dies muss wahrscheinlich woanders hin, mind. in eine tiefere hierarchiestufe.]
 \subsection{dat}
 Das ``dat''-Projekt will den Bezug und Austausch von Daten vereinfachen. Zusätzlich zum Datenspeicher wird dazu ein Synchronisierungsprotokoll angelehnt an Replikationsprotokolle von bekannten Datenbanksystemen verwendet.
 
@@ -73,35 +72,58 @@ Für eine detailliertere Erläuterung, siehe \cref{part:dat}.
 
 \subsection{CKAN}
 CKAN ist ein Software-System zur Datenverwaltung, insbesondere von öffentlichen Daten. Schwerpunkte sind das Anbieten, Indexieren und Verwalten von Daten, welche von Benutzern zur Verfügung gestellt werden. Dahingehend kann eine grosse Menge an Meta-Informationen zusammen mit den Daten erfasst werden. 
-	
-CKAN wird unter anderem für \url{http://www.opendata.admin.ch/} verwendet.
+
+CKAN hat keine Unterstützung für Daten-Konvertierung oder -Transformation.
 
 Leider wurden wir erst relativ spät auf CKAN aufmerksam. Daher wurde zusammen mit dem Betreuer beschlossen, bei dieser Arbeit den Schwerpunkt auf die Konvertierung und Transformation der Daten zu legen und allenfalls in einer späteren Arbeit CKAN und ODH zu integrieren.
 
+\paragraph{opendata.admin.ch}
+Open Data-Portal des Bundes, basierend auf CKAN.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/opendata-admin-ch}
+    \caption{Ein Daten-Packet auf opendata.admin.ch}
+\end{figure}
+
+\paragraph{datahub.io}
+Datahub.io ist eine CKAN-basierte Plattform zum Anbieten von Daten.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/datahub-io}
+    \caption{Packet-Liste auf datahub.io}
+\end{figure}
+
+\paragraph{opendatahub.it}
+opendatahub.it ist eine italienische, ebenfalls CKAN-basierte Plattform.
+
 \subsection{Feature Manipulation Engine (FME)}
-\xxx
-\gls{fme} ...
+\gls{fme} ist ein komerzielles Produkt der Safe Software Inc. Der Fokus liegt auf der Transformation, Konvertierung und Integration von Daten in einer Desktop-Applikation.
+
+\paragraph{geopol.ch}
+Geopol ist eine Web-to-FME Schnittstelle.
 
 \subsection{Pentaho Kettle}
-\xxx
+Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
 
-\subsection{geopol.ch}
-\xxx
-
-\subsection{datahub.io}
-\xxx
-
-\subsection{opendatahub.it}
-
-\subsection{IBM Bluemix}
-\xxx
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/kettle-spoon-transformation}
+    \caption{Transformations-Beispiel aus der Pentaho Kettle-Dokumentation}
+\end{figure}
 
 \subsection{Yahoo! Pipes}
-\xxx
+Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor allem das User Interface, welches die grafische Verknüpfung von Datenquellen erlaubt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/yahoo-pipes}
+    \caption{Packet-Liste auf datahub.io}
+\end{figure}
 
 \subsection{OpenRefine.org}
-\xxx
-
+OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
 
 \chapter{Resultate und Ausblick}
 \xxx beschreiben (prototyp für xy) \& screenshots
