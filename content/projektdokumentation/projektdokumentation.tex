@@ -377,6 +377,8 @@ Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Perform
 \section{Transformation}
 
 \subsection{Anforderungen}
+\xxx{gehört das wirklich hier hin? @chuesler}
+
 Folgende Daten-Arten sind zu unterscheiden:
 \begin{itemize}
 \item Tabellarische Daten (z.B. CSV, Excel)
@@ -450,8 +452,60 @@ Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basi
 \xxx[@chuesler irgendwie überlappen die intermediäres format und sprache zu sehr. wo gehören z.B. performance und geo-daten hin? geht es hier nur um die sprache oder auch um die implementation dessen?]
 Aufgrund dieser Auswertung fällt die Wahl auf eine SQL-basierte DSL.
 
-\chapter{Design und Implementation}
+\section{Frontend}
+\subsection{Technologie}
+\begin{decision}[label=dec:frontend:technology]{AngularJS als Frontendtechnologie}
+Da \chuf und \fscf schon viel Erfahrung mit AngularJS gesammelt haben und dies ein sehr etabliertes Framework ist, haben wir uns für dieses entschieden. Evaluiert wurde es bereits im Rahmen den Studienarbeiten von \fscf und \rlif.
+\end{decision}
+\subsection{Bootstrap}
+\mytable{lXXX}{
 
+  \textbf{Kriterium} & \textbf{Bootstrap} & \textbf{Foundation} & \textbf{UIkit} \\
+
+  \midrule
+
+  \textbf{Bekanntheit} & \threeOfThree & \oneOfThree & \oneOfThree \\
+
+  \textbf{Anz. Elemente} & \twoOfThree & \twoOfThree & \twoOfThree  \\
+
+  \textbf{AngularJS} & \threeOfThree & \oneOfThree & \twoOfThree  \\
+
+  \midrule
+
+  \textbf{Total} & \threeOfThree & \oneOfThree & \twoOfThree  \\
+}{Auswertung diverser Frontend Frameworks}{pd:frontend-bootstrap-results}
+\begin{decision}[label=dec:frontend:bootstrap]{Bootstrap als Designgrundlage}
+Aufgrund der Evaluation verschiedener Framework und der Vertrautheit mit Bootstrap, haben wir uns für die Verwendung von Twitter Bootstrap entschieden. Das Layout wird an Twitter Bootstrap angelehnt.
+\end{decision}
+
+
+\subsection{Menupunkte}
+Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp umfasst folgende Struktur: Daten - Daten bereitstellen - Transformation erstellen. \\
+Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.\\
+
+\subsection{Assisstent}
+Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher ein initiales ODHQL Query erstellen kann. Dieser soll Queries mit JOIN und UNION Operationen erstellen können.
+
+\subsection{Drafts}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{fig/mockup_hcdi}
+    \caption{Frühes Mockup ``Transformation erstellen''}
+    \label{fig:pd:mockup-upload}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig/Wireframes-Connectors}
+    \caption{Frühes Idee Transformation mit ``Pipes'' erstellen. (Verworfen)}
+    \label{fig:pd:connectors}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig/Wireframes-Upload}
+    \caption{Frühes Mockup für Upload Formular}
+    \label{fig:pd:wireframe-upload}
+\end{figure}
+\chapter{Design und Implementation}
 \section{Authentifizierung}
 \xxx[@rliebi: kapitel design = IST zustand. hier hat es vergleiche]
 In diesem Kapitel werden verscheidene Methoden der Authentifizierung beleuchtet.
