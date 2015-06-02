@@ -560,6 +560,8 @@ Datenquellen können per Join verknüpft werden.
   from "Gebäude" as geb join Strassen as str on geb.str_id = str.id
 \end{src}
 
+Unterstützt werden Inner Join, Left, Right und Full Outer Join. Dabei wird jeweils die einfachste Syntax\footnote{\texttt{join}, \texttt{left join}, \texttt{right join} und \texttt{full join}.} verwendet.
+
 Als Filter können folgende Ausdrücke verwendet werden:
 \begin{description}
 \item[Relationale Operatoren] Unterstützt werden die Operatoren `=', `!=', `<', `>', `<=', `>='.
@@ -808,37 +810,531 @@ if 'ESRI Shapefile' in ogr2ogr.SUPPORTED_DRIVERS:
                 return gp.read_file(os.path.join(temp_dir, file.name), driver='ESRI Shapefile')
 \end{srclst}
 
+
+\section{API}
+Die Webapplikation kommuniziert mit dem Server über ein \gls{rest} \gls{api}.
+
+\subsection{Konzepte}
+Folgende Konzepte werden von mehreren Endpunkten verwendet und werden daher separat aufgelistet.
+
+\subsubsection{Paging} \label{sec:pd:api-paging} 
+Paging ermöglicht das limitieren der Anzahl Resultate, welche eine Abfrage liefert. Die Einträge pro Seite werden mit dem Parameter \texttt{count} gesteuert, die Seite mit \texttt{page}.
+
+\subsubsection{Suche} \label{sec:pd:api-search} 
+Für die Suche werden folgende Parameter verwendet:
+\mytable{lX}{
+  \textbf{Parameter} & \textbf{Beschreibung}  \\
+  \midrule
+  \textbf{filter[name]} & Filtert anhand des Namens \\
+  \textbf{filter[description]} & Filtert anhand der Beschreibung \\
+  \textbf{filter[search]} & Filtert sowohl mit Namen als auch mit der Beschreibung \\
+  \textbf{filter[mineOnly]} & Liefert nur Dokumente, die dem eingeloggten Benutzer zugeordnet sind \\
+}{Such-Parameter}{pd:api-search}
+
+\subsubsection{Sortierung} \label{sec:pd:api-sort}
+Sortiert die Resultate der Anfrage. Dazu kann der Parameter \texttt{sorting[key]=asc|desc} verwendet werden, mit folgenden Werten als \texttt{key}: \texttt{name}, \texttt{description}, \texttt{private}, \texttt{owner} und \texttt{created\_at}.
+
+\paragraph{Preview} \label{sec:pd:api-preview}
+Liefert eine Vorschau der Daten. Enthalten ist der Unique Name, welcher in Abfragen verwendet werden kann, eine Liste der Felder und deren Typen sowie ein paar Daten-Zeilen. Die Anzahl der gelieferten Daten-Zeilen kann per Paging gesteuert werden (siehe \cref{sec:pd:api-paging}).
+
+\begin{srclst}{json}{Preview für ein Dokument}
+[  
+   {  
+      "type":"preview",
+      "unique_name":"ODH4_Bahnhoefe",
+      "parent":"4",
+      "types":{  
+         "TYPE":"BIGINT",
+         "fid":"TEXT",
+         "CNTRYNAME":"TEXT",
+         "DUP_NAME":"TEXT",
+         "PROV1NAME":"TEXT",
+         "LEVEL":"BIGINT",
+         "geometry":"GEOMETRY",
+         "NATION":"BIGINT",
+         "CONURB":"TEXT",
+         "name":"TEXT"
+      },
+      "url":"http://beta.opendatahub.ch/api/v1/document/4/preview/",
+      "columns":[ "TYPE", "fid", "geometry", "DUP_NAME", "PROV1NAME", "LEVEL", "CNTRYNAME", "NATION", "CONURB", "name" ],
+      "data":[  
+         {  
+            "TYPE":"3",
+            "fid":"F0",
+            "CNTRYNAME":"Switzerland",
+            "DUP_NAME":"N",
+            "PROV1NAME":"Tessin",
+            "LEVEL":"10",
+            "geometry":"POINT (45.90247783251107 76645.7742365048)",
+            "NATION":"41",
+            "CONURB":"NULL",
+            "name":"Chiasso Rail"
+         },
+         ...
+      ],
+      "count":1781,
+      "name":"Bahnhoefe"
+   }
+]
+\end{srclst}
+
+\subsubsection{Download} \label{sec:pd:api-download}
+Fordert einen Download der Daten an. Das gewünschte Format wird mit dem Parameter \texttt{fmt} angegeben. Gültige Werte sind die von \cref{sec:pd:api-format} gelieferten Namen. Ohne Format-Angabe werden die Original-Daten geliefert.
+
+Hinweis: Dokumente können nicht als ganzes heruntergeladen werden. Stattdessen müssen die File Groups für diesen Zweck verwendet werden.
+
+\subsection{Root - GET /api/v1/}
+Als Prefix für die \gls{api} URLs wird \url{/api/v1/} verwendet, was eine spätere versionierte Erweiterung erlaubt.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/api-root}
+\caption{API: Übersicht}
+\label{fig:pd:api-root}
+\end{figure}
+
+Da für die Implementation des \gls{api} die Django-Erweiterung \texttt{rest\_framework}\footnote{\url{http://www.django-rest-framework.org/}} verwendet wurde, kann die API gut auch manuell ausprobiert werden. Dabei ist zu beachten, dass die Schrägstriche am Ende der URLs nicht optional sind.
+
+\subsection{Konfiguration - GET /api/v1/config/}
+Gibt die für den HTML5 Client notwendigen Konfigurationsinformationen zurück.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/config/}
+{
+  "GITHUB_PUBLIC": "8ef558ed3fb0f5385da5", 
+  "FACEBOOK_PUBLIC": "401520096685508", 
+  "PACKAGE_PREFIX": "ODH", 
+  "TRANSFORMATION_PREFIX": "TRF"
+}
+\end{srclst}
+
+\subsection{Liste der unterstützten Formate - GET /api/v1/format/} \label{sec:pd:api-format}
+Liefert die Liste der unterstützten Formate. Neue Formate erscheinen automatisch, sobald sie registriert sind, vorausgesetzt dass ein Formatter für das Format existiert.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/format/}
+[
+    {
+        "name": "JSON", 
+        "label": "JSON", 
+        "description": "JavaScript Objekt-Notation. Nützlich zur Wiederverwendung in Webapplikationen.", 
+        "example": "", 
+        "extension": "json"
+    }, 
+    {
+        "name": "GML", 
+        "label": "GML", 
+        "description": "Geometry Markup Language (GML) ist ein Dateiformat zum Austausch von Geodaten.", 
+        "example": "", 
+        "extension": "gml"
+    }, 
+    ...
+]
+\end{srclst}
+
+\subsection{Packages}
+``Package'' wird als Überbegriff für Dokumente, welche von Nutzern hochgeladen wurden, und Transformationen verwendet. Packages haben Attribute wie Name und Beschreibung, können eine Vorschau erzeugen und der Benutzer kann einen Download anfordern.
+
+\subsubsection{Package-Liste - GET /api/v1/package/}\label{sec:pd:api-package-list}
+Liefert eine Liste der Packages.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/package/}
+{
+    "count": 37, 
+    "next": "http://beta.opendatahub.ch/api/v1/package/?page=2", 
+    "previous": null, 
+    "results": [
+        {
+            "id": 1, 
+            "url": "http://beta.opendatahub.ch/api/v1/package/1/", 
+            "name": "Test mockaroo.com.csv", 
+            "description": "Testdaten (Originalformat: CSV)", 
+            "private": false, 
+            "owner": {
+                "id": 1, 
+                "username": "testuser", 
+                "first_name": "", 
+                "last_name": ""
+            }, 
+            "created_at": "2015-06-01T12:35:31.480135Z", 
+            "type": "document", 
+            "preview": "http://beta.opendatahub.ch/api/v1/document/1/preview/", 
+            "template": false
+        }, 
+        {
+            "id": 2001, 
+            "url": "http://beta.opendatahub.ch/api/v1/package/2001/", 
+            "name": "TROBDB: Baustellen Februar 2015", 
+            "description": "TROBDB: Baustellen Februar 2015", 
+            "private": false, 
+            "owner": {
+                "id": 1, 
+                "username": "testuser", 
+                "first_name": "", 
+                "last_name": ""
+            }, 
+            "created_at": "2015-06-01T12:35:45.794037Z", 
+            "type": "transformation", 
+            "preview": "http://beta.opendatahub.ch/api/v1/transformation/2001/preview/", 
+            "template": false
+        },
+        ...
+    ]
+}
+\end{srclst}
+
+Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}), Suche (\cref{sec:pd:api-search} und Sortierung (\cref{sec:pd:api-sort}).
+
+\subsubsection{Package-Details - GET /api/v1/package/<id>/}\label{sec:pd:api-package-details}
+Liefert die Details zu einem Package. Dies sind grundsätzlich die selben Informationen wie in der Package-Liste, jedoch um einige weitere Details ergänzt.
+
+Die Antwort sieht unterschiedlich aus, je nach dem ob das Package ein Dokument (\cref{pd:api-package-document}) oder eine Transformation (\cref{pd:api-package-transformation}) ist.
+
+\begin{srclst}[label=pd:api-package-document]{json}{Beispielantwort für ein Dokument}
+{
+    "id": 4, 
+    "url": "http://beta.opendatahub.ch/api/v1/document/4/", 
+    "name": "Test Bahnhoefe.gml, Bahnhoefe.gfs, Bahnhoefe.xsd", 
+    "description": "Testdaten (Originalformat: GML)", 
+    "file_groups": "http://beta.opendatahub.ch/api/v1/document/4/filegroup/", 
+    "private": false, 
+    "owner": {
+        "id": 1, 
+        "username": "testuser", 
+        "first_name": "", 
+        "last_name": ""
+    }, 
+    "created_at": "2015-06-01T12:35:32.241407Z", 
+    "preview": "http://beta.opendatahub.ch/api/v1/document/4/preview/", 
+    "type": "document"
+}
+\end{srclst}
+
+\begin{srclst}[label=pd:api-package-transformation]{json}{Beispielantwort für eine Transformation}
+{
+    "id": 2001, 
+    "url": "http://beta.opendatahub.ch/api/v1/transformation/2001/", 
+    "name": "TROBDB: Baustellen Februar 2015", 
+    "description": "TROBDB: Baustellen Februar 2015", 
+    "transformation": "SELECT t.\"Federführende_Stelle\" as userid,
+           substring(t.Bauarbeiten, 1, 100) as title,
+           t.Bauarbeiten as description,
+           to_char(to_date(concat(extract(t.Dauer, '^((?:\\\\d\\\\d?\\\\.){2})'), nvl(extract(t.Dauer, '(\\\\d{4}) -'), extract(t.Dauer, '(\\\\d{4})$'))), '%d.%m.%Y'), '%Y-%m-%d') as trob_start, -- add year from end date if not present
+           to_char(to_date(extract(t.Dauer, '- ([\\\\d\\\\.]+)'), '%d.%m.%Y'), '%Y-%m-%d') as trob_end,
+           null as trob_interval,
+           'both' as direction,
+           null as diversion_advice,
+           'CH' as country,
+           t.Bauarbeiten as reason,
+           t.Strecke as object_name,
+           'street' as object_type,
+           'closed' as trob_type,
+           ST_SetSRID(ST_GeomFromText(CONCAT('POINT(', CAST(t.\"Zentroid X [m]\", 'text'), ' ',CAST(t.\"Zentroid Y [m]\", 'text'), ')')), 21781) as geometry
+           from \"ODH8_Baustellen Februar 2015\" as t", 
+    "private": false, 
+    "owner": {
+        "id": 1, 
+        "username": "testuser", 
+        "first_name": "", 
+        "last_name": ""
+    }, 
+    "data": "http://beta.opendatahub.ch/api/v1/transformation/2001/data/", 
+    "is_template": false, 
+    "preview": "http://beta.opendatahub.ch/api/v1/transformation/2001/preview/", 
+    "referenced_file_groups": "http://beta.opendatahub.ch/api/v1/transformation/2001/filegroups/", 
+    "referenced_transformations": "http://beta.opendatahub.ch/api/v1/transformation/2001/transformations/", 
+    "type": "transformation"
+}
+\end{srclst}
+
+\paragraph{File Groups} Die \texttt{file\_group}-Url liefert die Liste der File Groups, die zu diesem Dokument gehören. Siehe auch \cref{sec:pd:api-filegroups}.
+
+\paragraph{Preview} Die Preview-Url liefert eine Vorschau der Daten im Package. Siehe auch \cref{sec:pd:api-preview}.
+
+\paragraph{Referenced File Groups/Transformations} Dies sind Urls für File Groups bzw. Transformations, welche in dieser Transformation verwendet wurden.
+
+\paragraph{Template} Templates sind abstrakte Transformationen, welche als Vorlage für konkrete Transformationen dienen. Für Templates kann keine Vorschau erstellt werden.
+
+\paragraph{Data} Url für den Download der Daten. Siehe \cref{sec:pd:api-download} für Details.
+
+\subsection{Dokumente}
+\subsubsection{Dokument-Liste - GET /api/v1/document/}
+Die Dokument-Liste ist identisch zur Package-Liste, mit der Ausnahme, dass nur Dokumente aufgeführt werden. Siehe \cref{sec:pd:api-package-list} für Details.
+
+\subsubsection{Dokument-Details - GET /api/v1/document/<id>/} \label{sec:pd:api-document-details}
+Identisch zu Package-Details, mit der Ausnahme, das nur Dokumente unterstützt werden. Siehe \cref{sec:pd:api-package-details} für Details.
+
+\subsubsection{Dokument-Erstellung - POST /api/v1/document/}
+Erstellt ein neues Dokument. 
+
+\cref{tab:pd:api-offer} führt die erwarteten Parameter auf.
+\mytable{lX}{
+  \textbf{Parameter} & \textbf{Beschreibung} \\
+  \midrule
+  \textbf{name} & Dokument-Name (max. 200 Zeichen). \\
+  \textbf{description} & Beschreibung des Dokuments (keine Limitation). \\
+  \textbf{private} (default: false) & Steuert ob das Dokument für andere Benutzer sichtbar ist.\\
+  \textbf{format} (default: null) & Format der hochgeladenen Daten. Wenn nicht angegeben wird versucht, das Format automatisch zu erkennen. \\
+}{Parameter für Dokument-Erstellung}{tab:pd:api-document-offer}
+
+Zusätzlich wird eine der folgenden Optionen benötigt:
+\begin{description}
+\item[file] Direkter Datei-Upload. In diesem Fall wird die Anfrage als Multipart Form Request erwartet. Es kann mehr als eine Datei auf einmal hochgeladen werden. Diese werden dann dem selben Dokument zugeordnet, nach Datei-Namen (ohne Erweiterung) in File Groups gruppiert.
+\item[url] Erstellt ein Dokument mit einer Url als Datenquelle. Dies kann entweder ein \gls{wfs}-Endpoint oder eine http-Url sein. Zusätzlich kann der Parameter \texttt{refresh} angegeben werden, welcher steuert wie oft die Daten abgerufen werden sollen (in Sekunden). Erlaubt sind Werte von 60 (1 Minute) bis 86400 (1 Tag).
+\end{description}
+
+\begin{srclst}{json}{Beispielanfrage für POST /api/v1/document/}
+{
+  "name":"aasdfas",
+  "description":"asdfasdf",
+  "url":"http://maps.zh.ch/wfs/TbaBaustellenZHWFS",
+  "refresh":3600
+}
+\end{srclst}
+
+\subsubsection{Dokument-Update - PUT /api/v1/document/<id>/}
+Aktualisiert ein Dokument. Nur die Meta-Daten (Name, Beschreibung, Privat) können aktualisiert werden.
+
+Nur der Eigentümer eines Dokuments kann es aktualisieren.
+
+\subsection{Transformationen}
+\subsubsection{Transformations-Liste - GET /api/v1/transformation/}
+Die Transformations-Liste ist identisch zur Package-Liste, mit der Ausnahme, dass nur Transformationen aufgeführt werden. Siehe \cref{sec:pd:api-package-list} für Details.
+
+\subsubsection{Transformations-Details - GET /api/v1/transformation/<id>/}
+Identisch zu Package-Details, mit der Ausnahme, das nur Transformationen unterstützt werden. Siehe \cref{sec:pd:api-package-details} für Details.
+
+\subsubsection{Transformation erstellen - POST /api/v1/transformation/}
+Erstellt eine neue Transformation.
+
+\cref{tab:pd:api-transformation-create} führt die erwarteten Parameter auf.
+\mytable{lX}{
+  \textbf{Parameter} & \textbf{Beschreibung} \\
+  \midrule
+  \textbf{name} & Name der Transformation (max. 200 Zeichen). \\
+  \textbf{description} & Beschreibung der Transformation (keine Limitation). \\
+  \textbf{private} (default: false) & Steuert ob die Transformation für andere Benutzer sichtbar ist.\\
+  \textbf{transformation} & ODHQL Statement, welches die Transformation definiert. Falls die referenzierten Datenquellen nicht existieren wird ein Template erstellt. \\
+}{Parameter für Erstellung einer Transformation}{tab:pd:api-transformation-create}
+
+Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das ODHQL Statement korrekt ist. Siehe dazu \cref{sec:pd:api-parse}.
+
+\begin{srclst}{json}{Beispielanfrage für POST /api/v1/transformation/}
+{
+  "name":"Beispiel",
+  "description":"Dies ist ein Beispiel für die Dokumentation.",
+  "transformation":"SELECT t1.children,\nt1.city,\nt1.country,\nt1.email \nFROM \"ODH2_mockaroo.com\" as t1 \n",
+  "private":true
+}
+\end{srclst}
+
+\subsubsection{Transformations-Update - PUT /api/v1/transformation/<id>/}
+Aktualisiert eine Transformation. Es können alle in \cref{tab:pd:api-transformation-create} erwähnten Felder aktualisiert werden.
+
+\subsubsection{Preview für AdHoc-Transformationen - POST /api/v1/transformation/adhoc/}
+Erstellt eine Preview für ein ODHQL Statement, ohne die Transformation in der Datenbank zu persistieren. Dies ist nützlich um eine Vorschau realisieren zu können, während der Benutzer noch am Bearbeiten seines Statements ist.
+
+\subsection{File Groups}\label{sec:pd:api-filegroups}
+Von Benutzern bereitgestellte Daten werden in sog. File Groups organisiert. Dies sind zusammengehörende Dateien, z.B. die .shx-, .shp- und .dbf-Datei bei einem ESRI Shapefile.
+
+\subsubsection{File Group-Liste - GET /api/v1/fileGroups/}
+Liefert eine Liste aller vorhandene File Groups.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/fileGroups/}
+[
+    {
+        "id": 1, 
+        "url": "http://beta.opendatahub.ch/api/v1/fileGroup/1/", 
+        "document": {
+            "id": 1, 
+            "url": "http://beta.opendatahub.ch/api/v1/document/1/", 
+            "name": "Test mockaroo.com.csv", 
+            "description": "Testdaten (Originalformat: CSV)", 
+            "file_groups": "http://beta.opendatahub.ch/api/v1/document/1/filegroup/", 
+            "private": false, 
+            "owner": {
+                "id": 1, 
+                "username": "testuser", 
+                "first_name": "", 
+                "last_name": ""
+            }, 
+            "created_at": "2015-06-01T12:35:31.480135Z", 
+            "preview": "http://beta.opendatahub.ch/api/v1/document/1/preview/", 
+            "type": "document"
+        }, 
+        "files": [
+            {
+                "id": 1, 
+                "url": "http://beta.opendatahub.ch/api/v1/file/1/", 
+                "file_name": "mockaroo.com.csv", 
+                "file_format": "CSV", 
+                "file_group": "http://beta.opendatahub.ch/api/v1/fileGroup/1/"
+            }
+        ], 
+        "urls": [], 
+        "data": "http://beta.opendatahub.ch/api/v1/fileGroup/1/data/", 
+        "preview": "http://beta.opendatahub.ch/api/v1/fileGroup/1/preview/"
+    }, 
+    ...
+]
+\end{srclst}
+
+Siehe auch \cref{sec:pd:api-filegroup-detail}.
+
+\subsubsection{File Group-Details - GET /api/v1/fileGroup/<id>/} \label{sec:pd:api-filegroup-detail}
+Liefert Detail-Informationen zu einer File Group.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/fileGroup/3/}
+{
+    "id": 3, 
+    "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/", 
+    "document": {
+        "id": 3, 
+        "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/", 
+        "name": "Test mockaroo.com.xlsx", 
+        "description": "Testdaten (Originalformat: Excel)", 
+        "file_groups": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/filegroup/", 
+        "private": false, 
+        "owner": {
+            "id": 1, 
+            "username": "testuser", 
+            "first_name": "", 
+            "last_name": ""
+        }, 
+        "created_at": "2015-06-02T12:01:21.730842Z", 
+        "preview": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/preview/", 
+        "type": "document"
+    }, 
+    "files": [
+        {
+            "id": 3, 
+            "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/file/3/", 
+            "file_name": "mockaroo.com.xlsx", 
+            "file_format": "Excel", 
+            "file_group": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/"
+        }
+    ], 
+    "urls": [], 
+    "data": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/data/", 
+    "preview": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/preview/"
+}
+\end{srclst}
+
+\paragraph{Document} Das Dokument, zu dem diese File Group gehört. Siehe auch \cref{sec:pd:api-document-details} bzw. \cref{sec:pd:api-package-details}.
+\paragraph{Files} Führt die zur File Group gehörenden Dateien auf. Siehe auch \cref{sec:pd:api-files}.
+\paragraph{Urls} Führt die zur File Group gehörenden Urls auf. Siehe auch \cref{sec:pd:api-urls}.
+\paragraph{Data} Url für den Download der Daten. Siehe auch \cref{sec:pd:api-download}.
+\paragraph{Preview} Url für eine Vorschau der Daten in dieser File Group. Siehe auch \cref{sec:pd:api-preview}.
+
+\subsection{Files} \label{sec:pd:api-files}
+\subsubsection{File-Liste - GET /api/v1/files/}
+Liefert eine Liste der vorhandenen Dateien.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/file/}
+{
+    "count": 41, 
+    "next": "http://localhost:5000/api/v1/file/?page=2", 
+    "previous": null, 
+    "results": [
+        {
+          "id": 1, 
+          "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/file/1/", 
+          "file_name": "mockaroo.com.csv", 
+          "file_format": "CSV", 
+          "file_group": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/1/"
+        }, 
+        ...
+    ]
+}
+\end{srclst}
+
+Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}).
+
+\subsubsection{File-Details - GET /api/v1/file/<id>}
+Liefert Informationen zu einer einzelnen Datei.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/file/1/}
+{
+    "id": 1, 
+    "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/file/1/", 
+    "file_name": "mockaroo.com.csv", 
+    "file_format": "CSV", 
+    "file_group": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/1/"
+}
+\end{srclst}
+
+\subsection{Urls} \label{sec:pd:api-urls}
+\subsubsection{Url-Liste - GET /api/v1/url/}
+Liefert eine Liste der vorhandenen Urls.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/url/}
+{
+    "count": 2, 
+    "next": null, 
+    "previous": null, 
+    "results": [
+        {
+            "id": 1, 
+            "url": "http://localhost:5000/api/v1/url/1/", 
+            "source_url": "http://maps.zh.ch/wfs/HaltestellenZHWFS", 
+            "url_format": null, 
+            "refresh_after": 3600, 
+            "type": "wfs", 
+            "file_group": "http://localhost:5000/api/v1/fileGroup/1001/"
+        }, 
+        ...
+    ]
+}
+\end{srclst}
+
+Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}).
+
+\subsubsection{Url-Liste - GET /api/v1/url/1/}
+Liefert Detail-Informationen zur Url.
+
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/url/1/}
+{
+    "id": 1, 
+    "url": "http://localhost:5000/api/v1/url/1/", 
+    "source_url": "http://maps.zh.ch/wfs/HaltestellenZHWFS", 
+    "url_format": null, 
+    "refresh_after": 3600, 
+    "type": "wfs", 
+    "file_group": "http://localhost:5000/api/v1/fileGroup/1001/"
+}
+\end{srclst}
+
+\subsection{Hilfs-Views}
+Diese Views sind kein direkter Bestandteil des \gls{rest} \acs{api}s, dienen jedoch als Unterstützung dazu.
+
+\subsubsection{ODHQL Checker - POST /api/v1/parse} \label{sec:pd:api-parse}
+Parsed eine ODHQL Abfrage und liefert die Fehlermeldungen in einem zur Fehlersuche hilfreichen Format.
+
+\subsubsection{Benutzerdokumentation - GET /api/v1/odhql/doc/}
+Erstellt die Benutzerdokumentation anhand von Inline-Dokumentation im Code und liefert das Resultat als HTML-Seite zurück.
+
 \section{User Interface}
 \subsection{Authentifizierung}
 Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser erlaubt ein Login mit einem GitHub, FaceBook oder anderem Konto. Implementiert wurde dieser Standard auf der REST Seite mit Hilfe von verschiedenen Django Plugins. 
 Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichert.
 
 \subsection{Transformationen erstellen}
-Im Grundsatz wollten wir das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen, einen Wizard zu schreiben, welcher die Aktion vereinfachen soll. In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden.
- \xxx[ref]
+Im Grundsatz wollten wir das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen, einen Wizard zu schreiben, welcher die Aktion vereinfachen soll. In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden. In der Beta, die ausgeliefert wurde kann der Wizard verwendet werden, muss aber dank der Möglichkeit Tabellen ``zu laden'' nicht.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/odhql_wizard_early.png}
 \caption{Tabellen können per Klick verbunden werden }
-\label{fig:pd:caches}
+\label{fig:pd:tables_per_click}
 \end{figure}
-
-
- \xxx[ref]
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/wizard-step-one.png}
 \caption{Einleitung in den Wizard}
-\label{fig:pd:caches}
+\label{fig:pd:wizard-step-one}
 \end{figure}
 In einem ersten Schritt kann eine Transformation grundlegend erstellt werden. Einfache JOIN und UNION Operationen werden vom Benutzer konfiguriert.
-
- \xxx[ref]
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/wizard-manual.png}
-\caption{Einleitung in den Wizard}
-\label{fig:pd:caches}
+\caption{Transformation manuell bearbeiten}
+\label{fig:pd:wizard-manual}
 \end{figure}
 
 Später können dann die komplexeren Operationen auf die Daten angewendet werden. Hierfür wird der manuelle Modus verwendet. Im manuellen Modus steht eine Hilfe Seite zur Verfügung, welche sämtliche erweiterten Operationen erklärt.\\
@@ -846,7 +1342,12 @@ Wird eine Transformation ``als Template'' verwendet, wird beim Speichern keine P
 
 \subsection{Transformationen bearbeiten}
 Transformationen können entweder geklont oder überschrieben werden. Beim Klonen legt der Benutzer eine neue Transformation auf Grund der Daten einer Bestehenden Transformation an. Beim Überschreiben kann der Besitzer einer Transformation diese verändern. Es kann bei diesen Operationen allerdings kein Wizard mehr verwendet werden, da dieser alle manuellen Änderungen überschreiben würde.
-
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig/transformation-edit.png}
+\caption{Bestehende Transformation editieren}
+\label{fig:pd:transformation-manual-edit}
+\end{figure}
 
 \chapter{Testing}
 \section{User Interface}
@@ -914,7 +1415,7 @@ Als Testpersonen stellten sich zur Verfügung:
 \item Nach erfolgreichem Speichern ist der Benutzer unsicher, ob die Aufgabe abgeschlossen ist und sucht nach Share-/Social-Buttons.
 \end{enumerate}
 
-\subsection{UI03: Daten transformieren (Mit Assistent)}\label{ui-test-trf-ass}
+\subsection{UI03: Daten transformieren (Mit Assistent)}\label{sec:ui-test-trf-ass}
 \paragraph{Anmeldestatus} Angemeldet.
 \paragraph{Aufgabe} Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten sowie den Strassennamen, jeweils mit Menschen-lesbaren Feld-Bezeichnungen, und erstellt dazu eine Transformation.
 
@@ -996,6 +1497,7 @@ Nach Abschluss des Tests experimentierte der Benutzer ein wenig mit exotischeren
 \chapter{Resultate und Ausblick}
 
 \section{Resultate}
+Die Resultate der Arbeit sind in \vref{sec:tb:results} beschrieben.
 
 \section{Weiterentwicklung}
 
@@ -1056,3 +1558,25 @@ Zu beachten ist, dass diverse verwendete Libraries (unter anderem auch GDAL) nic
 
 \subsection{Unterstützung für weitere Transformations-Arten}
 Ogr2ogr ermöglicht es, Transformationen per SQL in einer Datenbank auszuführen. Dies könnte auch in ODH implementiert werden, würde jedoch zu Performance-Verlusten führen.
+
+\subsection{Bereinigung des REST API}
+Das \gls{rest} \acs{api} funktioniert, beinhaltet jedoch einige Inkonsistenzen bzw. Unschönheiten. 
+
+Ein Beispiel:
+Bei Anfragen auf \url{/api/v1/fileGroups/} wird das zur File Group gehörende Dokument zurückgeliefert.
+\url{/api/v1/document/<id>/fileGroups/} liefert alle zu einem Dokument gehörenden File Groups. Auch hier enthält die Antwort das Dokument, da der selbe Serializer verwendet wird. Dies führt jedoch dazu, dass bei Dokumenten mit mehr als einer File Group die Dokument-Informationen mehrfach in der Antwort enthalten sind.
+
+Stattdessen sollte in dieser Situation nur die Dokument-Url geliefert werden.
+\subsection{Templates in neuen Transformationen verwenden können}
+Anstatt ein Template zuerst als Transformation abzuspeichern, könnte es Sinnvoll sein, ein Template direkt in einer neuen Transformation verwenden zu können.
+
+\subsection{In Templates Spaltennamen überschreiben}
+Im Moment können im OpenDataHub die Tabellennamen generalisiert werden. Wenn ein Template andere Spaltennamen als das referenzierte Dokument verwendet, können diese nicht automatisch ausgetauscht werden.
+
+\subsection{Kategorien und Tags für Dokumente und Transformationen}
+In einer weiteren Version könnten Dokumente und Transformationen mit Tags und Kategorien versehen werden. Dies würde die Übersichtlichkeit erhöhen.
+
+\subsection{Benutzer-Gruppen mit unterschiedlichen Rechten}
+Zu Beginn der Arbeit wurde zusammen mit dem Betreuer entschieden, dass die Benutzer-Verwaltung minimal gehalten werden soll. Insbesondere sollte kein Aufwand zur Administration der Benutzer anfallen.
+
+In Zukunft könnte es wünschenswert sein, Benutzergruppen mit unterschiedlichen Rechten einzuführen, z.B. eine Unterscheidung zwischen normalen Nutzern und Administratoren.
