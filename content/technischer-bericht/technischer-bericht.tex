@@ -75,6 +75,8 @@ Diese sind zugleich als Nicht-funktionale Anforderungen zu verstehen.
 
 \section{Stand der Technik}
 
+In diesem Abschnitt werden bereits existierende Datenaustauschplattformen und Schematransformations-Tools vorgestellt.
+
 \subsection{dat}
 Das ``dat''-Projekt will den Bezug und Austausch von Daten vereinfachen. Zusätzlich zum Datenspeicher wird dazu ein Synchronisierungsprotokoll angelehnt an Replikationsprotokolle von bekannten Datenbanksystemen verwendet.
 
@@ -137,7 +139,28 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
 
-\chapter{Resultate und Ausblick}
+\section{Konversion und Transformation}
+
+In diesem Abschnitt wird das grobe Umsetzungskonzept von \gls{odh}, welches in \cref{fig:tb:arch-overview} ersichtlich ist, erläutern. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{../projektdokumentation/fig/ODH-Architecture-Overview}
+    \caption{Grobe Architektur-Übersicht}
+    \label{fig:tb:arch-overview}
+\end{figure}
+
+\subsection{Internes Format}
+Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation der Daten in Betracht gezogen und im Hinblick auf deren Vor- und Nachteile bezüglich Machbarkeit, Komplexität und Performance evaluiert. Die Daten werden von Parser-Modulen in sogenannte DataFrame Objekte geladen. Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pandas.pydata.org/}} Python-Bibliothek. Pandas ist eine mächtige ``Data-Analysis'' Bibliothek, welche aufgrund der zugrundeliegenden NumPy\footnote{\url{http://www.numpy.org/}} Bibliothek sehr effizient ist.
+Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches hingegen ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
+
+\subsection{Schema-Transformation}
+Auch bei der Homogenisierung des Schemas wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eines Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql} ist eine an \acs{sql} angelehnte \gls{dsl} inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostGIS Erweiterung von PostgreSQL.
+
+\subsection{Erweiterbarkeit}
+Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die vorhandenen Funktionen der \acf{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
+
+
+\chapter{Resultate und Ausblick} \label{sec:tb:results}
 Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \cref{sec:pd:format-gdal-problems}).
 
 \begin{figure}[H]
