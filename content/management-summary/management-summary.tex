@@ -34,13 +34,50 @@ Überschriften (Unterkapitel) ohne Nummerierung einsetzen!
 \chapter*{Management Summary}
 \glsresetall
 
-
 \section*{Ausgangslage}
 
+Den Schweizer Behörden steht frei, welche Software-Systeme sie einsetzen, um mit Geo-Daten zu arbeiten. Dies führt dazu, dass eine Vielzahl an Systemen eingesetzt und der Datenaustausch massiv erschwert wird. Es wurde versucht, dieses Problem mit dem Datenaustausch per \gls{interlis} zu lösen. Aufgrund mangelndert Unterstützung seitens der Software-Hersteller muss die Konvertierung in dieses Format jedoch nach wie vor von den am Austausch beteiligten Stellen selbst vorgenommen werden.
+
+Dies bringt beachtlichen technischen und betrieblichen Aufwand mit sich.
+
+\section*{Ziele}
+
+Diese Arbeit hat als Ziel das Erstellen einer Plattform, welche
+\begin{itemize}
+\item diverse Daten-Formate lesen und schreiben kann, so dass ein Benutzer sich um die Daten kümmern kann, statt sich mit Formaten befassen zu müssen
+\item fortgeschrittenen Benutzern erlaubt, neue Sichten oder Transformationen für bereitgestellte Daten zu erstellen, welche andere Benutzer dann weiter verwenden können
+\item Benutzern ermöglicht, Daten öffentlich anzubieten.
+\end{itemize}
+
+Für das reine Anbieten von Daten existieren bereits gute Lösungen (siehe \cref{sec:tb:state-of-the-art}). Daher lag der Fokus auf der Unterstützung von Transformationen und verschiedenen Formaten.
 
 \section*{Ergebnisse}
+Im Rahmen der Arbeit wurde mit \acf{odh} eine moderne Web-Applikation erstellt.
 
+\subsection*{Formate}
+Benutzer können Daten mit anderen Benutzern teilen ohne sich um Format-Details kümmern zu müssen. Unterstützt werden Formate wie CSV, Excel, JSON aber auch Geo-Formate wie GeoJSON, GML, Interlis 1 sowie Daten aus \gls{wfs}-Endpunkten.
+
+Weiterhin besteht die Möglichkeit, aus einer Analyse der bereit gestellten Daten ein Interlis 1-Modell zu erstellen.
+
+\subsection*{Transformationen}
+Mit Hilfe eines Assistenten können Benutzer sich eine einfach Transformation zusammenklicken und anderen Benutzern zur Verfügung stellen. 
+
+Für Experten steht mit \gls{odhql} eine an \gls{sql} angelehnte Abfrage-Sprache bereit, welche auch komplexe Abfragen ermöglicht.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=2\linewidth/3]{fig/transformation-detail}
+    \caption*{Resultat einer Transformation}
+\end{figure}
+
+Die Resultate von Transformationen können wie alle anderen Daten auch in beliebigen Formaten bezogen werden.
+
+\subsection*{Erweiterung}
+Neue Formate sowie Funktionen für die Abfrage-Sprache können mit relativ wenig Aufwand hinzugefügt werden.
 
 \section*{Ausblick}
-
-
+\xxx[needs some more work, I think]
+Für die Weiterentwicklung von \acs{odh} besteht eine Vielzahl an Möglichkeiten:
+Zur Verbesserung der Format-Unterstútzung sollte so bald wie möglich auf die nächste \gls{gdal}-Version (2.0) gewechselt werden. 
+Die Web-Applikation könnte erweitert oder gar mit einer anderen Plattform\footnote{z.B. \gls{ckan}} integriert werden.
+Nach Bedarf können weitere Formate oder Funktionen für \gls{odhql} hinzugefügt werden.
