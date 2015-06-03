@@ -381,33 +381,19 @@ Aufgrund dieser Auswertung fällt die Wahl auf eine SQL-basierte DSL.
 
 \section{Frontend}
 \subsection{Technologie}
+AngularJS ist ein weit verbreitetes und etabliertes Frontend Framework basierend auf \acs{mvvm}. Im Rahmen der Studienarbeiten wurde dies von teilen unseres Teams bereits eingesetzt. So fiel uns die Entscheidung für die Verwendung von AngularJS einfach.
 \begin{decision}[label=dec:frontend:technology]{AngularJS als Frontendtechnologie}
 Da \chuf und \fscf schon viel Erfahrung mit AngularJS gesammelt haben und dies ein sehr etabliertes Framework ist, haben wir uns für dieses entschieden. Evaluiert wurde es bereits im Rahmen den Studienarbeiten von \fscf und \rlif.
 \end{decision}
 \subsection{Bootstrap}
-\mytable{lXXX}{
-
-  \textbf{Kriterium} & \textbf{Bootstrap} & \textbf{Foundation} & \textbf{UIkit} \\
-
-  \midrule
-
-  \textbf{Bekanntheit} & \threeOfThree & \oneOfThree & \oneOfThree \\
-
-  \textbf{Anz. Elemente} & \twoOfThree & \twoOfThree & \twoOfThree  \\
-
-  \textbf{AngularJS} & \threeOfThree & \oneOfThree & \twoOfThree  \\
-
-  \midrule
-
-  \textbf{Total} & \threeOfThree & \oneOfThree & \twoOfThree  \\
-}{Auswertung diverser Frontend Frameworks}{pd:frontend-bootstrap-results}
+Twitter Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung enorm, da zu beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von AngularJS in Bootstrap via Plugins vereinfacht die verwendung der Framworks enorm.
 \begin{decision}[label=dec:frontend:bootstrap]{Bootstrap als Designgrundlage}
-Aufgrund der Evaluation verschiedener Framework und der Vertrautheit mit Bootstrap, haben wir uns für die Verwendung von Twitter Bootstrap entschieden. Das Layout wird an Twitter Bootstrap angelehnt.
+Aufgrund der Vertrautheit mit Bootstrap, haben wir uns für die Verwendung von Twitter Bootstrap entschieden. Das Layout wird an Twitter Bootstrap angelehnt.
 \end{decision}
 
 
 \subsection{Menupunkte}
-Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp umfasst folgende Struktur: Daten - Daten bereitstellen - Transformation erstellen. \\
+Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. \\
 Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.\\
 
 \subsection{Assisstent}
@@ -431,4 +417,32 @@ Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen
     \includegraphics[width=0.8\linewidth]{fig/Wireframes-Upload}
     \caption{Frühes Mockup für Upload Formular}
     \label{fig:pd:wireframe-upload}
+\end{figure}
+
+\section{Authentifizierung}
+In diesem Kapitel werden verscheidene Methoden der Authentifizierung beleuchtet.
+\subsection{Herkömmliche Registrierung per E-Mail}
+Die herkömmliche Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Dritt-Providern erfordert. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse einloggen. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist.
+\subsection{oAuth2}
+oAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert.
+
+\subsection{Cookie-Based-Authentication}
+Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Clients in einem Server-Side Cookie gespeichert. Dieses wird mit jedem Request an den Server übermittelt. So kann der Server davon ausgehen, dass es sich beim Client um den Inhaber der Session ID handelt.
+
+\subsection{Token-Based-Authentication}
+Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der zum Server geht mitzusenden. Vorteile dieser Variante sind bestechend:
+\begin{description}
+  \item[Cross-Domain / CORS]
+  Cookies und CORS spielt nicht so sauber zwischen mehreren Domains. Ein Token basierter Ansatz erlaubt es AJAX Aufrufe an jeden Server mit jeder Domain zu veranlassen, weil die Informationen im HTTP Header liegen.
+  \item[Stateless (Server-Side-Scalability)]Es wird kein Session-Store benötigt. Der Token enthält alle Benutzerinformationen der Rest des `States' liegt im Local Storage auf der Client-Side.
+  \item[Decoupling] Man ist nicht an ein Authentifizierungs-Schema gebunden. Der Token kann überall generiert werden, sprich die API kann von überall her aufgerufen werden.
+  \item[Mobile-Ready]Cookies sind in nativen mobilen Apps böse.
+  \item[CSRF]Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentication Cookie, das wiederverwendet werden könnte.
+  \item[Standard]Es gibt bereits einen Standard. (\gls{JWT})
+\end{description}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{fig/cookie-token-auth}
+    \caption{Vgl. Cookie vs. Token Auth}
+    \label{fig:pd:cookie-token-auth}
 \end{figure}
