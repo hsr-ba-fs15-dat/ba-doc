@@ -227,6 +227,12 @@ Die Antwort sieht unterschiedlich aus, je nach dem ob das Package ein Dokument (
     "preview": "http://beta.opendatahub.ch/api/v1/transformation/2001/preview/", 
     "referenced_file_groups": "http://beta.opendatahub.ch/api/v1/transformation/2001/filegroups/", 
     "referenced_transformations": "http://beta.opendatahub.ch/api/v1/transformation/2001/transformations/", 
+    "related_transformations": [
+        {
+            "id": 2007, 
+            "name": "TROBDB: Alle Daten"
+        }
+    ], 
     "type": "transformation"
 }
 \end{srclst}
@@ -327,14 +333,14 @@ Liefert eine Liste aller vorhandene File Groups.
 \begin{srclst}{json}{Beispielantwort für GET /api/v1/fileGroups/}
 [
     {
-        "id": 1, 
-        "url": "http://beta.opendatahub.ch/api/v1/fileGroup/1/", 
+        "id": 12, 
+        "url": "http://localhost:5000/api/v1/fileGroup/12/", 
         "document": {
-            "id": 1, 
-            "url": "http://beta.opendatahub.ch/api/v1/document/1/", 
-            "name": "Test mockaroo.com.csv", 
-            "description": "Testdaten (Originalformat: CSV)", 
-            "file_groups": "http://beta.opendatahub.ch/api/v1/document/1/filegroup/", 
+            "id": 12, 
+            "url": "http://localhost:5000/api/v1/document/12/", 
+            "name": "Test Baustellen.kml", 
+            "description": "Testdaten (Originalformat: KML)", 
+            "file_groups": "http://localhost:5000/api/v1/document/12/filegroup/", 
             "private": false, 
             "owner": {
                 "id": 1, 
@@ -342,23 +348,29 @@ Liefert eine Liste aller vorhandene File Groups.
                 "first_name": "", 
                 "last_name": ""
             }, 
-            "created_at": "2015-06-01T12:35:31.480135Z", 
-            "preview": "http://beta.opendatahub.ch/api/v1/document/1/preview/", 
+            "created_at": "2015-05-29T14:21:55.026231Z", 
+            "preview": "http://localhost:5000/api/v1/document/12/preview/", 
             "type": "document"
         }, 
         "files": [
             {
-                "id": 1, 
-                "url": "http://beta.opendatahub.ch/api/v1/file/1/", 
-                "file_name": "mockaroo.com.csv", 
-                "file_format": "CSV", 
-                "file_group": "http://beta.opendatahub.ch/api/v1/fileGroup/1/"
+                "id": 18, 
+                "url": "http://localhost:5000/api/v1/file/18/", 
+                "file_name": "Baustellen.kml", 
+                "file_format": "KML", 
+                "file_group": "http://localhost:5000/api/v1/fileGroup/12/"
             }
         ], 
         "urls": [], 
-        "data": "http://beta.opendatahub.ch/api/v1/fileGroup/1/data/", 
-        "preview": "http://beta.opendatahub.ch/api/v1/fileGroup/1/preview/"
-    }, 
+        "data": "http://localhost:5000/api/v1/fileGroup/12/data/", 
+        "preview": "http://localhost:5000/api/v1/fileGroup/12/preview/", 
+        "related_transformations": [
+            {
+                "id": 2005, 
+                "name": "Sanitize Baustellen.kml"
+            }
+        ]
+    },
     ...
 ]
 \end{srclst}
@@ -368,40 +380,46 @@ Siehe auch \cref{sec:pd:api-filegroup-detail}.
 \subsubsection{File Group-Details - GET /api/v1/fileGroup/<id>/} \label{sec:pd:api-filegroup-detail}
 Liefert Detail-Informationen zu einer File Group.
 
-\begin{srclst}{json}{Beispielantwort für GET /api/v1/fileGroup/3/}
+\begin{srclst}{json}{Beispielantwort für GET /api/v1/fileGroup/12/}
 {
-    "id": 3, 
-    "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/", 
-    "document": {
-        "id": 3, 
-        "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/", 
-        "name": "Test mockaroo.com.xlsx", 
-        "description": "Testdaten (Originalformat: Excel)", 
-        "file_groups": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/filegroup/", 
-        "private": false, 
-        "owner": {
-            "id": 1, 
-            "username": "testuser", 
-            "first_name": "", 
-            "last_name": ""
-        }, 
-        "created_at": "2015-06-02T12:01:21.730842Z", 
-        "preview": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/document/3/preview/", 
-        "type": "document"
-    }, 
-    "files": [
-        {
-            "id": 3, 
-            "url": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/file/3/", 
-            "file_name": "mockaroo.com.xlsx", 
-            "file_format": "Excel", 
-            "file_group": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/"
-        }
-    ], 
-    "urls": [], 
-    "data": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/data/", 
-    "preview": "https://opendatahub-hsr-dev.herokuapp.com/api/v1/fileGroup/3/preview/"
-}
+      "id": 12, 
+      "url": "http://localhost:5000/api/v1/fileGroup/12/", 
+      "document": {
+          "id": 12, 
+          "url": "http://localhost:5000/api/v1/document/12/", 
+          "name": "Test Baustellen.kml", 
+          "description": "Testdaten (Originalformat: KML)", 
+          "file_groups": "http://localhost:5000/api/v1/document/12/filegroup/", 
+          "private": false, 
+          "owner": {
+              "id": 1, 
+              "username": "testuser", 
+              "first_name": "", 
+              "last_name": ""
+          }, 
+          "created_at": "2015-05-29T14:21:55.026231Z", 
+          "preview": "http://localhost:5000/api/v1/document/12/preview/", 
+          "type": "document"
+      }, 
+      "files": [
+          {
+              "id": 18, 
+              "url": "http://localhost:5000/api/v1/file/18/", 
+              "file_name": "Baustellen.kml", 
+              "file_format": "KML", 
+              "file_group": "http://localhost:5000/api/v1/fileGroup/12/"
+          }
+      ], 
+      "urls": [], 
+      "data": "http://localhost:5000/api/v1/fileGroup/12/data/", 
+      "preview": "http://localhost:5000/api/v1/fileGroup/12/preview/", 
+      "related_transformations": [
+          {
+              "id": 2005, 
+              "name": "Sanitize Baustellen.kml"
+          }
+      ]
+  }
 \end{srclst}
 
 \paragraph{Document} Das Dokument, zu dem diese File Group gehört. Siehe auch \cref{sec:pd:api-document-details} bzw. \cref{sec:pd:api-package-details}.
@@ -409,6 +427,7 @@ Liefert Detail-Informationen zu einer File Group.
 \paragraph{Urls} Führt die zur File Group gehörenden Urls auf. Siehe auch \cref{sec:pd:api-urls}.
 \paragraph{Data} Url für den Download der Daten. Siehe auch \cref{sec:pd:api-download}.
 \paragraph{Preview} Url für eine Vorschau der Daten in dieser File Group. Siehe auch \cref{sec:pd:api-preview}.
+\paragraph{Related Transformations} Führt Transformationen auf, die diese File Group verwenden.
 
 \subsection{Files} \label{sec:pd:api-files}
 \subsubsection{File-Liste - GET /api/v1/files/}
