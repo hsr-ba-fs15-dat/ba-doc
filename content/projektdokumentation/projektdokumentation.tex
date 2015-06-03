@@ -496,7 +496,7 @@ Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{fig/Wireframes-Connectors}
-    \caption{Frühes Idee Transformation mit ``Pipes'' erstellen. (Verworfen)}
+    \caption{Frühe Idee Transformation mit ``Pipes'' erstellen. (Verworfen)}
     \label{fig:pd:connectors}
 \end{figure}
 \begin{figure}[H]
@@ -697,7 +697,7 @@ Die Funktionen der \acs{odhql} wurden möglichst erweiterbar implementiert. Jede
 Ein Beispiel einer solchen Funktion ist in \cref{src:pd:odhql-function} ersichtlich. Hierbei wird nach der Überprüfung der Argumente direkt an die Pandas-Methode \path{str.pad} weiterdelegiert.
 
 
-\begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der \acs{odhql} Funktion \texttt{PAD()}}
+\begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der ODHQL-Funktion \texttt{PAD()}}
 from hub.odhql.functions.core import VectorizedFunction
 
 class Pad(VectorizedFunction):
