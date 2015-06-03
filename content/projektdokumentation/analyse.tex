@@ -385,7 +385,7 @@ Aufgrund der Vertrautheit mit Bootstrap, haben wir uns für die Verwendung von T
 Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. \\
 Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.\\
 
-\subsection{Assisstent}
+\subsection{Assistent}
 Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher ein initiales ODHQL Query erstellen kann. Dieser soll Queries mit JOIN und UNION Operationen erstellen können.
 
 \subsection{Drafts}
@@ -408,13 +408,19 @@ Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen
     \label{fig:pd:wireframe-upload}
 \end{figure}
 
-\section{Authentifizierung}
+\section{Benutzer-Authentifizierung}
 In diesem Kapitel werden verscheidene Methoden der Authentifizierung beleuchtet.
 \subsection{Herkömmliche Registrierung per E-Mail}
-Die herkömmliche Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Dritt-Providern erfordert. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse einloggen. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist.
+Die herkömmliche Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Dritt-Providern erfordert. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse einloggen. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist. Nachteilig ist, dass der Benutzer nicht verifiziert ist. Benutzer müssen ein Passwort speziell für diesen Service erstellen um den persönlichen Sicherheitsansprüchen zu genügen.
 \subsection{oAuth2}
-oAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert.
+oAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss der Benutzer kein weiteres Passwort wissen.
+\subsection{Fazit}
+Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die oAuth Methode.
+\begin{decision}
+Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns dazu entschieden nur auf die Methoden zur Authentifizierung per GitHub und Facebook zu basieren.
+\end{decision}
 
+\section{Session-Authentifizierung}
 \subsection{Cookie-Based-Authentication}
 Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Clients in einem Server-Side Cookie gespeichert. Dieses wird mit jedem Request an den Server übermittelt. So kann der Server davon ausgehen, dass es sich beim Client um den Inhaber der Session ID handelt.
 
@@ -422,7 +428,7 @@ Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Cl
 Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der zum Server geht mitzusenden. Vorteile dieser Variante sind bestechend:
 \begin{description}
   \item[Cross-Domain / CORS]
-  Cookies und CORS spielt nicht so sauber zwischen mehreren Domains. Ein Token basierter Ansatz erlaubt es AJAX Aufrufe an jeden Server mit jeder Domain zu veranlassen, weil die Informationen im HTTP Header liegen.
+  Cookies und CORS spielen nicht so sauber zwischen mehreren Domains. Ein Token basierter Ansatz erlaubt es AJAX Aufrufe an jeden Server mit jeder Domain zu veranlassen, weil die Informationen im HTTP Header liegen.
   \item[Stateless (Server-Side-Scalability)]Es wird kein Session-Store benötigt. Der Token enthält alle Benutzerinformationen der Rest des `States' liegt im Local Storage auf der Client-Side.
   \item[Decoupling] Man ist nicht an ein Authentifizierungs-Schema gebunden. Der Token kann überall generiert werden, sprich die API kann von überall her aufgerufen werden.
   \item[Mobile-Ready]Cookies sind in nativen mobilen Apps böse.
@@ -432,6 +438,10 @@ Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/cookie-token-auth}
-    \caption{Vgl. Cookie vs. Token Auth}
+    \caption{Cookie vs. Token Auth}
     \label{fig:pd:cookie-token-auth}
 \end{figure}
+\subsection{Fazit}
+\begin{decision}
+Da wir die API vom Frontend so klar wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \acs{JWT}. So könnte die API auch auf einer anderen Domain wie das Frontend liegen, obwohl wir dies noch nicht einsetzen.
+\end{decision}
