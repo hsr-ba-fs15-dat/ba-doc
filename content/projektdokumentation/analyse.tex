@@ -1,6 +1,17 @@
 \chapter{Analyse}
 
 
+\section{Domäne}
+
+Die Applikation besitzt, wenn man die Daten selbst nicht miteinbezieht, ein relativ simples Domänen-Modell, wie in \cref{fig:pd:domain-model} zu sehen ist. Der Endbenutzer kann mehrere Dateien ablegen oder bereits vorhandene transformieren. Da das Resultat von Dateien oder Transformationen dasselbe ist, werden diese mit dem Oberbegriff Datenpaket\footnote{Im Frontend: ``Package''} versehen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig/domain-model.pdf}
+    \caption{Domäne OpenDataHub}
+    \label{fig:pd:domain-model}
+\end{figure}
+
 \section{Dateiformate}
 
 In diesem Abschnitt werden die durch den Kunden gewünschten oder zur Realisierung der Anwendungsfälle in \cref{sec:pd:usecases} benötigten Dateiformate und deren Eigenheiten beschrieben.
