@@ -7,7 +7,8 @@
 \subimport{}{odhql.tex}
 
 \phantomsection
-\addcontentsline{toc}{chapter}{ODHQL-Referenz}
-\includepdf[pages=1-]{odhql-reference}
+ \addtocounter{chapter}{1}
+\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}{ODHQL-Referenz}}
+\includepdf[pagecommand={\thispagestyle{plain}},scale=0.95,pages=1-,offset=-2ex 5ex,delta=-10ex -10ex]{odhql-reference}
 
 \subimport{../projektmanagement/sitzungsprotokolle/}{sitzungsprotokolle.tex}
