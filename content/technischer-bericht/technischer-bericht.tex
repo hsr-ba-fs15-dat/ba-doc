@@ -156,7 +156,7 @@ Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation de
 Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
 
 \subsection{Schema-Transformation}
-Auch bei der Homogenisierung des Schemas wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eines Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
+Auch bei der Homogenisierung des Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eines Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
 
 \subsection{Erweiterbarkeit}
 Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die vorhandenen Funktionen der \acf{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
