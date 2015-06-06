@@ -6,7 +6,7 @@ Zur Authentifizierung der Benutzer wird der oAuth 2 Standard verwendet. Dieser e
 Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die REST Schnittstelle wird dann über einen Token gesichert.
 
 \subsection{Transformationen erstellen}
-Im Grundsatz wollten wir das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen, einen Wizard zu schreiben, welcher die Aktion vereinfachen soll. In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden. In der Beta, die ausgeliefert wurde kann der Wizard verwendet werden, muss aber dank der Möglichkeit Tabellen ``zu laden'' nicht.
+Im Grundsatz wollten wir das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen einen Wizard zu schreiben, welcher die Aktion vereinfachen soll (\cref{fig:pd:tables_per_click}). In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden. In der Beta, die ausgeliefert wurde kann der Wizard verwendet werden. Die Transformation kann auch über den manuellen Editor erstellt werden (\cref{fig:pd:wizard-manual}), dann müssen allerdings entweder die Tabellennamen bekannt sein, oder es kann nur ein Template erstellt werden.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/odhql_wizard_early.png}
@@ -27,14 +27,14 @@ In einem ersten Schritt kann eine Transformation grundlegend erstellt werden. Ei
 \label{fig:pd:wizard-manual}
 \end{figure}
 
-Später können dann die komplexeren Operationen auf die Daten angewendet werden. Hierfür wird der manuelle Modus verwendet. Im manuellen Modus steht eine Hilfe Seite zur Verfügung, welche sämtliche erweiterten Operationen erklärt.\\
+Später können dann die komplexeren Operationen auf die Daten angewendet werden. Hierfür wird der manuelle Modus, in \cref{fig:pd:wizard-manual} beschrieben, verwendet. Im manuellen Modus steht eine Hilfe Seite zur Verfügung, welche sämtliche erweiterten Operationen erklärt.\\
 Wird eine Transformation ``als Template'' verwendet, wird beim Speichern keine Prüfung der zugrunde legenden Daten durchgeführt. So können Syntaktisch korrekte, aber noch mit fehlenden Daten belastete Transformationen erstellt werden.
 
 \subsection{Transformationen bearbeiten}
-Transformationen können entweder geklont oder überschrieben werden. Beim Klonen legt der Benutzer eine neue Transformation auf Grund der Daten einer Bestehenden Transformation an. Beim Überschreiben kann der Besitzer einer Transformation diese verändern. Es kann bei diesen Operationen allerdings kein Wizard mehr verwendet werden, da dieser alle manuellen Änderungen überschreiben würde.
+Transformationen können entweder geklont oder überschrieben werden. \cref{transformation-edit} zeigt eine bestehende Transformation, die der angemeldete Benutzer erstellt hat. Beim Klonen legt der Benutzer eine neue Transformation auf Grund der Daten einer Bestehenden Transformation an. Beim Überschreiben kann der Besitzer einer Transformation diese nochmals verändern. Es kann bei diesen Operationen allerdings kein Wizard mehr verwendet werden, da dieser alle manuellen Änderungen überschreiben würde.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/transformation-edit.png}
 \caption{Bestehende Transformation editieren}
-\label{fig:pd:transformation-manual-edit}
+\label{fig:pd:transformation-edit}
 \end{figure}
