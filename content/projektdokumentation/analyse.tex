@@ -379,28 +379,33 @@ Aufgrund der Vertrautheit mit Bootstrap haben wir uns für die Verwendung von Bo
 \end{decision}
 
 \subsection{Menupunkte}
-Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. \\
-Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.\\
+Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. 
+
+Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.
 
 \subsection{Assistent}
-Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher ein initiales ODHQL Query erstellen kann. Dieser soll Queries mit JOIN und UNION Operationen erstellen können.
+Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher eine initiale \acs{odhql}-Abfrage erstellen kann. Dieses soll auch Abfragen mit JOIN und UNION unterstützten.
 
 \subsection{Drafts}
-Wir haben im Lauf des Projektes auch einige Skizzen erstellt, wie das Front-End aussehen soll. Einige davon möchten wir in diesem Kapitel präsentieren.
+Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehen könnte. Einige davon möchten werden in diesem Abschnitt aufgezeigt.
 \begin{figure}[H]
     
     \includegraphics[width=0.8\linewidth]{fig/mockup_hcdi}
     \caption{Frühes Mockup ``Transformation erstellen''}
     \label{fig:pd:mockup-upload}
 \end{figure}
-Bevor uns klar wurde, dass eine neue Transformation einen Assistenten braucht, haben wir uns diesen Menupunkt wie in \cref{fig:pd:mockup-upload} vorgestellt. Später konnten wir uns vorstellen, einen grafischen Assistenten - ähnlich wie bei Yahoo Pipes (eingestellt) - zu implementieren. Aussehen können hätte dies wie in \cref{fig:pd:connectors} gezeigt.
+
+Bevor klar wurde, dass es zur Erstellung von Transformationen einen Assistenten benötigt, war dies wie \cref{fig:pd:mockup-upload} angedacht. Auch einen grafischen Editor - analog wie bei Yahoo Pipes (eingestellt) - zu implementieren, war eine Option (siehe \cref{fig:pd:connectors}).
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{fig/Wireframes-Connectors}
     \caption{Frühe Idee Transformation mit ``Pipes'' erstellen. (Verworfen)}
     \label{fig:pd:connectors}
 \end{figure}
-Das Upload-Formular haben wir ziemlich so implementiert, wie wir uns das in \cref{fig:pd:wireframe-upload} vorgestellt haben.
+
+Das Upload-Formular wurde sehr nahe dem in \cref{fig:pd:wireframe-upload} gezeigten Wireframe implementiert.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{fig/Wireframes-Upload}
@@ -409,32 +414,40 @@ Das Upload-Formular haben wir ziemlich so implementiert, wie wir uns das in \cre
 \end{figure}
 
 \section{Benutzer-Authentifizierung}
-In diesem Kapitel werden verscheidene Methoden der Authentifizierung beleuchtet.
+
+In diesem Kapitel werden verschiedene Varianten zur Authentifizierung erläutert.
+
 \subsection{Herkömmliche Registrierung per E-Mail}
-Die herkömmliche Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Dritt-Providern erfordert. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse einloggen. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist. Nachteilig ist, dass der Benutzer nicht verifiziert ist. Benutzer müssen ein Passwort speziell für diesen Service erstellen um den persönlichen Sicherheitsansprüchen zu genügen.
-\subsection{oAuth2}
-oAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss der Benutzer kein weiteres Passwort wissen.
+Die klassische Benutzer-Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Drittparteien besitzt. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse registrieren und anmelden. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist. Nachteilig ist, dass der Benutzer nicht verifiziert ist. Benutzer müssen ein Passwort speziell für diesen Service erstellen um den persönlichen Sicherheitsansprüchen zu genügen.
+
+\subsection{OAuth2}
+
+OAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss der Benutzer kein weiteres Passwort wissen.
+
 \subsection{Fazit}
-Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die oAuth Methode.
+Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die OAuth Methode.
 \begin{decision}{Benutzer-Authentifizierung}
 Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns dazu entschieden nur auf die Methoden zur Authentifizierung per GitHub und Facebook zu basieren.
 \end{decision}
 
 \section{Session-Authentifizierung}
+
 \subsection{Cookie-Based-Authentication}
 Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Clients in einem Server-Side Cookie gespeichert. Dieses wird mit jedem Request an den Server übermittelt. So kann der Server davon ausgehen, dass es sich beim Client um den Inhaber der Session ID handelt.
 
 \subsection{Token-Based-Authentication}
-Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der zum Server geht mitzusenden. Vorteile dieser Variante sind bestechend:
+Ein aktuellerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der zum Server geht mitzusenden. Diese Methode bietet folgende Vorteile:
+
 \begin{description}
   \item[Cross-Domain / CORS]
-  Cookies und CORS spielen nicht so sauber zwischen mehreren Domains. Ein Token basierter Ansatz erlaubt es AJAX Aufrufe an jeden Server mit jeder Domain zu veranlassen, weil die Informationen im HTTP Header liegen.
-  \item[Stateless (Server-Side-Scalability)]Es wird kein Session-Store benötigt. Der Token enthält alle Benutzerinformationen der Rest des `States' liegt im Local Storage auf der Client-Side.
+  Cross-Domain-Cookies und Cross-Domain-Requests funktionieren aufgrund von Sicherheitsrichtlinien der Browser nicht. Ein Token-basierter Ansatz erlaubt es XHR Aufrufe an jeden Server mit jeder Domain zu veranlassen, weil die Informationen im HTTP Header enthalten sind.
+  \item[Stateless (Server-Side-Scalability)] Es wird kein Session-Store benötigt. Der Token enthält alle Benutzerinformationen der Rest des ``States'' liegt im Local Storage auf der Client-Seite.
   \item[Decoupling] Man ist nicht an ein Authentifizierungs-Schema gebunden. Der Token kann überall generiert werden, sprich die API kann von überall her aufgerufen werden.
-  \item[Mobile-Ready]Cookies sind in nativen mobilen Apps böse.
-  \item[CSRF]Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentication Cookie, das wiederverwendet werden könnte.
-  \item[Standard]Es gibt bereits einen Standard. (\gls{JWT})
+  \item[Mobile-Ready] Cookies sind in nativen mobilen Apps/APIs meist schlecht unterstützt.
+  \item[CSRF] Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentication-Cookie, das wiederverwendet werden könnte.
+  \item[Standard] Es gibt bereits einen Standard. (\gls{JWT})
 \end{description}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/cookie-token-auth}
@@ -443,5 +456,5 @@ Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der 
 \end{figure}
 \subsection{Fazit}
 \begin{decision}{Session-Authentifizierung}
-Da wir die API vom Frontend so klar wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \acs{JWT}. So könnte die API auch auf einer anderen Domain wie das Frontend liegen.
+Da wir die API vom Frontend so weit wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \acs{JWT}. So könnte die API auch aus einem Client mit anderer Domain verwendet werden.
 \end{decision}
