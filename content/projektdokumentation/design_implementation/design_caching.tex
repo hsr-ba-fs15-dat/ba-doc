@@ -34,7 +34,5 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 	\item wenn eine Transformation modifiziert wird, welche von anderen Transformationen verwendet wird (rekursiv),
 	\item oder sobald Daten gelöscht werden.
 \end{itemize}
-\xxx[@chuesler so umgesetzt?]
-
 
 Hierfür wird eine Zwischentabelle in der Datenbank benötigt, um festzuhalten, welche Transformation/Daten von welchen Transformationen referenziert werden. Diese Information wird dann zugleich für die Navigation zwischen Daten und Transformationen im Frontend wiederverwendet\footnote{Welche Daten/Transformationen haben assoziierte Transformationen}. Um jeweils alle zu einem Cache-Key\footnote{Ursprünglich ein Tupel, z.B. \path{('TRF', 10, `CSV')}} gehörenden Einträge zu löschen, wurden die eingebauten Django-Caches so erweitert, dass für alle verwendeten Caching-Provider\footnote{In-Memory und Datenbank} ein kaskadierendes Löschen möglich ist. So lassen sich beispielsweise durch das löschen von \path{('TRF', 12)} alle gespeicherten und konvertierten Daten die zu der Transformation mit der ID 12 gehören ``kaskadierend'' löschen\footnote{Also auch \path{('TRF', 12, `KML')} etc.}
