@@ -265,8 +265,8 @@ Erstellt ein neues Dokument.
   \textbf{description} & Beschreibung des Dokuments (keine Limitation). \\
   \textbf{private} (default: false) & Steuert ob das Dokument für andere Benutzer sichtbar ist.\\
   \textbf{format} (default: null) & Format der hochgeladenen Daten. Wenn nicht angegeben wird versucht, das Format automatisch zu erkennen. \\
-}{Parameter für Dokument-Erstellung}{tab:pd:api-document-offer}
-\xxx[fix cref]
+}{Parameter für Dokument-Erstellung}{pd:api-document-offer}
+
 Zusätzlich wird eine der folgenden Optionen benötigt:
 \begin{description}
 \item[file] Direkter Datei-Upload. In diesem Fall wird die Anfrage als Multipart Form Request erwartet. Es kann mehr als eine Datei auf einmal hochgeladen werden. Diese werden dann dem selben Dokument zugeordnet, nach Datei-Namen (ohne Erweiterung) in File Groups gruppiert.
@@ -307,7 +307,6 @@ Erstellt eine neue Transformation.
   \textbf{private} (default: false) & Steuert ob die Transformation für andere Benutzer sichtbar ist.\\
   \textbf{transformation} & ODHQL Statement, welches die Transformation definiert. Falls die referenzierten Datenquellen nicht existieren wird ein Template erstellt. \\
 }{Parameter für Erstellung einer Transformation}{pd:api-transformation-create}
-\xxx[fix cref]
 Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das ODHQL Statement korrekt ist. Siehe dazu \cref{sec:pd:api-parse}.
 
 \begin{srclst}{json}{Beispielanfrage für POST /api/v1/transformation/}
