@@ -10,9 +10,9 @@ Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für opendatahu
 \subsection{Klonen des Git-Repository}
 Der nächste Schritt ist das Klonen des Git Repositorys und starten der vagrant vm.
 \begin{src}{shell}
-git clone git@github.com:hsr-ba-fs15-dat/vm.git
-cd vm
-vagrant up
+git clone git@github.com:hsr-ba-fs15-dat/vm.git  # ladet das repository von github.com
+cd vm  # wechselt in das gerade heruntergeladene Verzeichnis
+vagrant up  # initiert die \ac{vagrant}-Start-Sequenz
 \end{src}
 Wenn diese Befehle in eine *nix Konsole eingegeben werden, wird automatisch eine passende VM heruntergeladen und konfiguriert. Unter Umständen muss die Konfiguration angepasst werden. Dies kann im Config-File von puppet gemacht werden. (vm/puphpet/config.yaml)
 
