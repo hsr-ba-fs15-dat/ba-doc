@@ -130,23 +130,68 @@ Da File-Formate existieren, welche aus mehr als einer Datei bestehen, ist die Op
 Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen, wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
 \end{decision}
 
-\section{Intermediäres Format}
+\section{Intermediäres Format und Transformationssprache}
 
+\subsection{Motivation und Voraussetzungen}
+
+\subsubsection{Dateiformat}
 Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N*(N-1)}2$ Übersetzungsmodule benötigt, um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne welches eine generische Transformation unmöglich wäre.
 
-In diesem Abschnitt werden diverse Optionen im Hinblick auf deren Vor- und Nachteile sowie Eignung beschrieben. 
+\subsubsection{Transformationssprache}
+Gleichzeitig kann die Wahl eines intermediären Formates nicht unabhängig von der Wahl einer Transformations-Implementation getroffen werden. So wäre es zum Beispiel unpraktikabel, als Zwischenformat eine Datenbank-basierte Lösung zu wählen, während die Transformation auf Datei-Ebene stattfinden soll.
+
+Für unterschiedliche Datenstrukturen sind verschiedene Transformationsansätze geeignet. Diese Arbeit befasst sich aus Zeitgründen nur mit tabellarischen Daten. 
+
+\cref{tab:pd:transformation-lang-req} fasst die Anforderungen an eine Transformations-Sprache zusammen.
+
+\mytable{lX}{
+  \textbf{Anforderung} & \textbf{Beschreibung}\\
+  \midrule
+  \textbf{Mapping} & Felder müssen 1:1 auf andere Felder gemappt werden können (Feld umbenennen) \\
+  \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
+  \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine karthesischen Produkte) \\
+  \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
+  \textbf{Erweiterbare Operationen} & Es sollen neue Operationen definiert werden können (vorzugsweise in Python) \\
+  \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
+}{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
 
 \subsection{Datenbank}
-Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. Der grosse Vorteil dieser Variante ist, dass die Transformationen dann mittels SQL Abfragen auf die diversen Datenbanktabellen erfolgen kann. Man ist dabei jedoch auf die Funktionalität der Datenbank limitiert und kann nur sehr schlecht Transformationen anbieten die dessen Fähigkeiten übersteigen.
+\subsubsection{Intermediäres Format}
+Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. 
 
-\xxx[Braucht noch Anmerkungen zu Performance, weil unten nur 1 von 3 Sternen vergeben wurde. Verluste in in Konversion Python -> SQL/SQL -> Python sind evtl. nicht offensichtlich - dies wird erst in der nächsten Section erwähnt.]
+\subsubsection{Transformationssprache}
+
+Vorteile dieser Variante sind, dass die Abfrage-Sprache bereits vorhanden und bekannt ist und dass je nach verwendeter Datenbank auf vorhandene Funktionen und Optimierungen zurückgegriffen werden kann. Falls Postgres mit PostGIS zum Einsatz kommt, kann auch im Geo-Bereich eine umfassende Funktions-Bibliothek verwendet werden. 
+
+Neue Funktionen müssen zwangsweise auf Datenbank-Ebene implementiert werden, bei Postgres z.B. mit PL/pgsql.
+
+Diese Variante bringt praktisch alle verlangten Features ohne grossen Implementations-Aufwand mit. Das Hinzufügen bisher nicht vorhandener Funktionalität ist jedoch eher schwierig.
+
+\subsubsection{Anmerkungen}
+
+Da die Format-Konversionen auf Python-Ebene durchgeführt werden, liegt folgender Datenfluss vor:
+\begin{itemize}
+\item Zu Beginn befinden sich die Daten als Blob in der Datenbank.
+\item Um die Daten zu Parsen werden sie mit Python ausgelesen.
+\item Der Parser schreibt die Daten als Records wieder in die Datenbank.
+\item Die Transformation findet statt. Aus Effizienzgründen könnte hier z.B. eine Materialized View\footnote{\url{http://www.postgresql.org/docs/9.3/static/sql-creatematerializedview.html}} verwendet werden. Die Resultate werden von Python ausgelesen.
+\item Ein Formatter verwendet diese Daten um das gewünschte Format zu erzeugen.
+\end{itemize}
+
+In diesem Prozess werden die Daten mehrfach aus der Datenbank gelesen, bzw. wieder in diese hineingeschrieben. Gleichzeitig kann die Datenbank viele ihrer Vorteile, wie z.B. Indizes, nicht ausspielen, da sowieso meist alle Daten benötigt werden.
+
+Diese Effekte führen dazu, dass massive Performance-Einbussen gegenüber anderen Optionen zu erwarten sind.
 
 \subsection{ogrtools}
 
-Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'' erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die kompilierten OGR/GDAL Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind kann es durchaus zum Verlust von Informationen kommen.
+Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'', erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die kompilierten OGR/\gls{gdal} Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind, kann es durchaus zum Verlust von Informationen kommen.
 
-Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden Transformationssprache bzw. Tranformationskonfiguration aufgebaut und dieses um weitere Operationen wie beispielsweise Filterung oder Joins erweitert. Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
+\subsubsection{Intermediäres Format}
+Bei dieser Version befindet sich die komplette Parser $\to$ Transformation $\to$ Formatter-Kette in ogr2ogr/\gls{gdal}. Als Zwischenformat können die \gls{gdal}-internen OGR-Datenstrukturen betrachtet werden.
 
+\subsubsection{Transformationssprache}
+Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Die Transformation selbst wird ebenfalls von \gls{gdal} durchgeführt.
+Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
 
 \begin{srclst}[label=src:pd:ogrtools]{json}{ogrtools Mapping-Konfiguration}
 {
@@ -207,17 +252,21 @@ Sollte die ogrtools Bibliothek verwendet werden, so würde auf der existierenden
 }
 \end{srclst}
 
+Aktuell werden diverse der gewünschten Features von ogrtransform nicht unterstützt, wie z.B. Joins oder Filter. Sofern \gls{gdal} diese unterstützt, bedeutet das eine Erweiterung auf Python-Ebene. Andernfalls muss eine Erweiterung auf \gls{gdal}-Ebene durchgeführt werden.
+
+\gls{gdal} unterstützt eine grosse Menge an Formaten\footnote{Sofern alle Features beim Kompilieren aktiv sind: 139 Raster- und 83 Vektor-Formate (Stand 6. Juni 2015)}. Leider sind jedoch nicht alle Treiber von der selben Qualität, und Daten ohne Geometrie sind schlecht vertreten.
+
 \subsection{Python Tabellenstrukturen}
 
-\subsubsection{Petl}
-Petl\footnote{http://petl.readthedocs.org/} ist eine Python \acs{etl} Bibliothek. Petl erlaubt es diverse Formate in eine Tabellenstruktur zu laden und bietet ein \acs{api} um darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
+\subsubsection{Intermediäres Format}
+\paragraph{Petl} 
+ist eine Python \acs{etl} Bibliothek, welche es erlaubt, diverse Formate in eine Tabellenstruktur zu laden und mit einem \acs{api} darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
 
-Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``Lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
+Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
+\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt.
 
-\subsubsection{Pandas}
-Pandas ist zwar eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas macht Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt.
-
+Siehe \cite{pandasMergePerformance} für eine Analyse der Performance von Merge-Operationen (Joins) in Pandas.
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
 >>> import geopandas
@@ -258,139 +307,77 @@ Index([u'CNTRYNAME', u'CONURB', u'DUP_NAME', u'LEVEL', u'NAME', u'NATION', u'PRO
 1196    30  POINT (704945.8093275279 231556.7192434487)
 \end{srclst}
 
-
-\subsubsection{PyTables/HDF}
+\paragraph{PyTables/HDF}
 PyTables ist eine high-performance Python-Bibliothek die wie Pandas ebenfalls auf NumPy aufbaut. Da das \acs{api} von PyTables im Vergleich zu Pandas eher low-level ist und weniger bietet wurde diese Bibliothek nicht weiter verfolgt.
 
-\subsection{Fazit}
-
-\cref{tab:pd:format-criteria} erläutert die wichtigsten Kriterien für die Bewertung der beschriebenen Lösungen.
-
-\mytable{lXc}{
-  \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
-  \midrule
-  \textbf{Performance} & Wie performant ist die Lösung. Wichtig aufgrund des Effizienz \acs{nfr} welches beim Treffen mit Herrn Dorfschmid geäussert wurde. & \twoOfThree \\
-
-  \textbf{Machbarkeit} & Die generelle Umsetzbarkeit der funktionalen Anforderungen mit dieser Lösung. & \threeOfThree \\
-
-  \textbf{Aufwand / Komplexität} & Der benötigte Aufwand um Applikation der Lösung umzusetzen. & \twoOfThree \\
-
-}{Bewertungskriterien Intermediäres Format}{pd:format-criteria}
-
-
-\cref{tab:pd:format-results} fasst die verschiedenen Optionen zusammen.
-\mytable{lXXXXX}{
-
-  \textbf{Kriterium} & \textbf{Datenbank} & \textbf{ogrtools} & \textbf{Petl} & \textbf{Pandas} & \textbf{PyTables} \\
-
-  \midrule
-
-  \textbf{Performance} & \oneOfThree & ? & \oneOfThree & \twoOfThree & \oneOfThree \\
-
-  \textbf{Machbarkeit} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree  & \twoOfThree \\
-
-  \textbf{Aufwand / Komplexität} & \twoOfThree & \oneOfThree & \twoOfThree & \twoOfThree & \oneOfThree \\
-
-  \midrule
-
-  \textbf{Total} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree & \twoOfThree \\
-}{Auswertung verschiedener Format-Varianten}{pd:format-results}
-
-
-\begin{decision}[label=dec:pd:format]{Intermediäres Format}
-Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde obschon der Aufwand für die Transformationen komplett entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
-\end{decision}
-
-\section{Transformation}
-
-\subsection{Anforderungen}
-\xxx{gehört das wirklich hier hin? @chuesler}
-
-Folgende Daten-Arten sind zu unterscheiden:
-\begin{itemize}
-\item Tabellarische Daten (z.B. CSV, Excel)
-\item Baum-artige Daten (z.B. XML)
-\item Unstrukturierte Daten (z.B. Bilder, unstrukturierter Text)
-\end{itemize}
-
-Diese Arbeit befasst sich aus Zeitgründen nur mit tabellarischen Daten.
-
-In \cref{tab:pd:transformation-lang-req} werden die Anforderungen an die Transformations-Sprache zusammengefasst.
-
-\mytable{lX}{
-  \textbf{Anforderung} & \textbf{Beschreibung}\\
-  \midrule
-  \textbf{Mapping} & Felder müssen 1:1 auf andere Felder gemappt werden können (Feld umbenennen) \\
-  \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
-  \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine karthesischen Produkte) \\
-  \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
-  \textbf{Erweiterbare Operationen} & Es sollen neue Operationen definiert werden können (in Python) \\
-  \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
-}{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
-
-\subsection{Datenbank-basiert: SQL}
-Die Daten werden in einer Datenbank gespeichert, dort transformiert, und wieder herausgelesen.
-
-Vorteile dieser Variante sind, dass die Abfrage-Sprache bereits vorhanden und bekannt ist und dass je nach verwendeter Datenbank auf vorhandene Funktionen und Optimierungen zurückgegriffen werden kann. Falls Postgres mit PostGIS zum Einsatz kommt, kann auch im Geo-Bereich eine umfassende Funktions-Bibliothek verwendet werden. 
-
-Da die Daten jedoch vor der Transformation geparst, und anschliessend wieder formatiert werden müssen, entsteht ein beträchtlicher Performance-Verlust alleine durch das Abspeichern und Auslesen der Daten. Hinzu kommt, dass grosse Performance-Vorteile durch z.B. durch Indizes, nicht realisiert werden können, da nur eine einmalige Transformation stattfindet und daher die Kosten für die Erstellung des Indexes nicht amortisiert werden.
-
-\subsection{ogrtools: ogrtransform}
-Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Aktuell werden aber diverse der gewünschten Features nicht unterstützt, wie z.B. Joins oder Filter. Ausserdem basiert die Implementation auf ogr2ogr, was die Daten-Arten, auf welche Transformationen angewendet werden können, massiv limitiert.
-
-Da ogr2ogr nur auf Datei-Basis arbeitet, müssen die Daten, falls sie nicht in einem von ogr2ogr unterstützten Format vorliegen, erst geparst und formattiert und anschliessend ins Datei-System geschrieben werden. Nach der Transformation muss das Resultat wieder geparst werden, um in das vom Benutzer gewünschte Format konvertiert werden zu können. 
-
-\subsection{DSL: Vereinfachtes SQL}
-Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das Erlernen dieser Query-Sprache sehr vereinfachen würde. Dies wurde durch \prof bestätigt. \xxx[\prof rausnehmen?]
+\subsubsection{Transformationssprache}
+\paragraph{DSL: Vereinfachtes SQL}
+Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das Erlernen dieser Query-Sprache sehr vereinfachen würde\cite{sfkeller}.
 
 Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden, sind einige kleinere Differenzen zu SQL unvermeidbar. Zur Performance von Joins mit Pandas DataFrame, siehe \cite{pandasMergePerformance}.
 
 Neue Funktionen können in Python definiert werden.
 
-\subsection{DSL: Eigenes Format}
+\paragraph{DSL: Eigenes Format}
 Diese Variante besitzt grundsätzlich die selben Eigenschaften wie eine SQL-basierte DSL. Dieser gegenüber entfällt jedoch das Familiaritäts-Argument. Ausserdem muss eine passende, einfach zu erlernende Syntax definiert werden.
 
+Aus diesen Gründen wird diese Variante nicht weiter verfolgt.
+
 \subsection{Fazit}
-\cref{tab:pd:transformation-lang-criteria} erläutert die Kriterien für die Bewertung der verschiedenen Varianten.
+
+\cref{tab:pd:format-criteria} erläutert die wichtigsten Kriterien für die Bewertung der beschriebenen Format-Lösungen.
 \mytable{lXc}{
   \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
   \midrule
+  \textbf{Performance} & Wie performant ist die Lösung. Wichtig aufgrund des Effizienz-\acs{nfr}s, welches beim Treffen mit Herrn Dorfschmid geäussert wurde. & \twoOfThree \\
+  \textbf{Machbarkeit} & Die generelle Umsetzbarkeit der funktionalen Anforderungen mit dieser Lösung. & \threeOfThree \\
+  \textbf{Aufwand / Komplexität} & Der benötigte Aufwand um Applikation der Lösung umzusetzen. & \twoOfThree \\
+}{Bewertungskriterien Intermediäres Format}{pd:format-criteria}
+
+Zusätzlich werden die in \cref{tab:pd:format-criteria} beschriebenen Kriterien für die Bewertung der Transformations-Sprachen verwendet.
+\mytable{lXc}{
   \textbf{Features} & Bereits vorhandene Unterstützung für die in \cref{tab:pd:transformation-lang-req} aufgelisteten Features & \oneOfThree \\
   \textbf{Geo-Daten} & Unterstützung für Geo-Daten & \threeOfThree \\
   \textbf{Allgemeine Daten} & Unterstützung für Nicht-Geo-Daten & \threeOfThree \\
-  \textbf{Performance} & Performance der Transformation. Da diese Arbeit vor allem als Prototyp dienen soll ist dies nicht erste Priorität, soll aber auch nicht komplett Vernachlässigt werden. & \oneOfThree \\
   \textbf{Funktionen} & Erweiterbarkeit um eigene bzw. benutzerdefinierte Funktionen (in externer Sprache) & \twoOfThree \\
   \textbf{Familiarität} & Wie gut kennen Experten auf dem Gebiet Datentransformation diese Sprache, bzw. wie viel Lernaufwand ist notwendig, um die Sprache zu erlernen & \oneOfThree \\
-}{Bewertungskriterien Transformationssprache}{pd:transformation-lang-criteria}
-\xxx[Gewichtung der Kriterien abstimmen zwischen einzelnen Bereichen]
-\cref{tab:pd:transformation-lang-results} fasst die verschiedenen Optionen zusammen.
-\mytable{lXXXX}{
-  \textbf{Kriterium} & \textbf{Datenbank: SQL} & \textbf{ogrtransform} & \textbf{DSL: SQL} & \textbf{DSL: Eigenes Format} \\
+}{Bewertungskriterien Intermediäres Format/Transformationssprache}{pd:format-criteria}
+
+\cref{tab:pd:format-results} fasst die verschiedenen Optionen zusammen.
+\mytable{lccC{1.8cm}C{1.8cm}C{1.8cm}}{
+  \textbf{Kriterium} & \textbf{Datenbank} & \textbf{ogrtools} & \textbf{Petl} & \textbf{Pandas} & \textbf{PyTables} \\
+  & \textbf{SQL} & \textbf{ogrtransform} & \multicolumn{3}{c}{\textbf{SQL-ähnliche DSL}} \\
   \midrule
-  \textbf{Features} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
-  \textbf{Geo-Daten} & \threeOfThree & \threeOfThree & \threeOfThree & \threeOfThree\\
-  \textbf{Allgemeine Daten} & \threeOfThree & \oneOfThree & \threeOfThree & \threeOfThree\\
-  \textbf{Performance} & \oneOfThree & \oneOfThree & \twoOfThree & \twoOfThree \\
-  \textbf{Funktionen} & \twoOfThree & \oneOfThree & \threeOfThree & \threeOfThree \\
-  \textbf{Familiarität} & \threeOfThree & \oneOfThree & \threeOfThree & \oneOfThree \\
+  \textbf{Performance} & \oneOfThree & ? & \oneOfThree & \twoOfThree & \oneOfThree \\
+  \textbf{Machbarkeit} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree  & \twoOfThree \\
+  \textbf{Aufwand / Komplexität} & \twoOfThree & \oneOfThree & \twoOfThree & \twoOfThree & \oneOfThree \\
   \midrule
-  \textbf{Total} & \twoOfThree & \oneOfThree & \threeOfThree & \twoOfThree \\
-}{Auswertung verschiedener Transformations-Sprachen}{pd:transformation-lang-results}
-\xxx[@chuesler irgendwie überlappen die intermediäres format und sprache zu sehr. wo gehören z.B. performance und geo-daten hin? geht es hier nur um die sprache oder auch um die implementation dessen?]
-Aufgrund dieser Auswertung fällt die Wahl auf eine SQL-basierte DSL.
+  \textbf{Features} & \threeOfThree & \oneOfThree &\multicolumn{3}{c}{\threeOfThree} \\
+  \textbf{Geo-Daten} & \threeOfThree & \threeOfThree & \multicolumn{3}{c}{\threeOfThree} \\
+  \textbf{Allgemeine Daten} & \threeOfThree & \oneOfThree & \multicolumn{3}{c}{\threeOfThree} \\
+  \textbf{Funktionen} & \twoOfThree & \oneOfThree & \multicolumn{3}{c}{\threeOfThree} \\
+  \textbf{Familiarität} & \threeOfThree & \oneOfThree & \multicolumn{3}{c}{\threeOfThree} \\
+  \midrule
+  \textbf{Total} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree & \twoOfThree \\
+}{Auswertung verschiedener Format- und Transformations-Varianten}{pd:format-results}
+
+\begin{decision}[label=dec:pd:format]{Intermediäres Format}
+Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
+
+Als Transformationssprache wird eine an SQL angelehnte DSL implementiert.
+\end{decision}
 
 \section{Frontend}
 \subsection{Technologie}
-AngularJS ist ein weit verbreitetes und etabliertes Frontend Framework basierend auf \acs{mvvm}. Im Rahmen der Studienarbeiten wurde dies von teilen unseres Teams bereits eingesetzt. So fiel uns die Entscheidung für die Verwendung von AngularJS einfach.
+AngularJS ist ein weit verbreitetes und etabliertes Frontend Framework basierend auf \acs{mvvm}. Im Rahmen der Studienarbeiten wurde dies von Teilen unseres Teams bereits eingesetzt. So fiel uns die Entscheidung für die Verwendung von AngularJS einfach.
 \begin{decision}[label=dec:frontend:technology]{AngularJS als Frontendtechnologie}
 Da \chuf und \fscf schon viel Erfahrung mit AngularJS gesammelt haben und dies ein sehr etabliertes Framework ist, haben wir uns für dieses entschieden. Evaluiert wurde es bereits im Rahmen den Studienarbeiten von \fscf und \rlif.
 \end{decision}
 \subsection{Bootstrap}
-Twitter Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung enorm, da zu beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von AngularJS in Bootstrap via Plugins vereinfacht die verwendung der Framworks enorm.
+Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung, da zu Beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von Bootstrap in AngularJS via Plugins vereinfacht die Verwendung der Framworks enorm.
 \begin{decision}[label=dec:frontend:bootstrap]{Bootstrap als Designgrundlage}
-Aufgrund der Vertrautheit mit Bootstrap, haben wir uns für die Verwendung von Twitter Bootstrap entschieden. Das Layout wird an Twitter Bootstrap angelehnt.
+Aufgrund der Vertrautheit mit Bootstrap haben wir uns für die Verwendung von Bootstrap entschieden. Das Layout wird an Twitter Bootstrap angelehnt.
 \end{decision}
-
 
 \subsection{Menupunkte}
 Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. \\
