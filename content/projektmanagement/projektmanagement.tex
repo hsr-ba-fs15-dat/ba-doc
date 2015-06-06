@@ -202,7 +202,8 @@ Jira wurde auf einer virtuellen Maschine der \acs{hsr} betrieben und dessen Date
 
 
 \section{Kommunikation}
-Bei der Durchführung der Bachelorarbeit \gls{dat} wollten wir auf die Kommunikation per E-Mail verzichten. Das Team hat sich mittels \purl{http://slack.com} ausgetauscht sowie als zur Protokollierung von Sitzungen, Weblinks und weitere Informationen verwendet. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub, Jira, Travis-CI, E-Mails usw.\footnote{\url{https://slack.com/integrations}} zu integrieren. So konnte an einem zentralen Ort Bezug auf Commits, E-Mails vom Betreuer und Failing-Builds genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor relevanten Themen freigehalten und direkten Bezug auf konkrete Ereignisse genommen werden.
+\subsection{Slack}
+Bei der Durchführung der Bachelorarbeit \gls{dat} wollten wir auf die Kommunikation per E-Mail verzichten. Das Team hat sich mittels \purl{http://slack.com} ausgetauscht sowie als zur Protokollierung von Sitzungen, Weblinks und weitere Informationen verwendet. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub, Jira, Travis-CI, E-Mails usw.\footnote{\url{https://slack.com/integrations}} zu integrieren. So konnte an einem zentralen Ort Bezug auf Commits, E-Mails vom Betreuer und Failing-Builds genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor relevanten Themen freigehalten und direkten Bezug auf konkrete Ereignisse genommen werden. \cref{fig:pm:slack} zeigt Screenshots aus dem Mac-Client von Slack.
 
 \begin{figure}[H]
 	\centering
@@ -222,6 +223,9 @@ Bei der Durchführung der Bachelorarbeit \gls{dat} wollten wir auf die Kommunika
 	\label{fig:pm:slack}
 \end{figure}
 
+\subsection{Fazit}
+Die Interne Kommunikation wurde vollumfänglich über Slack abgewickelt. Die Kommunikation mit dem Betreuer und anderen Partnern wurde nach wie vor via E-Mail abgewickelt, da wir \proff nicht von dieser Plattform begeistern konnten.
+Die Vorteile für uns lagen auf der Hand: Wir konnten unsere Mailboxen entlasten und haben unseren gesamte Kommunikation automatisch archiviert.
 
 \section{Integrationsumgebung}
 Die Applikation wird nach jedem erfolgreichen Build von Travis auf Heroku deployed. Die Integrationsinstanz dient zu Demozwecken an Sitzungen und stellt zudem sicher, dass die Webapplikation auch im Kompilierten\footnote{Transpilierung von TypeScript sowie Konkatentierung und ``Minification'' aller Ressourcen} funktioniert.
