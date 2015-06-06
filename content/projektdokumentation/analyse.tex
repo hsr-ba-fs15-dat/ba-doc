@@ -417,7 +417,7 @@ Die herkömmliche Registrierung bietet den Vorteil, dass sie keine Abhängigkeit
 oAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss der Benutzer kein weiteres Passwort wissen.
 \subsection{Fazit}
 Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die oAuth Methode.
-\begin{decision}
+\begin{decision}{Benutzer-Authentifizierung}
 Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns dazu entschieden nur auf die Methoden zur Authentifizierung per GitHub und Facebook zu basieren.
 \end{decision}
 
@@ -443,6 +443,6 @@ Ein neuerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der 
     \label{fig:pd:cookie-token-auth}
 \end{figure}
 \subsection{Fazit}
-\begin{decision}
+\begin{decision}{Session-Authentifizierung}
 Da wir die API vom Frontend so klar wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \acs{JWT}. So könnte die API auch auf einer anderen Domain wie das Frontend liegen, obwohl wir dies noch nicht einsetzen.
 \end{decision}
