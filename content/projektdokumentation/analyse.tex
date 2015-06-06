@@ -17,7 +17,7 @@ Die Applikation besitzt, wenn man die Daten selbst nicht miteinbezieht, ein rela
 In diesem Abschnitt werden die durch den Kunden gewünschten oder zur Realisierung der Anwendungsfälle in \cref{sec:pd:usecases} benötigten Dateiformate und deren Eigenheiten beschrieben.
 
 \subsection{CSV}
-\acf{csv} gilt trotz vielen Schwächen als universellen Austausch/Exportformat für einfache Anwendungsfälle und sollte deshalb zwingend unterstützt werden. Eine \acs{csv} Datei enthält einen Datensatz pro Zeile und die Spalten üblicherweise durch Kommas oder Semikolon getrennt. Die erste Zeile enthält die Namen der einzelnen Felder.
+Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportformat für einfache Anwendungsfälle und sollte deshalb zwingend unterstützt werden. Eine \acs{csv} Datei enthält einen Datensatz pro Zeile und die Spalten üblicherweise durch Kommas oder Semikolon getrennt. Die erste Zeile enthält die Namen der einzelnen Felder.
 
 \subsubsection{Erweiterung mit Typen und Geo-Daten}
 
@@ -46,22 +46,22 @@ GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe
 
 
 \subsection{INTERLIS}
-Interlis besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
+\gls{interlis} besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
 
-Interlis existiert in zwei Versionen: Interlis 1 verwendet ein Record-basiertes Transfer-Format, während für Interlis 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt Interlis 2 eine Erweiterung von Interlis 1 um Objekt-orientierte Features dar.
+\gls{interlis} existiert in zwei Versionen: \gls{interlis} 1 verwendet ein zeilenbasiertes Transfer-Format, während für \gls{interlis} 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt \gls{interlis} 2 eine Erweiterung von \gls{interlis} 1 um Objekt-orientierte Features dar.
 
 \subsection{KML}
-\gls{kml} ist wie \gls{gml} ebenfalls ein auf \gls{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML, ist dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.
+\gls{kml} ist wie \gls{gml} ebenfalls ein auf \acs{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML, ist dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.
 
 
 \subsection{ESRI Shapefile}
-Das Shapefile ist ein von der Firma ESRI spezifiziertes Formt zum Austausch von Geo-Daten. Es wird von fast allen Bibliotheken und Systemen unterstützt und eignet sich somit als universelles Austauschformat für Geo-Daten. Das Shapefile wird immer wieder aufgrund dessen Schwächen kritisiert. Da wären beispielsweise die Limitation der Spaltennamen auf 8 Zeichen sowie von Textspalten auf 255 Zeichen. Aus diesem Grund versuchen viele das veraltete Shapefile durch ein moderneres Format wie GeoJSON oder GeoPackage abzulösen\cite{sfkeller}
+Das Shapefile ist ein von der Firma ESRI spezifiziertes Format zum Austausch von Geo-Daten. Es wird von fast allen Bibliotheken und Systemen unterstützt und eignet sich somit als universelles Austauschformat für Geo-Daten. Das Shapefile wird immer wieder aufgrund dessen Schwächen kritisiert. Da wären beispielsweise die Limitation der Spaltennamen auf 8 Zeichen sowie von Textspalten auf 255 Zeichen. Aus diesem Grund versuchen viele das veraltete Shapefile durch ein moderneres Format wie GeoJSON oder GeoPackage abzulösen \cite{sfkeller}.
 
 \subsection{WFS}
-Bei \gls{wfs} handelt es sich um einen speziellen Webservice für Geo-Daten. Die Daten können üblicherweise im \gls{gml} Format bezogen werden. Da es sich dabei um einen weit verbreiteten Standard von \gls{ogc} handelt, sollte die Applikation einen direkten Bezug von Daten via einem \acs{wfs} Server ermöglichen.
+Bei \gls{wfs} handelt es sich um einen speziellen Webservice für Geo-Daten. Die Daten können üblicherweise im \gls{gml} Format bezogen werden. Da es sich dabei um einen weit verbreiteten Standard des \gls{ogc} handelt, sollte die Applikation einen direkten Bezug von Daten via einem \acs{wfs} Server ermöglichen.
 
 \subsection{XML}
-Da es sich bei \gls{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version ähnlich der von der API von \purl{http://truckinfo.ch} gelieferten in \cref{sec:pd:usecases} beschriebenen Daten. 
+Da es sich bei \acs{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version ähnlich der von der API von \purl{http://truckinfo.ch} gelieferten in \cref{sec:pd:usecases} beschriebenen Daten. 
 
 \subsection{JSON}
 Auch bei JSON handelt es sich um ein Format mit Schachtelungsmöglichkeit. Aus diesem Grund wird auch hier vorerst nur die oberste Ebene betrachtet.

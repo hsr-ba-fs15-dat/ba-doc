@@ -16,7 +16,7 @@ Das dat-Projekt hat folgende Ziele\cite{what-is-dat}:
 \begin{itemize}
 \item Daten sollen automatisch zwischen unterschiedlichen dat-Instanzen synchronisiert werden können. 
 \item Unterstützung grosser Datenmengen\footnote{Milliarden von Datensätzen bzw. Speicherbedarf im \si{\tera\byte}-Bereich}, evtl. mit häufigen Aktualisierungen
-\item Unterstützung von Daten in Tabellenform oder unstrukturiert
+\item Unterstützung von tabellarischen oder unstrukturierten Daten
 \item Plugin-basierte Schnittstelle zu bestehenden Datenbanken/Formaten
 \item Unterstützung für automatisierte Workflows
 \end{itemize}
@@ -65,7 +65,7 @@ Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten 
 dat speichert Daten auf zwei verschiedene Arten:
 \begin{itemize}
 \item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat können diese Daten auch in einer SQL-Datenbank wie Postgres gespeichert werden.
-\item Blob-Daten werden standardmässig im File-System per local-blob-store gespeichert. Dies kann ebenfalls durch eine kompatible Implementation ausgetauscht werden.
+\item BLOB-Daten werden standardmässig im File-System per local-blob-store gespeichert. Dies kann ebenfalls durch eine kompatible Implementation ausgetauscht werden.
 \end{itemize}
 
 \begin{figure}[H]
@@ -117,7 +117,7 @@ Dieses Kapitel beschreibt die Möglichkeiten wie \gls{dat} mittels Schnittstelle
 
 \section{Datscript} %https://github.com/datproject/datscript
 
-Datscript ist eine für spezielle \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:dat:gasket} beschriebene Gasket ersetzt wurde.
+Datscript ist eine \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:dat:gasket} beschriebene Gasket ersetzt wurde.
 
 
 \begin{srclst}{bash}{Datscript Beispiel}
@@ -250,10 +250,10 @@ $ curl -H 'Content-Type: application/json' -d '{"prename":"Markus", "surname":"M
 \end{srclst}
 
 \paragraph{GET /api/rows/:key/:filename} ~\\
-Liefert das Blob mit dem entsprechenden Filenamen, oder eine Fehlermeldung falls nicht verfügbar.
+Liefert das BLOB mit dem entsprechenden Filenamen, oder eine Fehlermeldung falls nicht verfügbar.
 
 \paragraph{POST /api/rows/:key/:filename} ~\\
-Fügt ein neues Blob zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \\
+Fügt ein neues BLOB zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \\
 \mintinline{http}{POST /api/rows/foo/photo.jpg?version=1 HTTP/1.1}
 
 \paragraph{GET /api/session} ~\\
@@ -298,7 +298,7 @@ Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
-dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript API. Dieser Abschnitt zeigt auf welche Interaktionsmöglichkeit mit dem Repository via JavaScript API möglich ist.
+dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript API. Dieser Abschnitt zeigt auf welche Interaktion mit dem Repository via JavaScript API möglich ist.
 
 \begin{srclst}{js}{Laden des dat-Moduls}
 var dat = require('dat')
@@ -320,9 +320,9 @@ Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Para
     \item[db] Benutzerdefinierte \texttt{levelup}-Instanz. Wenn diese Option vorhanden ist wird die \texttt{leveldown}-Option ignoriert und alle Tabellen-basierte Daten werden in dieser DB-Instanz gespeichert.
     \item[blobs] Benutzerdefinierte \texttt{blob}-Datenbank. Default: \mintinline{js}{require('lib/blobs.js')}
     \item[replicator] Benutzerdefinierte Replicator-Instanz. Default: \mintinline{js}{require('lib/replicator.js')}
-    \item[remoteAddress] Falls angegeben started dat im RPC Client-Modus. Default: \mintinline{js}{undefined}
+    \item[remoteAddress] Falls angegeben startet dat im RPC Client-Modus. Default: \mintinline{js}{undefined}
     \item[manifest] Wenn \texttt{remoteAddress} gesetzt ist wird dies als Manifest für RPC verwendet.
-    \item[skim] Wenn \mintinline{js}{true} wird lazy auf Blobs von einer nicht-lokalen Quelle zugegriffen. Default: \mintinline{js}{false}.
+    \item[skim] Wenn \mintinline{js}{true} wird lazy auf BLOBs von einer nicht-lokalen Quelle zugegriffen. Default: \mintinline{js}{false}.
     \item[transformations] siehe Transformationen
     \item[hooks] siehe Transformationen
     \end{description}
@@ -459,7 +459,7 @@ Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die 
 % createWriteStream
 
 \paragraph{\texttt{var writeStream = db.\parahighlight{createWriteStream}([options])}} ~\\
-Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
+Liefert einen schreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
 
 \begin{description}
 \item[options] Objekt mit folgenden Feldern:
