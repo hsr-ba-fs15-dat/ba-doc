@@ -129,6 +129,8 @@ Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
     \caption{Transformations-Beispiel aus der Pentaho Kettle-Dokumentation}
 \end{figure}
 
+Mit GeoKettle\footnote{\url{http://www.geokettle.org/}} existiert eine Geo-Erweiterung. Laut \cite{sfkeller} werde diese nicht weiter entwickelt.
+
 \subsection{Yahoo! Pipes}
 Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor allem das User Interface, welches die grafische Verknüpfung von Datenquellen erlaubt.
 
@@ -137,6 +139,8 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
     \includegraphics[width=2\linewidth/3]{fig/yahoo-pipes}
     \caption{Pipe in Yahoo! Pipes}
 \end{figure}
+
+Yahoo! hat am 4. July 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
 
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
@@ -163,7 +167,10 @@ Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie
 
 
 \chapter{Resultate und Ausblick} \label{sec:tb:results}
+\section{Zielerreichung}
 Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \cref{sec:pd:format-gdal-problems}).
+
+Einige selbst gesteckte Ziele wie z.B. ``Integration SuisseID'' konnten wir aufgrund mangelhafter Dokumentation nicht erreichen.
 
 \begin{figure}[H]
     \centering
@@ -189,7 +196,7 @@ Daten können als Datei oder Gruppe von Dateien hochgeladen oder von einer URL b
 
 Die Resultate von Transformationen präsentieren sich ähnlich wie hochgeladene Dateien.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-transformation-detail}
     \caption{ODH: Details einer Transformation (1)}
@@ -211,6 +218,18 @@ Bereits vorhandene Transformationen können geklont, oder bei eigenen Transforma
     \caption{ODH: Details einer Transformation (2)}
 \end{figure}
 
+\section{Ausblick: Weiterentwicklung}
+
+Für eine Weiterentwicklung sollten insbesondere folgende Punkte in Betracht gezogen werden:
+
+\begin{itemize}
+\item Wechsel auf \acs{gdal} Version 2.0 (sobald verfügbar): Aufgrund von Problemen mit mehreren Format-Treibern wurde für diese Arbeit eine etwas ältere Version eingesetzt (siehe \vref{sec:pd:format-gdal-problems}). Version 2.0 bringt diverse Verbesserungen sowie Treiber für neue Formate mit.
+\item Ausbau der Web-Applikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
+\item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in ODHQL geschrieben werden.
+\end{itemize}
+
+Für weitere Ideen, siehe \vref{sec:tb:further-dev}.
+
 \section{Persönlicher Bericht}
 
 \subsection{Christoph Hüsler}
@@ -221,9 +240,10 @@ Highlight dieser Arbeit war für mich sicher die Implementation des ODHQL-Parser
 Auch die Zusammenarbeit im Team empfand ich als sehr positiv. Trotz einiger Differenzen konnten wir immer miteinander diskutieren und eine Lösung finden. 
 
 \subsection{Remo Liebi}
-Im Rahmen dieses Projektes habe ich mich vor allem um das Front-End gekümmert. Ich war vorher mit Web-Diensten vertraut, habe allerdings noch nie mit AngularJS gearbeitet. Es gelang mir dank der Hilfe von \fscf und \chuf schnell, mich in diesem JavaScript Framework zurechtzufinden.
-\xxx more to come
-
+Im Rahmen dieses Projektes habe ich mich vor allem um das Front-End gekümmert. Ich war vorher mit Web-Diensten vertraut, habe allerdings noch nie mit AngularJS gearbeitet. Es gelang mir dank der Hilfe von \fscf und \chuf schnell, mich in diesem JavaScript Framework einzuarbeiten und zurechtzufinden.\\
+Meine Studienarbeit habe ich grösstenteils in Python geschrieben. Dadurch kannte ich mich in dieser Sprache gut aus und konnte mich auch schnell in das Django Framework einarbeiten.\\
+Highlight dieser Arbeit war für mich die Implementation des Assistenten mit Hilfe von AngularJS. Ich konnte meine Ideen direkt umsetzen und habe viel über AngularJS gelernt.\\
+Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten uns immer gut austauschen und vom Know-How der anderen profitieren.
 \subsection{Fabio Scala}
 \xxx fscala
 
@@ -232,3 +252,5 @@ Im Rahmen dieses Projektes habe ich mich vor allem um das Front-End gekümmert. 
 In erster Linie möchten wir uns bei unserem Betreuer, \proff, für die Unterstützung während der gesamten Laufzeit der Arbeit bedanken. Zudem gilt auch Herrn Dorfschmid von Adasys AG ein besonderer Dank für das konstruktive Gespräch und die architektonische Inspiration für OpenDataHub. 
 
 An dieser Stelle möchten wir uns auch bei Herrn Kalberer, Entwickler von ogrtools und INTERLIS Treiber für GDAL sowie der GDAL Community für die stets rasche Rückmeldung auf Fehlerberichte unsererseits bedanken.
+
+Auch unseren Freunden und Bekannten die unsere Arbeit getestet, kommentiert und korrigiert haben, wollen wir unseren Dank aussprechen.

@@ -500,3 +500,7 @@ bindingoffset=5mm
 
 
 \newcommand*{\parahighlight}[1]{\textcolor{paragraphTitle}{#1}}
+
+% defines a new column type C with a width argument, which centers text
+% see https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}

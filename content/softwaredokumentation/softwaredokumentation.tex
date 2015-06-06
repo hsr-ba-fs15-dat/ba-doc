@@ -1,53 +1,11 @@
 \part{Softwaredokumentation}
-
-\chapter{Installation}
-In diesem Kapitel soll eine Schrittweise Anleitung zur Installation von OpenDataHub auf verschiedenen Plattformen wiedergeben werden.
-\section{Deployment (WSGI)}
-Mittels dem vorkonfigurierten WSGI File kann opendatahub auf gängigen Webservern Deployed werden.
-\begin{srclst}[label=lst:wsgi-configuration]{apache}{Besipiel WSGI-Konfiguration für Apache2 Server}
-<VirtualHost beta.opendatahub.ch:80>
-	ServerAdmin devs@opendatahub.ch
-	WSGIDaemonProcess opendatahub python-path=/var/www/opendatahub:/var/www/opendatahub/venv/lib/python2.7/ site-packages
-	WSGIProcessGroup opendatahub
-	WSGIScriptAlias / /var/www/opendatahub/src/main/python/opendatahub/wsgi.py
-	ErrorLog ${APACHE_LOG_DIR}/opendatahub_error.log
-	CustomLog ${APACHE_LOG_DIR}/opendatahub_access.log combined
-</VirtualHost>
-\end{srclst}
-\subsection{Benötigte apt-packages}
-\begin{itemize}
-\item{vim}
-\item{postgresql-server-dev-9.3}
-\item{python-pip}
-\item{python-dev}
-\item{phantomjs}
-\item{gdal-bin}
-\item{libgdal-dev}
-\item{libgdal1h}
-\item{libgdal1-dev}
-\item{libfreetype6}
-\item{libfreetype6-dev}
-\item{libxml2-dev}
-\item{libxslt-dev}
-\item{python-dev}
-\item{openjdk-7-jre}
-
-\end{itemize}
 \chapter{Entwicklung}
 
 \section{Entwicklungsumgebung}
-Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für opendatahub. Voraussetzung ist eine Installation von vagrant.
+Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für opendatahub. Voraussetzung ist eine Installation von \acs{vagrant}.
+\\
+\acs{vagrant} kann für alle gängigen Betriebsysteme von \url{vagrantup.com} heruntergeladen werden.
 
-\subsection{Vagrant}
-Vagrant ist eine auf Ruby basierte, freie Anwendung, die das Verwalten und Erstellen von virtuellen Maschinen ermöglicht. Vagrant dient eigentlich als Wrapper zwischen der Virtualisierungssoftware (VirtualBox, VMware, Parallels, etc.) und Systemkonfiguartionswerkzeugen (in unserem Fall Puppet).
-Der grosse Mehrwert von Vagrant ergibt sich dadurch, dass es komplett Plattform- und Programmiersprachenunabhängig ist und somit für verschiedene Softwareprojekte verwendet werden kann. Im Vagrantfile wird eine virtuelle Maschine definiert und konfiguriert. Dieses File wird mit dem Projekt in der Versonskontrolle abgelegt, so kann auf den unterschiedlichen Host Systemen gewährleistet werden, dass mit der selben Entwicklungsumgebung gearbeitet werden kann und so alle Abhängigkeiten, ohne das Hostsystem zu beeinflussen, gewährleistet werden.\\
-
-
-Vagrant kann für alle Systeme von \url{vagrantup.com} heruntergeladen werden.
-Für Mac OS X Systeme bietet sich die Installation via homebrew an.
-\begin{src}{shell}
-brew install vagrant
-\end{src}
 
 \subsection{Klonen des Git-Repository}
 Der nächste Schritt ist das Klonen des Git Repositorys und starten der vagrant vm.
@@ -56,19 +14,63 @@ git clone git@github.com:hsr-ba-fs15-dat/vm.git
 cd vm
 vagrant up
 \end{src}
-
-
-\subsection{Arbeiten mit Vagrant}
-Um eine \gls{vm} zu starten, führt man den Befehl \mintinline{shell}{vagrant up} aus. Beim Ausführen des Befehles wird die \gls{vm} gemäss den Vorgaben im Vagrantfile initialisiert. Später kann man mittels \mintinline{shell}{vagrant ssh} per SSH direkt in die \gls{vm} verbunden werden. Wird die Maschine (vorübergehend) nicht mehr gebraucht, kann mittels \mintinline{shell}{vagrant suspend} die \gls{vm} in den Ruhezustand gebracht werden.
+Wenn diese Befehle in eine *nix Konsole eingegeben werden, wird automatisch eine passende VM heruntergeladen und konfiguriert. Unter Umständen muss die Konfiguration angepasst werden. Dies kann im Config-File von puppet gemacht werden. (vm/puphpet/config.yaml)
 
 
 \subsection{Initialisieren von Django}
 Um mit der Entwicklung starten, folgende Befehle in der Konsole eingeben:
 \begin{src}{shell}
 vagrant ssh #verbindet mit der SSH Umgebung
+make dev #initialisiert die venv und installiert weitere benötigte Packete
+exit #ausloggen ist notwendig, damit das virtuelle environment korrekt geladen wird.
 \end{src}
-\subsection{IDE}
-Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. In den Projekteinstellungen muss nun noch der Projektinterpreter auf die Vagrant instanz gelegt werden, damit alle Debugging Features funktionieren.
+\subsection{PyCharm}
+Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung \acs{PyCharm} für Python aus dem Hause JetBrains.
+\subsection{Projekt erstellen}
+Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. 
+
+\subsection{Projektinterpreter}
+In den Projekteinstellungen muss nun noch der Projektinterpreter auf die Vagrant-Instanz gelegt werden, damit alle Debugging Features funktionieren.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{fig/vagrant_settings}
+	\caption{Übersicht Einstellungen: Vagrant}
+	\label{fig:sd:vagrant-settings}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{fig/project_interpreter_detail}
+	\caption{Übersicht Einstellungen: Projektinterpreter}
+	\label{fig:sd:project-interpreter-detail}
+\end{figure}
+
+
+\subsection{File-Watchers}
+Für die Verwendung von \ac{ts} sollte ein File-Watcher in \acs{PyCharm} eingerichtet werden. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{fig/watcher_typescript}
+	\caption{Übersicht Einstellungen: FileWatcher: TypeScript}
+	\label{fig:sd:watcher-typescript}
+\end{figure}
+Für die Verwendung von \ac{ts} muss tsc auf der lokalen Maschine installiert sein.
+
+\subsection{Build}
+Das ganze Projekt kann in der \ac{vm} gebuildet werden. 
+\begin{src}{shell}
+cd <PROJECT SOURCE>/vm
+vagrant ssh #verbindet direkt in die vm
+pyb -v #startet den Build-Prozess
+\end{src}
+\subsection{grunt}
+Für die Entwicklung im FrontEnd kann ein kürzerer Weg gewählt werden \textendash Grunt.
+Grunt wird wie folgt aufgeführt
+\begin{src}{shell}
+vagrant ssh #verbindet direkt in die vm
+cd src/main/webapp # in den FrontEnd Ordner wechseln
+grunt # FrontEnd Build startet.
+\end{src}
+Dabei werden sämtliche Less-Files, TS-Files kompiliert und geprüft.
 \subsection{Deployment}
 Seit der Vagrant Version 1.7 vom Dezember 2014 ist Deployment mittels Vagrant möglich. Durch den Befehl \mintinline{shell}{vagrant push} kann, je nach Konfiguration, auf Heroku, SFTP und FTP sowie durch selbstgeschriebene Kommandozeilenskripte oder Atlas deployed werden.
 \\Syntaxbeispiel für einen FTP-push: \cite{vagrant-deployment}
@@ -82,17 +84,20 @@ config.push.define "ftp" do |push|
   push.dir = "/"
 end
 \end{src}
-Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach FTP-Server oder Heroku Instanz noch konfiguriert werden.
-\section{Tests}
+Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach FTP-Server oder Heroku Instanz konfiguriert werden.
 
-
+\subsection{Tests}
+Beim Build-Prozess werden Tests automatisch ausgeführt. Um nur die Python Tests auszuführen wird folgender Befehl verwendet:
+\begin{src}{shell}
+pyb -v django_test
+\end{src}
 
 
 \chapter{Benutzerhandbuch}
 
 \section{Datensuche und Bezug}
 
-\subsection{Datenübersicht und Suche}
+
 \label{sec:sd:daten-suchen}
 
 \begin{figure}[H]
@@ -122,7 +127,7 @@ Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach
 \end{figure}
 
 \begin{enumerate}
-\item Nachdem die gewünschten Daten wie in \cref{sec:sd:daten-suchen} beschrieben gefunden wurden, können diese in einem von \acl{odh} unterstützten Format bezogen werden
+
 \item Durch Klick auf ``Herunterladen'' erscheint eine Liste der möglichen Bezugsformate wie in \cref{fig:sd:screenshot-daten-herunterladen}
 \item Es kann nun ein Format wie beispielsweise Excel angeklickt werden
 \item Die Applikation bzw. der Browser wird nun eine Datei zum Download anbieten
@@ -212,7 +217,7 @@ Die zweite Möglichkeit welche vor allem für sich häufig ändernde Daten oder 
 
 Dies läuft weitestgehend gleich wie in \cref{sec:sd:teilen-datei} ab. Der einzige Unterschied besteht darin, dass ``Online Daten'' selektiert und dann eine Webadresse hinterlegt wird. Es werden folgende Arten von Online Daten unterstützt:
 
-\begin{itemize}
+
 \item Alle herkömmlichen Adressen die auf Dateien verweisen wie beispielsweise \path{http://www.hsr.ch/meine-test-datei.xml}, dasselbe gilt für \path{https://}
 \item \gls{wfs} Webservice Adressen wie beispielsweise \url{http://maps.zh.ch/wfs/TbaBaustellenZHWFS}
 \end{itemize}
@@ -223,11 +228,11 @@ Die Angabe der Abfrage-Intervalls gibt an, nach welcher Zeit die Daten als ``ver
 \paragraph{Wichtig} Zur Erstellung von Transformationen ist eine Anmeldung erforderlich. Diese ist in \vref{sec:sd:anmeldung} beschrieben.
 
 \begin{figure}[H]
-	\centering
+
 	\includegraphics[width=\linewidth]{fig/screenshot-neue-transformation}
 	\label{fig:sd:screenshot-neue-transformation}
 	\caption{Startseite für neue Transformation}
-\end{figure}
+
 
 \begin{enumerate}
 \item \purl{http://beta.opendatahub.ch} $\to$ Neue Transformation aufrufen
@@ -312,5 +317,3 @@ Mit dem Assistenten können weniger versierte Benutzer schnell eine Transformati
 \end{figure}
 
 \cref{fig:sd:screenshot-manuelles-bearbeiten} zeigt eine Erweiterung der mit dem Assistenten erstellten Abfrage, wobei Vor- und Nachname zusammengeführt werden um so die Spalte ``Name'' zu erzeugen.
-
-
