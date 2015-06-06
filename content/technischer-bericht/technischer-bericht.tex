@@ -129,6 +129,8 @@ Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
     \caption{Transformations-Beispiel aus der Pentaho Kettle-Dokumentation}
 \end{figure}
 
+Mit GeoKettle\footnote{\url{http://www.geokettle.org/}} existiert eine Geo-Erweiterung. Laut \cite{sfkeller} werde diese nicht weiter entwickelt.
+
 \subsection{Yahoo! Pipes}
 Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor allem das User Interface, welches die grafische Verknüpfung von Datenquellen erlaubt.
 
@@ -137,6 +139,8 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
     \includegraphics[width=2\linewidth/3]{fig/yahoo-pipes}
     \caption{Pipe in Yahoo! Pipes}
 \end{figure}
+
+Yahoo! hat am 4. July 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
 
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
@@ -213,8 +217,19 @@ Bereits vorhandene Transformationen können geklont, oder bei eigenen Transforma
     \includegraphics[width=2\linewidth/3]{fig/odh-edit-transformation}
     \caption{ODH: Details einer Transformation (2)}
 \end{figure}
+
 \section{Ausblick: Weiterentwicklung}
-\xxx[(nur wichtigste Punkte)]
+
+Für eine Weiterentwicklung sollten insbesondere folgende Punkte in Betracht gezogen werden:
+
+\begin{itemize}
+\item Wechsel auf \acs{gdal} Version 2.0 (sobald verfügbar): Aufgrund von Problemen mit mehreren Format-Treibern wurde für diese Arbeit eine etwas ältere Version eingesetzt (siehe \vref{sec:pd:format-gdal-problems}). Version 2.0 bringt diverse Verbesserungen sowie Treiber für neue Formate mit.
+\item Ausbau der Web-Applikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
+\item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in ODHQL geschrieben werden.
+\end{itemize}
+
+Für weitere Ideen, siehe \vref{sec:tb:further-dev}.
+
 \section{Persönlicher Bericht}
 
 \subsection{Christoph Hüsler}
