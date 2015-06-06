@@ -50,16 +50,16 @@ In der Realität interessieren sich die Anbieter von Geo-Software jedoch nicht f
 
 \blockquote[weiter aus \cite{rahmenvorst-interlisopen}]{Besonders gravierend wird die Situation, weil es eine Vielzahl von Systembetreibern und eine stets wachsende Zahl von Anwendungsbereichen gibt. All diese Systembetreiber (z.B. Amtsstellen von Bund, Kantone und Gemeinden, Netzbetreiber, SBB, private Firmen) sind auf den korrekten Austausch von Daten angewiesen. Es macht aber wenig Sinn, wenn sie sich alle mit all den verschiedenen technischen Fragen befassen müssen. Der Aufwand ist erheblich. Zudem darf das Fehlerrisiko nicht unterschätzt werden.}
 
-Da für verschiedene Anwendungsbereiche unterschiedliche Modelle notwendig sind, entsteht ein beträchtlicher Aufwand. Erschwerend kommen Probleme bei Beschaffung und Betrieb von Konversions-Systemen oder die Unterstützung von Partnern welche nicht mit \gls{interlis} umgehen können hinzu.
+Da für verschiedene Anwendungsbereiche unterschiedliche Modelle notwendig sind, entsteht ein beträchtlicher Aufwand. Erschwerend kommen Probleme bei Beschaffung und Betrieb von Konversions-Systemen oder die Unterstützung von Partnern, welche nicht mit \gls{interlis} umgehen können, hinzu.
 
 \paragraph{Vision}
 Langfristig sollen sich die beteiligten Fachstellen um ihr Fachgebiet kümmern können, anstatt viel Energie für die technischen Details aufwenden zu müssen. 
 
 \section{Ziele}
-Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- und Implementations-Details, statt sich mit Modell- oder Fach-Fragen zu beschäftigen. Um Bewegung in diese Situation zu bringen, soll ein Prototyp einer Konvertierungs- und Transformations-Plattform implementiert werden. Dieser dient als Demonstrationsobjekt für spätere Weiterentwicklungen und soll aufzeigen, wie eine solche Plattform aussehen könnte und wo allfällige Stolpersteine zu finden sind.
+Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- und Implementations-Details, statt sich mit Modell- oder Fach-Fragen zu beschäftigen\cite{sfkeller}. Um Bewegung in diese Situation zu bringen, soll ein Prototyp einer Konvertierungs- und Transformations-Plattform implementiert werden. Dieser dient als Demonstrationsobjekt für spätere Weiterentwicklungen und soll aufzeigen, wie eine solche Plattform aussehen könnte und wo allfällige Stolpersteine zu finden sind.
 
 \paragraph{Projekt dat}
-Es ist wichtig anzumerken, dass der ursprüngliche Titel dieser Arbeit ``Project dat HSR'' lautete und sich mit der Dokumentation und der Erweiterung des Projekt dat\footnote{\url{http://dat-data.com/}} befassen sollte. Dieses wurde während der Arbeit aufgrund mangelnder Reife des Projekts abgebrochen und ist im \vref{part:dat} dokumentiert.
+Es ist wichtig anzumerken, dass der ursprüngliche Titel dieser Arbeit ``Project dat HSR'' lautete und sich mit der Dokumentation und der Erweiterung des Projekts dat\footnote{\url{http://dat-data.com/}} befassen sollte. Dies wurde während der Arbeit aufgrund mangelnder Reife von \gls{dat} abgebrochen und ist im \vref{part:dat} dokumentiert.
 
 \section{Rahmenbedingungen}
 
@@ -118,7 +118,7 @@ opendatahub.it ist eine italienische, ebenfalls \gls{ckan}-basierte Plattform.
 \gls{fme} ist ein komerzielles Produkt der Safe Software Inc. Der Fokus liegt auf der Transformation, Konvertierung und Integration von Daten in einer Desktop-Applikation.
 
 \paragraph{geopol.ch}
-Geopol ist eine Web-to-FME Schnittstelle.
+Geopol ist eine kommerzielle Web-to-FME Schnittstelle.
 
 \subsection{Pentaho Kettle}
 Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
@@ -147,7 +147,7 @@ OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zu
 
 \section{Konversion und Transformation}
 
-In diesem Abschnitt wird das grobe Umsetzungskonzept von \gls{odh}, welches in \cref{fig:tb:arch-overview} ersichtlich ist, erläutert.
+In diesem Abschnitt wird das grobe Umsetzungskonzept von \gls{odh}, in \cref{fig:tb:arch-overview} ersichtlich, erläutert.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{../projektdokumentation/fig/ODH-Architecture-Overview}
@@ -156,21 +156,24 @@ In diesem Abschnitt wird das grobe Umsetzungskonzept von \gls{odh}, welches in \
 \end{figure}
 
 \subsection{Internes Format}
-Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation der Daten in Betracht gezogen und im Hinblick auf deren Vor- und Nachteile bezüglich Machbarkeit, Komplexität und Performance evaluiert. Die Daten werden von Parser-Modulen in sogenannte DataFrame Objekte geladen. Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pandas.pydata.org/}} Python-Bibliothek. Pandas ist eine mächtige ``Data-Analysis'' Bibliothek, welche aufgrund der zugrundeliegenden NumPy\footnote{\url{http://www.numpy.org/}} Bibliothek sehr effizient ist.
+Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation der Daten in Betracht gezogen und im Hinblick auf deren Vor- und Nachteile bezüglich Machbarkeit, Komplexität und Performance evaluiert. Die Daten werden von Parser-Modulen in sogenannte DataFrame Objekte geladen. 
+\xxx[chuesler: And down the rabbit hole we go...]
+Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pandas.pydata.org/}} Python-Bibliothek. Pandas ist eine mächtige ``Data-Analysis'' Bibliothek, welche aufgrund der zugrundeliegenden NumPy\footnote{\url{http://www.numpy.org/}} Bibliothek sehr effizient ist.
 Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
 
 \subsection{Schema-Transformation}
 Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
 
 \subsection{Erweiterbarkeit}
-Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die vorhandenen Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
+Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
 
 
 \chapter{Resultate und Ausblick} \label{sec:tb:results}
 \section{Zielerreichung}
-Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \vref{sec:pd:format-gdal-problems}).
+Mit Ausnahme der Unterstützung des Formats GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \vref{sec:pd:format-gdal-problems}).
 
 Einige selbst gesteckte Ziele wie z.B. ``Integration SuisseID'' konnten wir aufgrund mangelhafter Dokumentation nicht erreichen.
+\xxx[chuesler: wird suissid sonst noch wo erwähnt hier drin?]
 
 \begin{figure}[H]
     \centering
@@ -224,7 +227,7 @@ Für eine Weiterentwicklung sollten insbesondere folgende Punkte in Betracht gez
 
 \begin{itemize}
 \item Wechsel auf \acs{gdal} Version 2.0 (sobald verfügbar): Aufgrund von Problemen mit mehreren Format-Treibern wurde für diese Arbeit eine etwas ältere Version eingesetzt (siehe \vref{sec:pd:format-gdal-problems}). Version 2.0 bringt diverse Verbesserungen sowie Treiber für neue Formate mit.
-\item Ausbau der Web-Applikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
+\item Ausbau der Webapplikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
 \item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in \acs{odhql} geschrieben werden.
 \end{itemize}
 
@@ -253,8 +256,8 @@ Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten
 
 
 \section{Dank}
-In erster Linie möchten wir uns bei unserem Betreuer, \proff, für die Unterstützung während der gesamten Laufzeit der Arbeit bedanken. Zudem gilt auch Herrn Dorfschmid von Adasys AG ein besonderer Dank für das konstruktive Gespräch und die architektonische Inspiration für OpenDataHub. 
+In erster Linie bedanken wir uns bei unserem Betreuer, \proff, für die Unterstützung während der gesamten Laufzeit der Arbeit. Zudem gilt auch Herrn Dorfschmid von Adasys AG ein besonderer Dank für das konstruktive Gespräch und die architektonische Inspiration für OpenDataHub. 
 
-An dieser Stelle möchten wir uns auch bei Herrn Kalberer, Entwickler von ogrtools und \gls{interlis} Treiber für GDAL sowie der GDAL Community für die stets rasche Rückmeldung auf Fehlerberichte unsererseits bedanken.
+Weiter bedanken wir uns bei Herrn Kalberer, Entwickler von ogrtools und \gls{interlis} Treiber für GDAL sowie der GDAL Community für die stets rasche Rückmeldung auf Fehlerberichte unsererseits.
 
-Auch unseren Freunden und Bekannten die unsere Arbeit getestet, kommentiert und korrigiert haben, wollen wir unseren Dank aussprechen.
+Auch unseren Freunden und Bekannten die unsere Arbeit getestet, kommentiert und korrigiert haben, sprechen wir unseren Dank aus.

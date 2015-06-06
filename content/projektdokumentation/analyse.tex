@@ -21,11 +21,11 @@ Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportform
 
 \subsubsection{Erweiterung mit Typen und Geo-Daten}
 
-\gls{geocsv} ist eine durch das Geometa-Lab der HSR spezifizierte Erweiterung der CSV Spezifikation um Geo-Daten mit folgenden Eigenheiten\cite{sfkeller,geocsv,gdal-csv}:
+\gls{geocsv} ist eine durch das Geometa-Lab der HSR spezifizierte Erweiterung von CSV um Geo-Daten mit folgenden Eigenheiten\cite{sfkeller,geocsv,gdal-csv}:
 
 \begin{itemize}
-\item Eine optionale Datei mit Endung \path{.csvt} spezifiziert auf einer einzigen Zeile die Datentypen genauer
-\item Der spezielle Datentyp ``WKT'' für Geometrien im \gls{wkt} Format
+\item Eine optionale Datei mit Endung \path{.csvt} spezifiziert auf einer einzigen Zeile die verwendeten Datentypen
+\item Den spezielle Datentyp ``WKT'' für Geometrien im \gls{wkt} Format
 \item Die speziellen Datentypen ``Point(x)'', ``Point(y)'' oder ``CoordX'' bzw. ``CoordY'' für den Spezialfall einer Punktgeometrie
 \item Eine optionale Datei mit der Endung \path{.prj} zur Angabe des Referenzsystems, ebenfalls im \gls{wkt} Format\footnote{Achtung, das \path{.prf} Format von ESRI sieht sehr ähnlich aus, enthält jedoch weniger Informationen!}
 \item Nur ein Geometrie-Objekt/Spalte pro Datei
@@ -33,10 +33,10 @@ Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportform
 
 
 \subsection{Excel}
-Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten\cite{sfkeller} oder Daten im Excel Format anliefern, müssen sowohl der alte Excel 2003 (xls) sowie der neue OpenXML (xlsx) Formate unterstützt werden.
+Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten\cite{sfkeller} oder Daten im Excel Format anliefern, müssen sowohl das alte Excel 2003 (xls) sowie das neue OpenXML (xlsx) Format unterstützt werden.
 
 \subsection{GeoJSON}
-\gls{geojson} ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten. Dieses Format ist heutzutage weit verbreitet und fast überall wo mit Geo-Daten hantiert wird unterstützt.
+\gls{geojson} ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten. Dieses Format ist heutzutage weit verbreitet und fast überall, wo mit Geo-Daten hantiert wird, unterstützt.
 
 \subsection{GeoPackage}
 GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe an SpatiaLite, welches mit Version 4.2 auf GeoPackage wechselt.
@@ -51,21 +51,20 @@ GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe
 \gls{interlis} existiert in zwei Versionen: \gls{interlis} 1 verwendet ein zeilenbasiertes Transfer-Format, während für \gls{interlis} 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt \gls{interlis} 2 eine Erweiterung von \gls{interlis} 1 um Objekt-orientierte Features dar.
 
 \subsection{KML}
-\gls{kml} ist wie \gls{gml} ebenfalls ein auf \acs{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML, ist dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.
+\gls{kml} ist wie \gls{gml} ebenfalls ein auf \acs{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML ist, dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.
 
 
 \subsection{ESRI Shapefile}
-Das Shapefile ist ein von der Firma ESRI spezifiziertes Format zum Austausch von Geo-Daten. Es wird von fast allen Bibliotheken und Systemen unterstützt und eignet sich somit als universelles Austauschformat für Geo-Daten. Das Shapefile wird immer wieder aufgrund dessen Schwächen kritisiert. Da wären beispielsweise die Limitation der Spaltennamen auf 8 Zeichen sowie von Textspalten auf 255 Zeichen. Aus diesem Grund versuchen viele das veraltete Shapefile durch ein moderneres Format wie GeoJSON oder GeoPackage abzulösen \cite{sfkeller}.
+Das Shapefile ist ein von der Firma ESRI spezifiziertes Format zum Austausch von Geo-Daten. Es wird von fast allen Bibliotheken und Systemen unterstützt und daher oft als universelles Austauschformat für Geo-Daten verwendet. Das Shapefile wird immer wieder aufgrund diverser Schwächen kritisiert, z.B. die Limitation der Spaltennamen auf 8 Zeichen sowie von Textspalten auf 255 Zeichen. Aus diesem Grund wird versucht, das veraltete Shapefile durch ein moderneres Format wie GeoJSON oder GeoPackage abzulösen \cite{sfkeller}.
 
 \subsection{WFS}
 Bei \gls{wfs} handelt es sich um einen speziellen Webservice für Geo-Daten. Die Daten können üblicherweise im \gls{gml} Format bezogen werden. Da es sich dabei um einen weit verbreiteten Standard des \gls{ogc} handelt, sollte die Applikation einen direkten Bezug von Daten via einem \acs{wfs} Server ermöglichen.
 
 \subsection{XML}
-Da es sich bei \acs{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version ähnlich der von der API von \purl{http://truckinfo.ch} gelieferten in \cref{sec:pd:usecases} beschriebenen Daten. 
+Da es sich bei \acs{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version unterstützt, ähnlich der von der API von \purl{http://truckinfo.ch} gelieferten und in \cref{sec:pd:usecases} beschriebenen Daten. 
 
 \subsection{JSON}
 Auch bei JSON handelt es sich um ein Format mit Schachtelungsmöglichkeit. Aus diesem Grund wird auch hier vorerst nur die oberste Ebene betrachtet.
-
 
 \section{Datenspeicherung}
 Ein Ziel dieser Arbeit ist die Erstellung eines Daten-Hubs, welcher es Anbietern ermöglicht, ihre Daten anderen zur Verfügung zu stellen. 
