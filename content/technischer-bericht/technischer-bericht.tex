@@ -43,7 +43,7 @@ Persönlicher Bericht der Studierenden zu ihren Erfahrungen bei der Arbeit. Bei
 \paragraph{Rückblick}
 \blockquote[aus \cite{rahmenvorst-interlisopen}]{Im Rahmen der Reform der Amtlichen Vermessung (RAV) war die Methodenfreiheit ein zentrales Stichwort. Man meinte damit insbesondere auch die Freiheit, ein für die Aufgabe geeignetes Programm-System frei wählen zu können, ohne deswegen Probleme mit dem Datenaustausch mit anderen Systemen zu haben und sagte darum: In der (öffentlichen) GeoSzene-Schweiz einigt man sich auf den Datenaustausch-Mechanismus INTERLIS.}
 
-Für den Datenaustausch kümmern sich die beteiligten Systeme dann nur noch um die Konvertierung von bzw. nach Interlis. Optimalerweise wird Interlis von den beteiligten Systemen bereits unterstützt.
+Für den Datenaustausch kümmern sich die beteiligten Systeme dann nur noch um die Konvertierung von bzw. nach \gls{interlis}. Optimalerweise wird \gls{interlis} von den beteiligten Systemen bereits unterstützt.
 
 \paragraph{Realität}
 In der Realität interessieren sich die Anbieter von Geo-Software jedoch nicht für \gls{interlis}, welches praktisch ausschliesslich in der Schweiz verwendet wird. Als Folge davon muss die Konvertierung von und zu \gls{interlis} von den jeweils beteiligten Stellen vorgenommen werden.
@@ -82,7 +82,7 @@ In diesem Abschnitt werden bereits existierende Datenaustauschplattformen und Sc
 \subsection{dat}
 Das ``dat''-Projekt will den Bezug und Austausch von Daten vereinfachen. Zusätzlich zum Datenspeicher wird dazu ein Synchronisierungsprotokoll, angelehnt an Replikationsprotokolle von bekannten Datenbanksystemen, verwendet.
 
-Leider befindet sich das Projekt noch in den Kinderschuhen. Daher wurde beschlossen, Projekt dat nicht zu verwenden.
+Leider befindet sich das Projekt noch in den Kinderschuhen. Aus diesem Grund wurde beschlossen, Projekt dat nicht zu verwenden.
 
 Für eine detailliertere Erläuterung, siehe \cref{part:dat}.
 
@@ -91,7 +91,7 @@ Für eine detailliertere Erläuterung, siehe \cref{part:dat}.
 
 \gls{ckan} hat keine Unterstützung für Daten-Konvertierung oder -Transformation.
 
-Leider wurden wir erst relativ spät auf \gls{ckan} aufmerksam. Daher wurde zusammen mit dem Betreuer beschlossen, bei dieser Arbeit den Schwerpunkt auf die Konvertierung und Transformation der Daten zu legen und allenfalls in einer späteren Arbeit \gls{ckan} und ODH zu integrieren.
+Leider wurden wir erst relativ spät auf \gls{ckan} aufmerksam. Daher wurde zusammen mit dem Betreuer beschlossen, bei dieser Arbeit den Schwerpunkt auf die Konvertierung und Transformation der Daten zu legen und allenfalls in einer späteren Arbeit \gls{ckan} und \acl{odh} zu integrieren.
 
 \paragraph{opendata.admin.ch}
 Open Data-Portal des Bundes, basierend auf \gls{ckan}.
@@ -129,7 +129,7 @@ Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben.
     \caption{Transformations-Beispiel aus der Pentaho Kettle-Dokumentation}
 \end{figure}
 
-Mit GeoKettle\footnote{\url{http://www.geokettle.org/}} existiert eine Geo-Erweiterung. Laut \cite{sfkeller} werde diese nicht weiter entwickelt.
+Mit GeoKettle\footnote{\url{http://www.geokettle.org/}} existiert eine Geo-Erweiterung. Diese wird jedoch angeblich nicht weiter entwickelt \cite{sfkeller}.
 
 \subsection{Yahoo! Pipes}
 Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor allem das User Interface, welches die grafische Verknüpfung von Datenquellen erlaubt.
@@ -140,7 +140,7 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
     \caption{Pipe in Yahoo! Pipes}
 \end{figure}
 
-Yahoo! hat am 4. July 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
+Yahoo! hat am 4. Juli 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
 
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
@@ -160,15 +160,15 @@ Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation de
 Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
 
 \subsection{Schema-Transformation}
-Auch bei der Homogenisierung des Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eines Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
+Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
 
 \subsection{Erweiterbarkeit}
-Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die vorhandenen Funktionen der \acf{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
+Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die vorhandenen Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
 
 
 \chapter{Resultate und Ausblick} \label{sec:tb:results}
 \section{Zielerreichung}
-Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \cref{sec:pd:format-gdal-problems}).
+Mit Ausnahme der Unterstützung von GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \vref{sec:pd:format-gdal-problems}).
 
 Einige selbst gesteckte Ziele wie z.B. ``Integration SuisseID'' konnten wir aufgrund mangelhafter Dokumentation nicht erreichen.
 
@@ -202,7 +202,7 @@ Die Resultate von Transformationen präsentieren sich ähnlich wie hochgeladene 
     \caption{ODH: Details einer Transformation (1)}
 \end{figure}
 
-Mit minimaler Einführung können einfache Transformationen zusammengeklickt werden, mit ODHQL-Kenntnissen können auch komplexe Transformationen geschrieben werden. Als Datenquellen dienen hochgeladene Daten, \acs{wfs}-Server oder bereits bestehende Transformationen.
+Mit minimaler Einführung können einfache Transformationen zusammengeklickt werden. Mit \acs{odhql}-Kenntnissen können auch komplexe Transformationen geschrieben werden. Als Datenquellen dienen hochgeladene Daten, \acs{wfs}-Server oder bereits bestehende Transformationen.
 
 \begin{figure}[H]
     \centering
@@ -225,7 +225,7 @@ Für eine Weiterentwicklung sollten insbesondere folgende Punkte in Betracht gez
 \begin{itemize}
 \item Wechsel auf \acs{gdal} Version 2.0 (sobald verfügbar): Aufgrund von Problemen mit mehreren Format-Treibern wurde für diese Arbeit eine etwas ältere Version eingesetzt (siehe \vref{sec:pd:format-gdal-problems}). Version 2.0 bringt diverse Verbesserungen sowie Treiber für neue Formate mit.
 \item Ausbau der Web-Applikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
-\item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in ODHQL geschrieben werden.
+\item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in \acs{odhql} geschrieben werden.
 \end{itemize}
 
 Für weitere Ideen, siehe \vref{sec:tb:further-dev}.
@@ -235,22 +235,26 @@ Für weitere Ideen, siehe \vref{sec:tb:further-dev}.
 \subsection{Christoph Hüsler}
 Meine Python-Vorkenntnisse waren relativ beschränkt - ich kannte die Syntax von Code-Beispielen, die mir über die Jahre im Internet begegnet sind und ich hatte bereits ein paar kleinere Skripts angepasst, aber nie ein eigenes Projekt mit Python realisiert. Trotzdem gelang es mir schnell, mich einzuarbeiten.
 
-Highlight dieser Arbeit war für mich sicher die Implementation des ODHQL-Parsers mit pyparsing - ich kann dieses Modul nur empfehlen. 
+Highlight dieser Arbeit war für mich sicher die Implementation des \acs{odhql}-Parsers mit PyParsing\footnote{https://pyparsing.wikispaces.com/} - ich kann dieses Modul nur empfehlen. 
 
 Auch die Zusammenarbeit im Team empfand ich als sehr positiv. Trotz einiger Differenzen konnten wir immer miteinander diskutieren und eine Lösung finden. 
 
 \subsection{Remo Liebi}
-Im Rahmen dieses Projektes habe ich mich vor allem um das Front-End gekümmert. Ich war vorher mit Web-Diensten vertraut, habe allerdings noch nie mit AngularJS gearbeitet. Es gelang mir dank der Hilfe von \fscf und \chuf schnell, mich in diesem JavaScript Framework einzuarbeiten und zurechtzufinden.\\
-Meine Studienarbeit habe ich grösstenteils in Python geschrieben. Dadurch kannte ich mich in dieser Sprache gut aus und konnte mich auch schnell in das Django Framework einarbeiten.\\
-Highlight dieser Arbeit war für mich die Implementation des Assistenten mit Hilfe von AngularJS. Ich konnte meine Ideen direkt umsetzen und habe viel über AngularJS gelernt.\\
-Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten uns immer gut austauschen und vom Know-How der anderen profitieren.
+Im Rahmen dieses Projektes habe ich mich vor allem um das Front-End gekümmert. Ich war vorher mit Web-Diensten vertraut, habe allerdings noch nie mit AngularJS gearbeitet. Es gelang mir dank der Hilfe von \fscf und \chuf schnell, mich in diesem JavaScript Framework einzuarbeiten und zurechtzufinden.
+
+Meine Studienarbeit habe ich grösstenteils in Python geschrieben. Dadurch kannte ich mich in dieser Sprache gut aus und konnte mich auch schnell in das Django Framework einarbeiten.
+
+Highlight dieser Arbeit war für mich die Implementation des Assistenten mit Hilfe von AngularJS. Ich konnte meine Ideen direkt umsetzen und habe viel über AngularJS gelernt.
+
+Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten uns immer gut austauschen und vom Know-how der anderen profitieren.
+
 \subsection{Fabio Scala}
-\xxx fscala
+\xxx[fscala]
 
 
 \section{Dank}
 In erster Linie möchten wir uns bei unserem Betreuer, \proff, für die Unterstützung während der gesamten Laufzeit der Arbeit bedanken. Zudem gilt auch Herrn Dorfschmid von Adasys AG ein besonderer Dank für das konstruktive Gespräch und die architektonische Inspiration für OpenDataHub. 
 
-An dieser Stelle möchten wir uns auch bei Herrn Kalberer, Entwickler von ogrtools und INTERLIS Treiber für GDAL sowie der GDAL Community für die stets rasche Rückmeldung auf Fehlerberichte unsererseits bedanken.
+An dieser Stelle möchten wir uns auch bei Herrn Kalberer, Entwickler von ogrtools und \gls{interlis} Treiber für GDAL sowie der GDAL Community für die stets rasche Rückmeldung auf Fehlerberichte unsererseits bedanken.
 
 Auch unseren Freunden und Bekannten die unsere Arbeit getestet, kommentiert und korrigiert haben, wollen wir unseren Dank aussprechen.
