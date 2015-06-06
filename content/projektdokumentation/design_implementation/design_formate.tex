@@ -32,7 +32,7 @@ Folgende GDAL-Versionen stehen zum aktuellen Zeitpunkt zur Verfügung:
 \item 2.0.0beta1
 \end{itemize}
 
-Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. Der Betreuer wünschte jedoch, dass wenn möglich Unterstützung für das relativ neue Format GeoPackage eingebaut wird. GDAL 1.10.1 unterstützt GeoPackage nicht. Im Versuch, diese Unterstützung einzubauen wurde GDAL selbst kompiliert. Dem Betreuer waren Probleme mit GDAL 1.11.2 bekannt, weswegen 1.11.1 gewählt wurde.
+Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. \proff wünschte jedoch, dass wenn möglich Unterstützung für das relativ neue Format GeoPackage eingebaut wird. GDAL 1.10.1 unterstützt GeoPackage nicht. Im Versuch, diese Unterstützung einzubauen wurde GDAL selbst kompiliert. Dem Betreuer waren Probleme mit GDAL 1.11.2 bekannt, weswegen 1.11.1 gewählt wurde.
 
 In Tests wurden folgende Probleme gefunden:
 \begin{itemize}
@@ -58,8 +58,9 @@ Daher wird vorerst GDAL 1.10.1 eingesetzt.
 \end{decision}
 
 \subsection{Interlis 2}
+\begin{decision}[label=dec:pd:no_interlis2]{Kein Interlis2 Support}
 Aufgrund von Problemen mit dem Format-Support in ogr2ogr wurde in Absprache mit dem Betreuer entschieden, Unterstützung für Interlis 2 nicht zu implementieren. Siehe dazu das Sitzungsprotokoll vom 15.04.2015.
-
+\end{decision}
 \subsection{Erweiterung}
 Die Unterstützung für neue Formate kann relativ einfach hinzugefügt werden. Dazu müssen Subklassen für folgende Python-Klassen erstellt werden:
 

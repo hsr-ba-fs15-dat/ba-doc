@@ -1,8 +1,8 @@
 
 \section{Caching}
-Aufgrund der Entscheidung alle Daten Verlustfrei im Originalformat zu speichern sowie der Verwendung von In-Memory Tabellen-artigen Datenstrukturen, muss sichergestellt werden, dass nicht bei jeder Operation die Originaldaten von Format-Parser neu eingelesen werden müssen.
+Aufgrund der Entscheidung alle Daten Verlustfrei im Originalformat zu speichern (\cref{dec:pd:datenspeicherung}) sowie der Verwendung von In-Memory Tabellen-artigen Datenstrukturen \xxx[evtl cref entscheidung?], muss sichergestellt werden, dass nicht bei jeder Operation die Originaldaten von Format-Parser neu eingelesen werden müssen.\\
 
-Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applikation implementiert. Es werden die Caching-Mechanismen von Django mit eingen Modifikationen/Erweiterungen verwendet. Aus diesem Grund können die Caching-Backends jederzeit durch beliebige von Django Unterstützte Backends wie z.B. Memcached, Filesystem, etc. verwendet werden.
+Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applikation implementiert. Es werden die Caching-Mechanismen von Django mit eingen Modifikationen/Erweiterungen verwendet. Aus diesem Grund können die Caching-Backends jederzeit durch beliebige von Django unterstützte Backends wie z.B. Memcached, Filesystem, etc. ersetzt werden.
 
 \subsection{Caches}
 
