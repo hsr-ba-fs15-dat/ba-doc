@@ -2,7 +2,7 @@
 \chapter{Entwicklung}
 
 \section{Entwicklungsumgebung}
-Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für opendatahub. Voraussetzung ist eine Installation von \acs{vagrant}.
+Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für \gls{odh}. Voraussetzung ist eine Installation von \acs{vagrant}.
 \\
 \acs{vagrant} kann für alle gängigen Betriebsysteme von \url{vagrantup.com} heruntergeladen werden.
 
@@ -10,24 +10,26 @@ Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für opendatahu
 \subsection{Klonen des Git-Repository}
 Der nächste Schritt ist das Klonen des Git Repositorys und starten der vagrant vm.
 \begin{src}{shell}
-git clone git@github.com:hsr-ba-fs15-dat/vm.git  # ladet das repository von github.com
+git clone git@github.com:hsr-ba-fs15-dat/vm.git  # lädt das Repository von github.com
 cd vm  # wechselt in das gerade heruntergeladene Verzeichnis
-vagrant up  # initiert die \ac{vagrant}-Start-Sequenz
+vagrant up  # Initiert die \ac{vagrant}-Instanz
 \end{src}
 Wenn diese Befehle in eine *nix Konsole eingegeben werden, wird automatisch eine passende VM heruntergeladen und konfiguriert. Unter Umständen muss die Konfiguration angepasst werden. Dies kann im Config-File von puppet gemacht werden. (vm/puphpet/config.yaml)
 
 
 \subsection{Initialisieren von Django}
-Um mit der Entwicklung starten, folgende Befehle in der Konsole eingeben:
+Nach folgenden Befehlen kann mit der Entwicklung gestartet werden:
 \begin{src}{shell}
-vagrant ssh #verbindet mit der SSH Umgebung
-make dev #initialisiert die venv und installiert weitere benötigte Packete
-exit #ausloggen ist notwendig, damit das virtuelle environment korrekt geladen wird.
+vagrant ssh # Verbindet mit der SSH Umgebung
+make dev # Initialisiert die venv und installiert weitere benötigte Packete
+exit # Ausloggen ist notwendig, damit das virtuelle environment (virtualenv) korrekt geladen wird.
 \end{src}
+
 \subsection{PyCharm}
-Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung \acs{PyCharm} für Python aus dem Hause JetBrains.
+Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung \acs{PyCharm} für Python aus dem Hause JetBrains. Für Studenten ist die Professional Edition kostenlos verfügbar.
+
 \subsection{Projekt erstellen}
-Nun kann ein PyCharm Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den opendatahub Ordner aus. Das Projekt wird erstellt. 
+Nun kann ein PyCharm-Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den Ordner \texttt{opendatahub} aus. Das Projekt wird erstellt. 
 
 \subsection{Projektinterpreter}
 \cref{fig:sd:vagrant-settings, fig:sd:project-interpreter-detail} beschreiben die Einstellungen, die vorgenommen werde müssen, damit alle Debugging Features funktionieren.
@@ -63,17 +65,18 @@ vagrant ssh #verbindet direkt in die vm
 pyb -v #startet den Build-Prozess
 \end{src}
 \subsection{grunt}
-Für die Entwicklung im FrontEnd kann ein kürzerer Weg gewählt werden \textendash Grunt.
+Für die Entwicklung im FrontEnd kann ein kürzerer Weg gewählt werden \textendash  Grunt.
 Grunt wird wie folgt aufgeführt
 \begin{src}{shell}
 vagrant ssh #verbindet direkt in die vm
 cd src/main/webapp # in den FrontEnd Ordner wechseln
 grunt # FrontEnd Build startet.
 \end{src}
-Dabei werden sämtliche Less-Files, TS-Files kompiliert und geprüft.
+Dabei werden sämtliche Less- und  TS-Files kompiliert und geprüft.
 \subsection{Deployment}
 Seit der Vagrant Version 1.7 vom Dezember 2014 ist Deployment mittels Vagrant möglich. Durch den Befehl \mintinline{shell}{vagrant push} kann, je nach Konfiguration, auf Heroku, SFTP und FTP sowie durch selbstgeschriebene Kommandozeilenskripte oder Atlas deployed werden.
-\\Syntaxbeispiel für einen FTP-push: \cite{vagrant-deployment}
+
+Syntaxbeispiel für einen FTP-push: \cite{vagrant-deployment}
 \begin{src}{ruby}
 config.push.define "ftp" do |push|
   push.host = "ftp.test.com"
@@ -84,21 +87,17 @@ config.push.define "ftp" do |push|
   push.dir = "/"
 end
 \end{src}
-Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach FTP-Server oder Heroku Instanz konfiguriert werden.
+Diese Konfiguration ist in unserem Vagrant File nicht enthalten und muss je nach FTP-Server oder Heroku-Instanz konfiguriert werden.
 
 \subsection{Tests}
-Beim Build-Prozess werden Tests automatisch ausgeführt. Um nur die Python Tests auszuführen wird folgender Befehl verwendet:
+Beim Build-Prozess werden Tests automatisch ausgeführt. Um nur die Python-Tests auszuführen wird folgender Befehl verwendet:
 \begin{src}{shell}
 pyb -v django_test
 \end{src}
 
-
 \chapter{Benutzerhandbuch}
 
-\section{Datensuche und Bezug}
-
-
-\label{sec:sd:daten-suchen}
+\section{Datensuche und Bezug} \label{sec:sd:daten-suchen}
 
 \begin{figure}[H]
 	\centering
@@ -108,7 +107,7 @@ pyb -v django_test
 \end{figure}
 
 \begin{enumerate}
-\item \purl{http://beta.opendatahub.ch} $\to$ Daten aufrufen. Man wird eine Liste mit allen in \acl{odh} verfügbaren Daten präsentiert.
+\item \purl{http://beta.opendatahub.ch} $\to$ Daten aufrufen. Es wird eine Liste mit allen in \acl{odh} verfügbaren Daten präsentiert.
 	\begin{itemize}
 	\item Hierbei handelt es sich um sogenannte ``Packages''. Ein Package enthält potenziell mehrere Daten/Tabellen. Auch Transformationen von Daten oder gar Transformationen anderer Transformationen werden über diese zentrale Stelle gelistet. 
 	\end{itemize}
@@ -128,9 +127,9 @@ pyb -v django_test
 
 \begin{enumerate}
 
-\item Durch Klick auf ``Herunterladen'' erscheint eine Liste der möglichen Bezugsformate wie in \cref{fig:sd:screenshot-daten-herunterladen}
-\item Es kann nun ein Format wie beispielsweise Excel angeklickt werden
-\item Die Applikation bzw. der Browser wird nun eine Datei zum Download anbieten
+\item Durch Klick auf ``Herunterladen'' erscheint eine Liste der möglichen Bezugsformate wie in \cref{fig:sd:screenshot-daten-herunterladen}.
+\item Es kann nun ein Format wie beispielsweise Excel angeklickt werden.
+\item Die Applikation bzw. der Browser wird nun eine Datei zum Download anbieten.
 \end{enumerate}
 
 
@@ -148,7 +147,7 @@ Hochgeladene Daten sowie erstellte Transformationen können jeweils gelöscht un
 
 \begin{enumerate}
 \item Nachdem die gewünschten Daten wie in \cref{sec:sd:daten-suchen} beschrieben gefunden wurden, können diese, sofern man der Besitzer/Ersteller ist, bearbeitet werden.
-\item Zu unterst in der Detailansicht können die Daten modifiziert oder gelöscht werden.
+\item Zuunterst in der Detailansicht können die Daten modifiziert oder gelöscht werden.
 \end{enumerate}
 
 
@@ -162,11 +161,11 @@ Hochgeladene Daten sowie erstellte Transformationen können jeweils gelöscht un
 	\caption{Anmeldung/Registrierung auf OpenDataHub}
 \end{figure}
 
-Der Bezug von öffentlichen Daten auf \acl{odh} ist stets auch als anonymer Benutzer möglich. Um jedoch eigene Daten zur Verfügung zu Stellen oder existierende Daten zu transformieren, ist es nötig sich gegenüber der Applikation zu identifizieren. Dies ist unter \purl{http://beta.opendatahub.ch} $\to$ Anmelden möglich und setzt ein Benutzerkonto bei einem der folgenden Anbieter voraus:
+Der Bezug von öffentlichen Daten auf \acl{odh} ist stets auch als anonymer Benutzer möglich. Um jedoch eigene Daten zur Verfügung zu stellen oder existierende Daten zu transformieren, ist es nötig sich gegenüber der Applikation zu identifizieren. Dies ist unter \purl{http://beta.opendatahub.ch} $\to$ Anmelden möglich und setzt ein Benutzerkonto bei einem der folgenden Anbieter voraus:
 
 \begin{description}
-\item[\purl{http://facebook.com}] \textendash\ Soziales Netzwerk. Die meisten Personen besitzen bereits ein Konto bei Facebook.
-\item[\purl{http://github.com}] \textendash\ Online Git Repository Hosting. Die meisten Entwickler besitzt bereits ein GitHub Konto.
+\item[\purl{http://facebook.com}] \textendash\ Soziales Netzwerk. Viele Personen besitzen bereits ein Konto bei Facebook.
+\item[\purl{http://github.com}] \textendash\ Online Git Repository Hosting. Die meisten Entwickler besitzt bereits ein GitHub-Konto.
 \end{description}
 
 
@@ -191,38 +190,38 @@ Die erste Möglichkeit besteht darin, Dateien die lokal auf dem PC gespeichert s
 \cref{fig:sd:screenshot-teilen-datei} zeigt den nachfolgend beschriebenen Prozess.
 
 \begin{enumerate}
-\item \purl{http://beta.opendatahub.ch} $\to$ Teilen aufrufen
-\item Kurzer Name/Bezeichnung für die Daten angeben
-\item Beschreibungstext erfassen der die Daten und deren Inhalt näher beschreibt
-\item Checkbox ``Privat'' gibt an, ob die Daten nur vom angemeldeten Benutzter gesehen werden sollen
+\item \purl{http://beta.opendatahub.ch} $\to$ Teilen aufrufen.
+\item Kurzen Namen/Bezeichnung für die Daten angeben.
+\item Beschreibungstext erfassen, der die Daten und deren Inhalt näher beschreibt.
+\item Die Checkbox ``Privat'' gibt an, ob die Daten nur vom angemeldeten Benutzter gesehen werden sollen.
 	\begin{itemize}
 	\item Dies ist dann nützlich, wenn der Benutzer \acl{odh} nur als Transformationsplattform nutzen will ohne die Daten freizugeben.
 	\item Ein zweiter Anwendungsfall wäre ein Shared Account für eine Organisation, um nur die Daten nur innerhalb dieser Organisation freizugeben.
 	\end{itemize}
-\item ``Dateien hochladen'' selektieren
+\item ``Dateien hochladen'' selektieren.
 \item Falls man nur Daten mit dem gleichen Format hochlädt und diese nicht durch deren Dateiendung oder Inhalt erkannt werden, kann Optional das Format der Daten explizit selektiert werden. Es empfiehlt sich dieses jedoch standardmässig auf ``Automatisch'' zu belassen.
 \item Dateien entweder via Drag \& Drop direkt ins rechteckige Feld mit der Bezeichnung ``Wählen oder ziehen Sie Ihre Dateien'' ziehen oder nach Klick auf das Feld über den Datei-Explorer auswählen.
 	\begin{itemize}
-	\item Es ist erlaubt mehreren Dateien (beispielsweise eine CSV Datei und eine XML Datei) hochzuladen
-	\item Einige Formate wie beispielsweise das ESRI Shapefile erfordern sogar zwingend mehrere Dateien, diese müssen vor der Endung denselben Namen besitzen
+	\item Es ist erlaubt, mehrere Dateien (beispielsweise eine CSV Datei und eine XML Datei) hochzuladen.
+	\item Einige Formate wie beispielsweise das ESRI Shapefile erfordern sogar zwingend mehrere Dateien. Diese müssen vor der Endung denselben Namen besitzen.
 	\item Allgemein werden alle Dateien mit gleichem Namen und lediglich anderer Endung zu einer Gruppe zusammengefasst. Es ist somit nicht möglich ein \path{Mitarbeiter.xlsx} und \path{Mitarbeiter.csv} hochzuladen und dann als separate ``Tabellen'' zu behandeln.
 	\end{itemize}
 \item Durch Klick auf ``Teilen'' werden die Dateien hochgeladen und auf \acl{odh} zur Weiterverarbeitung abgelegt.
-\item Wenn \acl{odh} die Daten interpretieren konnte, wird man zur Detailansicht weitergeleitet. Ansonsten wird eine Fehlermeldung eingeblendet. In diesem Fall wird der Fehler direkt den Entwicklern weitergeleitet. Wenn es sich um ein nicht unterstütztes Format handelt oder man der Meinung ist, dass es hätte funktionieren sollen, kann man die Datei dem Entwicklungsteam an \url{mailto:devs@opendatahub.ch} weiterleiten.
+\item Wenn \acl{odh} die Daten interpretieren konnte, wirdz ur Detailansicht weitergeleitet. Ansonsten wird eine Fehlermeldung eingeblendet. In diesem Fall wird der Fehler direkt den Entwicklern weitergeleitet. Wenn es sich um ein nicht unterstütztes Format handelt oder man der Meinung ist, dass es hätte funktionieren sollen, kann man die Datei dem Entwicklungsteam an \url{mailto:devs@opendatahub.ch} weiterleiten.
 \end{enumerate}
 
 \subsection{Online Daten hinzufügen}
 
-Die zweite Möglichkeit welche vor allem für sich häufig ändernde Daten oder gar Echtzeit-Daten eignet, ist das Hinzufügen mittels einer unterstützten Webadresse. \acl{odh} kann die Daten dann selbst in einem gewünschten Zeitintervall aktualisieren.
+Die zweite Möglichkeit, welche sich vor allem für häufig ändernde oder gar Echtzeit-Daten eignet, ist das Hinzufügen mittels einer Webadresse. \acl{odh} kann die Daten dann selbst in einem gewünschten Zeitintervall aktualisieren.
 
 Dies läuft weitestgehend gleich wie in \cref{sec:sd:teilen-datei} ab. Der einzige Unterschied besteht darin, dass ``Online Daten'' selektiert und dann eine Webadresse hinterlegt wird. Es werden folgende Arten von Online Daten unterstützt:
 
 \begin{itemize}
 \item Alle herkömmlichen Adressen die auf Dateien verweisen wie beispielsweise \path{http://www.hsr.ch/meine-test-datei.xml}, dasselbe gilt für \path{https://}
-\item \gls{wfs} Webservice Adressen wie beispielsweise \url{http://maps.zh.ch/wfs/TbaBaustellenZHWFS}
+\item \gls{wfs} Webservice Adressen wie beispielsweise \url{http://maps.zh.ch/wfs/TbaBaustellenZHWFS}.
 \end{itemize}
 
-Die Angabe der Abfrage-Intervalls gibt an, nach welcher Zeit die Daten als ``veraltet'' eingestuft werden und neu von der Online-Quelle angefordert werden. Wichtig dabei ist, dass \acl{odh} die Daten nicht ``aktiv'' in diesem Intervall abfragt, sondern erst dann, wenn diese in \acl{odh} auch wirklich benötigt werden.
+Die Angabe des Abfrage-Intervalls gibt an, nach welcher Zeit die Daten als ``veraltet'' eingestuft werden und neu von der Online-Quelle angefordert werden. Wichtig dabei ist, dass \acl{odh} die Daten nicht ``aktiv'' in diesem Intervall abfragt, sondern erst dann, wenn diese in \acl{odh} auch wirklich benötigt werden.
 
 \section{Daten transformieren}
 \paragraph{Wichtig} Zur Erstellung von Transformationen ist eine Anmeldung erforderlich. Diese ist in \vref{sec:sd:anmeldung} beschrieben.
@@ -241,8 +240,8 @@ Die Angabe der Abfrage-Intervalls gibt an, nach welcher Zeit die Daten als ``ver
 	\begin{itemize}
 	\item Der ``Assistent'' erlaubt mittels einigen Klicks eine simple Transformation bzw. \acs{odhql} 
 	\item Im ``Manuelles Bearbeiten'' Modus kann direkt mittels \acs{odhql} eine Transformation geschrieben werden.
-	\item In der Praxis empfiehlt sich eine Kombination dieser beiden Varianten. Erst den Assistenten zu verwenden und die entstehende Abfrage dann manuell zu bearbeiten.
 	\end{itemize}
+	In der Praxis empfiehlt sich eine Kombination dieser beiden Varianten: Erst den Assistenten zu verwenden und die entstehende Abfrage dann manuell zu bearbeiten.
 \end{enumerate}
 
 
@@ -291,7 +290,7 @@ Mit dem Assistenten können weniger versierte Benutzer schnell eine Transformati
 
 \subsubsection{Speichern}
  
- Analog wie beim Teilen von Daten wie in \vref{sec:sd:teilen-datei} beschrieben, muss die Transformation vor der Freigabe noch mit zusätzlichen Attributen wie Namen, Beschreibung versehen werden.
+ Analog wie beim Teilen von Daten (in \vref{sec:sd:teilen-datei} beschrieben), muss die Transformation vor der Freigabe noch mit zusätzlichen Attributen wie Name und Beschreibung versehen werden.
 
 \begin{figure}[H]
 	\centering
@@ -304,8 +303,8 @@ Mit dem Assistenten können weniger versierte Benutzer schnell eine Transformati
 \subsection{Manuelle Abfrage}
 
 \begin{itemize}
-\item Nach der Verwendung des Assistenten kann die Erstellte Abfrage manuell erweitert werden um die volle Mächtigkeit von \acs{odhql}-Funktionen nutzen zu können. 
-\item Durch Klick auf ``Mauelles Bearbeiten'', in \cref{fig:sd:screenshot-vorschau} ersichtlich, kann die rohe Abfrage bearbeitet werden.
+\item Nach der Verwendung des Assistenten kann die erstellte Abfrage manuell erweitert werden um die volle Mächtigkeit von \acs{odhql}-Funktionen nutzen zu können. 
+\item Durch Klick auf ``Manuelles Bearbeiten'', in \cref{fig:sd:screenshot-vorschau} ersichtlich, kann die Abfrage direkt bearbeitet werden.
 \item Durch Klick auf ``Hilfe'' oder \purl{http://beta.opendatahub.ch} $\to$ Hilfe $\to$ \acs{odhql} Referenz oder in \vref{app:odhql-referenz} gelangt man auf die Dokumentation der Abfrage-Sprache.
 \end{itemize}
 
