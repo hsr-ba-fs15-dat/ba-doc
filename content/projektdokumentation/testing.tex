@@ -143,3 +143,35 @@ Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilf
 Die Erfüllung der Aufgabe stellte kein Problem dar.
 
 Nach Abschluss des Tests experimentierte der Benutzer ein wenig mit exotischeren Unicode-Namen. Namen komplett ohne Zeichen im ASCII-Bereich stellten ein Problem dar - der Download schlägt in diesen Fällen fehl. 
+
+\section{Unit Tests}
+Alles in allem wurden über 300 Unit-Tests erstellt. Diese decken die im folgenden beschriebenen Bereiche ab.
+
+\subsection{Formate}
+Testet ob eine Serie von Files richtig identifiziert werden.
+
+\subsection{Parser}
+Überprüft ob eine Serie von Files richtig gelesen werden kann, und ob wie erwartet eine Geometrie-Spalte vorhanden ist oder nicht.
+
+\subsection{Formatter}
+Formattiert eine Serie von DataFrames und überprüft, ob die erwartete Anzahl Dateien erzeugt wurde.
+
+\subsection{Fixtures}
+Mit ``loadfixtures'' kann eine Serie von Test-Daten geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem Format formattiert werden können. Dabei wird das selbe API verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
+
+Diese Tests werden dynamisch generiert.
+
+\subsection{Ogr2ogr}
+Versucht, mittels der ogr2ogr-Hilfsklasse eine Serie von Daten zu konvertieren.
+
+\subsection{ODHQL: Parser}
+Überprüft, ob diverse Syntax-Elemente korrekt geparsed werden.
+
+\subsection{ODHQL: Functions}
+Testet die Implementation diverser ODHQL-Funktionen.
+
+\subsection{ODHQL: Interpreter}
+Tests für den Interpreter.
+
+\subsection{REST API}
+Testet einige API-Funktionen.
