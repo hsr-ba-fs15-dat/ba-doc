@@ -1,7 +1,7 @@
 \part{Softwaredokumentation}
 \chapter{Entwicklung}
 
-\section{Entwicklungsumgebung}
+\section{Initialisieren}
 Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für \gls{odh}. Voraussetzung ist eine Installation von \acs{vagrant}.
 \\
 \acs{vagrant} kann für alle gängigen Betriebsysteme von \url{vagrantup.com} heruntergeladen werden.
@@ -24,7 +24,7 @@ vagrant ssh # Verbindet mit der SSH Umgebung
 make dev # Initialisiert die venv und installiert weitere benötigte Packete
 exit # Ausloggen ist notwendig, damit das virtuelle environment (virtualenv) korrekt geladen wird.
 \end{src}
-
+\section{Entwicklungsumgebung}
 \subsection{PyCharm}
 Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung \acs{PyCharm} für Python aus dem Hause JetBrains. Für Studenten ist die Professional Edition kostenlos verfügbar.
 
@@ -32,7 +32,7 @@ Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung \acs{PyCharm}
 Nun kann ein PyCharm-Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den Ordner \texttt{opendatahub} aus. Das Projekt wird erstellt. 
 
 \subsection{Projektinterpreter}
-\cref{fig:sd:vagrant-settings, fig:sd:project-interpreter-detail} beschreiben die Einstellungen, die vorgenommen werde müssen, damit alle Debugging Features funktionieren.
+\cref{fig:sd:vagrant-settings,fig:sd:project-interpreter-detail} beschreiben die Einstellungen, die vorgenommen werde müssen, damit alle Debugging Features funktionieren.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{fig/vagrant_settings}
@@ -94,7 +94,40 @@ Beim Build-Prozess werden Tests automatisch ausgeführt. Um nur die Python-Tests
 \begin{src}{shell}
 pyb -v django_test
 \end{src}
+\section{Einstellungen}
+In diesem
+\subsection{settings.py}
+Folgende Parameter sollten direkt in der Datei ``settings.py'' konfiguriert werden:
+\begin{description}
+\item[SECRET\_KEY] Sollte auf jeder Instanz anders sein.
+\item[USE\_X\_FORWARDED\_HOST] Verwaltet das Protokoll hinter einem Reverse Proxy
+\item[SECURE\_PROXY\_SSL\_HEADER] Verwaltet das Protokoll hinter einem Reverse Proxy
+\item[DATABASES] verwaltet die Entwicklungs-Datenbank. Hier sollte keine Produktive Datenbank hinterlegt werden. (Siehe \cref{sec:sd:umgebungsvariablen})
+\item[CACHES] verwaltet die Cache Methoden.
+\item[LANGUAGE\_CODE]{[}de-ch{]} setzt den i18n code für Django
+\item[TIME\_ZONE]{[}Europe/Zurich{]}
 
+\item[EMAIL\_*] Für Fehler Benachrichtigungen im Frontend.
+\item[PACKAGE\_PREFIX]{[}ODH{]} Prefix für Dokumente. 
+\item[TRANSFORMATION\_PREFIX]{[}TRF{]} Prefix für Transformationen.
+\end{description}
+Für diese Parameter gilt, dass sie nicht auf Produktionsumgebungen geändert werden sollten!
+\subsection{Umgebungsvariablen} \label{sec:sd:umgebungsvariablen}
+Umgebungsvariablen müssen dem Programm von aussen mitgegeben werden. Dies hängt von der jeweiligen Art des Umgebung ab. Für \ac{PyCharm} finden Sie diese Einstellungen unter ``Run/Debug Configuration''.
+
+
+\begin{description}
+\item[DJANGO\_DEBUG]{[}False{]} Wird verwendet um DEBUG Output zu aktivieren. 
+\item[DJANGO\_CONFIG]{[}None{]} bewirkt, dass die ``minified'' JavaScript Libraries geladen werden. Dazu auf ``PRODUCTION'' setzen.
+\item[DATABASE\_URL] definiert die Datenbank URL. \\Format: ``postgres://benutzer:password@localhost:5432/datenbank''
+\item[GITHUB\_SECRET] Definiert den Github Secret Key für oAuth2
+\item[GITHUB\_PUBLIC] Definiert den Github Public Key für oAuth2
+\item[FACEBOOK\_SECRET] Definiert den FaceBook Secret Key für oAuth2
+\item[FACEBOOK\_PUBLIC] Definiert den FaceBook Public Key für oAuth2
+\item[DJANGO\_SETTINGS\_MODULE]{[}opendatahub.settings{]} es kann eine alternative Einstellungs-Datei geladen werden.
+\item[PATH]{[}/vagrant/opendatahub/interlis{]} Pfad für interlis Bibliothek
+\item[CI]{[}False{]} Reduziert die Tests für Continous integration Plattformen. (Nicht lokal einsetzen.)
+\end{description}
 \chapter{Benutzerhandbuch}
 
 \section{Datensuche und Bezug} \label{sec:sd:daten-suchen}
