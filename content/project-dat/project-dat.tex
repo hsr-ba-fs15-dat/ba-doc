@@ -186,10 +186,11 @@ Falls ein Admin-Benutzer konfiguriert ist, können nur angemeldete Sessions Date
 
 SSL wird bisher nicht unterstützt.
 
-\paragraph{GET /}
-Liefert die dat-editor Webapplikation aus.
+\paragraph{GET /} ~\\
+Liefert die Webapplikation dat-editor aus.
 
-\paragraph{Antwort GET /api} Liefert allgemeine Informationen zur dat-Instanz
+\paragraph{Antwort GET /api} ~\\
+Liefert allgemeine Informationen zur dat-Instanz
 \begin{srclst}{json}{GET /api}
     {
         "dat":"Hello",
@@ -203,7 +204,7 @@ Liefert die dat-editor Webapplikation aus.
     }
 \end{srclst}
 
-\paragraph{GET /api/rows} 
+\paragraph{GET /api/rows} ~\\
 Liefert eine Liste von Einträgen (Default: 50 Einträge).
 % http://www.fakenamegenerator.com/gen-random-gr-sz.php ftw
 \begin{srclst}{json}{Antwort GET /api/rows}
@@ -221,12 +222,12 @@ Liefert eine Liste von Einträgen (Default: 50 Einträge).
             "zip":"3765", "city":"Pfaffenried", 
             "key":"ci6hv0d0a00005vco99jxr7w0", "version":1
         },
-        // ...
+        ...
     ]
 }
 \end{srclst}
 
-\paragraph{GET /api/rows/:key}
+\paragraph{GET /api/rows/:key} ~\\
 Liefert den Eintrag mit dem angegebenen Schlüssel, oder eine Fehlermeldung.
 
 \begin{srclst}{json}{Antwort GET /api/rows/ci6huzf52000057coxym5lgy7}
@@ -238,7 +239,7 @@ Liefert den Eintrag mit dem angegebenen Schlüssel, oder eine Fehlermeldung.
 }
 \end{srclst}
 
-\paragraph{POST /api/rows}
+\paragraph{POST /api/rows} ~\\
 Fügt einen neuen Datensatz hinzu. Die Daten müssen als JSON vorliegen.
 
 Die Antwort besteht entweder aus einer Konflikt-Meldung, oder aus dem neu hinzu gefügten Datensatz.
@@ -248,28 +249,29 @@ $ curl -H 'Content-Type: application/json' -d '{"prename":"Markus", "surname":"M
 {"prename":"Markus", "surname":"Maier", "street":"Dreibündenstrasse", "nr":"135", "zip":"6774", "city":"Dalpe", "key":"ci6hw717u0004x0cocfquv0j9", "version":1}
 \end{srclst}
 
-\paragraph{GET /api/rows/:key/:filename}
+\paragraph{GET /api/rows/:key/:filename} ~\\
 Liefert das Blob mit dem entsprechenden Filenamen, oder eine Fehlermeldung falls nicht verfügbar.
 
-\paragraph{POST /api/rows/:key/:filename}
-Fügt ein neues Blob zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \mintinline{http}{POST /api/rows/foo/photo.jpg?version=1 HTTP/1.1}
+\paragraph{POST /api/rows/:key/:filename} ~\\
+Fügt ein neues Blob zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \\
+\mintinline{http}{POST /api/rows/foo/photo.jpg?version=1 HTTP/1.1}
 
-\paragraph{GET /api/session}
+\paragraph{GET /api/session} ~\\
 Liefert Informationen zur aktuellen Session. Dieser Aufruf kann auch zur Anmeldung per Basic Authentication verwendet werden.
 
-\paragraph{GET /api/login}
+\paragraph{GET /api/login} ~\\
 Selbe Funktionalität wie /api/session, setzt jedoch den HTTP-Header ``Basic realm="Secure Area"'', so dass Browser ein Login-Fenster anzeigen.
 
-\paragraph{GET /api/logout}
+\paragraph{GET /api/logout} ~\\
 Zerstört die aktuelle Session und entfernt Client-Side Cookies.
 
-\paragraph{GET /api/changes}
+\paragraph{GET /api/changes} ~\\
 Liefert eine Json-formatierte Version des Change Streams (siehe auch JavaScript-API createChangesStream).
 
-\paragraph{GET /api/csv}
+\paragraph{GET /api/csv} ~\\
 Liefert eine CSV-Datei mit der letzten Version der Daten.
 
-\paragraph{POST /api/bulk}
+\paragraph{POST /api/bulk} ~\\
 Ermöglicht das Einfügen von mehreren Datensätzen gleichzeitig. Unterstützt werden JSON (Content-Type \texttt{application/json}) und CSV (Content-Type \texttt{text/csv}).
 
 Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-Objekten mit Key und Version für die neu eingefügten Datensätze, andernfalls aus einem HTTP-Fehler.
@@ -282,16 +284,16 @@ Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-O
 }
 \end{srclst}
 
-\paragraph{GET /api/manifest}
+\paragraph{GET /api/manifest} ~\\
 Liefert ein JSON-Objekt mit Informationen zum DB-Backend. Dies wird für RPC verwendet (siehe \path{/api/rpc}).
 
-\paragraph{POST /api/rpc}
+\paragraph{POST /api/rpc} ~\\
 Ein Server-Endpunkt für multilevel (Node.js-Modul).
 
-\paragraph{GET /api/metadata}
+\paragraph{GET /api/metadata} ~\\
 Liefert Informationen zum Schema. Diese Daten werden während der Replikation verwendet.
 
-\paragraph{GET /api/replicator/receive und GET /api/replicator/send}
+\paragraph{GET /api/replicator/receive und GET /api/replicator/send} ~\\
 Wird für Replikation verwendet.
 
 \subsection{JavaScript}
@@ -302,7 +304,7 @@ dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um
 var dat = require('dat')
 \end{srclst}
 
-\paragraph{\texttt{var db = \parahighlight{dat}([path], [options], [onReady])}}
+\paragraph{\texttt{var db = \parahighlight{dat}([path], [options], [onReady])}} ~\\
 
 Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Parameter sind optional.
 
@@ -371,7 +373,7 @@ Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} zwingend aufg
 
 % get
 
-\paragraph{\texttt{\parahighlight{get}(key, [options], callback: (error, value))}}
+\paragraph{\texttt{\parahighlight{get}(key, [options], callback: (error, value))}} ~\\
 Findet den zum Key gehörenden Datensatz, falls vorhanden, und übergibt das Resultat an den callback.
 \begin{description}
 \item[options] Objekt mit folgenden Feldern:
@@ -381,7 +383,7 @@ Findet den zum Key gehörenden Datensatz, falls vorhanden, und übergibt das Res
 \end{description}
 % put 
 
-\paragraph{\texttt{\parahighlight{put}([key], value, [options], callback: (error, newVersion))}}
+\paragraph{\texttt{\parahighlight{put}([key], value, [options], callback: (error, newVersion))}} ~\\
 Fügt einen neuen Datensatz in die Datenbank ein. Der Key kann optional als Parameter oder als \texttt{value.key} übergeben werden.
 
 Bereits bestehende Einträge werden nur überschrieben, wenn \texttt{value.version} mit der aktuellsten in der Datenbank existierenden Version übereinstimmt. Andernfalls tritt ein Konflikt-Fehler auf.
@@ -395,12 +397,12 @@ Bereits bestehende Einträge werden nur überschrieben, wenn \texttt{value.versi
 
 % delete
 
-\paragraph{\texttt{\parahighlight{delete}(key, callback: (error, newVersion))}}
+\paragraph{\texttt{\parahighlight{delete}(key, callback: (error, newVersion))}} ~\\
 Markiert den Key als gelöscht. Achtung: Alte Versionen bleiben erhalten und können weiterhin abgerufen werden.
 
 % createReadStream
 
-\paragraph{\texttt{var readStream = db.\parahighlight{createReadStream}([options])}}
+\paragraph{\texttt{var readStream = db.\parahighlight{createReadStream}([options])}} ~\\
 Liefert einen lesbaren Stream der neusten Versionen aller Datensätze.
 
 Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
@@ -416,8 +418,8 @@ Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
 
 % createValueStream
 
-\paragraph{\texttt{var valueStream = db.\parahighlight{createValueStream}([options])}}
-Liefert einen lesbaren Stream über die Werte der aktuellsten Versionen.
+\paragraph{\texttt{var valueStream = db.\parahighlight{createValueStream}([options])}} ~\\
+Liefert einen lesbaren Stream über die Werte der aktuellsten Versionen. 
 
 Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
 
@@ -433,14 +435,14 @@ Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
 
 % createKeyStream
 
-\paragraph{\texttt{var keyStream = db.\parahighlight{createKeyStream}([options])}}
+\paragraph{\texttt{var keyStream = db.\parahighlight{createKeyStream}([options])}} ~\\
 Liefert einen Stream über die Schlüssel der Datensätze. Der Stream liefert ein Objekt pro Zeile, in der Form \texttt{{key: key, version: number, deleted: boolean}}.
 
 Optionen sind identisch zu \mintinline{js}{createReadStream}.
 
 % createChangesStream
 
-\paragraph{\texttt{var changes = db.\parahighlight{createChangesStream}([options])}}
+\paragraph{\texttt{var changes = db.\parahighlight{createChangesStream}([options])}} ~\\
 Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die Form \texttt{{change: changeId, key: key, version: number}}.
 
 \begin{description}
@@ -456,7 +458,7 @@ Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die 
 
 % createWriteStream
 
-\paragraph{\texttt{var writeStream = db.\parahighlight{createWriteStream}([options])}}
+\paragraph{\texttt{var writeStream = db.\parahighlight{createWriteStream}([options])}} ~\\
 Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
 
 \begin{description}
@@ -476,7 +478,7 @@ Liefert einen beschreibbaren Stream. Jede Schreib-Operation liefert Status-Infor
 
 % createVersionStream
 
-\paragraph{\texttt{var versions = db.\parahighlight{createVersionStream}(key, [options])}}
+\paragraph{\texttt{var versions = db.\parahighlight{createVersionStream}(key, [options])}} ~\\
 Liefert alle Versionen zum angegebenen Key.
 \begin{description}
 \item[options] Objekt mit folgenden Feldern:
@@ -488,7 +490,7 @@ Liefert alle Versionen zum angegebenen Key.
 
 % createBlobReadStream
 
-\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobReadStream}(key, filename, [options])}}
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobReadStream}(key, filename, [options])}} ~\\
 Liefert einen lesbaren Stream mit Blob-Daten.
 
 \begin{description}
@@ -500,7 +502,7 @@ Liefert einen lesbaren Stream mit Blob-Daten.
 
 % createBlobWriteStream
 
-\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobWriteStream}(filename, [row], [callback])}}
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobWriteStream}(filename, [row], [callback])}} ~\\
 Liefert einen schreibbaren Stream, welcher Blob-Daten annimmt.
 
 \begin{description}
@@ -511,7 +513,7 @@ Liefert einen schreibbaren Stream, welcher Blob-Daten annimmt.
 
 % listen
 
-\paragraph{\texttt{dat.\parahighlight{listen}([port], [callback: (error)])}}
+\paragraph{\texttt{dat.\parahighlight{listen}([port], [callback: (error)])}} ~\\
 Startet den HTTP-Server.
 
 \begin{description}
@@ -520,29 +522,29 @@ Startet den HTTP-Server.
 
 % clone
 
-\paragraph{\texttt{dat.\parahighlight{clone}(remote, [callback])}}
+\paragraph{\texttt{dat.\parahighlight{clone}(remote, [callback])}} ~\\
 Initialisiert ein neues dat (falls nicht bereits vorhanden) und erstellt einen lokalen Klon von \texttt{remote}. Kann schneller sein als \texttt{pull()}, falls der Server schnellere clone-Fähigkeiten hat (z.B. \texttt{liveBackup} von hyperleveldb).
 
 % push
 
-\paragraph{\texttt{dat.\parahighlight{push}(remote, [callback: (error)])}}
+\paragraph{\texttt{dat.\parahighlight{push}(remote, [callback: (error)])}} ~\\
 Synchronisiert das lokale dat mit dem \texttt{remote}-Server, indem die lokalen Änderungen über HTTP gepusht werden.
 
 \begin{description}
 \item[remote] HTTP-Basis-Adresse des Servers (z.B. \path{http://localhost:6461}).
 \end{description}
 
-\paragraph{\texttt{dat.\parahighlight{pull}([remote], [callback])}}
+\paragraph{\texttt{dat.\parahighlight{pull}([remote], [callback])}} ~\\
 Synchronisiert das lokale dat mit dem angegebenen Server, indem die Änderungen vom Server übernommen werden.
 
 \begin{description}
 \item[remote] HTTP-Basis-Adresse des Servers. Default: Adresse des Server, von dem diese dat-Instanz geklont wurde, falls vorhanden.
 \end{description}
 
-\paragraph{\texttt{dat.\parahighlight{init}(path, [callback])}}
+\paragraph{\texttt{dat.\parahighlight{init}(path, [callback])}} ~\\
 Erstellt eine neue dat-Datenbank in \path{path/.dat}. Diese Methode wird Standardmässig aufgerufen bei der Erstellung einer dat-Instanz.
 
-\paragraph{\texttt{var paths = dat.\parahighlight{paths}(path)}}
+\paragraph{\texttt{var paths = dat.\parahighlight{paths}(path)}} ~\\
 Liefert ein Objekt mit diversen relevanten Pfaden, mit \texttt{path} als Basis.
 
 \begin{srclst}{js}{Beispiel: Pfade mit \texttt{.} als Basis}
@@ -556,19 +558,19 @@ Liefert ein Objekt mit diversen relevanten Pfaden, mit \texttt{path} als Basis.
 }
 \end{srclst}
 
-\paragraph{\texttt{dat.\parahighlight{exists}(path, callback: (error, exists))}}
+\paragraph{\texttt{dat.\parahighlight{exists}(path, callback: (error, exists))}} ~\\
 Prüft ob eine dat-Datenbank am angegebenen Pfad existiert.
 
-\paragraph{\texttt{dat.\parahighlight{close}(callback: (error))}}
+\paragraph{\texttt{dat.\parahighlight{close}(callback: (error))}} ~\\
 Beendet den HTTP-Server, den RPC-Client (falls vorhanden) und die Datenbank und räumt die \path{.dat/PORT}-Datei auf.
 
-\paragraph{\texttt{dat.\parahighlight{destroy}(path, callback: (error))}}
+\paragraph{\texttt{dat.\parahighlight{destroy}(path, callback: (error))}} ~\\
 Ruft \texttt{close()} auf und entfernt das \path{.dat}-Verzeichnis in \path{path}.
 
-\paragraph{\texttt{var headers = dat.\parahighlight{headers}()}}
+\paragraph{\texttt{var headers = dat.\parahighlight{headers}()}} ~\\
 Liefert ein Array mit den aktuellen Spalten-Namen.
 
-\paragraph{\texttt{dat.\parahighlight{getRowCount}(callback: (error, count))}}
+\paragraph{\texttt{dat.\parahighlight{getRowCount}(callback: (error, count))}} ~\\
 Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
 
 % these don't actually exist
