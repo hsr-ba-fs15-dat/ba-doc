@@ -217,8 +217,19 @@ Bereits vorhandene Transformationen können geklont, oder bei eigenen Transforma
     \includegraphics[width=2\linewidth/3]{fig/odh-edit-transformation}
     \caption{ODH: Details einer Transformation (2)}
 \end{figure}
+
 \section{Ausblick: Weiterentwicklung}
-\xxx[(nur wichtigste Punkte)]
+
+Für eine Weiterentwicklung sollten insbesondere folgende Punkte in Betracht gezogen werden:
+
+\begin{itemize}
+\item Wechsel auf \acs{gdal} Version 2.0 (sobald verfügbar): Aufgrund von Problemen mit mehreren Format-Treibern wurde für diese Arbeit eine etwas ältere Version eingesetzt (siehe \vref{sec:pd:format-gdal-problems}). Version 2.0 bringt diverse Verbesserungen sowie Treiber für neue Formate mit.
+\item Ausbau der Web-Applikation bzw. Integration von \gls{ckan}: Die aktuelle Web-Applikation ist relativ einfach gehalten. So fehlt zum Beispiel die Möglichkeit, weitere Dateien zu einem Paket hinzuzufügen, oder welche zu entfernen.
+\item Ausbau des Transformations-Assistenten: Für einfache Transformationen ist der Assistent gut geeignet. Sobald allerdings Funktionen verwendet werden sollen, muss die Transformation direkt in ODHQL geschrieben werden.
+\end{itemize}
+
+Für weitere Ideen, siehe \vref{sec:tb:further-dev}.
+
 \section{Persönlicher Bericht}
 
 \subsection{Christoph Hüsler}
