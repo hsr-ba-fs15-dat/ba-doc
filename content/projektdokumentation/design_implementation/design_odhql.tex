@@ -1,8 +1,10 @@
 \section{Transformationssprache ODHQL}
-
+In diesem Kapitel wird die Transformationssprache ODHQL erläutert.
 \subsection{Syntax}
 
 Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus ANSI SQL.
+\xxx[referenz ASI SQL?]
+\xxx[orientiert sich nur an SELECT?]
 
 Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
 
@@ -26,7 +28,7 @@ Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindeste
 \subsection{Beispiele}
 Folgende Items sind in der Feld-Liste erlaubt:
 \begin{description}
-\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Präfix. Feld-Namen und Aliases können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. Zu beachten ist, dass Feld-Namen immer einen Präfix brauchen, auch ausserhalb der Feld-Liste.
+\item[Feld] Name des Feldes, mit dem Namen oder Alias der Datenquelle als Präfix. Feldnamen und Aliase können in doppelten Anführungszeichen geschrieben werden, z.B. wenn Sonder- oder Leerzeichen verwendet werden sollen. Zu beachten ist, dass Feldnamen immer einen Präfix brauchen, auch ausserhalb der Feld-Liste.
 \begin{src}{sql}
 a.beschreibung, a.geom as geometry, a."Zentroid X [m]"
 \end{src}
@@ -114,7 +116,7 @@ Filter werden wie in \cref{fig:pd:odhql-ast-filter} beschrieben dargestellt.
 
 \subsection{Interpreter}
 Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung sowie der Erweiterbarkeit durch eigene Funktionen.
-
+\xxx[und andererseits?]
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\linewidth]{fig/odhql-flow.pdf}
