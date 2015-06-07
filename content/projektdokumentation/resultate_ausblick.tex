@@ -9,10 +9,10 @@ Die Resultate der Arbeit sind in \vref{sec:tb:results} beschrieben.
 Diverse Treiber wurden in GDAL 2.0 massiv verbessert (Interlis 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
 
 \subsection{Native Unterstützung für via ogr2ogr implementierte Formate}
-Die Unterstützung für die Formate Interlis 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert müssen die Daten über ein Zwischenformat konvertiert werden.
+Die Unterstützung für die Formate Interlis 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert, müssen die Daten über ein Zwischenformat konvertiert werden.
 
 Für den Formatter sieht das wie folgt aus:
-$$ \text{ODH} \to \text{Zwischenformat} \to \text{ogr2ogr} \to \text{Zielformat} $$
+$$ \text{DataFrame in ODH} \to \text{Zwischenformat} \to \text{ogr2ogr} \to \text{Zielformat} $$
 
 Analog für den Parser. Beide Konvertierungs-Schritte sind potentiell fehlerbehaftet, ausserdem sind nicht alle ogr2ogr-Treiber von gleicher Qualität.
 
@@ -33,7 +33,7 @@ Wir sehen folgende Optionen:
 Bisher sind zwar diverse Funktionen implementiert, gerade im Geo-Bereich gibt es jedoch noch einiges an Erweiterungspotential.
 
 \subsection{Datentypen}
-ODHQL unterstützt bisher folgende Datentypen: Integer (32 Bit), SmallInt (16 Bit), BigInt (64 Bit), Float, DateTime, Boolean, Text und Geometry. (Date-/Time-)Interval wird theoretisch unterstützt, es gibt jedoch aktuell keine Funktionen welche diesen Typ verwenden.
+ODHQL unterstützt bisher folgende Datentypen: Integer (32 Bit), SmallInt (16 Bit), BigInt (64 Bit), Float (64 Bit), DateTime (64 Bit), Boolean, Text und Geometry. (Date-/Time-)Interval wird theoretisch unterstützt, es gibt jedoch aktuell keine Funktionen welche diesen Typ verwenden.
 
 Mögliche Erweiterungen:
 \begin{itemize}
@@ -42,7 +42,7 @@ Mögliche Erweiterungen:
 \item Baumstrukturen, Key-Value-Pairs
 \end{itemize}
 
-Ausserdem sollte Untersucht werden, ob Geodaten in allen Fällen korrekt behandelt werden.
+Ausserdem sollte untersucht werden, ob Geodaten in allen Fällen korrekt behandelt werden.
 
 \subsection{Mehr Formate}
 Nach Bedarf können weitere Formate implementiert werden.
@@ -53,7 +53,7 @@ ODH unterstützt WFS als Daten-Quelle. Die Idee ist, dass eine API implementiert
 \subsection{Performanz bei grossen Datenmengen}
 Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio Records) mit guten Resultaten getestet. Im Gespräch mit Herrn Dorfschmid wurde festgestellt, dass dies für viele Anwendungen ausreicht.
 
-Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur sub-optimal und limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
+Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur aber sub-optimal und stark limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
 
 Zu beachten ist, dass diverse verwendete Libraries (unter anderem auch GDAL) nicht Stream-orientiert arbeiten.
 
