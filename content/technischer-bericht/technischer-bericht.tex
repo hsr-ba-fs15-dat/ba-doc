@@ -140,7 +140,7 @@ Pipes erlaubt das Verknüpfen und Filtern von RSS-Daten. Interessant ist vor all
     \caption{Pipe in Yahoo! Pipes}
 \end{figure}
 
-Yahoo! hat am 4. Juli 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
+Yahoo! hat am 4. Juni 2015 angekündigt, dass Pipes am 30. September 2015 abgeschaltet wird.
 
 \subsection{OpenRefine.org}
 OpenRefine, früher bekannt als Google Refine, ist eine Open Source-Plattform zur Bereinigung und Transformation von Daten.
@@ -172,52 +172,58 @@ Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie
 \section{Zielerreichung}
 Mit Ausnahme der Unterstützung des Formats GeoPackage wurden alle in der Aufgabenstellung gestellten Ziele erreicht. Der Grund für die mangelnde GeoPackage-Unterstützung ist eine Serie von Fehlern in GDAL (siehe \vref{sec:pd:format-gdal-problems}).
 
-Einige selbst gesteckte Ziele wie z.B. ``Integration SuisseID'' konnten wir aufgrund mangelhafter Dokumentation nicht erreichen.
+Einige selbst gesteckte Ziele wie z.B. ``Integration SuisseID'' konnten wir aufgrund sich verändernder Prioritäten nicht erreichen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-package-list}
     \caption{ODH: Paket-Liste}
+    \label{fig:tb:odh-package-list}
 \end{figure}
 
 Ein Benutzer kann bereits vorhandene Daten durchsuchen und herunterladen. 
-
+(\cref{fig:tb:odh-package-list,fig:tb:odh-document-detail})
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-document-detail}
     \caption{ODH: Detail zu hochgeladenen Daten}
+    \label{fig:tb:odh-document-detail}
 \end{figure}
 
-Daten können als Datei oder Gruppe von Dateien hochgeladen oder von einer URL bezogen werden.
+Daten können als Datei oder Gruppe von Dateien hochgeladen oder von einer URL bezogen werden. (\cref{fig:tb:odh-offer-data})
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-offer-data}
     \caption{ODH: Daten anbieten}
+    \label{fig:tb:odh-offer-data}
 \end{figure}
 
 Die Resultate von Transformationen präsentieren sich ähnlich wie hochgeladene Dateien.
-
+(\cref{fig:tb:odh-transformation-detail})
 \begin{figure}
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-transformation-detail}
     \caption{ODH: Details einer Transformation (1)}
+    \label{fig:tb:odh-transformation-detail}
 \end{figure}
 
-Mit minimaler Einführung können einfache Transformationen zusammengeklickt werden. Mit \acs{odhql}-Kenntnissen können auch komplexe Transformationen geschrieben werden. Als Datenquellen dienen hochgeladene Daten, \acs{wfs}-Server oder bereits bestehende Transformationen.
+Mit minimaler Einführung können einfache Transformationen zusammen-geklickt werden(\cref{fig:tb:odh-transformation-assistant}). Mit \acs{odhql}-Kenntnissen können auch komplexe Transformationen geschrieben werden. Als Datenquellen dienen hochgeladene Daten, \acs{wfs}-Server oder bereits bestehende Transformationen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-transformation-assistant}
     \caption{ODH: Transformations-Assistent}
+    \label{fig:tb:odh-transformation-assistant}
 \end{figure}
 
-Bereits vorhandene Transformationen können geklont, oder bei eigenen Transformationen auch bearbeitet werden.
+Bereits vorhandene Transformationen können geklont oder falls der eingeloggte Benutzer der Besitzer ist auch bearbeitet werden. (\cref{fig:tb:odh-transformation-edit})
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=2\linewidth/3]{fig/odh-edit-transformation}
     \caption{ODH: Details einer Transformation (2)}
+    \label{fig:tb:odh-transformation-edit}
 \end{figure}
 
 \section{Ausblick: Weiterentwicklung}
@@ -248,10 +254,10 @@ Meine Studienarbeit habe ich grösstenteils in Python geschrieben. Dadurch kannt
 
 Highlight dieser Arbeit war für mich die Implementation des Assistenten mit Hilfe von AngularJS. Ich konnte meine Ideen direkt umsetzen und habe viel über AngularJS gelernt.
 
-Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten uns immer gut austauschen und vom Know-how der anderen profitieren.
+Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten uns immer gut austauschen, unsere Differenzen beseitigen und vom Know-how der anderen profitieren.
 
 \subsection{Fabio Scala}
-Trotz Hindernisse und Startschwierigkeiten zu Beginn der Arbeit, insbesondere durch das unreife ``Projekt dat'' sowie wiederkehrende Differenzen im Team, ist es uns gelungen diese zu überwinden und eine vernünftige und moderne Webapplikation zu implementieren. Aus diesem Grund kann ich die Bachelorarbeit als positive und lehrreiche Erfahrung einstufen. Ich bin stolz auf das Team OpenDataHub und bedanke mich hiermit nochmals persönlich bei allen Beteiligten.
+Trotz Hindernisse und Startschwierigkeiten zu Beginn der Arbeit, insbesondere durch das unreife ``Projekt dat'' sowie den natürlichen Differenzen im Team, ist es uns gelungen diese zu überwinden und eine vernünftige und moderne Webapplikation zu implementieren. Aus diesem Grund kann ich die Bachelorarbeit als positive und lehrreiche Erfahrung einstufen. Ich bin stolz auf das Team OpenDataHub und bedanke mich hiermit nochmals persönlich bei allen Beteiligten.
 
 Bezüglich Technologien bin ich froh, dass ich als langjähriger Python Entwickler endlich Django Erfahrungen sammeln sowie auf Frontend-Seite die mächtige Kombination von AngularJS und TypeScript einsetzen konnte.
 
