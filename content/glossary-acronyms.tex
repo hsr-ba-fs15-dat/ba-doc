@@ -30,6 +30,12 @@
 \newglossaryentry{geojson}{name=GeoCSV, description={ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten}, url={http://geojson.org/}}
 
 
+\newglossaryentry{vagrant}
+{name=Vagrant, description={ist eine auf Ruby basierte Open Source-Anwendung, die das Verwalten und Erstellen von virtuellen Maschinen ermöglicht. Vagrant dient eigentlich als Wrapper zwischen der Virtualisierungssoftware (VirtualBox, VMware, Parallels, etc.) und Systemkonfiguartionswerkzeugen (opendatahub verwendet puppet).
+Der grosse Mehrwert von Vagrant ergibt sich dadurch, dass es komplett Plattform- und Programmiersprachenunabhängig ist und somit für verschiedene Softwareprojekte verwendet werden kann. Im Vagrantfile wird eine virtuelle Maschine definiert und konfiguriert. Dieses File wird mit dem Projekt in der Versonskontrolle abgelegt, so kann auf den unterschiedlichen Host-Systemen gewährleistet werden, dass mit der selben Entwicklungsumgebung gearbeitet werden kann und so alle Abhängigkeiten, ohne das Hostsystem zu beeinflussen, installiert werden. }, url={http://vagrantup.com}}
+
+\newglossaryentry{ts}
+{name=TypeScript, description={TypeScript ist eine vom Unternehmen Microsoft entwickelte Typeen Orientierte Programmiersprache, die auf den Vorschlägen zum zukünftigen ECMAScript-6-Standard(JavaScript) basiert.}, url={http://www.typescriptlang.org}}
 %------------------------------------------------------------------------------
 % Acronyms
 %------------------------------------------------------------------------------
@@ -208,14 +214,6 @@
 [description={\acrlong{mvvm}. Model View ViewModel (MVVM) ist eine Variante des Model View Controller-Musters (\acs{mvc}) zur Trennung von Darstellung und Logik der Benutzerschnittstelle (UI). Es zielt auf moderne UI-Plattformen wie Windows Presentation Foundation (WPF), JavaFX, Silverlight und HTML5 ab.}]
 {mvvm}{MVVM}{Model, View, ViewModel}
 
-\newacronym
-[description={Vagrant ist eine auf Ruby basierte Open Source-Anwendung, die das Verwalten und Erstellen von virtuellen Maschinen ermöglicht. Vagrant dient eigentlich als Wrapper zwischen der Virtualisierungssoftware (VirtualBox, VMware, Parallels, etc.) und Systemkonfiguartionswerkzeugen (in unserem Fall Puppet).
-Der grosse Mehrwert von Vagrant ergibt sich dadurch, dass es komplett Plattform- und Programmiersprachenunabhängig ist und somit für verschiedene Softwareprojekte verwendet werden kann. Im Vagrantfile wird eine virtuelle Maschine definiert und konfiguriert. Dieses File wird mit dem Projekt in der Versonskontrolle abgelegt, so kann auf den unterschiedlichen Host-Systemen gewährleistet werden, dass mit der selben Entwicklungsumgebung gearbeitet werden kann und so alle Abhängigkeiten, ohne das Hostsystem zu beeinflussen, installiert werden. }, url={http://vagrantup.com}]
-{vagrant}{Vagrant}{Vagrant}
-
-\newacronym
-[description={TypeScript ist eine vom Unternehmen Microsoft entwickelte Typeen Orientierte Programmiersprache, die auf den Vorschlägen zum zukünftigen ECMAScript-6-Standard(JavaScript) basiert.}, url={http://www.typescriptlang.org}]
-{ts}{TS}{TypeScript}
 \newacronym[description={\acrlong{pgsql} ist eine prozedurale Sprache der objektrelationalen Datenbank PostgreSQL. Die Syntax von PL/pgSQL ist ähnlich der PL/SQL auf Oracle-Datenbanksystemen.}]{pgsql}{PL/pgSQL}{Procedural Language/PostgreSQL Structured Query Language}
 \newacronym
 [description={Auch als Speicherschutzverletzung bekannt. Dieser Fehler tritt vor allem auf, wenn versucht wird, auf geschützte Speicherbereiche zuzugreifen. Siehe auch \url{https://de.wikipedia.org/wiki/Schutzverletzung}.}]

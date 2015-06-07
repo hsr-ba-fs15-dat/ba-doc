@@ -2,9 +2,9 @@
 \chapter{Entwicklung}
 
 \section{Initialisieren}
-Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für \gls{odh}. Voraussetzung ist eine Installation von \acs{vagrant}.
+Dieses Kapitel beschreibt das Aufsetzen der Entwicklungsumgebung für \gls{odh}. Voraussetzung ist eine Installation von \gls{vagrant}.
 \\
-\acs{vagrant} kann für alle gängigen Betriebsysteme von \url{vagrantup.com} heruntergeladen werden.
+\gls{vagrant} kann für alle gängigen Betriebsysteme von \url{vagrantup.com} heruntergeladen werden.
 
 
 \subsection{Klonen des Git-Repository}
@@ -12,7 +12,7 @@ Der nächste Schritt ist das Klonen des Git Repositorys und starten der vagrant 
 \begin{src}{shell}
 git clone git@github.com:hsr-ba-fs15-dat/vm.git  # lädt das Repository von github.com
 cd vm  # wechselt in das gerade heruntergeladene Verzeichnis
-vagrant up  # Initiert die \ac{vagrant}-Instanz
+vagrant up  # Startet die Vagrant-Instanz
 \end{src}
 Wenn diese Befehle in eine *nix Konsole eingegeben werden, wird automatisch eine passende VM heruntergeladen und konfiguriert. Unter Umständen muss die Konfiguration angepasst werden. Dies kann im Config-File von puppet gemacht werden. (vm/puphpet/config.yaml)
 
@@ -55,7 +55,7 @@ Für die Verwendung von \ac{ts} sollte ein File-Watcher in PyCharm eingerichtet 
 	\caption{Übersicht Einstellungen: FileWatcher: TypeScript}
 	\label{fig:sd:watcher-typescript}
 \end{figure}
-Für die Verwendung von \ac{ts} muss tsc auf der lokalen Maschine installiert sein.
+Für die Verwendung von \ac{ts} muss das Paket ``tsc'' auf der lokalen Maschine installiert sein.
 
 \subsection{Build}
 Das ganze Projekt kann in der \ac{vm} gebuildet werden. 
