@@ -24,39 +24,6 @@ Das dat-Projekt hat folgende Ziele\cite{what-is-dat}:
 % https://github.com/maxogden/dat/blob/master/docs/js-api.md#transformations
 Für den Umgang mit verschiedenen Datenformaten können Transformationen\cite[transformations]{dat-js-api} definiert werden, welche entweder vor Schreib- oder nach Lese-Operationen ausgeführt werden.
 
-
-\section{CLI}
-
-%https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
-
-Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
-
-\begin{itemize}
-  \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
-  \item Import von CSV oder JSON Dateien mit \mintinline{console}{$ dat import}
-  \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
-  \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
-  \item Lokale Änderungen ebenfalls analog Git wieder zurück ins remote Repository synchronisieren mit \mintinline{console}{$ dat push}
-  \item Rudimentäre Manipulation und Ausgabe von einzelnen Zeilen des Repositories mit \mintinline{console}{$ dat rows} bzw. \mintinline{console}{$ dat cat}
-\end{itemize}
-
-Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
-\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
-
-Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten umgehen können.
-
-\section{Frontend}
-
-\Gls{dat} bietet ein minimales Webfrontend welches ähnliche Operationen wie mit dem \gls{cli} wie z.B. Import/Export sowie betrachten der Datensätze ermöglicht. Einen Ausschnitt ist folgender \cref{fig:dat:webfrontend} zu sehen.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{fig/webfrontend}
-  \caption{dat Webfrontend}
-  \label{fig:dat:webfrontend}
-\end{figure}
-
-
 \section{Architektur}
 % diagramm, requirements, interfaces, ...
 
@@ -109,6 +76,37 @@ Die Verwendung von dat bringt folgende Vorteile:
 \end{itemize}
 
 Siehe auch \url{https://github.com/maxogden/dat/issues/153}.
+
+\section{CLI}
+
+%https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
+
+Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
+
+\begin{itemize}
+  \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
+  \item Import von CSV oder JSON Dateien mit \mintinline{console}{$ dat import}
+  \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
+  \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
+  \item Lokale Änderungen ebenfalls analog Git wieder zurück ins remote Repository synchronisieren mit \mintinline{console}{$ dat push}
+  \item Rudimentäre Manipulation und Ausgabe von einzelnen Zeilen des Repositories mit \mintinline{console}{$ dat rows} bzw. \mintinline{console}{$ dat cat}
+\end{itemize}
+
+Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
+\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+
+Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten umgehen können.
+
+\section{Frontend}
+
+\Gls{dat} bietet ein minimales Webfrontend welches ähnliche Operationen wie mit dem \gls{cli} wie z.B. Import/Export sowie betrachten der Datensätze ermöglicht. Einen Ausschnitt ist folgender \cref{fig:dat:webfrontend} zu sehen.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig/webfrontend}
+  \caption{dat Webfrontend}
+  \label{fig:dat:webfrontend}
+\end{figure}
 
 \section{Schnittstellen}
 Für eine Beschreibung der von \gls{dat} zur Verfügung gestellten \gls{api}, siehe \vref{app:dat}.
