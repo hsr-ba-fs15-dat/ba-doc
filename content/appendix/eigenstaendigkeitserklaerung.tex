@@ -18,9 +18,11 @@ Ort, Datum:
 
 \vspace{1cm}
 Namen, Unterschriften:
+
+\begin{minipage}[t]{\textwidth/3}
 \iftoggle{isdigital}{
 	\begin{itemize}
-		\item[] \includegraphics[width=0.2\linewidth]{fig/signature}
+		\item[] \includegraphics[width=\linewidth]{fig/signature_fscala}
     \end{itemize}
 }{
 	\vspace{1cm}
@@ -29,10 +31,11 @@ Namen, Unterschriften:
 \begin{itemize}
 	\item[] \fscf
 \end{itemize}
-
+\end{minipage}
+\begin{minipage}[t]{\textwidth/3}
 \iftoggle{isdigital}{
     \begin{itemize}
-        \item[] \includegraphics[width=0.2\linewidth]{fig/chuesler}
+        \item[] \includegraphics[width=\linewidth]{fig/signature_chuesler}
     \end{itemize}
 }{
     \vspace{1cm}
@@ -41,8 +44,17 @@ Namen, Unterschriften:
 \begin{itemize}
     \item[] \chuf
 \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{\textwidth/3}
+\iftoggle{isdigital}{
+    \begin{itemize}
+        \item[] \includegraphics[width=\linewidth]{fig/signature_rliebi}
+    \end{itemize}
+}{
+    \vspace{1cm}
+}
 
-
-
-\xxx[autoren anpassen]
-
+\begin{itemize}
+    \item[] \rlif
+\end{itemize}
+\end{minipage}
