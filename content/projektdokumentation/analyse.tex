@@ -162,8 +162,7 @@ Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicher
 
 Vorteile dieser Variante sind, dass die Abfrage-Sprache bereits vorhanden und bekannt ist und dass je nach verwendeter Datenbank auf vorhandene Funktionen und Optimierungen zurückgegriffen werden kann. Falls Postgres mit PostGIS zum Einsatz kommt, kann auch im Geo-Bereich eine umfassende Funktions-Bibliothek verwendet werden. 
 
-Neue Funktionen müssen zwangsweise auf Datenbank-Ebene implementiert werden, bei Postgres z.B. mit PL/pgsql.
-
+Neue Funktionen müssen zwangsweise auf Datenbank-Ebene implementiert werden, bei Postgres z.B. mit \ac{pgsql}.
 Diese Variante bringt praktisch alle verlangten Features ohne grossen Implementations-Aufwand mit. Das Hinzufügen bisher nicht vorhandener Funktionalität ist jedoch eher schwierig.
 
 \subsubsection{Anmerkungen}
@@ -247,7 +246,7 @@ Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtool
       }
     }
   }
-  "..."
+  ...
 }
 \end{srclst}
 
@@ -263,7 +262,7 @@ ist eine Python \acs{etl} Bibliothek, welche es erlaubt, diverse Formate in eine
 
 Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
-\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R'' für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
+\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R''\footnote{\url{http://www.r-project.org}} für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
 >>> import geopandas
@@ -358,14 +357,14 @@ Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen 
 }{Auswertung verschiedener Format- und Transformations-Varianten}{pd:format-results}
 
 \begin{decision}[label=dec:pd:format]{Intermediäres Format}
-Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante in der Datenbank wurde obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
+Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante ``Datenbank'' wurde obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
 
 Als Transformationssprache wird eine an SQL angelehnte DSL implementiert.
 \end{decision}
 
 \section{User Interface}
 \subsection{Backend}
-Im Python-Umfeld existieren zwei bekanntere Frameworks für Webapplikationen: Flask\footnote{\url{http://flask.pocoo.org}} und Django\footnote{\url{https://www.djangoproject.com}}. \fsc und \rli haben in ihren SAs bereits Flask eingesetzt, und geraten, Django zu verwenden.
+Im Python-Umfeld existieren zwei für uns bekanntere Frameworks für Webapplikationen: Flask\footnote{\url{http://flask.pocoo.org}} und Django\footnote{\url{https://www.djangoproject.com}}. \fsc und \rli haben in ihren Semesterarbeiten Flask eingesetzt, und geraten, Django zu verwenden.
 
 Um einfach ein \acs{rest} \acs{api} erstellen zu können wird zusätzlich die Django-Erweiterung rest\_framework\footnote{\url{http://www.django-rest-framework.org}} verwendet.
 
@@ -401,9 +400,9 @@ Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen berei
 Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher eine initiale \acs{odhql}-Abfrage erstellen kann. Dieses soll auch Abfragen mit JOIN und UNION unterstützten.
 
 \subsubsection{Drafts}
-Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehen könnte. Einige davon möchten werden in diesem Abschnitt aufgezeigt.
+Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehen könnte. Einige davon werden in diesem Abschnitt aufgezeigt.
 \begin{figure}[H]
-    
+    \centering    
     \includegraphics[width=0.8\linewidth]{fig/mockup_hcdi}
     \caption{Frühes Mockup ``Transformation erstellen''}
     \label{fig:pd:mockup-upload}
@@ -450,7 +449,7 @@ Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns
 Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Clients in einem Server-Side Cookie gespeichert. Dieses wird mit jedem Request an den Server übermittelt. So kann der Server davon ausgehen, dass es sich beim Client um den Inhaber der Session ID handelt.
 
 \subsection{Token-Based-Authentication}
-Ein aktuellerer Ansatz, ist es, einen Signierten Token im Header jedes Requests der zum Server geht mitzusenden. Diese Methode bietet folgende Vorteile:
+Ein aktuellerer Ansatz, ist es, einen signierten Token im Header jedes Requests der zum Server gesendet wird anzugängen. Diese Methode bietet folgende Vorteile:
 
 \begin{description}
   \item[Cross-Domain / CORS]
@@ -458,10 +457,10 @@ Ein aktuellerer Ansatz, ist es, einen Signierten Token im Header jedes Requests 
   \item[Stateless (Server-Side-Scalability)] Es wird kein Session-Store benötigt. Der Token enthält alle Benutzerinformationen der Rest des ``States'' liegt im Local Storage auf der Client-Seite.
   \item[Decoupling] Man ist nicht an ein Authentifizierungs-Schema gebunden. Der Token kann überall generiert werden, sprich die API kann von überall her aufgerufen werden.
   \item[Mobile-Ready] Cookies sind in nativen mobilen Apps/APIs meist schlecht unterstützt.
-  \item[CSRF] Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentication-Cookie, das wiederverwendet werden könnte.
+  \item[CSRF] Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentifizierungs-Cookie, das wiederverwendet werden könnte.
   \item[Standard] Es gibt bereits einen Standard. (\gls{JWT})
 \end{description}
-
+Die beiden Methoden werden in \cref{fig:pd:cookie-token-auth} grafisch dargestellt.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/cookie-token-auth}
