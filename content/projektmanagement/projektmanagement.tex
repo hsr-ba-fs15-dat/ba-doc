@@ -150,7 +150,7 @@ Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren M
 
 \projectrisk{R33}{\gls{dat} wird nicht weiterentwickelt}
 {Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community nicht weiterentwickelt.}
-{Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.}
+{Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der Grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.}
 
 
 \section{Risikoüberwachung}
@@ -160,6 +160,13 @@ Die Risiken wurden während des gesamten Projektverlaufs periodisch überwacht u
 \subsection{1. März 2015}
 
 Wie sich herausgestellt hat, ist \gls{dat} noch weit davon entfernt, es produktiv verwenden zu können. Ständige API-Änderungen und fehlende Dokumentation machen es zu einem untragbaren Risiko. In \vref{dec:dat:fazit} wurde gegen den Einsatz von \gls{dat} entschieden und somit die Risisken R31 bis R33 eliminiert.
+
+\subsection{15. April 2015}
+Nachdem ein erster Prototyp der ``Parser'' und ``Formatter'' Konversions-Module sowie der Transformations-Sprache (\acl{odhql}) implementiert wurde, war die grundsätzliche Machbarkeit des Projekts bereits sichergestellt.
+
+\subsection{15. Mai 2015}
+Das Risiko R36 (Es treten technische Hürden auf, die nicht vorhergesehen wurden und nicht zu bewältigen sind) ist im Zusammenhang der externen Bibliothek \acs{gdal} eingetreten. Nach Evaluation diverser Lösungsansätze wurde für die stabilste Version mit grösster Formatunterstützung entschieden. Es ging sehr viel Zeit durch mangelnde/inkonsistente Formatunterstützung dieser Bibliothek verloren.
+
 
 \chapter{Entwicklungsumgebung und Infrastruktur}
 In diesem Kapitel wird die Entwicklungsumgebung inkl. verwendeten Tools beschrieben. \cref{fig:pm:entwicklungsumgebung} zeigt eine Übersicht der Entwicklungsumgebung und den groben Prozess.
