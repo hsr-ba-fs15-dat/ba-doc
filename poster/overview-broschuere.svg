@@ -1,0 +1,870 @@
+<svg version="1.1" x="0" y="0" id="iamc7l3j" diagram-revision="10" width="461.5999999999999" height="272.59999999999997" xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Vertical Rounded Rectangle-i7bj9q4d-ko2" transform="translate(5,5.300000000000011)">
+    <desc>root/abstractShapes/vRoundedRectangle?version=4&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <rect x="0.75" y="0.75" width="98.45044827461243" height="93.50041961669922" rx="20" fill="#ffffff" stroke="#3298da" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+    </g>
+    <text x="0" y="0" width="67.25" height="19.45" transform="translate(16.35,37.25)">
+      <tspan x="4.55" y="14.577272605895999" style="font-family:Lato;font-size:14px;fill:#3a87bd;font-weight:bold;">REST API</tspan>
+    </text>
+  </g>
+  <g id="Cylinder-i7bj9q4d-ko10" transform="translate(332.94999999999993,5)">
+    <desc>root/abstractShapes/cylinder?version=3&amp;author=Cinergix</desc>
+    <g id="image">
+      <g id="graphics">
+        <path d="M 99.25 12.75 L 99.25 87.25 Q 99.25 88.19442048189542 98.64365077431054 89.12721358048277 Q 98.03730154862106 90.06000667907011 96.83953342753631 90.95820393249937 Q 95.64176530645156 91.85640118592862 93.88207131627712 92.69788599687456 Q 92.12237732610268 93.5393708078205 89.84408697296615 94.30342302750968 Q 87.56579661982965 95.06747524719886 84.82500897343746 95.73528137423857 Q 82.08422132704528 96.40308750127829 78.9484236754043 96.95820393249937 Q 75.81262602376333 97.51332036372045 72.35903211217268 97.94207829026041 Q 68.90543820058204 98.37083621680038 65.21908697296617 98.66267819554184 Q 61.53273574535029 98.9545201742833 57.704397403231376 99.10226008714166 Q 53.876059061112464 99.25 50 99.25 Q 46.12394093888754 99.25 42.29560259676863 99.10226008714166 Q 38.46726425464972 98.9545201742833 34.78091302703385 98.66267819554184 Q 31.094561799417963 98.37083621680038 27.640967887827326 97.94207829026041 Q 24.187373976236685 97.51332036372045 21.051576324595704 96.95820393249937 Q 17.915778672954723 96.40308750127829 15.174991026562537 95.73528137423857 Q 12.434203380170352 95.06747524719886 10.15591302703384 94.30342302750968 Q 7.877622673897328 93.5393708078205 6.117928683722887 92.69788599687456 Q 4.3582346935484395 91.85640118592862 3.1604665724636902 90.95820393249937 Q 1.9626984513789338 90.06000667907013 1.3563492256894705 89.12721358048277 Q 0.75 88.19442048189542 0.75 87.25 L 0.75 12.75 Q 0.75 10.849386716105567 3.160466572463683 9.041796067500632 Q 5.570933144927373 7.234205418895699 10.155913027033833 5.696576972490323 Q 14.7408929091403 4.158948526084949 21.051576324595693 3.0417960675006324 Q 27.362259740051087 1.9246436089163161 34.78091302703383 1.337321804458158 Q 42.19956631401658 0.7500000000000018 49.99999999999999 0.75 Q 57.8004336859834 0.75 65.21908697296615 1.3373218044581563 Q 72.6377402599489 1.9246436089163144 78.94842367540429 3.041796067500629 Q 85.25910709085969 4.158948526084947 89.84408697296615 5.69657697249032 Q 94.42906685507262 7.234205418895695 96.83953342753631 9.041796067500629 Q 99.25 10.849386716105561 99.25 12.749999999999996 " fill="#ffffff" stroke="#3298da" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 99.25 12.75 Q 99.25 13.69442048189542 98.64365077431054 14.62721358048277 Q 98.03730154862106 15.560006679070119 96.83953342753631 16.45820393249937 Q 95.64176530645156 17.35640118592862 93.88207131627712 18.19788599687456 Q 92.12237732610268 19.039370807820504 89.84408697296615 19.803423027509677 Q 87.56579661982965 20.56747524719885 84.82500897343746 21.235281374238568 Q 82.08422132704528 21.90308750127829 78.9484236754043 22.45820393249937 Q 75.81262602376333 23.013320363720446 72.35903211217268 23.44207829026041 Q 68.90543820058204 23.87083621680038 65.21908697296617 24.162678195541844 Q 61.53273574535029 24.454520174283303 57.704397403231376 24.60226008714165 Q 53.876059061112464 24.75 50 24.75 Q 46.12394093888754 24.75 42.29560259676863 24.60226008714165 Q 38.46726425464972 24.454520174283306 34.78091302703385 24.162678195541844 Q 31.094561799417963 23.87083621680038 27.640967887827326 23.442078290260415 Q 24.187373976236685 23.01332036372045 21.051576324595704 22.45820393249937 Q 17.915778672954723 21.903087501278293 15.174991026562537 21.23528137423857 Q 12.434203380170352 20.567475247198853 10.15591302703384 19.80342302750968 Q 7.877622673897328 19.039370807820504 6.117928683722887 18.19788599687456 Q 4.3582346935484395 17.35640118592862 3.1604665724636902 16.45820393249937 Q 1.9626984513789338 15.56000667907012 1.3563492256894705 14.627213580482772 Q 0.75 13.694420481895422 0.75 12.750000000000002 Q 0.75 11.80557951810458 1.3563492256894634 10.872786419517231 Q 1.9626984513789338 9.939993320929883 3.160466572463683 9.041796067500632 Q 4.358234693548432 8.143598814071382 6.11792868372288 7.30211400312544 Q 7.877622673897321 6.460629192179498 10.155913027033833 5.696576972490323 Q 12.434203380170345 4.93252475280115 15.174991026562523 4.2647186257614305 Q 17.915778672954694 3.5969124987217143 21.051576324595693 3.0417960675006324 Q 24.187373976236696 2.4866796362795487 27.640967887827316 2.0579217097395865 Q 31.09456179941793 1.6291637831996226 34.78091302703383 1.337321804458158 Q 38.467264254649734 1.0454798257166935 42.295602596768624 0.8977399128583485 Q 46.12394093888751 0.75 49.99999999999999 0.75 Q 53.87605906111247 0.75 57.70439740323136 0.8977399128583468 Q 61.53273574535025 1.0454798257166917 65.21908697296615 1.3373218044581563 Q 68.90543820058205 1.6291637831996209 72.35903211217267 2.0579217097395848 Q 75.8126260237633 2.4866796362795487 78.94842367540429 3.041796067500629 Q 82.0842213270453 3.5969124987217107 84.82500897343746 4.264718625761429 Q 87.56579661982963 4.932524752801142 89.84408697296615 5.69657697249032 Q 92.12237732610268 6.460629192179498 93.88207131627712 7.302114003125436 Q 95.64176530645155 8.143598814071375 96.83953342753631 9.041796067500629 Q 98.03730154862106 9.939993320929883 98.64365077431053 10.872786419517226 Q 99.25 11.80557951810457 99.25 12.749999999999996 " fill="#ffffff" stroke="#3298da" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+      </g>
+    </g>
+    <text x="0" y="0" width="66.35" height="19.45" transform="translate(16.8,39.75)">
+      <tspan x="4.55" y="14.527272605895998" style="font-family:Lato;font-size:14px;fill:#3a87bd;font-weight:bold;">Database</tspan>
+    </text>
+  </g>
+  <g id="Hexagon-i7bj9q4d-ko17" transform="translate(202.64999999999998,139.2)">
+    <desc>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.9454494118690491,1.0333309173583984)">
+      <polygon vector-effect="non-scaling-stroke" fill="#ffffff" stroke="#3298da" points="27.082,89.5 0.582,45 27.082,0.5 80.082,0.5 109.5,45 80.082,89.5 27.082,89.5 " style="stroke:#3298da;fill:#ffffff;stroke-width:1.5;" stroke-width="1.5"/>
+    </g>
+    <text x="0" y="0" width="72.75" height="33.1" transform="translate(15.6,29.4)">
+      <tspan x="4.55" y="14.527272605895998" style="font-family:Lato;font-size:14px;fill:#3a87bd;font-weight:bold;">Transform</tspan>
+      <tspan x="11.85" y="29.977272605895994" style="font-family:Lato;font-size:14px;fill:#3a87bd;"/>
+      <tspan x="11.85" y="29.977272605895994" style="font-family:Lato;font-size:14px;fill:#3a87bd;">ODHQL</tspan>
+    </text>
+  </g>
+  <g id="Hexagon-i7bj9q4d-ko18" transform="translate(74.84999999999991,139.3)">
+    <desc>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.9454498291015625,1.0333251953125)">
+      <polygon vector-effect="non-scaling-stroke" fill="#ffffff" stroke="#3298da" points="27.082,89.5 0.582,45 27.082,0.5 80.082,0.5 109.5,45 80.082,89.5 27.082,89.5 " style="stroke:#3298da;fill:#ffffff;stroke-width:1.5;" stroke-width="1.5"/>
+    </g>
+    <text x="0" y="0" width="53.65" height="64" transform="translate(25.15,13.95)">
+      <tspan x="4.55" y="14.527272605895998" style="font-family:Lato;font-size:14px;fill:#3a87bd;font-weight:bold;">Format</tspan>
+      <tspan x="14.55" y="29.977272605895994" style="font-family:Lato;font-size:14px;fill:#3a87bd;">Geo</tspan>
+      <tspan x="10.9" y="45.42727260589599" style="font-family:Lato;font-size:14px;fill:#3a87bd;">Excel</tspan>
+      <tspan x="21.8" y="60.877272605895996" style="font-family:Lato;font-size:14px;fill:#3a87bd;">...</tspan>
+    </text>
+  </g>
+  <g id="iadio2a5-ko26" transform="translate(332.9,139.3)">
+    <desc>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</desc>
+    <g id="image" transform="scale(0.9454498291015625,1.0333251953125)">
+      <polygon vector-effect="non-scaling-stroke" fill="#ffffff" stroke="#3298da" points="27.082,89.5 0.582,45 27.082,0.5 80.082,0.5 109.5,45 80.082,89.5 27.082,89.5 " style="stroke:#3298da;fill:#ffffff;stroke-width:1.5;" stroke-width="1.5"/>
+    </g>
+    <text x="0" y="0" width="54.55" height="64" transform="translate(24.7,13.95)">
+      <tspan x="4.55" y="14.527272605895998" style="font-family:Lato;font-size:14px;fill:#3a87bd;font-weight:bold;">Parsers</tspan>
+      <tspan x="14.55" y="29.977272605895994" style="font-family:Lato;font-size:14px;fill:#3a87bd;"/>
+      <tspan x="14.55" y="29.977272605895994" style="font-family:Lato;font-size:14px;fill:#3a87bd;">CSV</tspan>
+      <tspan x="14.55" y="45.42727260589599" style="font-family:Lato;font-size:14px;fill:#3a87bd;">Geo</tspan>
+      <tspan x="22.75" y="60.877272605895996" style="font-family:Lato;font-size:14px;fill:#3a87bd;">...</tspan>
+    </text>
+  </g>
+  <g id="Connector-iadio2a5-ko32" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 805 340 L 715 340 L 940 340 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(940,340) rotate(90)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <g id="TextBox-iadio2a5-ko43" transform="translate(97.79999999999995,10.5)">
+    <desc>root/textControl?version=&amp;author=</desc>
+    <g id="image"/>
+    <text x="0" y="0" width="179.1" height="17.65" transform="translate(30.45,13.35)">
+      <tspan x="4.55" y="12.709090805053712" style="font-family:Lato;font-size:12px;fill:#000000;">Stores uploaded data unchanged</tspan>
+    </text>
+  </g>
+  <g id="TextBox-iadio2a5-ko44" transform="translate(86.04999999999995,52.14999999999998)">
+    <desc>root/textControl?version=&amp;author=</desc>
+    <g id="image" transform="rotate(8.025054460060157e-16)"/>
+    <text x="0" y="0" width="59.1" height="17.65" transform="translate(97.25,7.45)">
+      <tspan x="4.55" y="12.709090805053712" style="font-family:Lato;font-size:12px;fill:#000000;">Metadata</tspan>
+    </text>
+  </g>
+  <g id="TextBox-iadio2a5-ko45" transform="translate(311.5999999999999,225.15000000000003)">
+    <desc>root/textControl?version=&amp;author=</desc>
+    <g id="image"/>
+    <text x="0" y="0" width="105.45" height="17.65" transform="translate(22.25,9.15)">
+      <tspan x="4.55" y="12.709090805053712" style="font-family:Lato;font-size:12px;fill:#000000;">Parses file formats</tspan>
+    </text>
+  </g>
+  <g id="TextBox-iadio2a5-ko46" transform="translate(180.0999999999999,227.15000000000003)">
+    <desc>root/textControl?version=&amp;author=</desc>
+    <g id="image"/>
+    <text x="0" y="0" width="117.25" height="29.45" transform="translate(16.35,7.5)">
+      <tspan x="4.55" y="12.709090805053712" style="font-family:Lato;font-size:12px;fill:#000000;">Transforms data into</tspan>
+      <tspan x="25.45" y="26.35909080505371" style="font-family:Lato;font-size:12px;fill:#000000;">other shapes</tspan>
+    </text>
+  </g>
+  <g id="TextBox-iadio2a5-ko47" transform="translate(45.84999999999991,232.15000000000003)">
+    <desc>root/textControl?version=&amp;author=</desc>
+    <g id="image"/>
+    <text x="0" y="0" width="143.65" height="29.45" transform="translate(3.15,3.25)">
+      <tspan x="26.35" y="12.709090805053712" style="font-family:Lato;font-size:12px;fill:#000000;">Formats data into</tspan>
+      <tspan x="4.5" y="26.35909080505371" style="font-family:Lato;font-size:12px;fill:#000000;">the desired output format</tspan>
+    </text>
+  </g>
+  <g id="Connector-iamc60fo-ko27" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 684.8 482.1 L 664.8 482.1 L 664.8 417.6 L 664.95 417.6 L 664.95 398.1 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(664.95,398.1)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <g id="Connector-iamc60fo-ko28" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 812.6 482 L 800.699740600586 482 L 800.699740600586 482.1 L 789.8 482.1 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(789.8,482.1) rotate(-90)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <g id="Connector-iamc60fo-ko29" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 942.85 482.1 L 929.7247176527977 482.1 L 929.7247176527977 482 L 917.6 482 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(917.6,482) rotate(-90)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <g id="Connector-iamc60fo-ko30" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 992.9 402.8 L 992.9 419.95000000000005 L 992.85 419.95000000000005 L 992.85 437.1 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(992.85,437.1) rotate(180)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <g id="Connector-iamc60fo-ko32" transform="translate(-609.95,-297.8)">
+    <g id="graphics">
+      <path d="M 942.9 352.8 L 828.9000000000001 352.8 L 828.9000000000001 353.1 L 714.95 353.1 " fill="none" stroke="#727272" stroke-width="2"/>
+    </g>
+    <g id="toIcon" transform="translate(714.95,353.1) rotate(-90)">
+      <metadata id="metadata3057">
+        <aaa:RDF xmlns:aaa="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+      </metadata>
+      <aaa:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" aab:pageopacity="0" aab:pageshadow="2" aab:window-width="1366" aab:window-height="706" id="namedview3053" showgrid="true" aab:zoom="5.6568543" aab:cx="35.742573" aab:cy="39.38026" aab:window-x="-8" aab:window-y="-8" aab:window-maximized="1" aab:current-layer="Layer_1" xmlns:aaa="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:aab="http://www.inkscape.org/namespaces/inkscape"/>
+      <polygon points="0,0 8,8 -8,8 " id="polygon3051" transform="translate(0.00390625,0.71874995)" style="stroke:#727272;fill:#727272;stroke-width:2;" stroke="#727272" stroke-width="2" fill="#727272"/>
+    </g>
+  </g>
+  <creately-doc projectid="pi77danyu" revision="11" updated-user="Fabio Scala" sync="false" format-version="1.0" owner-name="Fabio Scala" id="iamc7l3j">
+    <date-created>Sun Jun 7 2015 02:12:24 PM</date-created>
+    <published>false</published>
+    <date-updated>Sun Jun 7 2015 02:12:24 PM</date-updated>
+    <connectors>
+      <connector model-type="CONNECTOR" end-point-one-x="942.9" bi-directional="false" show-obj-one-img="false" end-point-two-y="353.1" end-point-two-x="714.95" id="Connector-iamc60fo-ko32" show-obj-two-img="false" end-point-one-y="352.8" zorder="15">
+        <compatibleConnDefs>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <isLocked>false</isLocked>
+        <connection-def-id>Just a line</connection-def-id>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="352.8" x="828.9000000000001" index="0"/>
+          <point y="353.1" x="828.9000000000001" index="1"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne/>
+        <fromIconSource/>
+        <anchPntIDObjTwo/>
+        <object-one-id>Cylinder-i7bj9q4d-ko10</object-one-id>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="16777215" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamc60fo-tf26" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf26" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf26" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id>Vertical Rounded Rectangle-i7bj9q4d-ko2</object-two-id>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+      <connector model-type="LINE" end-point-one-x="805" bi-directional="false" show-obj-one-img="false" end-point-two-y="340" end-point-two-x="940" id="Connector-iadio2a5-ko32" show-obj-two-img="false" end-point-one-y="340" zorder="5">
+        <compatibleConnDefs/>
+        <isLocked>false</isLocked>
+        <connection-def-id/>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="340" x="715" index="0"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne/>
+        <fromIconSource/>
+        <anchPntIDObjTwo/>
+        <object-one-id/>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamfiw6t-tf2" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id/>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+      <connector model-type="CONNECTOR" end-point-one-x="992.9" bi-directional="false" show-obj-one-img="false" end-point-two-y="437.1" end-point-two-x="992.85" id="Connector-iamc60fo-ko30" show-obj-two-img="false" end-point-one-y="402.8" zorder="14">
+        <compatibleConnDefs>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <isLocked>false</isLocked>
+        <connection-def-id>Just a line</connection-def-id>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="419.95000000000005" x="992.9" index="0"/>
+          <point y="419.95000000000005" x="992.85" index="1"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne/>
+        <fromIconSource/>
+        <anchPntIDObjTwo>flowPort_1</anchPntIDObjTwo>
+        <object-one-id>Cylinder-i7bj9q4d-ko10</object-one-id>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="16777215" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamc60fo-tf23" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf23" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf23" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id>iadio2a5-ko26</object-two-id>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+      <connector model-type="CONNECTOR" end-point-one-x="812.6" bi-directional="false" show-obj-one-img="false" end-point-two-y="482.1" end-point-two-x="789.8" id="Connector-iamc60fo-ko28" show-obj-two-img="false" end-point-one-y="482" zorder="12">
+        <compatibleConnDefs>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <isLocked>false</isLocked>
+        <connection-def-id>Just a line</connection-def-id>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="482" x="800.699740600586" index="0"/>
+          <point y="482.1" x="800.699740600586" index="1"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne/>
+        <fromIconSource/>
+        <anchPntIDObjTwo>flowPort_2</anchPntIDObjTwo>
+        <object-one-id>Hexagon-i7bj9q4d-ko17</object-one-id>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamc60fo-tf19" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf19" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf19" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id>Hexagon-i7bj9q4d-ko18</object-two-id>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+      <connector model-type="CONNECTOR" end-point-one-x="684.8" bi-directional="false" show-obj-one-img="false" end-point-two-y="398.1" end-point-two-x="664.95" id="Connector-iamc60fo-ko27" show-obj-two-img="false" end-point-one-y="482.1" zorder="11">
+        <compatibleConnDefs>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <isLocked>false</isLocked>
+        <connection-def-id>Just a line</connection-def-id>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="482.1" x="664.8" index="0"/>
+          <point y="417.6" x="664.8" index="1"/>
+          <point y="417.6" x="664.95" index="2"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne>flowPort_4</anchPntIDObjOne>
+        <fromIconSource/>
+        <anchPntIDObjTwo>flowPort_3</anchPntIDObjTwo>
+        <object-one-id>Hexagon-i7bj9q4d-ko18</object-one-id>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="16777215" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamc60fo-tf17" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf17" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf17" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id>Vertical Rounded Rectangle-i7bj9q4d-ko2</object-two-id>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+      <connector model-type="CONNECTOR" end-point-one-x="942.85" bi-directional="false" show-obj-one-img="false" end-point-two-y="482" end-point-two-x="917.6" id="Connector-iamc60fo-ko29" show-obj-two-img="false" end-point-one-y="482.1" zorder="13">
+        <compatibleConnDefs>
+          <String>Just a line</String>
+        </compatibleConnDefs>
+        <isLocked>false</isLocked>
+        <connection-def-id>Just a line</connection-def-id>
+        <group-id/>
+        <toIconSource>ArrowHead1</toIconSource>
+        <anchor-points>
+          <point y="482.1" x="929.7247176527977" index="0"/>
+          <point y="482" x="929.7247176527977" index="1"/>
+        </anchor-points>
+        <comments/>
+        <anchPntIDObjOne/>
+        <fromIconSource/>
+        <anchPntIDObjTwo>flowPort_2</anchPntIDObjTwo>
+        <object-one-id>iadio2a5-ko26</object-one-id>
+        <text position="CONNECTOR_PATH_CENTER" text-rotation="NaN" wrapping="false">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="16777215" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content/>
+        </text>
+        <anchorsCustomized>false</anchorsCustomized>
+        <text-data-list>
+          <line-text location="0.5" id="iamc60fo-tf20" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf20" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+          <line-text location="0.5" id="iamc60fo-tf20" isPrimary="true" position="">
+            <text/>
+            <text-formats>
+              <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="-1" right-margin="0" end-index="-1" kerning="false" indent="0" font="Lato" order="0" leading="0" under-line="false" letter-spacing="0">
+                <url/>
+                <target/>
+              </text-format>
+            </text-formats>
+          </line-text>
+        </text-data-list>
+        <connection-name/>
+        <object-two-id>Hexagon-i7bj9q4d-ko17</object-two-id>
+        <drawStyle>0</drawStyle>
+        <connection-desc/>
+        <isVisible>false</isVisible>
+        <style line-thickness="2" line-style="LINESTYLE_NAME_SOLID" alpha="NaN" line-color="7500402"/>
+        <ownerDiagID>iamc7l3j</ownerDiagID>
+      </connector>
+    </connectors>
+    <diagramTypeId>block-diagram</diagramTypeId>
+    <revision-user>fabio.scala@gmail.com</revision-user>
+    <koDefIDList>
+      <def-ID>root/textControl?version=&amp;author=</def-ID>
+      <def-ID>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</def-ID>
+      <def-ID>root/abstractShapes?version=1&amp;author=Cinergix</def-ID>
+      <def-ID>root/abstractShapes/vRoundedRectangle?version=4&amp;author=Cinergix</def-ID>
+      <def-ID>root/abstractShapes/cylinder?version=3&amp;author=Cinergix</def-ID>
+    </koDefIDList>
+    <description/>
+    <editHash/>
+    <canvas-width>1500</canvas-width>
+    <viewHash/>
+    <revisionUserId>PHPAFB72-16BF-61B9-788A-2F6AB1C25774</revisionUserId>
+    <libraries>
+      <lib-ID>
+        <id>basic</id>
+      </lib-ID>
+      <lib-ID>
+        <id>blockShapes</id>
+      </lib-ID>
+    </libraries>
+    <source-tool/>
+    <save-comments/>
+    <tags>other,none,more,business,pest</tags>
+    <embedHash>1IQMwXRQoi7ieoSRVQYEjx5uTVo=</embedHash>
+    <dtLastEdit>LAST_EDIT_AUTO</dtLastEdit>
+    <creatorUid>PHPAFB72-16BF-61B9-788A-2F6AB1C25774</creatorUid>
+    <creator/>
+    <save-type/>
+    <app-version/>
+    <resources/>
+    <canvas-height>1500</canvas-height>
+    <inSync>false</inSync>
+    <objects>
+      <object model-type="NORMAL" locked="false" type="TEXT" name="" id="TextBox-iadio2a5-ko43" visible="true" zorder="6">
+        <libraries/>
+        <dimension height="45.45" x="707.75" scale-y="1" width="240" angle="0" y="308.3" scale-x="1">
+          <default-bounds x="0" y="0" width="150" height="37"/>
+          <matrix ty="0" b="0" d="1.2283782958984375" c="0" tx="0" a="1.600000023841858"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="30" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Stores uploaded data unchanged</content>
+        </text>
+        <kobject-def-id>root/textControl?version=&amp;author=</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="NaN" fill-color="268435455" line-style="" alpha="1" fill="true" fill-gradient="" line-color="268435455"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="TEXT" name="" id="TextBox-iadio2a5-ko45" visible="true" zorder="8">
+        <libraries/>
+        <dimension height="37" x="921.55" scale-y="1" width="150" angle="0" y="522.95" scale-x="1">
+          <default-bounds x="0" y="0" width="150" height="37"/>
+          <matrix ty="0" b="0" d="1" c="0" tx="0" a="1"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="19" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Parses file formats</content>
+        </text>
+        <kobject-def-id>root/textControl?version=&amp;author=</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="NaN" fill-color="268435455" line-style="" alpha="1" fill="true" fill-gradient="" line-color="268435455"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="NORMAL" name="" id="Hexagon-i7bj9q4d-ko18" visible="true" zorder="3">
+        <libraries/>
+        <dimension height="92.999267578125" x="684.8" scale-y="0.9999921244959676" width="103.99948120117188" angle="-2.1240734658334705e-14" y="437.1" scale-x="1">
+          <default-bounds x="0" y="0" width="110" height="90"/>
+          <matrix ty="0" b="0" d="1.0333251953125" c="0" tx="0" a="0.9454498291015625"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="true" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="6" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+            <text-format bold="false" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="6" right-margin="0" end-index="20" kerning="false" indent="0" font="Lato" order="1" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Format(~!nl!~)Geo(~!nl!~)Excel(~!nl!~)...</content>
+        </text>
+        <kobject-def-id>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="1.5" fill-color="16777215" line-style="" alpha="1" fill="true" fill-gradient="GRADIENT_FILL_SOLID" line-color="3315930"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="notes" value=""/>
+          <data-item type="" name="isConnected" value="0"/>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="TEXT" name="" id="TextBox-iadio2a5-ko44" visible="true" zorder="7">
+        <libraries/>
+        <dimension height="33.65" x="696" scale-y="1" width="253.65" angle="8.025054460060157e-16" y="349.95" scale-x="1">
+          <default-bounds x="0" y="0" width="150" height="37"/>
+          <matrix ty="0" b="2.3684758432181898e-17" d="0.909454345703125" c="0" tx="0" a="1.690999984741211"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="8" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Metadata</content>
+        </text>
+        <kobject-def-id>root/textControl?version=&amp;author=</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="NaN" fill-color="268435455" line-style="" alpha="1" fill="true" fill-gradient="" line-color="268435455"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="NORMAL" name="" id="Vertical Rounded Rectangle-i7bj9q4d-ko2" visible="true" zorder="0">
+        <libraries/>
+        <dimension height="95" x="614.95" scale-y="0.59375" width="99.95" angle="0" y="303.1" scale-x="1.1105555555555555">
+          <default-bounds x="0" y="0" width="90" height="160"/>
+          <matrix ty="0" b="0" d="0.5937526226043701" c="0" tx="0" a="1.1105605363845825"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="true" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="8" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+            <text-format bold="false" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="8" right-margin="0" end-index="9" kerning="false" indent="0" font="Lato" order="1" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>REST API(~!nl!~)</content>
+        </text>
+        <kobject-def-id>root/abstractShapes/vRoundedRectangle?version=4&amp;author=Cinergix</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="1.5" fill-color="16777215" line-style="" alpha="1" fill="true" fill-gradient="GRADIENT_FILL_SOLID" line-color="3315930"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="cornerradius" value="40"/>
+          <data-item type="" name="notes" value=""/>
+          <data-item type="" name="isConnected" value="0"/>
+          <data-item type="" name="DiagramLinkURL" value="http://"/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="NORMAL" name="" id="Hexagon-i7bj9q4d-ko17" visible="true" zorder="2">
+        <libraries/>
+        <dimension height="92.99978256225586" x="812.6" scale-y="0.9999976619597403" width="103.9994353055954" angle="0" y="437" scale-x="1">
+          <default-bounds x="0" y="0" width="110" height="90"/>
+          <matrix ty="0" b="0" d="1.0333309173583984" c="0" tx="0" a="0.9454494118690491"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="true" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="10" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+            <text-format bold="false" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="10" right-margin="0" end-index="15" kerning="false" indent="0" font="Lato" order="1" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Transform(~!nl!~)ODHQL</content>
+        </text>
+        <kobject-def-id>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="1.5" fill-color="16777215" line-style="" alpha="1" fill="true" fill-gradient="GRADIENT_FILL_SOLID" line-color="3315930"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="notes" value=""/>
+          <data-item type="" name="isConnected" value="0"/>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="TEXT" name="" id="TextBox-iadio2a5-ko46" visible="true" zorder="9">
+        <libraries/>
+        <dimension height="45.45" x="790.05" scale-y="1" width="150" angle="0" y="524.95" scale-x="1">
+          <default-bounds x="0" y="0" width="150" height="37"/>
+          <matrix ty="0" b="0" d="1.228378415107727" c="0" tx="0" a="1.0000001192092896"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="33" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Transforms data into(~!nl!~)other shapes</content>
+        </text>
+        <kobject-def-id>root/textControl?version=&amp;author=</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="NaN" fill-color="268435455" line-style="" alpha="1" fill="true" fill-gradient="" line-color="268435455"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="NORMAL" name="" id="Cylinder-i7bj9q4d-ko10" visible="true" zorder="1">
+        <libraries/>
+        <dimension height="100" x="942.9" scale-y="1" width="100" angle="0" y="302.8" scale-x="1">
+          <default-bounds x="0" y="0" width="100" height="100"/>
+          <matrix ty="0" b="0" d="1" c="0" tx="0" a="1"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="true" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="9" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Database(~!nl!~)</content>
+        </text>
+        <kobject-def-id>root/abstractShapes/cylinder?version=3&amp;author=Cinergix</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="1.5" fill-color="16777215" line-style="" alpha="1" fill="true" fill-gradient="GRADIENT_FILL_SOLID" line-color="3315930"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="basedepth" value="12"/>
+          <data-item type="" name="notes" value=""/>
+          <data-item type="" name="isConnected" value="0"/>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="TEXT" name="" id="TextBox-iadio2a5-ko47" visible="true" zorder="10">
+        <libraries/>
+        <dimension height="37" x="655.8" scale-y="1" width="150" angle="0" y="529.95" scale-x="1">
+          <default-bounds x="0" y="0" width="150" height="37"/>
+          <matrix ty="0" b="0" d="1" c="0" tx="0" a="1"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="false" block-indent="0" color="0" size="12" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="43" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Formats data into(~!nl!~)the desired output format</content>
+        </text>
+        <kobject-def-id>root/textControl?version=&amp;author=</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="NaN" fill-color="268435455" line-style="" alpha="1" fill="true" fill-gradient="" line-color="268435455"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+      <object model-type="NORMAL" locked="false" type="NORMAL" name="" id="iadio2a5-ko26" visible="true" zorder="4">
+        <libraries/>
+        <dimension height="92.999267578125" x="942.85" scale-y="0.9999921244959676" width="103.99948120117188" angle="0" y="437.1" scale-x="1">
+          <default-bounds x="0" y="0" width="110" height="90"/>
+          <matrix ty="0" b="0" d="1.0333251953125" c="0" tx="0" a="0.9454498291015625"/>
+        </dimension>
+        <text position="CENTRE" text-rotation="NaN" wrapping="true">
+          <text-formats>
+            <text-format bold="true" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="0" right-margin="0" end-index="8" kerning="false" indent="0" font="Lato" order="0" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+            <text-format bold="false" block-indent="0" color="3835837" size="14" bullet="false" align="center" display="block" italic="false" left-margin="0" begin-index="8" right-margin="0" end-index="20" kerning="false" indent="0" font="Lato" order="1" leading="2" under-line="false" letter-spacing="0">
+              <url/>
+              <target/>
+            </text-format>
+          </text-formats>
+          <content>Parsers(~!nl!~)CSV(~!nl!~)Geo(~!nl!~)...(~!nl!~)</content>
+        </text>
+        <kobject-def-id>root/abstractShapes/hexagon?version=3&amp;author=Cinergix</kobject-def-id>
+        <collapse collapsed-width="NaN" collapsed-height="NaN" expanded-height="NaN" expanded-x-pos="NaN" expanded-width="NaN" expanded-y-pos="NaN" collapsed-x-pos="NaN" collapsed-y-pos="NaN" collapsed="false"/>
+        <group-id/>
+        <style line-thickness="1.5" fill-color="16777215" line-style="" alpha="1" fill="true" fill-gradient="GRADIENT_FILL_SOLID" line-color="3315930"/>
+        <container-id/>
+        <children/>
+        <data-items>
+          <data-item type="" name="notes" value=""/>
+          <data-item type="" name="isConnected" value="0"/>
+          <data-item type="" name="DiagramLinkURL" value=""/>
+        </data-items>
+        <comments/>
+      </object>
+    </objects>
+    <kodefs/>
+    <comments/>
+    <notes/>
+    <docname>ODH Architecture Overview Broschuere</docname>
+  </creately-doc>
+</svg>
