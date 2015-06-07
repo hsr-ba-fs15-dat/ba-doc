@@ -363,15 +363,27 @@ Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Perform
 Als Transformationssprache wird eine an SQL angelehnte DSL implementiert.
 \end{decision}
 
-\section{Frontend}
-\subsection{Technologie}
+\section{User Interface}
+\subsection{Backend}
+Im Python-Umfeld existieren zwei bekanntere Frameworks für Webapplikationen: Flask\footnote{\url{http://flask.pocoo.org}} und Django\footnote{\url{https://www.djangoproject.com}}. \fsc und \rli haben in ihren SAs bereits Flask eingesetzt, und geraten, Django zu verwenden.
+
+Um einfach ein \acs{rest} \acs{api} erstellen zu können wird zusätzlich die Django-Erweiterung rest\_framework\footnote{\url{http://www.django-rest-framework.org}} verwendet.
+
+\begin{decision}{Backend}
+Flask hat sich in früheren Arbeiten nicht empfohlen. Daher setzen wir in dieser Arbeit Django ein.
+\end{decision}
+
+
+
+\subsection{Frontend}
+\subsubsection{Technologie}
 AngularJS ist ein weit verbreitetes und etabliertes Frontend Framework basierend auf \acs{mvvm}. Im Rahmen der Studienarbeiten wurde dies von Teilen unseres Teams bereits eingesetzt.
 
 \begin{decision}[label=dec:frontend:technology]{AngularJS als Frontendtechnologie}
 Da \chuf und \fscf bereits viel Erfahrung mit AngularJS sammeln konnten und es sich dabei um ein etabliertes Framework handelt, wurde für AngularJS und gegen andere potenziellen JavaScript Frameworks entschieden. Eine detaillierte Evaluation fand bereits im Rahmen der Studienarbeiten von \fscf und \rlif statt.
 \end{decision}
 
-\subsection{Bootstrap}
+\subsubsection{Bootstrap}
 Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung, da zu Beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von Bootstrap in AngularJS via Plugins vereinfacht die Verwendung der Framworks enorm.
 
 Ein Theme steuert das Look and Feel von Bootstrap. Material Design for Bootstrap setzt die Design-Vorgaben für Material UI auf Android 5 mit Bootstrap um und garantiert dadurch ein modernes Look and Feel.
@@ -380,15 +392,15 @@ Ein Theme steuert das Look and Feel von Bootstrap. Material Design for Bootstrap
 Aufgrund der Vertrautheit mit Bootstrap haben wir uns für die Verwendung von Bootstrap entschieden. Als Theme wird Material Design for Bootstrap verwendet.
 \end{decision}
 
-\subsection{Menupunkte}
+\subsubsection{Menupunkte}
 Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp wird folgende Struktur umfassen: Daten - Daten bereitstellen - Transformation erstellen. 
 
 Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.
 
-\subsection{Assistent}
+\subsubsection{Assistent}
 Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher eine initiale \acs{odhql}-Abfrage erstellen kann. Dieses soll auch Abfragen mit JOIN und UNION unterstützten.
 
-\subsection{Drafts}
+\subsubsection{Drafts}
 Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehen könnte. Einige davon möchten werden in diesem Abschnitt aufgezeigt.
 \begin{figure}[H]
     
