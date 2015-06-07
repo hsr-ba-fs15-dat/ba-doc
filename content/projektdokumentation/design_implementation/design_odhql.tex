@@ -2,9 +2,7 @@
 In diesem Kapitel wird die Transformationssprache ODHQL erläutert.
 \subsection{Syntax}
 
-Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus ANSI SQL.
-\xxx[referenz ASI SQL?]
-\xxx[orientiert sich nur an SELECT?]
+Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus ANSI SQL\footnote{\url{http://en.wikipedia.org/wiki/SQL:2011}}.
 
 Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
 
@@ -115,8 +113,8 @@ Filter werden wie in \cref{fig:pd:odhql-ast-filter} beschrieben dargestellt.
 \end{figure}
 
 \subsection{Interpreter}
-Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung sowie der Erweiterbarkeit durch eigene Funktionen.
-\xxx[und andererseits?]
+Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung, andererseits der Erweiterbarkeit durch eigene Funktionen.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\linewidth]{fig/odhql-flow.pdf}

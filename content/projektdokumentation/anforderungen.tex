@@ -65,16 +65,12 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 }{Rollen/Akteure}{pd:rollen}
 
 
-\section{User Stories}
-\xxx[nfrs in stories aufnehmen, evtl effizienz/performance (gespräch mit herrn drofschmid)? browser, ...]
-
 \subsection{Registrierung / Authentifizierung}
 
 \begin{scrumepic}[label=epic:pd:registrieren]{Benutzer registrieren}
 	Als Datenanbieter will ich mich in der Applikation registrieren können, sodass ich Daten unter meiner Person/Organisation publizieren kann.
 \end{scrumepic}
 
-\xxx
 \begin{scrumstory}[label=story:pd:suisseid]{SuisseID}
 	Als Datenanbieter will ich mich mittels SuisseID registrieren/anmelden können, sodass ich als Behörde einen Zugriff erlange ohne einen Social-Account zu benötigen.
 \end{scrumstory}
@@ -156,8 +152,6 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 	wenn ich die Datei mittels Browser in einem anderen Format beziehen will, dann soll die automatisch ins Zielformat konvertierte Datei heruntergeladen werden.
 \end{scrumepic}
 
-\xxx[stories]
-
 
 
 \section{Nicht-funktionale Anforderungen}
@@ -170,7 +164,7 @@ In diesem Abschnitt werden zusätzliche, aus der Aufgabenstellung entnommene sow
 Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} sind teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der HSR wie folgt eingeschränkt:
 
 \begin{itemize}
-	\item Python als Programmiersprache %TODO python 2?
+	\item Python als Programmiersprache
 	\item Deployment der Applikation muss via \gls{wsgi} möglich sein
 	\item \gls{psql} als Datenbank oder SQLite bei kleineren Aufgaben
 \end{itemize}
@@ -186,5 +180,10 @@ Zur Sicherung der Softwarequalität wurden folgende drei Anforderungen durch den
 	\item Kommentieren des Codes in einem Sphinx\footnote{Siehe auch: \url{http://sphinx-doc.org}} kompatiblen Format
 	\item PEP-8 als Codierrichtlinie, besonders die Verwendung von Leerzeichen zur Einrückung
 \end{itemize}
+
+
+\subsection{Effizienz}
+Bei der Applikation handelt es sich einerseits um einen Prototypen, andererseits nicht um eine Echtzeit-Applikation. Dennoch sollte die Applikation mit Datenmengen von maximal 500000 Datensätzen umgehen können, sofern genügend Arbeitsspeicher vorhanden ist.
+
 
 
