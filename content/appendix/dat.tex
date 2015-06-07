@@ -1,0 +1,615 @@
+\chapter{dat - Schnittstellen} \label{app:dat}
+
+Dieses Kapitel beschreibt die Möglichkeiten wie \gls{dat} mittels Schnittstellen und Konfiguration über dessen Basisfunktionalität eines simplen tabellen-artigen Speichers hinaus verwendet werden kann.
+
+\section{CLI} \label{app:dat-help}
+
+\begin{src}{console}
+$ dat help
+
+Example usage
+
+make a new folder and turn it into a dat store
+
+    mkdir foo
+    cd foo
+    dat init
+
+put a JSON object into dat
+
+    echo '{"hello": "world"}' | dat import --json
+
+stream the most recent of all rows
+
+    dat cat
+
+stream a CSV into dat
+
+    cat some_csv.csv | dat import --csv
+
+or
+
+    dat import --csv some_csv.csv
+
+use a custom newline delimiter:
+
+    cat some_csv.csv | dat import --csv --newline $'\r\n'
+
+use a custom value separator:
+
+    cat some_tsv.tsv | dat import --csv --separator $'\t'
+
+stream NDJSON into dat
+
+You can pipeline Newline Delimited JSON (
+NDJSON (http://ndjson.org/)
+) into dat on stdin and it will be stored
+
+    cat foo.ndjson | dat import --json
+
+specify a primary key to use
+
+    echo $'a,b,c\n1,2,3' | dat import --csv --primary=a
+    echo $'{"foo":"bar"}' | dat import --json --primary=foo
+
+attach a blob to a row
+
+    dat blobs put jingles jingles-cat-photo-01.png
+
+stream a blob from a row
+
+    dat blobs get jingles jingles-cat-photo-01.png
+
+add a row from a JSON file
+
+    dat rows put burrito-recipe.json
+
+get a single row by key
+
+    dat rows get burrito
+
+delete a single row by key
+
+    dat rows delete burrito
+
+but rows are never truly deleted. you can always go find a row at the version it was last seen. in this case, that row was at version 1
+
+    dat rows get burrito 1
+
+start a dat server
+
+    dat listen
+
+then you can poke around at the REST API:
+
+    /api/changes
+    /api/changes?data=true
+    /api/metadata
+    /api/rows/:docid
+    POST /api/bulk content-type: application/json (newline separated json)
+
+pull data from another dat
+
+    dat pull http://localhost:6461
+
+push data to another dat
+
+    dat push http://localhost:6461
+
+delete the dat folder (removes all data + history)
+
+    dat clean
+
+view raw data in the store
+
+    npm install superlevel -g
+    superlevel .dat/store.dat createReadStream
+\end{src}
+
+\section{Datscript} %https://github.com/datproject/datscript
+
+Datscript ist eine \gls{dsl} für \gls{dat} die es ermöglicht Befehle zu konfigurieren sowie mehrere Befehle zu sogenannten Pipelines zu verknüpfen. Obschon Datscript an diversen Stellen erwähnt wird und ein Repository auf GitHub\footnote{Lediglich ein Beispiel für das Konzept, keinerlei Programmcode vorhanden} besteht, so ist es bisher lediglich ein Konzept und wurde noch nicht implementiert. Es ist zu vermuten, das Datscript gar nicht implementiert wird und durch das in \cref{sec:dat:gasket} beschriebene Gasket ersetzt wurde.
+
+
+\begin{srclst}{bash}{Datscript Beispiel}
+# validate cli args
+args [url]
+
+# import another datscript file
+import foo.ds
+
+# set env var for all run commands to use
+env foo = "bar"
+
+# run a pipeline (hoists)
+run pipeline import
+
+# run a command (from node_modules/.bin or PATH)
+run foobar
+
+# define main (default) pipeline
+pipeline main
+  run pipeline import
+
+# define pipeline w/ piping
+pipeline import
+  run foobar | run dat import --json
+\end{srclst}
+
+\section{Gasket}\label{sec:dat:gasket} % https://github.com/datproject/gasket
+Gasket ist eine Node.js-basierte Pipeline-Engine. Die Konfiguration geschieht entweder im JSON-Format direkt in \path{package.json}, oder aber in einem Node.js-Modul. Unterstützt wird die Ausführung von externen Programmen, oder die Verwendung von Node.js-Modulen.
+
+Ein Beispiel einer trivialen \path{package.json} Konfiguration wird in \cref{lst:dat:gasket-example} aufgezeigt und gibt lediglich ``HELLO WORLD'' aus .
+
+\begin{srclst}[label=lst:dat:gasket-example]{json}{Offizielles Gasket Beispiel}
+{
+  "name": "my-test-app",
+  "dependencies" : {
+    "transform-uppercase": "^1.0.0"
+  },
+  "gasket": {
+    "example": [
+      {
+        "command": "echo hello world",
+        "type": "pipe"
+      },
+      {
+        "command": "transform-uppercase",
+        "type": "pipe"
+      }
+    ]
+  }
+}
+\end{srclst}
+
+
+\section{Schnittstellen / API}
+
+\subsection{REST}
+% https://github.com/maxogden/dat/blob/master/docs/rest-api.md
+
+Der dat-Server kann von jeder dat-Instanz durch \mintinline{console}{$ dat listen} gestartet werden.
+
+dat implementiert aktuell nur HTTP Basic Authentication mit einem einzelnen Benutzer, welcher in dat.json konfiguriert werden kann. 
+
+Falls ein Admin-Benutzer konfiguriert ist, können nur angemeldete Sessions Daten ändern, es können jedoch immer noch alle Daten von allen Benutzern gelesen werden.
+% https://github.com/maxogden/dat/blob/master/docs/dat-json-config.md#adminuser-adminpass
+
+SSL wird bisher nicht unterstützt.
+
+\paragraph{GET /} ~\\
+Liefert die Webapplikation dat-editor aus.
+
+\paragraph{Antwort GET /api} ~\\
+Liefert allgemeine Informationen zur dat-Instanz
+\begin{srclst}{json}{GET /api}
+    {
+        "dat":"Hello",
+        "version":"6.9.6",
+        "changes":2,
+        "name":"dat-test",
+        "rows":53,
+        "approximateSize":{
+            "rows":"3 kB"
+        }
+    }
+\end{srclst}
+
+\paragraph{GET /api/rows} ~\\
+Liefert eine Liste von Einträgen (Default: 50 Einträge).
+% http://www.fakenamegenerator.com/gen-random-gr-sz.php ftw
+\begin{srclst}{json}{Antwort GET /api/rows}
+{
+    "rows": [
+        {
+            "prename":"Leonie", "surname":"Hahn", 
+            "street":"Via Camischolas sura", "nr":"86", 
+            "zip":"1135", "city":"Denens", 
+            "key":"ci6huzf52000057coxym5lgy7", "version":1
+        },
+        {
+            "prename":"Manuela", "surname":"Eichel", 
+            "street":"Vallerstrasse", "nr":"115",
+            "zip":"3765", "city":"Pfaffenried", 
+            "key":"ci6hv0d0a00005vco99jxr7w0", "version":1
+        },
+        ...
+    ]
+}
+\end{srclst}
+
+\paragraph{GET /api/rows/:key} ~\\
+Liefert den Eintrag mit dem angegebenen Schlüssel, oder eine Fehlermeldung.
+
+\begin{srclst}{json}{Antwort GET /api/rows/ci6huzf52000057coxym5lgy7}
+{
+    "prename":"Leonie", "surname":"Hahn", 
+    "street":"Via Camischolas sura", "nr":"86", 
+    "zip":"1135", "city":"Denens", 
+    "key":"ci6huzf52000057coxym5lgy7", "version":1
+}
+\end{srclst}
+
+\paragraph{POST /api/rows} ~\\
+Fügt einen neuen Datensatz hinzu. Die Daten müssen als JSON vorliegen.
+
+Die Antwort besteht entweder aus einer Konflikt-Meldung, oder aus dem neu hinzu gefügten Datensatz.
+
+\begin{srclst}{console}{POST /api/rows}
+$ curl -H 'Content-Type: application/json' -d '{"prename":"Markus", "surname":"Maier", "street":"Dreibündenstrasse", "nr":"135", "zip":"6774", "city":"Dalpe"}' -X POST localhost:6461/api/rows
+{"prename":"Markus", "surname":"Maier", "street":"Dreibündenstrasse", "nr":"135", "zip":"6774", "city":"Dalpe", "key":"ci6hw717u0004x0cocfquv0j9", "version":1}
+\end{srclst}
+
+\paragraph{GET /api/rows/:key/:filename} ~\\
+Liefert das BLOB mit dem entsprechenden Filenamen, oder eine Fehlermeldung falls nicht verfügbar.
+
+\paragraph{POST /api/rows/:key/:filename} ~\\
+Fügt ein neues BLOB zum angegebenen Datensatz hinzu. Der Datensatz muss bereits existieren, und die aktuelle Version des Datensatzes muss im Query-String angegeben werden: \\
+\mintinline{http}{POST /api/rows/foo/photo.jpg?version=1 HTTP/1.1}
+
+\paragraph{GET /api/session} ~\\
+Liefert Informationen zur aktuellen Session. Dieser Aufruf kann auch zur Anmeldung per Basic Authentication verwendet werden.
+
+\paragraph{GET /api/login} ~\\
+Selbe Funktionalität wie /api/session, setzt jedoch den HTTP-Header ``Basic realm="Secure Area"'', so dass Browser ein Login-Fenster anzeigen.
+
+\paragraph{GET /api/logout} ~\\
+Zerstört die aktuelle Session und entfernt Client-Side Cookies.
+
+\paragraph{GET /api/changes} ~\\
+Liefert eine Json-formatierte Version des Change Streams (siehe auch JavaScript-API createChangesStream).
+
+\paragraph{GET /api/csv} ~\\
+Liefert eine CSV-Datei mit der letzten Version der Daten.
+
+\paragraph{POST /api/bulk} ~\\
+Ermöglicht das Einfügen von mehreren Datensätzen gleichzeitig. Unterstützt werden JSON (Content-Type \texttt{application/json}) und CSV (Content-Type \texttt{text/csv}).
+
+Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-Objekten mit Key und Version für die neu eingefügten Datensätze, andernfalls aus einem HTTP-Fehler.
+
+\begin{srclst}{json}{GET /api/metadata}
+{
+    "changes":15, 
+    "liveBackup":false, 
+    "columns":["prename","surname","street","nr","zip","city","version:"]
+}
+\end{srclst}
+
+\paragraph{GET /api/manifest} ~\\
+Liefert ein JSON-Objekt mit Informationen zum DB-Backend. Dies wird für RPC verwendet (siehe \path{/api/rpc}).
+
+\paragraph{POST /api/rpc} ~\\
+Ein Server-Endpunkt für multilevel (Node.js-Modul).
+
+\paragraph{GET /api/metadata} ~\\
+Liefert Informationen zum Schema. Diese Daten werden während der Replikation verwendet.
+
+\paragraph{GET /api/replicator/receive und GET /api/replicator/send} ~\\
+Wird für Replikation verwendet.
+
+\subsection{JavaScript}
+%https://github.com/maxogden/dat/blob/master/docs/js-api.md
+dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript API. Dieser Abschnitt zeigt auf welche Interaktion mit dem Repository via JavaScript API möglich ist.
+
+\begin{srclst}{js}{Laden des dat-Moduls}
+var dat = require('dat')
+\end{srclst}
+
+\paragraph{\texttt{var db = \parahighlight{dat}([path], [options], [onReady])}} ~\\
+
+Erstellt eine neue oder öffnet eine bereits bestehende dat-Datenbank. Alle Parameter sind optional.
+
+\begin{description}
+\item[path (string)] Pfad zum Verzeichnis, welches das \texttt{.dat}-Verzeichnis enthält. Falls kein \texttt{.dat}-Verzeichnis existiert wird ein neues erstellt. Default ist \mintinline{js}{process.cwd()}.
+\item[options (object)] Weitere Konfigurations-Parameter:
+    \begin{description}
+    \item[init] Wenn \mintinline{js}{false} erstellt dat keine neue Datenbank beim Initialisieren. Default: \mintinline{js}{true}.
+    \item[storage] Wenn \mintinline{js}{false} versucht dat nicht beim Initialisieren die Datenbank zu lesen. Default: \mintinline{js}{true}.
+    \item[path] Alternative zum Konstruktor-Argument.
+    \item[adminUser, adminPass] Wird als Benutzer/Passwort verwendet für HTTP Basic Authentication wenn beide konfiguriert sind.
+    \item[leveldown] Benutzerdefiniertes \texttt{leveldown}-Backend. Default: \mintinline{js}{require('leveldown-prebuilt')}
+    \item[db] Benutzerdefinierte \texttt{levelup}-Instanz. Wenn diese Option vorhanden ist wird die \texttt{leveldown}-Option ignoriert und alle Tabellen-basierte Daten werden in dieser DB-Instanz gespeichert.
+    \item[blobs] Benutzerdefinierte \texttt{blob}-Datenbank. Default: \mintinline{js}{require('lib/blobs.js')}
+    \item[replicator] Benutzerdefinierte Replicator-Instanz. Default: \mintinline{js}{require('lib/replicator.js')}
+    \item[remoteAddress] Falls angegeben startet dat im RPC Client-Modus. Default: \mintinline{js}{undefined}
+    \item[manifest] Wenn \texttt{remoteAddress} gesetzt ist wird dies als Manifest für RPC verwendet.
+    \item[skim] Wenn \mintinline{js}{true} wird lazy auf BLOBs von einer nicht-lokalen Quelle zugegriffen. Default: \mintinline{js}{false}.
+    \item[transformations] siehe Transformationen
+    \item[hooks] siehe Transformationen
+    \end{description}
+\item[onReady: (err)] Wird aufgerufen nachdem dat initialisiert wurde. Wenn \texttt{err} gesetzt ist trat ein Fehler auf.
+\end{description}
+ 
+\subparagraph{Transformationen}
+Transformationen können vor \texttt{put}- oder nach \texttt{get}-Operationen ausgeführt werden. Die Konfiguration erfolgt über den \texttt{options}-Parameter im Konstruktor.
+
+\begin{srclst}{js}{Beispiel einer Transformations-Konfiguration}
+{
+  "transformations": {
+    "get": "transform-uppercase",
+    "put": [{"module": "./lowercase-stream.js"}]
+  }
+}
+\end{srclst}
+
+Folgende Datentypen sind möglich:
+\begin{description}
+\item[string] Ausführbarer Befehl, um die Daten zu transformieren. Der Befehl erhält durch Zeilenumbrüche getrennte JSON-Datensätze (\acs{ndjson}) in \texttt{STDIN}. Nach der Transformation werden die Daten wieder als JSON auf \texttt{STDOUT} erwartet.
+\item[object] Objekt mit einem der folgenden Feldern:
+    \begin{description}
+    \item[command] Gleiche Funktionalität wie oben
+    \item[module] Per \texttt{require()} ladbares Node.js-Modul. Das Modul muss einen Streams2-Passthrough Stream exportieren mit \mintinline{js}{objectMode: true}. Falls das Modul installiert werden muss, sollte die Abhängigkeit direkt in package.json eingetragen werden.
+    \end{description}
+\item[array] Array von Transformationen, welche nacheinander ausgeführt werden.
+\end{description}
+
+\subparagraph{Hooks}
+Aktuell existiert nur ein einzelner Hook:
+\begin{description}
+\item[listen] Wird ausgeführt, wenn der dat-Server an einen Port bindet.
+\end{description}
+
+Ein Hook muss als Node.js-Modul, wie in \cref{lst:dat:hook} gezeigt, vorliegen.
+
+\begin{srclst}[label=lst:dat:hook]{js}{Hook-Beispiel}
+module.exports = function hook(dat, done) {
+  // do stuff with dat
+
+  // must call done when the hook is done initializing, even if you call it immediately
+  done()
+}
+\end{srclst}
+
+Nach erfolgreicher Initialisierung muss die Funktion \texttt{done} zwingend aufgerufen werden!
+
+% get
+
+\paragraph{\texttt{\parahighlight{get}(key, [options], callback: (error, value))}} ~\\
+Findet den zum Key gehörenden Datensatz, falls vorhanden, und übergibt das Resultat an den callback.
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+\begin{description}
+\item[version] Erlaubt das finden einer spezifischen Version. Default: aktuellste Version.
+\end{description}
+\end{description}
+% put 
+
+\paragraph{\texttt{\parahighlight{put}([key], value, [options], callback: (error, newVersion))}} ~\\
+Fügt einen neuen Datensatz in die Datenbank ein. Der Key kann optional als Parameter oder als \texttt{value.key} übergeben werden.
+
+Bereits bestehende Einträge werden nur überschrieben, wenn \texttt{value.version} mit der aktuellsten in der Datenbank existierenden Version übereinstimmt. Andernfalls tritt ein Konflikt-Fehler auf.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[force] Wenn \mintinline{js}{true} wird der Versions-Check übersprungen und Konflikte ignoriert. Für die neuen Daten wird eine neue Version erzeugt.
+    \end{description}
+\end{description}
+
+% delete
+
+\paragraph{\texttt{\parahighlight{delete}(key, callback: (error, newVersion))}} ~\\
+Markiert den Key als gelöscht. Achtung: Alte Versionen bleiben erhalten und können weiterhin abgerufen werden.
+
+% createReadStream
+
+\paragraph{\texttt{var readStream = db.\parahighlight{createReadStream}([options])}} ~\\
+Liefert einen lesbaren Stream der neusten Versionen aller Datensätze.
+
+Die Einträge werden als \mintinline{js}{ {key: key, value: value} } geliefert.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[start] Start-Key. Default: Erster Key.
+    \item[end] End-Key. Default: Letzter Key.
+    \item[limit] Anzahl Datensätze, die geliefert werden sollen. Default: Unlimitiert.
+    \end{description}
+\end{description}
+
+% createValueStream
+
+\paragraph{\texttt{var valueStream = db.\parahighlight{createValueStream}([options])}} ~\\
+Liefert einen lesbaren Stream über die Werte der aktuellsten Versionen. 
+
+Standardmässig wird auf dem Stream ein Objekt pro Zeile ausgegeben.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \mintinline{js}{createValueStream} unterstützt die selben Optionen wie \mintinline{js}{createReadStream}, sowie zusätzlich folgende:
+    \begin{description}
+    \item[format] Wenn diese Option auf \mintinline{js}{csv} oder \mintinline{js}{json} gesetzt wird, werden die Daten serialisiert anstatt als Objekte geliefert.
+    \item[csv] Identisch zu \mintinline{js}{format:'csv'}.
+    \item[json] Identisch zu \mintinline{js}{format:'json'}
+    \end{description}
+\end{description}
+
+% createKeyStream
+
+\paragraph{\texttt{var keyStream = db.\parahighlight{createKeyStream}([options])}} ~\\
+Liefert einen Stream über die Schlüssel der Datensätze. Der Stream liefert ein Objekt pro Zeile, in der Form \texttt{{key: key, version: number, deleted: boolean}}.
+
+Optionen sind identisch zu \mintinline{js}{createReadStream}.
+
+% createChangesStream
+
+\paragraph{\texttt{var changes = db.\parahighlight{createChangesStream}([options])}} ~\\
+Liefert einen Stream über das dat-Changelog. Die gelieferten Objekte haben die Form \texttt{{change: changeId, key: key, version: number}}.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[data] Wenn \mintinline{js}{true} enthalten die gelieferten Objekte das Attribut \mintinline{js}{value}. Default: \mintinline{js}{false}.
+    \item[since] Change-Id, ab welcher Daten geliefert werden sollen. Default: 0.
+    \item[tail] Wenn \mintinline{js}{true} wird \mintinline{js}{since} auf die letzte Change-Id gesetzt, so dass nur neue Änderungen geliefert werden. Default: \mintinline{js}{false}.
+    \item[limit] Limitiert die Anzahl der zu liefernden Änderungen. Default: unlimitiert.
+    \item[live] Wenn \mintinline{js}{true} werden neue Änderungen geliefert sobald sie auftreten und der Stream endet nicht (bzw. muss manuell geschlossen werden).
+    \end{description}
+\end{description}
+
+% createWriteStream
+
+\paragraph{\texttt{var writeStream = db.\parahighlight{createWriteStream}([options])}} ~\\
+Liefert einen schreibbaren Stream. Jede Schreib-Operation liefert Status-Informationen als Objekt zurück.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[format] Teilt dem Stream mit, welches Format geschrieben werden soll. Erlaubte Werte: \mintinline{js}{'csv'}, \mintinline{js}{'json'}, \mintinline{js}{'protobuf'} oder \mintinline{js}{'objectMode'} (default).
+    \item[csv, json, protobuf] Equivalent zu \mintinline{js}{format:'csv'}, \mintinline{js}{format:'json'} bzw. \mintinline{js}{format:'protobuf'}
+    \item[primary] Spalte bzw. Array von Spalten, welche als Primary Key verwendet werden soll. Default: \mintinline{js}{key}.
+    \item[hash] Wenn \mintinline{js}{true} wird als Primary Key der Hex-formatierte MD5-Hash der Primary Key-Spalten verwendet.
+    \item[primaryFormat] Funktion, welche den Key formattiert bevor er eingefügt wird. Als Rückgabewert muss ein String geliefert werden. Akzeptiert \mintinline{js}{(val)}.
+    \item[columns] Liste von Spalten-Bezeichnungen, welche für CSV/MultiBuffer verwendet werden sollen.
+    \item[headerRow] Muss auf \mintinline{js}{false} gesetzt werden, wenn der CSV-Input keine Titel-Zeile enthält. In diesem Fall sollte auch \texttt{columns} gesetzt
+    \item[separator] Feld-Separator für CSV. Default: \texttt{','}
+    \item[delimiter] Record-Separator für CSV. Default: \path{'\n'}
+    \end{description}
+\end{description}
+
+% createVersionStream
+
+\paragraph{\texttt{var versions = db.\parahighlight{createVersionStream}(key, [options])}} ~\\
+Liefert alle Versionen zum angegebenen Key.
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[start] Start-Version.
+    \item[end] End-Version
+    \end{description}
+\end{description}
+
+% createBlobReadStream
+
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobReadStream}(key, filename, [options])}} ~\\
+Liefert einen lesbaren Stream mit Blob-Daten.
+
+\begin{description}
+\item[options] Objekt mit folgenden Feldern:
+    \begin{description}
+    \item[version] Version des Datensatzes. Default: Aktuellste Version.
+    \end{description}
+\end{description}
+
+% createBlobWriteStream
+
+\paragraph{\texttt{var blobWriter = db.\parahighlight{createBlobWriteStream}(filename, [row], [callback])}} ~\\
+Liefert einen schreibbaren Stream, welcher Blob-Daten annimmt.
+
+\begin{description}
+\item[filename] Ein String oder ein Objekt mit einem \texttt{filename}-Attribut: \texttt{{filename:'example.png'}}.
+\item[row] Objekt, welches den Datensatz identifiziert an den dieses Blob angehängt werden soll. Es gelten die selben Regeln wie bei \texttt{put()}. Falls nicht angegeben wird ein neuer Datensatz erstellt.
+\item[callback: (error, updated)] Wird nach der Schreiboperation mit dem aktualisierten Datensatz aufgerufen.
+\end{description}
+
+% listen
+
+\paragraph{\texttt{dat.\parahighlight{listen}([port], [callback: (error)])}} ~\\
+Startet den HTTP-Server.
+
+\begin{description}
+\item[port] Zu verwendender Port. Default: 6461, bzw. der nächsthöhere freie Port.
+\end{description}
+
+% clone
+
+\paragraph{\texttt{dat.\parahighlight{clone}(remote, [callback])}} ~\\
+Initialisiert ein neues dat (falls nicht bereits vorhanden) und erstellt einen lokalen Klon von \texttt{remote}. Kann schneller sein als \texttt{pull()}, falls der Server schnellere clone-Fähigkeiten hat (z.B. \texttt{liveBackup} von hyperleveldb).
+
+% push
+
+\paragraph{\texttt{dat.\parahighlight{push}(remote, [callback: (error)])}} ~\\
+Synchronisiert das lokale dat mit dem \texttt{remote}-Server, indem die lokalen Änderungen über HTTP gepusht werden.
+
+\begin{description}
+\item[remote] HTTP-Basis-Adresse des Servers (z.B. \path{http://localhost:6461}).
+\end{description}
+
+\paragraph{\texttt{dat.\parahighlight{pull}([remote], [callback])}} ~\\
+Synchronisiert das lokale dat mit dem angegebenen Server, indem die Änderungen vom Server übernommen werden.
+
+\begin{description}
+\item[remote] HTTP-Basis-Adresse des Servers. Default: Adresse des Server, von dem diese dat-Instanz geklont wurde, falls vorhanden.
+\end{description}
+
+\paragraph{\texttt{dat.\parahighlight{init}(path, [callback])}} ~\\
+Erstellt eine neue dat-Datenbank in \path{path/.dat}. Diese Methode wird Standardmässig aufgerufen bei der Erstellung einer dat-Instanz.
+
+\paragraph{\texttt{var paths = dat.\parahighlight{paths}(path)}} ~\\
+Liefert ein Objekt mit diversen relevanten Pfaden, mit \texttt{path} als Basis.
+
+\begin{srclst}{js}{Beispiel: Pfade mit \texttt{.} als Basis}
+{ 
+    dir: '.',
+    dat: '.dat',
+    level: '.dat/store.dat',
+    port: '.dat/PORT',
+    blobs: '.dat/objects',
+    package: 'dat.json' 
+}
+\end{srclst}
+
+\paragraph{\texttt{dat.\parahighlight{exists}(path, callback: (error, exists))}} ~\\
+Prüft ob eine dat-Datenbank am angegebenen Pfad existiert.
+
+\paragraph{\texttt{dat.\parahighlight{close}(callback: (error))}} ~\\
+Beendet den HTTP-Server, den RPC-Client (falls vorhanden) und die Datenbank und räumt die \path{.dat/PORT}-Datei auf.
+
+\paragraph{\texttt{dat.\parahighlight{destroy}(path, callback: (error))}} ~\\
+Ruft \texttt{close()} auf und entfernt das \path{.dat}-Verzeichnis in \path{path}.
+
+\paragraph{\texttt{var headers = dat.\parahighlight{headers}()}} ~\\
+Liefert ein Array mit den aktuellen Spalten-Namen.
+
+\paragraph{\texttt{dat.\parahighlight{getRowCount}(callback: (error, count))}} ~\\
+Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
+
+% these don't actually exist
+% \paragraph{cat}
+% \paragraph{dump}
+% \paragraph{config}
+
+
+\subsection{Python}
+%https://github.com/pkafei/Dat-Python
+
+Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende grundlegenden Operationen mittels der \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
+
+\begin{description}
+    \item[\path{info()}] Generelle Informationen über das \gls{dat} Repository.
+    \item[\path{diff()}] Gibt alle Änderungen zurück.
+    \item[\path{csv()}] Gibt die Daten aus dem dat Repository als \gls{csv} formatierte Zeichenkette zurück.
+    \item[\path{rows()}] Gibt alle Zeilen im dat Repository zurück.
+    \item[\path{dict()}] Dasselbe wie \path{rows()}, jedoch als Dictionary.
+    \item[\path{put_json()}] Importiert alle Datensätze einer JSON Datei.
+    \item[\path{put_csv()}] Importiert alle Datensätze einer \gls{csv} Datei.
+\end{description}
+
+datPython ist zurzeit lediglich ein minimaler HTTP Wrapper und besteht aus knapp 60 Programmcodezeilen. Die Installation mittels \gls{pypi} bzw. \texttt{pip} wäre zwar möglich, jedoch nicht funktionsfähig. Bei Verwendung dieses noch kleinen Moduls wäre die Erstellung eines eigenen Forks zum jetzigen Zeitpunkt die beste Lösung.
+
+\begin{srclst}{pycon}{datPython Verwendung}
+>>> from datPython import Dat
+>>> dat = Dat('http://7hhtoqpk6c8wu3di.c.try-dat.com')
+
+>>> dat.info()
+{"dat":"Hello","version":"6.8.4","changes":2,"name":"root","rows":1, "approximateSize":{"rows":"502 B"}}
+
+>>> dat.diff()
+{"change":1,"key":"schema","from":0,"to":1,"subset":"internal"}
+{"change":2,"key":"ci6i1errr000012t5m9ggeh6h","from":0,"to":1}
+
+>>> dat.csv()
+key,version,name,age
+ci6i1errr000012t5m9ggeh6h,1,alice,35
+
+>>> dat.rows()
+{"rows": [
+    {"name":"alice","age":"35","key":"ci6i1errr000012t5m9ggeh6h","version":1}
+    ]}
+
+>>> dat.dict()
+{u'rows': [{u'age': u'35', u'version': 1, u'name': u'alice', u'key': u'ci6i1errr000012t5m9ggeh6h'}]}
+
+>>> dat.put_json('test.json')
+>>> dat.put_csv('test.csv')
+\end{srclst} 
