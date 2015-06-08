@@ -8,7 +8,7 @@ In diesem Kapitel sind die Anforderungen an OpenDataHub in Form von Scrum Epics 
 
 \section{User Stories}\label{sec:pd:user-stories}
 
-Die User Stories wurden aufgrund der zunächst unbekannten bzw. relativ knapp ausgedrückten Anforderungen iterativ aufgenommen. In \cref{fig:pd:uc-diagramm} ist eine Kurzübersicht der Anforderungen als Use-Case Diagramm dargestellt und dient lediglich für aussenstehende zum Verständnis. Die Akteure werden in \cref{tab:pd:rollen} genauer erläutert.
+Die User Stories wurden aufgrund der zunächst unbekannten bzw. relativ knapp ausgedrückten Anforderungen iterativ aufgenommen. In \cref{fig:pd:uc-diagramm} ist eine Kurzübersicht der Anforderungen als Use-Case Diagramm dargestellt und dient lediglich für Aussenstehende zum Verständnis. Die Akteure werden in \cref{tab:pd:rollen} genauer erläutert.
 
 \begin{figure}[H]
 	\centering
@@ -24,9 +24,9 @@ Die User Stories wurden aufgrund der zunächst unbekannten bzw. relativ knapp au
 Adressen im Allgemeinen können auf unterschiedliche Art und Weise modelliert und abgespeichert werden. Das klassische Beispiel ist die Adresse inklusive Hausnummer gegenüber zwei separaten Feldern. Ziel ist es unterschiedliche Schemata von Postadressen als integriertes zu \acs{csv} generieren, oder vorhandene Gebäudeadressen mit Daten im \gls{mopublic}\footnote{\url{http://www.cadastre.ch/internet/cadastre/en/home/products/mopublic.html}} Format anreichern zu können.
 
 \subsubsection{Verkehrshindernisse}
-Die Webapplikation \gls{trobdb} stellt Verkehrshindernisse der Schweiz auf einer Karte dar. Diese Verkehrshindernisse werden von diversen Datenlieferanten in unterschiedlichen Datei- und Schemaformaten angeliefert. Ziel ist es, alle diese Verkehrshindernisse in einem einheitlichen Datei- und Schemaformat beziehen zu können.
+Die Webapplikation \gls{trobdb} stellt Verkehrshindernisse der Schweiz auf einer Karte dar. Diese Verkehrshindernisse werden von diversen Datenlieferanten in unterschiedlichen Datei-Formaten und Schemata angeliefert. Ziel ist es, alle diese Verkehrshindernisse in einem einheitlichen Datei-Format und Schema beziehen zu können.
 
-Als Datenquellen dienen Datenangebote des Bundes, der Kantone sowie Lichtenstein. Als Demonstration sollen folgende Datenquellen verwendet werden:
+Als Datenquellen dienen Datenangebote des Bundes, der Kantone sowie Liechtenstein. Als Demonstration sollen folgende Datenquellen verwendet werden:
 \begin{itemize}
 \item Daten von \purl{http://www.truckinfo.ch} in einem nicht weiter spezifizierten XML-Format (siehe \cref{src:pd:truckinfoxml})
 \item WFS des Kantons Zürich (Tiefbaustellen, Baustellen)
@@ -75,8 +75,8 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 	Als Datenanbieter will ich mich mittels SuisseID registrieren/anmelden können, sodass ich als Behörde einen Zugriff erlange ohne einen Social-Account zu benötigen.
 \end{scrumstory}
 
-\begin{scrumstory}[label=story:pd:github]{GitHub}
-	Als Datenanbieter oder Drittentwickler will ich mich mittels GitHub-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
+\begin{scrumstory}[label=story:pd:github]{Github}
+	Als Datenanbieter oder Drittentwickler will ich mich mittels Github-Konto registrieren/anmelden können, sodass ich Daten publizieren kann ohne ein separates Konto zu benötigen.
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:facebook]{Facebook}
@@ -170,7 +170,7 @@ Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen,
 \end{itemize}
 
 
-Die Wahl der Frameworks und Libraries, sowohl Server- wie auch Clientseitig ist dem Entwicklerteam überlassen.
+Die Wahl der Frameworks und Libraries, sowohl Server- wie auch Client-seitig ist dem Entwicklerteam überlassen.
 
 \subsection{Qualität}
 Zur Sicherung der Softwarequalität wurden folgende drei Anforderungen durch den Betreuer bestimmt:
