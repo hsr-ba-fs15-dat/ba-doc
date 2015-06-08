@@ -4,7 +4,7 @@ In diesem Kapitel wird die Transformationssprache ODHQL erläutert.
 
 Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus \acs{ansi} \acs{sql}.
 
-Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syntax} zu finden.
+Eine formale Beschreibung der Transformationssprache ist in \cref{app:odhql-syntax} zu finden.
 
 \subsection{Unterstützte Features}
 
@@ -14,8 +14,8 @@ Eine formale Beschreibung der Transformations-Sprache ist in \cref{app:odhql-syn
   \midrule
   \textbf{Mapping} & Felder können mit oder ohne Alias angegeben werden. Falls kein Alias vorhanden ist, wird der Feldname beibehalten. Es ist möglich, Sonder- und Leerzeichen zu verwenden, indem der Feldname in doppelten Anführungszeichen geschrieben wird. \\
   \textbf{Default-Werte} & Unterstützt werden Integer, Float, sowie Strings (in einfachen Anführungszeichen). \\
-  \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen, muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpung). Neben Inner Joins werden auch Left, Right und Full Outer Joins unterstützt. \\
-  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc, Prädikate und ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
+  \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen, muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpfung). Neben Inner Joins werden auch Left, Right und Full Outer Joins unterstützt. \\
+  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc., Prädikate und ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
   \textbf{Erweiterbare Funktionen} & Alle Funktionen werden über eine Function Registry in Python aufgerufen und können daher einfach erweitert werden. \\
   \textbf{Sortierung} & Es kann eine Order By-Klausel angegeben werden. Falls Unions verwendet werden, muss die Order By-Klausel am Ende angegeben werden, nicht pro Query. \\
   \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Die Implementation entspricht dem UNION ALL aus SQL, es findet also keine Deduplizierung statt. \\
@@ -126,7 +126,7 @@ Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen w
 \subsection{Funktionen}
 Die Funktionen der \acs{odhql} wurden möglichst erweiterbar implementiert. Neue Funktionen erben von der Klasse \path{VectorizedFunction} und implementieren die Methode \path{apply}. 
 
-Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl der Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
+Durch die Vererbung und der zugrunde liegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl der Funktionsparameter werden vom Interpreter bzw. von der Execution Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
 
 Ein Beispiel einer solchen Funktion ist in \cref{src:pd:odhql-function} ersichtlich. Hierbei wird nach der Überprüfung der Argumente direkt an die Pandas-Methode \path{str.pad} weiterdelegiert.
 
