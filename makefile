@@ -3,17 +3,17 @@ GLO=makeglossaries
 BIB=biber
 ETEX=etex
 
-all: preamble
+all: preamble generate_dates
 	latexmk -pdf -r .latexmkrc main
 
 preamble:
 	$(TEX) -ini -shell-escape -interaction=nonstopmode -jobname="preamble" "&pdflatex" mylatexformat.ltx """main.tex"""  
 
-main:
+main: generate_dates
 	$(TEX) -synctex=1 -interaction=nonstopmode -halt-on-error -shell-escape main.tex
 
 protocols:
-	cd content/projektmanagement/sitzungsprotokolle/; \
+	cd content/projektmanagement/sitzungsprotokolle/ && \
 	find . -name "protokoll-*.tex" -exec $(TEX) -interaction=nonstopmode -halt-on-error -shell-escape {} \;
 
 no-output:
@@ -27,3 +27,8 @@ bib:
 
 clean:
 	rm -rf main.pdf _minted-* *.aux *.bbl *.bcf *.blg *.decisions *.fdb_latexmk *.fls *.fmt *.glg *.glo *.gls *.ist *.listing *.lof *.log *.lot *.minted *.mw *.out *.pseudocode *.run.xml *.sta *.synctex.gz *.toc
+
+generate_dates:
+	./create_change_date.sh > version_time.tex; \
+	git log --oneline | wc -l > version.tex; \
+	git rev-parse HEAD > version_hash.tex

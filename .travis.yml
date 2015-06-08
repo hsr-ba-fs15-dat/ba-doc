@@ -10,6 +10,8 @@ env:
 
 install:
   - cd ..
+  - rm -rf $TRAVIS_BUILD_DIR
+  - git clone https://github.com/hsr-ba-fs15-dat/ba-doc.git $TRAVIS_BUILD_DIR
   - wget -c http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
   - mkdir texlive
   - tar -zxf install-tl-unx.tar.gz -C ./texlive --strip-components=1
