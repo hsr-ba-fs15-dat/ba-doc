@@ -1,1 +1,1 @@
-LANG=DE_de date -r "$(git log -1 --pretty=format:%ct)" "+%e. %B %Y %H:%m"
+LANG=DE_de date -r "$(git log -1 --pretty=format:%ct)" "+%e. %B %Y %H:%M"
