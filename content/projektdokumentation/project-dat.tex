@@ -7,7 +7,7 @@ In der heutigen Gesellschaft wird der Austausch von Daten immer wichtiger. Verme
 
 Das \gls{dat}-Projekt hat das Ziel, die Integration sowie einen einheitlichen Zugriff solcher Datenquellen vereinfachen.
 
-Als erstes Ziel dieser Arbeit sollte das noch junge Projekt \gls{dat} anlysiert und dessen genaue Funktionalität und Funktionsweise dokumentiert werden. Aufgrund der Tatsache, dass \gls{dat} noch relativ neu ist und sich in der Alphaphase befindet, ist das Projekt nur wenig und sehr verstreut dokumentiert. \Gls{dat} hat im Jahr 2014 einen Gesamtbetrag von \SI{310000}[{\$}]{} von der \gls{knight-foundation} sowie der \gls{sloan-foundation} zur Weiterentwicklung des Projekts erhalten, was als Indiz für ein vielversprechendes Projekt gilt.
+Als erstes Ziel dieser Arbeit sollte das noch junge Projekt \gls{dat} analysiert und dessen genaue Funktionalität und Funktionsweise dokumentiert werden. Aufgrund der Tatsache, dass \gls{dat} noch relativ neu ist und sich in der alpha-Phase befindet, ist das Projekt nur wenig und sehr verstreut dokumentiert. \Gls{dat} hat im Jahr 2014 einen Gesamtbetrag von \SI{310000}[{\$}]{} von der \gls{knight-foundation} sowie der \gls{sloan-foundation} zur Weiterentwicklung des Projekts erhalten, was als Indiz für ein vielversprechendes Projekt gilt.
 
 \section{Was ist dat?} % https://github.com/maxogden/dat/blob/master/docs/what-is-dat.md
 
@@ -84,16 +84,16 @@ Siehe auch \url{https://github.com/maxogden/dat/issues/153}.
 Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
 
 \begin{itemize}
-  \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
+  \item Erstellung neuer dat Repositories/Instanzen mit \mintinline{console}{$ dat init}
   \item Import von CSV oder JSON Dateien mit \mintinline{console}{$ dat import}
   \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
-  \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
+  \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repositories analog Git mit \mintinline{console}{$ dat clone}
   \item Lokale Änderungen ebenfalls analog Git wieder zurück ins remote Repository synchronisieren mit \mintinline{console}{$ dat push}
   \item Rudimentäre Manipulation und Ausgabe von einzelnen Zeilen des Repositories mit \mintinline{console}{$ dat rows} bzw. \mintinline{console}{$ dat cat}
 \end{itemize}
 
 Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
-\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+\vref{app:dat-help} zu finden. Für fortgeschrittene Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das Javascript-API verwendet werden.
 
 Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten umgehen können.
 
@@ -117,7 +117,7 @@ Für eine Beschreibung der von \gls{dat} zur Verfügung gestellten \gls{api}, si
 Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
 \begin{itemize}
 \item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
-\item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
+\item Limitierte Synchronisation basierend auf einem Change Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
 \item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
 \end{itemize}
 
