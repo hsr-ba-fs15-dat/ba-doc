@@ -14,9 +14,6 @@
 \input{./macros}
 \input{./content/glossary-acronyms}
 \addbibresource{./bibliography/bibliography.bib}
-\immediate\write18{git log --oneline | wc -l > version.tex}
-\immediate\write18{git rev-parse HEAD > version_hash.tex}
-\immediate\write18{./create_change_date.sh > version_time.tex}
 
 
 %\newcommand{\version}{1.0}
