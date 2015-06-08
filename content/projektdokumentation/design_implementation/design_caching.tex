@@ -18,7 +18,7 @@ Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applika
 \mytable{lX}{
   \textbf{Cache} & \textbf{Beschreibung}\\
   \midrule
-  Level 1 & Der Level 1 Cache ist ein In-Memory Cache und sehr kurzlebig (\SI{60}{\second}). Dieser wird hauptsächlich verwendet, um Zwischenresultate wie Formatkonversionen oder Resultate einer Abfrage zu speichern, damit der Benutzer im Webfrontend die Daten sofort mittels Pagination anschauen kann.\\
+  Level 1 & Der Level 1 Cache ist ein In-Memory Cache und sehr kurzlebig (\SI{60}{\second}). Dieser wird hauptsächlich verwendet, um Zwischenresultate wie Format-Konversionen oder Resultate einer Abfrage zu speichern, damit der Benutzer im Webfrontend die Daten sofort mittels Pagination anschauen kann.\\
 
   Level 2 & Der Level 2 Cache ist ebenfalls ein In-Memory Cache, allerdings werden die Daten länger vorgehalten (\SI{300}{\second}). Darin werden hauptsächlich Daten aus dem Level 3 Cache für mehrere Minuten zwischengespeichert, um Abfrage- und Deserialisierungs-Overhead zu vermeiden.\\
 

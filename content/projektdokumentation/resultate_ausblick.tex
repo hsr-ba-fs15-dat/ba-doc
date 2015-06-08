@@ -6,10 +6,10 @@ Die Resultate der Arbeit sind in \vref{sec:tb:results} beschrieben.
 \section{Weiterentwicklung} \label{sec:tb:further-dev}
 
 \subsection{GDAL 2.0}
-Diverse Treiber wurden in GDAL 2.0 massiv verbessert (Interlis 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
+Diverse Treiber wurden in GDAL 2.0 massiv verbessert (\gls{interlis} 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
 
 \subsection{Native Unterstützung für via ogr2ogr implementierte Formate}
-Die Unterstützung für die Formate Interlis 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert, müssen die Daten über ein Zwischenformat konvertiert werden.
+Die Unterstützung für die Formate \gls{interlis} 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert, müssen die Daten über ein Zwischenformat konvertiert werden.
 
 Für den Formatter sieht das wie folgt aus:
 $$ \text{DataFrame in ODH} \to \text{Zwischenformat} \to \text{ogr2ogr} \to \text{Zielformat} $$
@@ -40,7 +40,7 @@ Wir sehen folgende Optionen:
 
 Am besten wäre wohl eine Kombination der beiden Optionen.
 
-\subsection{Mehr ODHQL-Funktionen}
+\subsection{Zusätzliche ODHQL-Funktionen}
 Bisher sind zwar diverse Funktionen implementiert, gerade im Geo-Bereich gibt es jedoch noch einiges an Erweiterungspotential.
 
 \subsection{Datentypen}
@@ -55,7 +55,7 @@ Mögliche Erweiterungen:
 
 Ausserdem sollte untersucht werden, ob Geodaten in allen Fällen korrekt behandelt werden.
 
-\subsection{Mehr Formate}
+\subsection{Breitere Formatunterstützung}
 Nach Bedarf können weitere Formate implementiert werden.
 
 \subsection{ODH als WFS-Server}
@@ -66,7 +66,7 @@ Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio Rec
 
 Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur aber sub-optimal und stark limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
 
-Zu beachten ist, dass diverse verwendete Libraries (unter anderem auch GDAL) nicht Stream-orientiert arbeiten.
+Zu beachten ist, dass diverse verwendete Bibliotheken (unter anderem auch GDAL) nicht Stream-orientiert arbeiten.
 
 \subsection{Unterstützung für weitere Datenstrukturen}
 Die aktuelle Version von \acs{odh} unterstützt nur tabellarische Daten. Dies könnte um Unterstützung für Baum-artige Daten, wie zum Beispiel XML, erweitert werden. 
