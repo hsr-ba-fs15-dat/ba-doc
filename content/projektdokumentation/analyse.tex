@@ -21,7 +21,7 @@ Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportform
 
 \subsubsection{Erweiterung mit Typen und Geo-Daten}
 
-\gls{geocsv} ist eine durch das Geometa-Lab der HSR spezifizierte Erweiterung von CSV um Geo-Daten mit folgenden Eigenheiten\cite{sfkeller,geocsv,gdal-csv}:
+\gls{geocsv} ist eine durch das Geometa-Lab der HSR spezifizierte Erweiterung von CSV um Geo-Daten mit folgenden Eigenheiten \cite{sfkeller,geocsv,gdal-csv}:
 
 \begin{itemize}
 \item Eine optionale Datei mit Endung \path{.csvt} spezifiziert auf einer einzigen Zeile die verwendeten Datentypen
@@ -33,10 +33,10 @@ Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportform
 
 
 \subsection{Excel}
-Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten\cite{sfkeller} oder Daten im Excel Format anliefern, müssen sowohl das alte Excel 2003 (xls) sowie das neue OpenXML (xlsx) Format unterstützt werden.
+Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten \cite{sfkeller} oder Daten im Excel Format anliefern, müssen sowohl das alte Excel 2003 (xls) sowie das neue OpenXML (xlsx) Format unterstützt werden.
 
 \subsection{GeoJSON}
-\gls{geojson} ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten. Dieses Format ist heutzutage weit verbreitet und fast überall, wo mit Geo-Daten hantiert wird, unterstützt.
+\gls{geojson} ist eine auf JSON basierende Schema-Spezifikation für Geo-Daten. Dieses Format ist heutzutage weit verbreitet und wird fast überall, wo mit Geo-Daten hantiert wird, unterstützt.
 
 \subsection{GeoPackage}
 GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe an SpatiaLite, welches mit Version 4.2 auf GeoPackage wechselt.
@@ -46,7 +46,7 @@ GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe
 
 
 \subsection{Interlis}
-\gls{interlis} besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
+\gls{interlis} besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt, ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
 
 \gls{interlis} existiert in zwei Versionen: \gls{interlis} 1 verwendet ein Datensatz-basiertes Transfer-Format, während für \gls{interlis} 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt \gls{interlis} 2 eine Erweiterung von \gls{interlis} 1 um Objekt-orientierte Features dar.
 
@@ -74,9 +74,9 @@ Zur Speicherung der Daten stehen folgende Varianten zur Auswahl.
 \subsection{File-basiert}
 Die Daten werden direkt im Dateisystem gespeichert. Um Konflikte zwischen Dateinamen zu vermeiden muss ein Hashing-Schema definiert und verwendet werden. Metadaten zu den Dokumenten werden in einer Datenbank hinterlegt.
 
-Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Dateisystem zwischengespeichert werden um weitere Abfragen nach der selben Transformation zu beschleunigen.
+Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transformation auswählt und anwendet. Die Resultate einer solchen Transformation können direkt wieder im Dateisystem zwischengespeichert werden, um weitere Abfragen nach der selben Transformation zu beschleunigen.
 
-Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern, insbesondere wenn diese Software nur direkt auf Dateiebene arbeitet (z.B. OGR).
+Die Tatsache, dass die Daten im Dateisystem liegen, vereinfacht die Einbindung von Software von Drittanbietern, insbesondere wenn diese Software nur direkt auf Dateiebene arbeitet (z.B. OGR).
 
 Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine beschreibbaren \cite{herokuReadOnlyFilesystem} bzw. keine beständigen \cite{herokuEphemeralFilesystem} Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.
 
@@ -85,19 +85,19 @@ Metadaten wie Format oder Original-Dateinamen würden aus Performance-Gründen w
 \subsection{Datenbank-basiert, einzelne Zeilen}\label{sec:pd:datenbank-records}
 Die Daten werden in einzelne Zeilen zerlegt und zusammen mit den Metadaten in einer Datenbank gespeichert. Dies erfordert, dass bereits der Daten-Anbieter eine Transformation in das Zeilen-Format auswählen muss. Falls sich herausstellt, dass dies zu langsam ist um es direkt im HTTP-Request des Anbieters durchzuführen, müssen die Daten vor der Transformation zwischengespeichert werden.
 
-Falls die Transformationsresultate zwischengespeichert werden sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
+Falls die Transformationsresultate zwischengespeichert werden, sollen ist eine weitere Datenablage für die Transformationsresultate notwendig.
 
 Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nur auf Dokumenten- oder gar Datei-Ebene arbeiten. In diesem Fall müssen die Daten erst wieder in ein geeignetes Format übersetzt werden, um nach der Transformation wieder in einzelne Zeilen zerlegt zu werden.
 
 \subsection{Datenbank-basiert, Dokument als BLOB}
-Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der Datei-basierten Version.
+Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der datei-basierten Version.
 
 Falls Drittanbieter-Software nur auf Dateibasis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
 
 Für diese Variante existieren folgende Möglichkeiten:
 \begin{description}
-\item[Daten und Metadaten in der selben Tabelle] Daten und Metadaten werden in der selben Tabelle gespeichert. Dies bietet ein einfacheres Schema, erlaubt jedoch nur ein Daten-Objekt pro Dokument, was ungeeignet ist für Dokument-Typen wie ESRI Shapefiles, welche aus mehr als einer Datei bestehen.
-\item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehend aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Eintrag. Dies erlaubt es auch, Django-Models zu erstellen welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
+\item[Daten und Metadaten in derselben Tabelle] Daten und Metadaten werden in der selben Tabelle gespeichert. Dies bietet ein einfacheres Schema, erlaubt jedoch nur ein Daten-Objekt pro Dokument, was ungeeignet ist für Dokument-Typen wie ESRI Shapefiles, welche aus mehr als einer Datei bestehen.
+\item[Daten und Metadaten in separaten Tabellen] Daten und Metadaten werden in unterschiedlichen Tabellen gespeichert. Dies erlaubt die Speicherung von Dokumenten bestehend aus mehreren Dateien, oder transformierten Daten als zusätzlichen Daten-Eintrag zu einem Metadaten-Eintrag. Dies erlaubt es auch, Django-Models zu erstellen, welche nicht jedes mal die Daten abfragen, obwohl nur Metadaten benötigt werden.
 \end{description}
 
 Da Dateiformate existieren, welche aus mehr als einer Datei bestehen, ist die Option mit separaten Tabellen vorzuziehen.
@@ -109,7 +109,7 @@ Da Dateiformate existieren, welche aus mehr als einer Datei bestehen, ist die Op
   \midrule
   \textbf{Original bleibt erhalten} & Das Originaldokument bleibt erhalten oder kann komplett rekonstruiert werden. Dies bietet folgende Vorteile: Verbesserungen an der Software (Parser) zeigt auch bei alten Daten Wirkung, ausserdem gehen hierbei keine Daten verloren. & \threeOfThree \\
   \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf Dateibasis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
-  \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser geschrieben wird für das bisher unbekannte Format. & \twoOfThree \\
+  \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser für das bisher unbekannte Format geschrieben wird . & \twoOfThree \\
   \textbf{Cloud} & Cloud-Anbieter wie Heroku bieten oft kein permanentes File-System, sondern verweisen auf Storage Provider wie Amazon S3 oder auf Datenbanken als Daten-Speicher. Unterstützung für Cloud-Anbieter ist kein zwingendes Kriterium für diese Arbeit, soll aber falls möglich erhalten bleiben. & \oneOfThree \\
 }{Bewertungskriterien Datenspeicherung}{pd:filestorage-criteria}
 
@@ -126,7 +126,7 @@ Da Dateiformate existieren, welche aus mehr als einer Datei bestehen, ist die Op
 }{Auswertung verschiedener Speicher-Varianten}{pd:filestorage-results}
 
 \begin{decision}[label=dec:pd:datenspeicherung]{Datenspeicherung}
-Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen, wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
+Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku, ohne gleich Cloud-Datenspeicher wie Amazon S3 verwenden zu müssen, wurde bereits früh entscheiden, die Dateien in der Datenbank zu persistieren. Da die Datenhaltung ohnehin eine sehr lose Kopplung zur restlichen Applikation besitzen soll, kann künftig auch eine andere Strategie implementiert werden.
 \end{decision}
 
 \section{Intermediäres Format und Transformationssprache}
@@ -134,7 +134,7 @@ Aus Gründen der Kompatibilität zu Cloud-Anbietern, insbesondere Heroku ohne gl
 \subsection{Motivation und Voraussetzungen}
 
 \subsubsection{Dateiformat}
-Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N\cdot(N-1)}2$ Übersetzungsmodule benötigt, um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format ohne welches eine generische Transformation unmöglich wäre.
+Bei $N$ Dateiformaten würden bei 1-zu-1 Format-Konversionen bereits $\frac{N\cdot(N-1)}2$ Übersetzungsmodule benötigt, um lediglich zwischen den Dateiformaten zu konvertieren. Zudem muss es möglich sein, das Schema der Daten zu transformieren. Diese Tatsache erfordert zwingend ein intermediäres, einheitliches Format, ohne welches eine generische Transformation unmöglich wäre.
 
 \subsubsection{Transformationssprache}
 Gleichzeitig kann die Wahl eines intermediären Formates nicht unabhängig von der Wahl einer Transformations-Implementation getroffen werden. So wäre es zum Beispiel unpraktikabel, als Zwischenformat eine Datenbank-basierte Lösung zu wählen, während die Transformation auf Dateiebene stattfinden soll.
@@ -156,7 +156,7 @@ Für unterschiedliche Datenstrukturen sind verschiedene Transformationsansätze 
 
 \subsection{Datenbank}
 \subsubsection{Intermediäres Format}
-Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. 
+Bei dieser Variante wäre das intermediäre Format äquivalent der Datenspeicherung wie sie in \cref{sec:pd:datenbank-records} beschrieben ist. Die Daten würden aber dennoch separat als Originaldateien abgelegt werden um keine Informationen zu vernichten. 
 
 \subsubsection{Transformationssprache}
 
@@ -170,17 +170,17 @@ Diese Variante bringt praktisch alle verlangten Features ohne grossen Implementa
 Da die Format-Konversionen auf Python-Ebene durchgeführt werden, liegt folgender Datenfluss vor:
 \begin{itemize}
 \item Zu Beginn befinden sich die Daten als BLOB in der Datenbank.
-\item Um die Daten zu Parsen werden sie mit Python ausgelesen.
+\item Um die Daten zu parsen werden sie mit Python ausgelesen.
 \item Der Parser schreibt die Daten als Records wieder in die Datenbank.
 \item Die Transformation findet statt. Aus Effizienzgründen könnte hier z.B. eine Materialized View\footnote{\url{http://www.postgresql.org/docs/9.3/static/sql-creatematerializedview.html}} verwendet werden. Die Resultate werden von Python ausgelesen.
-\item Ein Formatter verwendet diese Daten um das gewünschte Format zu erzeugen.
+\item Ein Formatter verwendet diese Daten, um das gewünschte Format zu erzeugen.
 \end{itemize}
 
-In diesem Prozess werden die Daten mehrfach aus der Datenbank gelesen, bzw. wieder in diese hineingeschrieben. Gleichzeitig kann die Datenbank viele ihrer Vorteile, wie z.B. Indizes, nicht ausspielen, da sowieso meist alle Daten benötigt werden.
+In diesem Prozess werden die Daten mehrfach aus der Datenbank gelesen, bzw. wieder in diese hineingeschrieben. Gleichzeitig kann die Datenbank viele ihrer Vorteile, wie z.B. Indizes nicht ausspielen, da sowieso meist alle Daten benötigt werden.
 
 Diese Effekte führen dazu, dass massive Performance-Einbussen gegenüber anderen Optionen zu erwarten sind.
 
-\subsection{ogrtools}
+\subsection{Ogrtools}
 
 Ogrtools ist eine Python-Implementation des \acs{cli}-Tools ``ogr2ogr'', erweitert mit simplen Transformationen. Ogr2ogr wie auch ogrtools verwenden die kompilierten OGR/\gls{gdal} Bibliotheken, welche 1-zu-1 (ogr $\to$ ogr) Format-Transformationen ermöglichen. Beispielsweise können ESRI Shapefiles (.shp) in \gls{kml} oder \gls{gml} Dateien umgewandelt werden. Da die Formate untereinander nicht immer kompatibel sind, kann es durchaus zum Verlust von Informationen kommen.
 
@@ -262,7 +262,7 @@ ist eine Python \acs{etl} Bibliothek, welche es erlaubt, diverse Formate in eine
 
 Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im Vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
-\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R''\footnote{\url{http://www.r-project.org}} für Python. Doch die zugrunde liegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
+\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R''\footnote{\url{http://www.r-project.org}} für Python. Doch die zugrunde liegenden, ebenfalls tabellenartigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
 >>> import geopandas
@@ -324,7 +324,7 @@ Aus diesen Gründen wird diese Variante nicht weiter verfolgt.
 \mytable{lXc}{
   \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
   \midrule
-  \textbf{Performance} & Wie performant ist die Lösung. Wichtig aufgrund des Effizienz-\acs{nfr}s, welches beim Treffen mit Herrn Dorfschmid geäussert wurde. & \twoOfThree \\
+  \textbf{Performance} & Wie performant ist die Lösung? Wichtig aufgrund des Effizienz-\acs{nfr}s, welches beim Treffen mit Herrn Dorfschmid geäussert wurde. & \twoOfThree \\
   \textbf{Machbarkeit} & Die generelle Umsetzbarkeit der funktionalen Anforderungen mit dieser Lösung. & \threeOfThree \\
   \textbf{Aufwand / Komplexität} & Der benötigte Aufwand um Applikation der Lösung umzusetzen. & \twoOfThree \\
 }{Bewertungskriterien Intermediäres Format}{pd:format-criteria}
@@ -357,7 +357,7 @@ Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen 
 }{Auswertung verschiedener Format- und Transformations-Varianten}{pd:format-results}
 
 \begin{decision}[label=dec:pd:format]{Intermediäres Format}
-Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante ``Datenbank'' wurde obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
+Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante ``Datenbank'' wurde, obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
 
 Als Transformationssprache wird eine an SQL angelehnte DSL implementiert.
 \end{decision}
@@ -394,8 +394,7 @@ Im Kontext der Evaluation eines für die Aufgabenstellung passenden Frontend Jav
 
 \subsubsection{Bootstrap}
 Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung, da zu Beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von Bootstrap in AngularJS via Plugins vereinfacht die Verwendung der Frameworks enorm.
-
-Ein Theme steuert das Look and Feel von Bootstrap. Material Design for Bootstrap setzt die Design-Vorgaben für Material UI auf Android 5 mit Bootstrap um und garantiert dadurch ein modernes Look and Feel.
+Ein Theme steuert das Look and Feel von Bootstrap. Material Design for Bootstrap setzt die Design-Vorgaben für Material UI auf Android 5 mit Bootstrap um und garantiert dadurch ein modernes Look-and-Feel.
 
 \begin{decision}[label=dec:frontend:bootstrap]{Bootstrap als Designgrundlage}
 Aufgrund der Vertrautheit mit Bootstrap haben wir uns für die Verwendung von Bootstrap entschieden. Als Theme wird Material Design for Bootstrap verwendet.
@@ -407,7 +406,7 @@ Die Menuführung soll schlicht und übersichtlich gehalten werden. Der Prototyp 
 Unter dem Menupunkt Daten werden bestehende Dokumente und Transformationen bereitgestellt.
 
 \subsubsection{Assistent}
-Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher eine initiale \acs{odhql}-Abfrage erstellen kann. Dieses soll auch Abfragen mit JOIN und UNION unterstützten.
+Es kann sich schwierig gestalten, eine Transformation von Grund auf zu erstellen. Deshalb soll eine Art Assistent zur Verfügung gestellt werden, welcher eine initiale \acs{odhql}-Abfrage erstellen kann. Dieses soll auch Abfragen mit JOIN und UNION unterstützen.
 
 \subsubsection{Drafts}
 Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehen könnte. Einige davon werden in diesem Abschnitt aufgezeigt.
@@ -418,7 +417,7 @@ Zu Beginn des Projekts wurden einige Skizzen erstellt, wie das Front-End aussehe
     \label{fig:pd:mockup-upload}
 \end{figure}
 
-Bevor klar wurde, dass es zur Erstellung von Transformationen einen Assistenten benötigt, war dies wie \cref{fig:pd:mockup-upload} angedacht. Auch einen grafischen Editor - analog wie bei Yahoo Pipes (eingestellt) - zu implementieren, war eine Option (siehe \cref{fig:pd:connectors}).
+Bevor klar wurde, dass es zur Erstellung von Transformationen einen Assistenten benötigt, war dies wie in \cref{fig:pd:mockup-upload} angedacht. Auch einen grafischen Editor - analog wie bei Yahoo Pipes (eingestellt) - zu implementieren, war eine Option (siehe \cref{fig:pd:connectors}).
 
 \begin{figure}[H]
     \centering
@@ -441,7 +440,7 @@ Das Upload-Formular wurde sehr nahe dem in \cref{fig:pd:wireframe-upload} gezeig
 In diesem Kapitel werden verschiedene Varianten zur Authentifizierung erläutert.
 
 \subsection{Herkömmliche Registrierung per E-Mail}
-Die klassische Benutzer-Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Drittparteien besitzt. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse registrieren und anmelden. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich Authentifiziert ist. Nachteilig ist, dass der Benutzer nicht verifiziert ist. Benutzer müssen ein Passwort speziell für diesen Service erstellen um den persönlichen Sicherheitsansprüchen zu genügen.
+Die klassische Benutzer-Registrierung bietet den Vorteil, dass sie keine Abhängigkeiten zu Drittparteien besitzt. So kann sich jeder Benutzer mit einer gültigen E-Mail Adresse registrieren und anmelden. Ein Nachteil dieser Methode kann sein, dass Dummy-Adressen verwendet werden können und so ein registrierter Benutzer nicht wirklich authentifiziert ist. Nachteilig ist, dass der Benutzer nicht verifiziert ist. Benutzer müssen ein Passwort speziell für diesen Service erstellen um den persönlichen Sicherheitsansprüchen zu genügen.
 
 \subsection{OAuth2}
 
@@ -450,7 +449,7 @@ OAuth2 hat einen anderen Ansatz. Soziale Netzwerke bieten sich an, um mit den Lo
 \subsection{Fazit}
 Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die OAuth Methode.
 \begin{decision}{Benutzer-Authentifizierung}
-Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns dazu entschieden nur auf die Methoden zur Authentifizierung per GitHub und Facebook zu basieren.
+Aufgrund der Entscheidung, das Benutzer-Handling einfach zu halten, haben wir uns dazu entschieden, nur auf die Methoden zur Authentifizierung per GitHub und Facebook zu basieren.
 \end{decision}
 
 \section{Session-Authentifizierung}
