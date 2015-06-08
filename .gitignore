@@ -6,6 +6,7 @@
 *.fls
 *.out
 *.toc
+*.date
 
 ## Intermediate documents:
 *.dvi
@@ -134,3 +135,7 @@ node_modules
 *.sublime-project
 *.sublime-workspace
 /sitzungsprotokolle
+
+version.tex
+version_hash.tex
+version_time.tex

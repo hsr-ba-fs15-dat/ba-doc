@@ -3,3 +3,31 @@
 Das Hauptdokument sollte auf der Titelblatt-Rückseite (oder Seite 2) je eine Angabe zur Erstellung und letzten Aktualisierung des Dokuments haben sowie ein Impressum (Kontakt-/Autoren- bzw. Dokumenten- Bezugsadresse im Internet, z.B. www.integis.ch > Projekte).
 Die SW-Engineering-Dokumente selber können eigene Tabellen mit Historie-Informationen enthalten.
 \end{comment}
+\thispagestyle{plain}
+\null
+\vfill
+\begin{minipage}[b]{\textwidth}
+\begin{table}[H]
+		\centering
+		\begin{tabularx}{\textwidth}{lX}
+			\toprule
+			\textbf{Erstellungsdatum} & 11. Februar 2015\ 13:03\\
+			  \textbf{Änderungsdatum} &  \input{version_time.tex} \\
+			  \textbf{Kompilierungsdatum} & \today\ \currenttime \\
+			  \midrule
+			  \textbf{Bezugsadresse} & \url{https://hsr-ba-fs15-dat.github.io/ba-doc/main.pdf} \\
+\textbf{Version} & \input{version.tex}  \\
+\textbf{Version Hash} & \input{version_hash.tex}  \\
+\midrule
+\textbf{Autoren} & \chuf \ \href{mailto:chuesler@hsr.ch}{chuesler@hsr.ch} \\
+& \fscf \ \href{mailto:fabio.scala@gmail.com}{fabio.scala@gmail.com} \\
+& \rlif \ \href{mailto:remo@liebi.net}{remo@liebi.net} \\
+\textbf{Auflage} & 3 \\
+\textbf{Jahr} & 2015 \\
+			\bottomrule
+		\end{tabularx}
+	\end{table}
+%\DTMsavetimestamp{2015-06-08 09:46:16 +0200}
+
+\end{minipage}
+

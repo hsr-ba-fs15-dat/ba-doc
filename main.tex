@@ -7,15 +7,18 @@
 % http://tex.stackexchange.com/questions/21854/automatically-make-footnote-carrying-pages-vertically-stretchable
 \raggedbottom
 \usepackage[bottom]{footmisc}
-
+\usepackage{gitinfo}
 \usepackage{style}
 \usepackage[subpreambles=false]{standalone}
-
+\usepackage{datetime}
 \input{./macros}
 \input{./content/glossary-acronyms}
 \addbibresource{./bibliography/bibliography.bib}
+\immediate\write18{git log --oneline | wc -l > version.tex}
+\immediate\write18{git rev-parse HEAD > version_hash.tex}
+\immediate\write18{./create_change_date.sh > version_time.tex}
 
-\newcommand{\version}{\textcolor{red}{DRAFT}}
+
 %\newcommand{\version}{1.0}
 %\chead{\textcolor{red}{DRAFT}}
 
@@ -39,9 +42,9 @@
 \begin{document}
 	\frontmatter
 		\import{content/}{title.tex} 
-		\cleardoublepage
-		%\import{content/}{history.tex}
-		%\cleardoublepage
+		\clearpage
+		\import{content/}{history.tex}
+		\clearpage
 
 
 		\import{content/}{abstract.tex}

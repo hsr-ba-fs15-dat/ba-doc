@@ -36,38 +36,46 @@ Überschriften (Unterkapitel) ohne Nummerierung einsetzen!
 
 \section*{Ausgangslage}
 
-Den Schweizer Behörden steht frei welche Software-Systeme sie einsetzen, um mit Geo-Daten zu arbeiten. Dies führt dazu, dass eine Vielzahl an Systemen eingesetzt und der Datenaustausch massiv erschwert wird. Es wurde versucht, dieses Problem mit dem Datenaustausch per \gls{interlis} zu lösen. Aufgrund mangelnder Unterstützung seitens der Software-Hersteller muss die Konvertierung in dieses Format jedoch nach wie vor von den am Austausch beteiligten Stellen selbst vorgenommen werden.
+Den Schweizer Behörden sowie Drittparteien steht die Wahl der eingesetzten Software-Systeme frei. Diese produzieren wiederum verschiedene Dateiformate und Schemata zum Austausch der Daten. Durch den Einsatz einer Vielzahl an Systemen wird der Datenaustausch massiv erschwert. Es wurde versucht, dieses Problem mit dem Daten-Austauschformat \gls{interlis} zu lösen. Aufgrund mangelnder Unterstützung seitens der Software-Hersteller muss jedoch nach wie vor erst eine Konversion in dieses Format vor dem Austausch durch die beteiligten Stellen selbst vorgenommen werden.
 
-Dies bringt beachtlichen technischen und betrieblichen Aufwand mit sich.
+Dies bringt einen beachtlichen technischen und betrieblichen Aufwand mit sich.
 
 \section*{Ziele}
+Das Ziel dieser Arbeit ist es, einen Prototypen für eine Plattform zu evaluieren und implementieren, welche
 
-Diese Arbeit hat als Ziel einen Prototypen für eine Plattform zu evaluieren und implementieren, welche
 \begin{itemize}
-\item diverse Daten-Formate lesen und schreiben kann, so dass ein Benutzer sich um die Daten kümmern kann, statt sich mit Formaten befassen zu müssen;
+\item diverse Dateiformate lesen und schreiben kann, so dass ein Benutzer sich um die Daten kümmern kann, statt sich mit Formaten befassen zu müssen;
 \item fortgeschrittenen Benutzern erlaubt, neue Sichten oder Transformationen für bereitgestellte Daten zu erstellen, welche andere Benutzer dann weiter verwenden können;
+\item Mit Geo-Daten umgehen kann;
 \item Benutzern ermöglicht, Daten öffentlich anzubieten.
 \end{itemize}
 
-Für das reine Anbieten von Daten existieren bereits gute Lösungen (siehe \cref{sec:tb:state-of-the-art}). Daher lag der Fokus auf der Unterstützung von Transformationen und verschiedenen Formaten.
+Für das reine Anbieten von Daten existieren bereits gute Lösungen (siehe \vref{sec:tb:state-of-the-art}). Aus diesem Grund fokussiert sich diese Arbeit auf die Transformation von Daten sowie Formatunterstützung.
 
 \section*{Ergebnisse}
-Im Rahmen der Arbeit wurde mit \acf{odh} eine moderne Web-Applikation erstellt.
+Im Rahmen der Arbeit wurde mit \acf{odh} eine moderne Webapplikation geschaffen.
 
-\subsection*{Formate}
-Benutzer können Daten mit anderen Benutzern teilen, ohne sich um Format-Details kümmern zu müssen. Unterstützt werden Formate wie CSV, Excel und JSON, aber auch Geo-Formate wie GeoJSON, GML, Interlis 1 sowie Daten aus \gls{wfs}-Endpunkten.
-
-Weiterhin besteht die Möglichkeit, aus einer Analyse der bereit gestellten Daten ein Interlis 1-Modell zu erstellen.
-
-\subsection*{Transformationen}
-Mit Hilfe eines Assistenten ist es Benutzern möglich die Grundlage einer Transformation auf einfach Art und Weise zu erstellen. 
-
-Für Experten steht mit \gls{odhql} eine an \acs{sql} angelehnte Abfrage-Sprache bereit, welche auch komplexe Abfragen ermöglicht.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=2\linewidth/3]{fig/transformation-detail}
-    \caption*{Resultat einer Transformation}
+    \includegraphics[width=0.8\linewidth]{fig/odh-overview}
+    \caption*{Übersicht OpenDataHub Architektur}
+\end{figure}
+
+\subsection*{Formate}
+Benutzer können Daten mit anderen Benutzern teilen, ohne sich um Format-Details kümmern zu müssen. Unterstützt werden Formate wie CSV, Excel und JSON, aber auch Geo-Formate wie GeoJSON, GML, \gls{interlis} 1 sowie Daten aus \gls{wfs}-Endpunkten.
+
+Des Weiteren besteht die Möglichkeit, aus einer Analyse der bereit gestellten Daten ein \gls{interlis} 1-Modell zu erstellen.
+
+\subsection*{Transformationen}
+Mit Hilfe eines Assistenten ist es Benutzern möglich die Grundlage einer Transformation auf einfache Art und Weise zu erstellen. 
+
+Für Experten steht mit \gls{odhql} eine an \acs{sql} angelehnte Abfrage-Sprache bereit, welche auch komplexere Abfragen ermöglicht.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{fig/transformation-detail}
+    \vspace{-0.5cm}\caption*{Resultat einer Transformation}
 \end{figure}
 
 Die Resultate von Transformationen können wie alle anderen Daten auch in beliebigen Formaten bezogen werden.
@@ -76,7 +84,7 @@ Die Resultate von Transformationen können wie alle anderen Daten auch in belieb
 Neue Formate sowie Funktionen für die Abfrage-Sprache können mit relativ wenig Aufwand hinzugefügt werden.
 
 \section*{Ausblick}
-Für die Weiterentwicklung von \acs{odh} besteht eine Vielzahl an Möglichkeiten. Hier eine Auswahl:
+Für die Weiterentwicklung von \acl{odh} bestehen diverse Möglichkeiten. Hier eine Auswahl:
 \begin{itemize}
 \item Wechsel auf neue Versionen der zur Format-Unterstützung verwendeten Bibliotheken.
 \item Erweiterung der Web-Applikation, evtl. Integration mit bereits vorhandener Software.
