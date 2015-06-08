@@ -124,10 +124,11 @@ Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen w
 
 
 \subsection{Funktionen}
-Die Funktionen der \acs{odhql} wurden möglichst erweiterbar implementiert. Jede Funktion ist als Python Klasse zu implementieren, welche von der Klasse \path{VectorizedFunction} erben und die Methode \path{apply} zu implementieren hat. Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann jedoch durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
+Die Funktionen der \acs{odhql} wurden möglichst erweiterbar implementiert. Neue Funktionen erben von der Klasse \path{VectorizedFunction} und implementieren die Methode \path{apply}. 
+
+Durch die Vererbung und der zugrundeliegenden Python-Metaklasse wird die neue Funktion automatisch registriert und ist sofort mit dem Klassennamen verfügbar. Der Name kann durch das statische Attribut \path{name} auch explizit gesetzt werden. Die Anzahl der Funktionsparameter werden vom Interpreter bzw. von der Execution-Engine der Funktionen via Reflection sichergestellt. Für die Überprüfung der Argumente ist jede Funktion selbst zuständig. Die Parent-Klasse bietet jedoch bereits einige Assertion-Methoden z.B. für Datentypen, Listen und Geometrien.
 
 Ein Beispiel einer solchen Funktion ist in \cref{src:pd:odhql-function} ersichtlich. Hierbei wird nach der Überprüfung der Argumente direkt an die Pandas-Methode \path{str.pad} weiterdelegiert.
-
 
 \begin{srclst}[label=src:pd:odhql-function]{python}{Beispiel-Implementation der ODHQL-Funktion \texttt{PAD()}}
 from hub.odhql.functions.core import VectorizedFunction
