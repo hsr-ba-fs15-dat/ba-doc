@@ -140,7 +140,7 @@ Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren M
 
 \projectrisk{R31}{\gls{dat} erfüllt nicht die Anforderungen}
 {\gls{dat} und dessen Funktionalität ist nur sehr spärlich beschrieben. Selbst dem Auftraggeber ist der Umfang von \gls{dat} nicht vollständig bekannt. Es besteht das Risiko, dass \gls{dat} sich nicht für die Use Cases der Aufgabenstellung eignet.}
-{Da es sich bei dieser Arbeit unter Anderem spezifisch um eine Evaluation von \gls{dat} und dessen Möglichkeiten handelt, ist eine Evaluation von alternativen Technologien zunächst zu vermeiden. Durch eine frühzeitige Einarbeitung in \gls{dat} mit kleineren Prototypen/Use Cases soll die Machbarkeit abgeschätzt werden.}
+{Da es sich bei dieser Arbeit unter anderem spezifisch um eine Evaluation von \gls{dat} und dessen Möglichkeiten handelt, ist eine Evaluation von alternativen Technologien zunächst zu vermeiden. Durch eine frühzeitige Einarbeitung in \gls{dat} mit kleineren Prototypen/Use Cases soll die Machbarkeit abgeschätzt werden.}
 
 
 \projectrisk{R32}{\gls{dat} ist zu unreif. Fehlende Dokumentation.}
@@ -149,27 +149,27 @@ Nachfolgend werden die als besonders kritisch eingestuften Risiken sowie deren M
 
 
 \projectrisk{R33}{\gls{dat} wird nicht weiterentwickelt}
-{Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community nicht weiterentwickelt.}
-{Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der Grösse der Community. Da \gls{dat} Grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.}
+{Der Kernentwickler von \gls{dat} (Max Ogden) verliert das Interesse am Projekt und \gls{dat} wird auch nicht von der Community weiterentwickelt.}
+{Abschätzung des Risikos durch die Aktivitäten der Entwickler sowie der Grösse der Community. Da \gls{dat} grundsätzlich durch die Aufgabenstellung vorgegeben ist, kann dieses Risiko nicht vermieden werden.}
 
 
 \section{Risikoüberwachung}
 
-Die Risiken wurden während des gesamten Projektverlaufs periodisch überwacht und Änderungen entsprechend protokolliert. Idealerweise sollten die Risiken über Zeit hinweg sinken.
+Die Risiken wurden während des gesamten Projektverlaufs periodisch überwacht und Änderungen entsprechend protokolliert. Idealerweise sollten die Risiken über eine gewisse Zeit hinweg sinken.
 
 \subsection{1. März 2015}
 
-Wie sich herausgestellt hat, ist \gls{dat} noch weit davon entfernt, es produktiv verwenden zu können. Ständige API-Änderungen und fehlende Dokumentation machen es zu einem untragbaren Risiko. In \vref{dec:dat:fazit} wurde gegen den Einsatz von \gls{dat} entschieden und somit die Risisken R31 bis R33 eliminiert.
+Wie sich herausgestellt hat, ist \gls{dat} noch weit davon entfernt, produktiv verwendet werden zu können. Ständige API-Änderungen und fehlende Dokumentation machen es zu einem untragbaren Risiko. Im \vref{dec:dat:fazit} wurde gegen den Einsatz von \gls{dat} entschieden und somit die Risisken R31 bis R33 eliminiert.
 
 \subsection{15. April 2015}
 Nachdem ein erster Prototyp der ``Parser'' und ``Formatter'' Konversions-Module sowie der Transformations-Sprache (\acl{odhql}) implementiert wurde, war die grundsätzliche Machbarkeit des Projekts bereits sichergestellt.
 
 \subsection{15. Mai 2015}
-Das Risiko R36 (Es treten technische Hürden auf, die nicht vorhergesehen wurden und nicht zu bewältigen sind) ist im Zusammenhang der externen Bibliothek \acs{gdal} eingetreten. Nach Evaluation diverser Lösungsansätze wurde für die stabilste Version mit grösster Formatunterstützung entschieden. Es ging sehr viel Zeit durch mangelnde/inkonsistente Formatunterstützung dieser Bibliothek verloren.
+Das Risiko R36 (es treten technische Hürden auf, die nicht vorhergesehen wurden und nicht zu bewältigen sind) ist im Zusammenhang der externen Bibliothek \acs{gdal} eingetreten. Nach Evaluation diverser Lösungsansätze wurde für die stabilste Version mit grösster Formatunterstützung entschieden. Es ging sehr viel Zeit durch mangelnde/inkonsistente Formatunterstützung dieser Bibliothek verloren.
 
 
 \chapter{Entwicklungsumgebung und Infrastruktur}
-In diesem Kapitel wird die Entwicklungsumgebung inkl. verwendeten Tools beschrieben. \cref{fig:pm:entwicklungsumgebung} zeigt eine Übersicht der Entwicklungsumgebung und den groben Prozess.
+In diesem Kapitel wird die Entwicklungsumgebung inkl. der verwendeten Tools beschrieben. \cref{fig:pm:entwicklungsumgebung} zeigt eine Übersicht der Entwicklungsumgebung und den groben Prozess.
 
 \begin{figure}[H]
 	\centering
@@ -198,11 +198,11 @@ Zur Planung der Ressourcen und Zeit sowie Zuständigkeiten der Tasks wurde das k
 	\label{fig:pm:jira-agile}
 \end{figure}
 
-Jira wurde auf einer virtuellen Maschine der \acs{hsr} betrieben und dessen Daten täglich und automatisiert via cronjob gesichert.
+Jira wurde auf einer virtuellen Maschine der \acs{hsr} betrieben und dessen Daten täglich automatisiert via cronjob gesichert.
 
 \section{Kommunikation}
 \subsection{Slack}
-Bei der Durchführung der Bachelorarbeit wollten wir auf die Kommunikation per E-Mail womöglich verzichten. Das Team hat sich mittels \purl{http://slack.com} ausgetauscht sowie zur Protokollierung von Sitzungen, den Austausch Weblinks und weiteren Informationen verwendet. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub, Jira, Travis-CI, E-Mails usw. zu integrieren\footnote{\url{https://slack.com/integrations}}. So konnte an einem zentralen Ort Bezug auf Commits, E-Mails vom Betreuer und Failing-Builds genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor-relevanten Themen freigehalten und direkten Bezug auf konkrete Ereignisse genommen werden. \cref{fig:pm:slack} zeigt Screenshots aus dem Mac-Client von Slack.
+Bei der Durchführung der Bachelorarbeit wollten wir auf die Kommunikation per E-Mail möglichst verzichten. Das Team hat sich mittels \purl{http://slack.com} ausgetauscht sowie von Sitzungen protokolliert und Informationen via Weblinks weitergegeben. Slack bietet Team-Kommunikation auf hohem Niveau, mit der Möglichkeit Services wie GitHub, Jira, Travis-CI, E-Mails usw. zu integrieren\footnote{\url{https://slack.com/integrations}}. So konnte an einem zentralen Ort Bezug auf Commits, E-Mails vom Betreuer und Failing-Builds genommen werden. Durch die Verwendung eines dedizierten Tools zur Kommunikation konnte das E-Mail Postfach von Bachelor-relevanten Themen freigehalten und direkten Bezug auf konkrete Ereignisse genommen werden. \cref{fig:pm:slack} zeigt Screenshots aus dem Mac-Client von Slack.
 
 \begin{figure}[H]
 	\centering
@@ -224,7 +224,7 @@ Bei der Durchführung der Bachelorarbeit wollten wir auf die Kommunikation per E
 
 \subsection{Fazit}
 Die interne Kommunikation wurde vollumfänglich über Slack abgewickelt. Für die Kommunikation mit dem Betreuer und anderen Partnern wurde nach wie vor E-Mail verwendet, da wir \proff nicht von dieser Plattform begeistern konnten.
-Die Vorteile für uns lagen auf der Hand: Wir konnten unsere Mailboxen entlasten und haben unseren gesamte Kommunikation automatisch archiviert.
+Die Vorteile für uns lagen auf der Hand: Wir konnten unsere Mailboxen entlasten und haben unsere gesamte Kommunikation automatisch archiviert.
 
 \section{Integrationsumgebung}
 Die Applikation wird nach jedem erfolgreichen Build durch Travis auf Heroku deployed. Die Integrationsinstanz dient zu Demozwecken an Sitzungen und stellt zudem sicher, dass die Webapplikation auch im ``kompilierten'' Zustand\footnote{Transpilierung von TypeScript sowie Konkatentierung und ``Minification'' aller Ressourcen} funktioniert.
@@ -249,7 +249,7 @@ Der in \cref{fig:jira-workflow} dargestellte Prozess stellt sicher, dass alle Ta
 Jeder Entwickler hat seine eigenen Vorstellungen davon, wie Programmcode aussehen soll bzw. welche Richtlinien\footnote{Namenskonventionen, Modularität, \dots} bei der Entwicklung einzuhalten sind. Aus diesem Grund wurden frühzeitig Programmierrichtlinien inkl. Coding Style Guidelines bestimmt und mittels Entwicklungsumgebung\footnote{PyCharm von JetBrains (IntelliJ IDEA)} sowie Build-Server forciert.
 
 \subsection{Python}
-Für den Python-Quellcode wurden die in der Python Community verbreiteten \gls{pep8} Richtlinien angewendet. Die einzige Ausnahme stellt hierbei eine Zeilenlänge von 120 statt den nur 80 Zeichen dar. Die \gls{pep8} Regeln werden teilweise durch die verwendete Entwicklungsumgebung sowie Flake8\footnote{\url{http://flake8.readthedocs.org}} und PyLint\footnote{\url{http://www.pylint.org/}} auf dem \gls{ci} Server streng erzwungen. Bei Verstoss versagt der Build und der Entwickler wird Benachrichtigt. Ein Beispiel-Output auf dem Build-Server sieht folgendermassen aus:
+Für den Python-Quellcode wurden die in der Python Community verbreiteten \gls{pep8} Richtlinien angewendet. Die einzige Ausnahme stellt hierbei eine Zeilenlänge von 120 statt den nur 80 Zeichen dar. Die \gls{pep8} Regeln werden teilweise durch die verwendete Entwicklungsumgebung sowie Flake8\footnote{\url{http://flake8.readthedocs.org}} und PyLint\footnote{\url{http://www.pylint.org/}} auf dem \gls{ci} Server streng erzwungen. Bei Verstoss versagt der Build und der Entwickler wird benachrichtigt. Ein Beispiel-Output auf dem Build-Server sieht folgendermassen aus:
 
 \begin{src}{console}
 [INFO]  Executing flake8 on project sources.
@@ -269,7 +269,7 @@ Zur Formatierung des Quellcodes wurden die Standardregeln der Entwicklungsumgebu
 \item alle public Funktionen und Methoden die auch exportiert werden und somit irgendwo Wiederverwendung finden sowie deren Attribute.
 \end{itemize}
 
-Nicht zu annotieren sind inline Lambda-Funktionen, ausser deren Parameter sofern ein bestehendes Interface existiert. Ein Beispiel-Output von tslint sieht folgendermassen aus:
+Nicht zu annotieren sind inline Lambda-Funktionen, ausser wenn für deren Parameter ein Interface existiert. Ein Beispiel-Output von tslint sieht folgendermassen aus:
 
 \begin{src}{console}
 Running "tslint:files" (tslint) task
@@ -289,7 +289,7 @@ BUILD FAILED - Errors while running grunt, see /home/travis/build/hsr-ba-fs15-da
 
 
 \subsection{AngularJS}
-Bei AngularJS gibt es eine Vielzahl von Möglichkeiten ein und dasselbe zu erreichen. Aus diesem Grund ist es umso wichtiger, sich auf bestimmte Vorgehensweisen zu einigen. Grundsätzlich gelten die mittlerweile etablierten und nahezu offiziellen AngularJS Richtlinien und Best Practices von ``John Papa''\cite{angular-styleguide}. Die Richtlinien sind auf JavaScript ausgelegt. Da wir TypeScript verwenden sind nur diejenigen anzuwenden die auch im TypeScript Kontext zutreffen bzw. noch Sinn machen. Besonders zu beachten sind folgende Regeln:
+Bei AngularJS gibt es eine Vielzahl von Möglichkeiten, ein- und dasselbe zu erreichen. Aus diesem Grund ist es umso wichtiger, sich auf bestimmte Vorgehensweisen zu einigen. Grundsätzlich gelten die mittlerweile etablierten und nahezu offiziellen AngularJS Richtlinien und Best Practices von ``John Papa''\cite{angular-styleguide}. Die Richtlinien sind auf JavaScript ausgelegt. Da wir TypeScript verwenden sind nur diejenigen anzuwenden die auch im TypeScript Kontext zutreffen bzw. noch Sinn machen. Besonders zu beachten sind folgende Regeln:
 
 \begin{itemize}
 	\item Verwendung der ``controller as'' Syntax um Scope-Vererbung zu vermeiden
@@ -297,7 +297,7 @@ Bei AngularJS gibt es eine Vielzahl von Möglichkeiten ein und dasselbe zu errei
 	\item Single Responsibility Priciple \textendash\ Eine Klasse/Service/Controller pro Datei mit Ausnahme von kleinen ``Sub-Controllern'' die zu einem anderen gehören, oder nicht exportierte (private) Klassen.
 \end{itemize}
 
-Es wurden eigene TypeScript ``New File'' IntelliJ Templates für AngularJS Services, Controller und Direktiven erstellt. Diese stellen sicher, dass jeder Entwickler immer wieder die selbe Grundstruktur verwendet. Diese sind unter \path{opendatahub/idea/settings.jar} abgelegt.
+Es wurden eigene TypeScript ``New File'' IntelliJ Templates für AngularJS Services, Controller und Direktiven erstellt. Diese stellen sicher, dass jeder Entwickler immer wieder dieselbe Grundstruktur verwendet. Diese sind unter \path{opendatahub/idea/settings.jar} abgelegt.
 
 
 

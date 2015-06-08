@@ -94,7 +94,7 @@ Gibt die für den HTML5 Client notwendigen Konfigurationsinformationen zurück.
 \end{srclst}
 
 \subsection{Liste der unterstützten Formate - GET /api/v1/format/} \label{sec:pd:api-format}
-Liefert die Liste der unterstützten Formate. Neue Formate erscheinen automatisch, sobald sie registriert sind, vorausgesetzt dass ein Formatter für das Format existiert.
+Liefert die Liste der unterstützten Formate. Neue Formate erscheinen automatisch, sobald sie registriert sind, vorausgesetzt es existiert ein Formatter für das Format.
 
 \begin{srclst}{json}{Beispielantwort für GET /api/v1/format/}
 [
@@ -170,9 +170,9 @@ Liefert eine Liste der Packages.
 Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}), Suche (\cref{sec:pd:api-search}) und Sortierung (\cref{sec:pd:api-sort}).
 
 \subsubsection{Package-Details - GET /api/v1/package/<id>/}\label{sec:pd:api-package-details}
-Liefert die Details zu einem Package. Dies sind grundsätzlich die selben Informationen wie in der Package-Liste, jedoch um einige weitere Details ergänzt.
+Liefert die Details zu einem Package. Dies sind grundsätzlich dieselben Informationen wie in der Package-Liste, jedoch um einige weitere Details ergänzt.
 
-Die Antwort sieht unterschiedlich aus, je nach dem ob das Package ein Dokument (\cref{pd:api-package-document}) oder eine Transformation (\cref{pd:api-package-transformation}) ist.
+Die Antwort sieht unterschiedlich aus, je nachdem ob das Package ein Dokument (\cref{pd:api-package-document}) oder eine Transformation (\cref{pd:api-package-transformation}) ist.
 
 \begin{srclst}[label=pd:api-package-document]{json}{Beispielantwort für GET /api/v1/package/4/}
 {
@@ -270,7 +270,7 @@ Erstellt ein neues Dokument.
 Zusätzlich wird eine der folgenden Optionen benötigt:
 \begin{description}
 \item[file] Direkter Datei-Upload. In diesem Fall wird die Anfrage als Multipart Form Request erwartet. Es kann mehr als eine Datei auf einmal hochgeladen werden. Diese werden dann dem selben Dokument zugeordnet, nach Datei-Namen (ohne Erweiterung) in File Groups gruppiert.
-\item[url] Erstellt ein Dokument mit einer Url als Datenquelle. Dies kann entweder ein \gls{wfs}-Endpoint oder eine http-Url sein. Zusätzlich kann der Parameter \texttt{refresh} angegeben werden, welcher steuert wie oft die Daten abgerufen werden sollen (in Sekunden). Erlaubt sind Werte von 60 (1 Minute) bis 604800 (1 Woche).
+\item[url] Erstellt ein Dokument mit einer Url als Datenquelle. Dies kann entweder ein \gls{wfs}-Endpoint oder eine http-Url sein. Zusätzlich kann der Parameter \texttt{refresh} angegeben werden, welcher steuert, wie oft die Daten abgerufen werden sollen (in Sekunden). Erlaubt sind Werte von 60 (1 Minute) bis 604800 (1 Woche).
 \end{description}
 
 \begin{srclst}{json}{Beispielanfrage für POST /api/v1/document/}
@@ -322,7 +322,7 @@ Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das 
 Aktualisiert eine Transformation. Es können alle in \cref{tab:pd:api-transformation-create} erwähnten Felder aktualisiert werden.
 
 \subsubsection{Preview für AdHoc-Transformationen - POST /api/v1/transformation/adhoc/}
-Erstellt eine Preview für ein ODHQL Statement, ohne die Transformation in der Datenbank zu persistieren. Dies ist nützlich um eine Vorschau realisieren zu können, während der Benutzer noch am Bearbeiten seines Statements ist.
+Erstellt eine Preview für ein ODHQL Statement, ohne die Transformation in der Datenbank zu persistieren. Dies ist nützlich, um eine Vorschau realisieren zu können, während der Benutzer noch am Bearbeiten seines Statements ist.
 
 \subsection{File Groups}\label{sec:pd:api-filegroups}
 Von Benutzern bereitgestellte Daten werden in sog. File Groups organisiert. Dies sind zusammengehörende Dateien, z.B. die .shx-, .shp- und .dbf-Datei bei einem ESRI Shapefile.
@@ -514,4 +514,4 @@ Diese Views sind kein direkter Bestandteil des \gls{rest} \acs{api}s, dienen jed
 Parsed eine ODHQL Abfrage und liefert die Fehlermeldungen in einem zur Fehlersuche hilfreichen Format.
 
 \subsubsection{Benutzerdokumentation - GET /api/v1/odhql/doc/}
-Erstellt die Benutzerdokumentation anhand von Inline-Dokumentation im Code und liefert das Resultat als HTML-Seite zurück.
+Erstellt die Benutzerdokumentation anhand der Inline-Dokumentation im Code und liefert das Resultat als HTML-Seite zurück.

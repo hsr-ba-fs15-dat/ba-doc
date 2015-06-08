@@ -5,13 +5,13 @@
 
 In der heutigen Gesellschaft wird der Austausch von Daten immer wichtiger. Vermehrt werden grosse Datenmengen unterschiedlichster Art - aus Forschung, Regierung oder zivilen Kreisen - zur allgemeinen Verwendung angeboten. Nicht nur die Art der Daten ist jedoch vielfältig, sondern auch Datenformat oder Zugriffsart unterscheiden sich.
 
-Das \gls{dat}-Projekt hat das Ziel, die Integration sowie einen einheitlichen Zugriff solcher Datenquellen vereinfachen.
+Das \gls{dat}-Projekt hat das Ziel, die Integration sowie einen einheitlichen Zugriff solcher Datenquellen zu vereinfachen.
 
 Als erstes Ziel dieser Arbeit sollte das noch junge Projekt \gls{dat} anlysiert und dessen genaue Funktionalität und Funktionsweise dokumentiert werden. Aufgrund der Tatsache, dass \gls{dat} noch relativ neu ist und sich in der Alphaphase befindet, ist das Projekt nur wenig und sehr verstreut dokumentiert. \Gls{dat} hat im Jahr 2014 einen Gesamtbetrag von \SI{310000}[{\$}]{} von der \gls{knight-foundation} sowie der \gls{sloan-foundation} zur Weiterentwicklung des Projekts erhalten, was als Indiz für ein vielversprechendes Projekt gilt.
 
 \section{Was ist dat?} % https://github.com/maxogden/dat/blob/master/docs/what-is-dat.md
 
-Das dat-Projekt hat folgende Ziele\cite{what-is-dat}: 
+Das dat-Projekt hat folgende Ziele \cite{what-is-dat}: 
 
 \begin{itemize}
 \item Daten sollen automatisch zwischen unterschiedlichen dat-Instanzen synchronisiert werden können. 
@@ -22,7 +22,7 @@ Das dat-Projekt hat folgende Ziele\cite{what-is-dat}:
 \end{itemize}
 
 % https://github.com/maxogden/dat/blob/master/docs/js-api.md#transformations
-Für den Umgang mit verschiedenen Datenformaten können Transformationen\cite[transformations]{dat-js-api} definiert werden, welche entweder vor Schreib- oder nach Lese-Operationen ausgeführt werden.
+Für den Umgang mit verschiedenen Datenformaten können Transformationen \cite[transformations]{dat-js-api} definiert werden, welche entweder vor Schreib- oder nach Lese-Operationen ausgeführt werden.
 
 \section{Architektur}
 % diagramm, requirements, interfaces, ...
@@ -31,7 +31,7 @@ Für den Umgang mit verschiedenen Datenformaten können Transformationen\cite[tr
 
 dat speichert Daten auf zwei verschiedene Arten:
 \begin{itemize}
-\item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat können diese Daten auch in einer SQL-Datenbank wie Postgres gespeichert werden.
+\item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat, können diese Daten auch in einer SQL-Datenbank wie Postgres gespeichert werden.
 \item BLOB-Daten werden standardmässig im File-System per local-blob-store gespeichert. Dies kann ebenfalls durch eine kompatible Implementation ausgetauscht werden.
 \end{itemize}
 
@@ -95,11 +95,11 @@ Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mi
 Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
 \vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
 
-Spätere Versionen sollen auch Branches erlauben sowie mit Änderungskonflikten umgehen können.
+Spätere Versionen sollen auch Branches erlauben, sowie mit Änderungskonflikten umgehen können.
 
 \section{Frontend}
 
-\Gls{dat} bietet ein minimales Webfrontend welches ähnliche Operationen wie mit dem \gls{cli} wie z.B. Import/Export sowie betrachten der Datensätze ermöglicht. Einen Ausschnitt ist folgender \cref{fig:dat:webfrontend} zu sehen.
+\Gls{dat} bietet ein minimales Webfrontend welches ähnliche Operationen wie mit dem \gls{cli} wie z.B. Import/Export sowie das Betrachten der Datensätze ermöglicht. Einen Ausschnitt ist folgender \cref{fig:dat:webfrontend} zu sehen.
 
 \begin{figure}[H]
   \centering
@@ -118,7 +118,7 @@ Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Fe
 \begin{itemize}
 \item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
 \item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
-\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
+\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll, wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
 \end{itemize}
 
 Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
