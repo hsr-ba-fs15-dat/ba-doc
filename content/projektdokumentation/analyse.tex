@@ -48,7 +48,7 @@ GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe
 \subsection{Interlis}
 \gls{interlis} besteht aus einer Modellbeschreibungssprache und einem Transferformat. Da es praktisch nur in der Schweiz zum Einsatz kommt ist die Unterstützung in kommerzieller Software mässig bis nicht vorhanden.
 
-\gls{interlis} existiert in zwei Versionen: \gls{interlis} 1 verwendet ein zeilenbasiertes Transfer-Format, während für \gls{interlis} 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt \gls{interlis} 2 eine Erweiterung von \gls{interlis} 1 um Objekt-orientierte Features dar.
+\gls{interlis} existiert in zwei Versionen: \gls{interlis} 1 verwendet ein Datensatz-basiertes Transfer-Format, während für \gls{interlis} 2 XML gewählt wurde. Mit wenigen Ausnahmen stellt \gls{interlis} 2 eine Erweiterung von \gls{interlis} 1 um Objekt-orientierte Features dar.
 
 \subsection{KML}
 \gls{kml} ist wie \gls{gml} ebenfalls ein auf \acs{xml} basierendes Format, welches in Google Earth Verwendung findet. Speziell bei KML ist, dass es lediglich das Referenzsystem 4326 (klassisches lat/lon) unterstützt.
@@ -78,7 +78,7 @@ Die Daten werden in ihrem Ursprungsformat belassen, bis ein Nutzer eine Transfor
 
 Die Tatsache, dass die Daten im Dateisystem liegen vereinfacht die Einbindung von Software von Drittanbietern, insbesondere wenn diese Software nur direkt auf Dateiebene arbeitet (z.B. OGR).
 
-Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine schreibbaren \cite{herokuReadOnlyFilesystem} bzw. keine beständigen \cite{herokuEphemeralFilesystem} Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.
+Ein Nachteil dieser Variante ist, dass Cloud-Anbieter wie Heroku keine beschreibbaren \cite{herokuReadOnlyFilesystem} bzw. keine beständigen \cite{herokuEphemeralFilesystem} Dateisysteme anbieten, sondern auf die Verwendung von Amazon S3 oder ähnlich verweisen.
 
 Metadaten wie Format oder Original-Dateinamen würden aus Performance-Gründen weiterhin in einer Datenbank gehalten werden.
 
@@ -92,7 +92,7 @@ Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nu
 \subsection{Datenbank-basiert, Dokument als BLOB}
 Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der Datei-basierten Version.
 
-Falls Drittanbieter-Software nur auf Datei-Basis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
+Falls Drittanbieter-Software nur auf Dateibasis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
 
 Für diese Variante existieren folgende Möglichkeiten:
 \begin{description}
@@ -108,7 +108,7 @@ Da Dateiformate existieren, welche aus mehr als einer Datei bestehen, ist die Op
   \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
   \midrule
   \textbf{Original bleibt erhalten} & Das Originaldokument bleibt erhalten oder kann komplett rekonstruiert werden. Dies bietet folgende Vorteile: Verbesserungen an der Software (Parser) zeigt auch bei alten Daten Wirkung, ausserdem gehen hierbei keine Daten verloren. & \threeOfThree \\
-  \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf Datei-Basis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
+  \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf Dateibasis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
   \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser geschrieben wird für das bisher unbekannte Format. & \twoOfThree \\
   \textbf{Cloud} & Cloud-Anbieter wie Heroku bieten oft kein permanentes File-System, sondern verweisen auf Storage Provider wie Amazon S3 oder auf Datenbanken als Daten-Speicher. Unterstützung für Cloud-Anbieter ist kein zwingendes Kriterium für diese Arbeit, soll aber falls möglich erhalten bleiben. & \oneOfThree \\
 }{Bewertungskriterien Datenspeicherung}{pd:filestorage-criteria}
@@ -146,13 +146,13 @@ Für unterschiedliche Datenstrukturen sind verschiedene Transformationsansätze 
 \mytable{lX}{
   \textbf{Anforderung} & \textbf{Beschreibung}\\
   \midrule
-  \textbf{Mapping} & Felder müssen 1:1 auf andere Felder gemappt werden können (Feld umbenennen) \\
+  \textbf{Mapping} & Felder müssen 1:1 auf andere Felder zugeordnet werden können (Feld umbenennen) \\
   \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
   \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine kartesischen Produkte) \\
   \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
   \textbf{Erweiterbare Operationen} & Es sollen neue Operationen definiert werden können (vorzugsweise in Python) \\
   \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
-}{Anforderungen an die Transformations-Sprache/Konfiguration}{pd:transformation-lang-req}
+}{Anforderungen an die Transformationssprache/Konfiguration}{pd:transformation-lang-req}
 
 \subsection{Datenbank}
 \subsubsection{Intermediäres Format}
@@ -163,7 +163,7 @@ Bei dieser Variante wäre das Intermediäre Format äquivalent der Datenspeicher
 Vorteile dieser Variante sind, dass die Abfrage-Sprache bereits vorhanden und bekannt ist und dass je nach verwendeter Datenbank auf vorhandene Funktionen und Optimierungen zurückgegriffen werden kann. Falls Postgres mit PostGIS zum Einsatz kommt, kann auch im Geo-Bereich eine umfassende Funktions-Bibliothek verwendet werden. 
 
 Neue Funktionen müssen zwangsweise auf Datenbank-Ebene implementiert werden, bei Postgres z.B. mit \ac{pgsql}.
-Diese Variante bringt praktisch alle verlangten Features ohne grossen Implementations-Aufwand mit. Das Hinzufügen bisher nicht vorhandener Funktionalität ist jedoch eher schwierig.
+Diese Variante bringt praktisch alle verlangten Features ohne grossen Implementationsaufwand mit. Das Hinzufügen bisher nicht vorhandener Funktionalität ist jedoch eher schwierig.
 
 \subsubsection{Anmerkungen}
 
@@ -329,7 +329,7 @@ Aus diesen Gründen wird diese Variante nicht weiter verfolgt.
   \textbf{Aufwand / Komplexität} & Der benötigte Aufwand um Applikation der Lösung umzusetzen. & \twoOfThree \\
 }{Bewertungskriterien Intermediäres Format}{pd:format-criteria}
 
-Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen Kriterien für die Bewertung der Transformations-Sprachen verwendet.
+Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen Kriterien für die Bewertung der Transformationssprachen verwendet.
 \mytable{lXc}{
   \textbf{Features} & Bereits vorhandene Unterstützung für die in \cref{tab:pd:transformation-lang-req} aufgelisteten Features & \oneOfThree \\
   \textbf{Geo-Daten} & Unterstützung für Geo-Daten & \threeOfThree \\
@@ -393,7 +393,7 @@ Im Kontext der Evaluation eines für die Aufgabenstellung passenden Frontend Jav
 \end{quote}
 
 \subsubsection{Bootstrap}
-Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung, da zu Beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von Bootstrap in AngularJS via Plugins vereinfacht die Verwendung der Framworks enorm.
+Bootstrap ist das ideale Framework um rasch einen funktionierenden Prototypen im Web zu entwerfen. Die Verwendung von Frontend-Frameworks beschleunigt die Entwicklung, da zu Beginn bereits klar ist, welche Komponenten vorhanden sind und wie diese aussehen. Die Integration von Bootstrap in AngularJS via Plugins vereinfacht die Verwendung der Frameworks enorm.
 
 Ein Theme steuert das Look and Feel von Bootstrap. Material Design for Bootstrap setzt die Design-Vorgaben für Material UI auf Android 5 mit Bootstrap um und garantiert dadurch ein modernes Look and Feel.
 
@@ -445,7 +445,7 @@ Die klassische Benutzer-Registrierung bietet den Vorteil, dass sie keine Abhäng
 
 \subsection{OAuth2}
 
-OAuth2 hat einen anderen Ansatz. Sociale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei opendatahub zu erstellen. So ist der Benutzer der sich registriert bereits authentifizert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss der Benutzer kein weiteres Passwort wissen.
+OAuth2 hat einen anderen Ansatz. Soziale Netzwerke bieten sich an, um mit den Login-Daten des bereits bestehenden Accounts in einem solchen ein Account bei \acl{odh} zu erstellen. So ist der Benutzer der sich registriert bereits authentifiziert und es kann davon ausgegangen werden, dass es sich wirklich um diesen handelt. Die Häufigkeit von``Fake-Profilen'' wird dadurch reduziert. Auch muss sich der Benutzer kein weiteres Passwort merken.
 
 \subsection{Fazit}
 Obwohl sich diese Methoden verbinden liessen, setzen wir einzig und alleine auf die OAuth Methode.
@@ -459,7 +459,7 @@ Aufgrund der Entscheidung das Benutzer-Handling einfach zu halten, haben wir uns
 Bei der Cookie-Based-Authentifizierung wird eine Session-ID auf der Seite des Clients in einem Server-Side Cookie gespeichert. Dieses wird mit jedem Request an den Server übermittelt. So kann der Server davon ausgehen, dass es sich beim Client um den Inhaber der Session ID handelt.
 
 \subsection{Token-Based-Authentication}
-Ein aktuellerer Ansatz, ist es, einen signierten Token im Header jedes Requests der zum Server gesendet wird anzugängen. Diese Methode bietet folgende Vorteile:
+Ein aktuellerer Ansatz, ist es, einen signierten Token im Header jedes Requests der zum Server gesendet wird anzuhängen. Diese Methode bietet folgende Vorteile:
 
 \begin{description}
   \item[Cross-Domain / CORS]
@@ -468,7 +468,7 @@ Ein aktuellerer Ansatz, ist es, einen signierten Token im Header jedes Requests 
   \item[Decoupling] Man ist nicht an ein Authentifizierungs-Schema gebunden. Der Token kann überall generiert werden, sprich die API kann von überall her aufgerufen werden.
   \item[Mobile-Ready] Cookies sind in nativen mobilen Apps/APIs meist schlecht unterstützt.
   \item[CSRF] Cross-Site Requests stellen kein Problem dar. Es gibt kein Authentifizierungs-Cookie, das wiederverwendet werden könnte.
-  \item[Standard] Es gibt bereits einen Standard. (\gls{JWT})
+  \item[Standard] Es gibt bereits einen Standard. (\acl{jwt}, \acs{jwt}\glsunset{jwt})
 \end{description}
 Die beiden Methoden werden in \cref{fig:pd:cookie-token-auth} grafisch dargestellt.
 \begin{figure}[H]
@@ -479,5 +479,5 @@ Die beiden Methoden werden in \cref{fig:pd:cookie-token-auth} grafisch dargestel
 \end{figure}
 \subsection{Fazit}
 \begin{decision}{Session-Authentifizierung}
-Da wir die API vom Frontend so weit wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \acs{JWT}. So könnte die API auch aus einem Client mit anderer Domain verwendet werden.
+Da wir die API vom Frontend so weit wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \gls{jwt}. So könnte die API auch aus einem Client mit anderer Domain verwendet werden.
 \end{decision}
