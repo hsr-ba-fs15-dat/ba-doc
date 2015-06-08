@@ -92,7 +92,7 @@ Die Einbindung von Drittanbieter-Software erfordert mehr Aufwand, falls diese nu
 \subsection{Datenbank-basiert, Dokument als BLOB}
 Die Daten werden ohne Transformation zusammen mit den Metadaten in einer Datenbank abgelegt. Diese Variante hat praktisch alle Vorteile der Datei-basierten Version.
 
-Falls Drittanbieter-Software nur auf Datei-basis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
+Falls Drittanbieter-Software nur auf Datei-Basis arbeitet kann ein temporäres oder flüchtiges Datei-System verwendet werden.
 
 Für diese Variante existieren folgende Möglichkeiten:
 \begin{description}
@@ -108,7 +108,7 @@ Da Dateiformate existieren, welche aus mehr als einer Datei bestehen, ist die Op
   \textbf{Kriterium} & \textbf{Beschreibung} & \textbf{Gewichtung} \\
   \midrule
   \textbf{Original bleibt erhalten} & Das Originaldokument bleibt erhalten oder kann komplett rekonstruiert werden. Dies bietet folgende Vorteile: Verbesserungen an der Software (Parser) zeigt auch bei alten Daten Wirkung, ausserdem gehen hierbei keine Daten verloren. & \threeOfThree \\
-  \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf Datei-basis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
+  \textbf{Einbindung Software} & Erlaubt die Einbindung von Drittanbieter-Software. Dies ist möglich auf Datei-Basis, oder direkt als Memory Buffer, falls Python-Code aufgerufen wird. & \oneOfThree \\
   \textbf{Beliebige Formate} & Die Variante unterstützt beliebige Formate. Anschliessende Transformationen können nur auf bekannte Formate angewandt werden, aber auch unbekannte Formate können gespeichert und zum Download angeboten werden. Die Daten können verwendet werden, falls später ein Parser geschrieben wird für das bisher unbekannte Format. & \twoOfThree \\
   \textbf{Cloud} & Cloud-Anbieter wie Heroku bieten oft kein permanentes File-System, sondern verweisen auf Storage Provider wie Amazon S3 oder auf Datenbanken als Daten-Speicher. Unterstützung für Cloud-Anbieter ist kein zwingendes Kriterium für diese Arbeit, soll aber falls möglich erhalten bleiben. & \oneOfThree \\
 }{Bewertungskriterien Datenspeicherung}{pd:filestorage-criteria}
@@ -148,7 +148,7 @@ Für unterschiedliche Datenstrukturen sind verschiedene Transformationsansätze 
   \midrule
   \textbf{Mapping} & Felder müssen 1:1 auf andere Felder gemappt werden können (Feld umbenennen) \\
   \textbf{Default-Werte} & Neue Felder mit Default-Werten müssen hinzugefügt werden können \\
-  \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine karthesischen Produkte) \\
+  \textbf{Joins} & Mehrere Datenquellen müssen miteinander verknüpft werden können. Dabei muss immer eine Join-Bedingung angegeben werden (keine kartesischen Produkte) \\
   \textbf{Filter/Prädikate} & Daten sollen gefiltert werden können \\
   \textbf{Erweiterbare Operationen} & Es sollen neue Operationen definiert werden können (vorzugsweise in Python) \\
   \textbf{Sortierung} & Das Resultat der Transformation soll sortiert werden können\\
@@ -189,7 +189,7 @@ Bei dieser Version befindet sich die komplette Parser $\to$ Transformation $\to$
 
 \subsubsection{Transformationssprache}
 Ogrtools beinhaltet bereits eine Transformations-Konfiguration namens ogrtransform. Die Transformation selbst wird ebenfalls von \gls{gdal} durchgeführt.
-Eine ogrtools Beispielskonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
+Eine ogrtools Beispielkonfiguration \cite[README, ogrtransform library]{ogrtools} ist in \cref{src:pd:ogrtools} zu sehen.
 
 \begin{srclst}[label=src:pd:ogrtools]{json}{ogrtools Mapping-Konfiguration}
 {
@@ -260,9 +260,9 @@ Aktuell werden diverse der gewünschten Features von ogrtransform nicht unterst�
 \paragraph{Petl} 
 ist eine Python \acs{etl} Bibliothek, welche es erlaubt, diverse Formate in eine Tabellenstruktur zu laden und mit einem \acs{api} darauf diverse Transformationen anzuwenden oder gar ganze Transformations-Pipelines aufzusetzen.
 
-Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
+Der Vorteil von petl gegenüber anderen Lösungen liegt in dessen ``lazy evaluation''. Es werden keine Daten geladen oder transformiert, bis das Resultat benötigt wird. Dann erst werden die Daten Zeile für Zeile eingelesen und durch die Transformations-Pipeline geschleust. Petl kann somit mit sehr grossen Datenmengen umgehen, ist aber im Vergleich zur Konkurrenz langsamer und für Performance-kritische Applikationen ungeeignet \cite[Intro $\to$ Design goals]{petl}.
 
-\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R''\footnote{\url{http://www.r-project.org}} für Python. Doch die zugrundeliegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
+\paragraph{Pandas} ist eine Bibliothek zur Datenanalyse, sozusagen das ``R''\footnote{\url{http://www.r-project.org}} für Python. Doch die zugrunde liegenden, ebenfalls Tabellen-artigen Datenstrukturen zusammen mit der \acs{api} von Pandas machen Transformationen wie Joins, Filtern, Umbenennungen und Berechnungen sowie String-Operationen sehr einfach. Pandas baut auf NumPy auf, der de-facto Standardbibliothek für Matrizen/Berechnungen in Python. Da NumPy in C bzw. Fortran und das Python \acs{api} sehr funktional-orientiert implementiert sind, lassen sich Operationen auf ganze Spalten oder Tabellen anwenden, was zu einer für Python-Verhältnisse sehr hohen Performance führt \cite{pandasMergePerformance}.
 
 \begin{srclst}[label=src:pd:geopandas]{pycon}{Pandas mit GeoPandas}
 >>> import geopandas

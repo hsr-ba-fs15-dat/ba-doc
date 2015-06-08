@@ -62,16 +62,16 @@ Nach Bedarf können weitere Formate implementiert werden.
 ODH unterstützt WFS als Daten-Quelle. Die Idee ist, dass eine API implementiert wird, welche eine Datenquelle oder WFS-Url und optional eine ODHQL-Abfrage entgegen nimmt, die Transformation durchführt und anschliessend das Resultat als WFS anbietet.
 
 \subsection{Performanz bei grossen Datenmengen}
-Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio Records) mit guten Resultaten getestet. Im Gespräch mit Herrn Dorfschmid wurde festgestellt, dass dies für viele Anwendungen ausreicht.
+Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio. Records) mit guten Resultaten getestet. Im Gespräch mit Herrn Dorfschmid wurde festgestellt, dass dies für viele Anwendungen ausreicht.
 
-Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur aber sub-optimal und stark limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
+Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur aber suboptimal und stark limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine Stream-basierte Version gewechselt werden.
 
 Zu beachten ist, dass diverse verwendete Libraries (unter anderem auch GDAL) nicht Stream-orientiert arbeiten.
 
 \subsection{Unterstützung für weitere Datenstrukturen}
 Die aktuelle Version von \acs{odh} unterstützt nur tabellarische Daten. Dies könnte um Unterstützung für Baum-artige Daten, wie zum Beispiel XML, erweitert werden. 
 
-\subsection{Unterstützung für weitere Transformations-Arten}
+\subsection{Unterstützung für weitere Transformationsarten}
 Ogr2ogr ermöglicht es, Transformationen per SQL in einer Datenbank auszuführen. Dies könnte auch in ODH implementiert werden, würde jedoch zu Performance-Verlusten führen.
 
 \subsection{Bereinigung des REST API}

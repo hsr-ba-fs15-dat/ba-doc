@@ -92,8 +92,8 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 \item Nach kurzer Orientierung in der Benutzeroberfläche findet der Benutzer das Suchfeld.
 \item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen. Dies ist eine Unschönheit im WFS von dem die Daten stammen und kein UI-Problem.
 \item Er ist unsicher, wo er klicken muss um die Felder hinzuzufügen. Nach kurzer Orientierung findet er die richtige Stelle (alles ausser Alias-Feld).
-\item Bei der Eingabe der Aliases ist der Benutzer enttäuscht, dass die Tabelle nicht automatisch weiterscrollt. 
-\item Das Speichern der Tranformation funktioniert problemlos.
+\item Bei der Eingabe der Aliases ist der Benutzer enttäuscht, dass die Tabelle nicht automatisch weiter scrollt. 
+\item Das Speichern der Transformation funktioniert problemlos.
 \end{enumerate}
 
 \subsection{UI04: Daten transformieren (Ohne Assistent)}
@@ -116,14 +116,14 @@ Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilf
 \item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
 \item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
   \begin{enumerate}[label=\labelenumi\alph*.]
-  \item Die Transformation ist fehlerhaft. Éine rote Fehlermeldung zeigt detailliertere Informationen zum Problem an.
+  \item Die Transformation ist fehlerhaft. Eine rote Fehlermeldung zeigt detailliertere Informationen zum Problem an.
   \end{enumerate}
 \end{enumerate}
 
 \paragraph{Testperson 1}
 \begin{enumerate}
 \item Der Benutzer verwendet den Assistenten als Startpunkt und will anschliessend in den Editier-Modus wechseln. Dazu muss er erst nach oben scrollen, was er als ``mühsam'' bezeichnet.
-\item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammenklicken.
+\item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammen klicken.
 \item Nach der Eingabe eines fehlerhaften Queries stellt der Benutzer fest, dass die Fehlermeldung ungünstig platziert ist (unterhalb der Vorschau).
 \item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung DB1 besucht, verwendet SQL aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
 \end{enumerate}
@@ -154,10 +154,10 @@ Testet ob eine Serie von Files richtig identifiziert werden.
 Überprüft ob eine Serie von Files richtig gelesen werden kann, und ob wie erwartet eine Geometrie-Spalte vorhanden ist oder nicht.
 
 \subsection{Formatter}
-Formattiert eine Serie von DataFrames und überprüft, ob die erwartete Anzahl Dateien erzeugt wurde.
+Formatiert eine Serie von DataFrames und überprüft, ob die erwartete Anzahl Dateien erzeugt wurde.
 
 \subsection{Fixtures}
-Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formattiert werden können. Dabei wird das selbe API verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
+Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formatiert werden können. Dabei wird das selbe API verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
 
 Diese Tests werden dynamisch generiert.
 
