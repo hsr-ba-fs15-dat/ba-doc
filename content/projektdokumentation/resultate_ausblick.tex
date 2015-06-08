@@ -29,6 +29,17 @@ Wir sehen folgende Optionen:
 \item Integration von CKAN
 \end{itemize}
 
+\subsection{Unterstützung von verschiedenen Encoding-Optionen}
+Sofern vom Datei-Format nichts anderes vorgegeben wird, lesen die implementierten Parser allen Input mit UTF-8 als Encoding. Gerade bei Formaten wie CSV, welche von Benutzern direkt erstellt werden können, z.B. mit Excel, ist dies nicht immer optimal.
+
+Wir sehen folgende Optionen:
+\begin{itemize}
+\item Dem Benutzer eine Angabe des verwendeten Encodings ermöglichen
+\item Eine Encoding-Detection durchführen, z.B. mit chardet\footnote{\url{https://pypi.python.org/pypi/chardet}}. Dies funktioniert in vielen Fällen einigermassen gut, ist jedoch nicht zuverlässig.
+\end{itemize}
+
+Am besten wäre wohl eine Kombination der beiden Optionen.
+
 \subsection{Mehr ODHQL-Funktionen}
 Bisher sind zwar diverse Funktionen implementiert, gerade im Geo-Bereich gibt es jedoch noch einiges an Erweiterungspotential.
 
