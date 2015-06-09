@@ -1,7 +1,5 @@
 \chapter{Inhalt der CD}
 
-\xxx[last minute: anpassen]
-
 %, rounded corners
 \tikzstyle{every node}=[ultra thick,anchor=west, font={\scriptsize\ttfamily}, inner sep=4pt]
 
@@ -35,11 +33,15 @@
 	child [missing] {}
 	child [missing] {}
 	child { node [selected] {3\_SRC}
-		child { node [selected] {opendatahub}
-			child { node [selected] {vm}}
-			child { node [selected] {README.md}}
+		child { node [selected] {vm}}
+		child { node [selected] {opendatahub}}
+		child { node [selected] {heroku-buildpack-scipy}}
+		child { node [selected] {\dots}
+			child { node [comment] {Weitere Git Repositories der GitHub Organisation hsr-ba-fs15-dat}}
 		}
 	}
+	child [missing] {}
+	child [missing] {}
 	child [missing] {}
 	child [missing] {}
 	child [missing] {}
@@ -55,9 +57,11 @@
 	child [missing] {}
 	child [missing] {}
 	child [missing] {}
-	child { node [selected] {5\_ABSTRACT}}
+	child { node [selected] {5\_BROSCHUERE}}
 	child { node [selected] {6\_POSTER}}
-	child { node [selected] {7\_MISC}}	
+	child { node [selected] {7\_MISC}
+		child { node [comment] {Atlassian Jira Backup, Time-Tracking Export, \dots}}
+	}
 	child [missing] {};
 	\end{tikzpicture}
 	\caption{Inhalte der beigefügten CD}
