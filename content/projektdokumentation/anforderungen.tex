@@ -28,10 +28,10 @@ Die Webapplikation \gls{trobdb} stellt Verkehrshindernisse der Schweiz auf einer
 
 Als Datenquellen dienen Datenangebote des Bundes, der Kantone sowie Liechtenstein. Als Demonstration sollen folgende Datenquellen verwendet werden:
 \begin{itemize}
-\item Daten von \purl{http://www.truckinfo.ch} in einem nicht weiter spezifizierten XML-Format (siehe \cref{src:pd:truckinfoxml})
+\item Daten von \purl{http://www.truckinfo.ch} in einem nicht weiter spezifizierten \acs{xml}-Format (siehe \cref{src:pd:truckinfoxml})
 \item WFS des Kantons Zürich (Tiefbaustellen, Baustellen)
 \item Excel-Datei des Kantons Appenzell Ausserrhoden
-\item Für Google Earth erstelltes KML des Kantons Zürich
+\item Für Google Earth erstelltes \acs{kml} des Kantons Zürich
 \end{itemize}
 
 \begin{srclst}[label=src:pd:truckinfoxml]{xml}{XML von truckinfo.ch}
@@ -99,7 +99,7 @@ In \cref{tab:pd:rollen} sind die für das Projekt relevanten Rollen bzw. Akteure
 \end{scrumstory}
 
 \begin{scrumstory}[label=story:pd:online-quelle]{Online Quellen}
-	Als Datenanbieter will ich Daten in einem strukturierten Format mit Angabe einer Online-Quelle (HTTP, WFS) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
+	Als Datenanbieter will ich Daten in einem strukturierten Format mit Angabe einer Online-Quelle (HTTP, \acs{wfs}) publizieren können, sodass ich diese auf der Plattform weiterverwenden kann.
 	\storyacceptance	
 	Gegeben
 	\storyitem{Daten sind Online in einem von der Applikation unterstützten Format verfügbar,}
@@ -161,7 +161,7 @@ Die nicht-funktionalen Anforderungen der einzelnen User Stories sind grundsätzl
 In diesem Abschnitt werden zusätzliche, aus der Aufgabenstellung entnommene sowie bei dem Betreuer aufgenommene nicht-funktionale Anforderungen, ergänzt durch sinnvolle Anforderungen moderner Software-Entwicklung beschrieben.
 
 \subsection{Technologien}
-Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} sind teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der HSR wie folgt eingeschränkt:
+Die Anforderungen an die eingesetzten Technologien\footnote{Programmiersprachen, Frameworks, Libraries, Services, \dots} sind teilweise durch die Aufgabenstellung sowie durch die bereits existierende Infrastruktur am Geometa Lab der \gls{hsr} wie folgt eingeschränkt:
 
 \begin{itemize}
 	\item Python als Programmiersprache

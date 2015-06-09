@@ -31,7 +31,7 @@ Für den Umgang mit verschiedenen Datenformaten können Transformationen \cite[t
 
 dat speichert Daten auf zwei verschiedene Arten:
 \begin{itemize}
-\item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat, können diese Daten auch in einer SQL-Datenbank wie Postgres gespeichert werden.
+\item Für Tabellen-Daten wird LevelDB verwendet. Da LevelDB ein austauschbares Backend hat, können diese Daten auch in einer \acs{sql}-Datenbank wie Postgres gespeichert werden.
 \item BLOB-Daten werden standardmässig im File-System per local-blob-store gespeichert. Dies kann ebenfalls durch eine kompatible Implementation ausgetauscht werden.
 \end{itemize}
 
@@ -42,7 +42,7 @@ dat speichert Daten auf zwei verschiedene Arten:
   \label{fig:dat-architecture-overview}
 \end{figure}
 
-Direkt mit dat wird auch der dat-editor geliefert, welcher als rudimentäres Web-GUI dient. Der Editor sowie das REST-API werden gestartet, wenn \mintinline{console}{dat listen} aufgerufen wird. Andere dat-Instanzen verwenden das REST-API für die Synchronisation.
+Direkt mit dat wird auch der dat-editor geliefert, welcher als rudimentäres Web-GUI dient. Der Editor sowie das REST-\acs{api} werden gestartet, wenn \mintinline{console}{dat listen} aufgerufen wird. Andere dat-Instanzen verwenden das REST-\acs{api} für die Synchronisation.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth,clip]{fig/dat-pipeline}
@@ -81,11 +81,11 @@ Siehe auch \url{https://github.com/maxogden/dat/issues/153}.
 
 %https://github.com/maxogden/dat/blob/master/docs/cli-usage.md
 
-Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
+Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne \acs{api} mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
 
 \begin{itemize}
   \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
-  \item Import von CSV oder JSON Dateien mit \mintinline{console}{$ dat import}
+  \item Import von \acs{csv} oder JSON Dateien mit \mintinline{console}{$ dat import}
   \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
   \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
   \item Lokale Änderungen ebenfalls analog Git wieder zurück ins remote Repository synchronisieren mit \mintinline{console}{$ dat push}
@@ -93,7 +93,7 @@ Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne API mi
 \end{itemize}
 
 Die abschliessende Liste von zurzeit unterstützten Befehlen ist in 
-\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-API verwendet werden.
+\vref{app:dat-help} zu finden. Für fortgeschrittenere Verwendung ist das \gls{cli} jedoch nicht geeignet, da viele Optionen fehlen. Stattdessen sollte das JavaScript-\acs{api} verwendet werden.
 
 Spätere Versionen sollen auch Branches erlauben, sowie mit Änderungskonflikten umgehen können.
 

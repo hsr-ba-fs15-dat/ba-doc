@@ -1,5 +1,5 @@
 \section{Transformationssprache ODHQL}
-In diesem Kapitel wird die Transformationssprache ODHQL erläutert.
+In diesem Kapitel wird die Transformationssprache \acf{odhql} erläutert.
 \subsection{Syntax}
 
 Die Syntax von \acs{odhql} orientiert sich stark an SELECT aus \acs{ansi} \acs{sql}.
@@ -15,10 +15,10 @@ Eine formale Beschreibung der Transformationssprache ist in \cref{app:odhql-synt
   \textbf{Mapping} & Felder können mit oder ohne Alias angegeben werden. Falls kein Alias vorhanden ist, wird der Feldname beibehalten. Es ist möglich, Sonder- und Leerzeichen zu verwenden, indem der Feldname in doppelten Anführungszeichen geschrieben wird. \\
   \textbf{Default-Werte} & Unterstützt werden Integer, Float, sowie Strings (in einfachen Anführungszeichen). \\
   \textbf{Joins} & Es muss immer mindestens eine Datenquelle angegeben werden. Falls mehr verwendet werden sollen, muss mindestens eine Join-Bedingung vorhanden sein (es werden mehrere Join-Bedingungen unterstützt, jedoch nur per ``and''-Verknüpfung). Neben Inner Joins werden auch Left, Right und Full Outer Joins unterstützt. \\
-  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc., Prädikate und ``like `regex'\ '' (letzteres ist eine Abweichung von ANSI SQL, welches eine separate Syntax für Like-Filter hat) \\
+  \textbf{Filter/Prädikate} & Vorhandene Filter beinhalten: ``is null'', ``in (...)'', relationale Operatoren wie ``='', ``<'', etc., Prädikate und ``like `regex'\ '' (letzteres ist eine Abweichung von \acs{ansi} \acs{sql}, welches eine separate Syntax für Like-Filter hat) \\
   \textbf{Erweiterbare Funktionen} & Alle Funktionen werden über eine Function Registry in Python aufgerufen und können daher einfach erweitert werden. \\
   \textbf{Sortierung} & Es kann eine Order By-Klausel angegeben werden. Falls Unions verwendet werden, muss die Order By-Klausel am Ende angegeben werden, nicht pro Query. \\
-  \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Die Implementation entspricht dem UNION ALL aus SQL, es findet also keine Deduplizierung statt. \\
+  \textbf{Unions} & Mehrere Queries können per Union zusammengefügt werden. Die Implementation entspricht dem UNION ALL aus \acs{sql}, es findet also keine Deduplizierung statt. \\
 }{Durch \acs{odhql} implementierte Features}{pd:transformation-lang-impl}
 
 Jede Transformation definiert eine Liste von Feldern oder Werten, sowie mindestens eine Datenquelle. 
@@ -54,7 +54,7 @@ Als Filter können folgende Ausdrücke verwendet werden:
 \begin{src}{sql}
 a.nr > 4, a.active = false
 \end{src}
-\item[Like] Anders als bei SQL verwendet der Like-Operator von \acs{odhql} implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{Siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
+\item[Like] Anders als bei \acs{sql} verwendet der Like-Operator von \acs{odhql} implementationsbedingt Reguläre Ausdrücke (Python Syntax\footnote{Siehe \url{https://docs.python.org/2/library/re.html\#regular-expression-syntax}}).
 \begin{src}{sql}
 a.beschreibung like 'Z[uü]rich', a.beschreibung not like 'Z[uü]rich'
 \end{src}
@@ -68,7 +68,7 @@ a.optional_field is null, a.mandatory_field is not null
 \end{src}
 \end{description}
 
-Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält sich wie ``union all'' in SQL, d.h. es findet keine Deduplizierung der Daten statt.
+Die Resultate mehrerer Queries werden mit Union zusammengehängt. Dies verhält sich wie ``union all'' in \acs{sql}, d.h. es findet keine Deduplizierung der Daten statt.
 \begin{src}{sql}
   select a.description, a.geometry from A as a
    union
@@ -113,7 +113,7 @@ Filter werden wie in \cref{fig:pd:odhql-ast-filter} beschrieben dargestellt.
 \end{figure}
 
 \subsection{Interpreter}
-Mit Pandas und NumPy ist bereits eine API für viele SQL-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung, andererseits der Erweiterbarkeit durch eigene Funktionen.
+Mit Pandas und NumPy ist bereits eine \acs{api} für viele \acs{sql}-ähnliche Operationen wie Selektion, Joins und diverse String- und Geometriefunktionen (GeoPandas Erweiterung) vorhanden. Die Herausforderung bei der Entwicklung des Interpreters liegt somit einerseits in einer performanten und möglichst fehlerfreien Ausführung, andererseits der Erweiterbarkeit durch eigene Funktionen.
 
 \begin{figure}[H]
 \centering
