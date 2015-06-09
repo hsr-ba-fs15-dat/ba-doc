@@ -6,7 +6,7 @@ Die Resultate der Arbeit sind in \vref{sec:tb:results} beschrieben.
 \section{Weiterentwicklung} \label{sec:tb:further-dev}
 
 \subsection{GDAL 2.0}
-Diverse Treiber wurden in GDAL 2.0 massiv verbessert (\gls{interlis} 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
+Diverse Treiber wurden in \gls{gdal} 2.0 massiv verbessert (\gls{interlis} 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
 
 \subsection{Native Unterstützung für via ogr2ogr implementierte Formate}
 Die Unterstützung für die Formate \gls{interlis} 1, GML und WFS (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert, müssen die Daten über ein Zwischenformat konvertiert werden.
@@ -66,7 +66,7 @@ Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio. Re
 
 Falls massiv grössere Datenmengen verarbeitet werden müssen ist die aktuelle Architektur aber suboptimal und stark limitiert durch den verfügbaren Speicher. In diesem Falle sollte evtl. auf eine streambasierte Version gewechselt werden.
 
-Zu beachten ist, dass diverse verwendete Bibliotheken (unter anderem auch GDAL) nicht streamorientiert arbeiten.
+Zu beachten ist, dass diverse verwendete Bibliotheken (unter anderem auch \gls{gdal}) nicht streamorientiert arbeiten.
 
 \subsection{Unterstützung für weitere Datenstrukturen}
 Die aktuelle Version von \acs{odh} unterstützt nur tabellarische Daten. Dies könnte um Unterstützung für baumartige Daten, wie zum Beispiel XML, erweitert werden. 

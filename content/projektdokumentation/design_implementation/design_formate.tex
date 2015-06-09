@@ -20,41 +20,41 @@
 }{Beschreibung der implementierten Formate}{pd:formats}
 \footnotetext{Deaktiviert, siehe \cref{sec:pd:format-gdal-problems}}
 
-GeoPandas verwendet (via Fiona) ebenfalls GDAL.
+GeoPandas verwendet (via Fiona\footnote{\url{\footnote{https://pypi.python.org/pypi/Fiona}}}) ebenfalls \gls{gdal}.
 
 \subsection{Probleme mit GDAL}\label{sec:pd:format-gdal-problems}
-Für einen grossen Teil der Formate wird GDAL verwendet, entweder via GeoPandas/Fiona oder direkt per ogr2ogr. 
+Für einen grossen Teil der Formate wird \gls{gdal} verwendet, entweder via GeoPandas/Fiona oder direkt per ogr2ogr. 
 
-Folgende GDAL-Versionen stehen zum aktuellen Zeitpunkt zur Verfügung:
+Folgende \gls{gdal}-Versionen stehen zum aktuellen Zeitpunkt zur Verfügung:
 \begin{itemize}
 \item 1.10.1
 \item 1.11.0 - 1.11.2
 \item 2.0.0beta1
 \end{itemize}
 
-Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04 LTS, für welches ein GDAL-Package in Version 1.10.1 vorhanden ist. \proff wünschte jedoch, dass wenn möglich Unterstützung für das relativ neue Format GeoPackage eingebaut wird. GDAL 1.10.1 unterstützt GeoPackage nicht. Im Versuch, diese Unterstützung einzubauen wurde GDAL selbst kompiliert. Dem Betreuer waren Probleme mit GDAL 1.11.2 bekannt, weswegen 1.11.1 gewählt wurde.
+Die Entwicklungsumgebung bestand aus einer virtuellen Maschine mit Ubuntu 14.04 LTS, für welches ein \gls{gdal}-Package in Version 1.10.1 vorhanden ist. \proff wünschte jedoch, dass wenn möglich Unterstützung für das relativ neue Format GeoPackage eingebaut wird. \gls{gdal} 1.10.1 unterstützt GeoPackage nicht. Im Versuch, diese Unterstützung einzubauen wurde \gls{gdal} selbst kompiliert. Dem Betreuer waren Probleme mit \gls{gdal} 1.11.2 bekannt, weswegen 1.11.1 gewählt wurde.
 
 In Tests wurden folgende Probleme gefunden:
 \begin{itemize}
-\item In GDAL 1.11.0 bis 2.0.0beta1 führt der Versuch, nach Interlis 1 zu konvertieren, zu einem \gls{segfault}. Das Problem wurde vom Betreuer an den Treiber-Entwickler weitergemeldet. In aktuellen nightly-Versionen soll dies behoben sein - dies wurde nicht verifiziert.
-\item Der GeoPackage-Treiber wurde in GDAL 1.11.0 hinzugefügt. Leider kann er in dieser Version nur als unausgereift bezeichnet werden:
+\item In \gls{gdal} 1.11.0 bis 2.0.0beta1 führt der Versuch, nach Interlis 1 zu konvertieren, zu einem \gls{segfault}. Das Problem wurde vom Betreuer an den Treiber-Entwickler weiter gemeldet. In aktuellen nightly-Versionen soll dies behoben sein - dies wurde nicht verifiziert.
+\item Der GeoPackage-Treiber wurde in \gls{gdal} 1.11.0 hinzugefügt. Leider kann er in dieser Version nur als unausgereift bezeichnet werden:
   \begin{itemize}
   \item Layer-Namen werden ohne Bereinigung oder Maskierung als Tabellen-Namen verwendet, was zu Exceptions seitens SQLite führt.
-  \item Wenn die Ursprungs-Daten bereits eine Spalte namens ``fid'' beinhalten, bricht die Konvertierung ab wegen doppelter Spalten-Namen, da der Treiber diese Spalte selbst nochmals hinzugeneriert.
-  \item Reine Daten-Tabellen werden nicht unterstützt. Diese sind zwar nicht Bestandteil des reinen GeoPackage-Standards, können aber mit Extended GeoPackage realisiert werden. Dies ist in GDAL erst ab Version 2.0.0 möglich.
+  \item Wenn die Ursprungs-Daten bereits eine Spalte namens ``fid'' beinhalten, bricht die Konvertierung ab wegen doppelter Spalten-Namen, da der Treiber diese Spalte selbst nochmals hinzu generiert.
+  \item Reine Daten-Tabellen werden nicht unterstützt. Diese sind zwar nicht Bestandteil des reinen GeoPackage-Standards, können aber mit Extended GeoPackage realisiert werden. Dies ist in \gls{gdal} erst ab Version 2.0.0 möglich.
   \end{itemize}
 \end{itemize}
 
-GeoPackage-Support wurde in GDAL 2.0.0 massiv verbessert. Diese Version ist bei Abschluss der Arbeit jedoch noch in der Beta-Phase, weshalb diverse unserer Abhängigkeiten dazu noch nicht kompatibel sind.
+GeoPackage-Support wurde in \gls{gdal} 2.0.0 massiv verbessert. Diese Version ist bei Abschluss der Arbeit jedoch noch in der Beta-Phase, weshalb diverse unserer Abhängigkeiten dazu noch nicht kompatibel sind.
 
 \begin{decision}[label=dec:pd:gdal-version]{GDAL-Version}
-Zum Abgabe-Zeitpunkt sind folgende GDAL-Versionen verfügbar: 1.10.1, 1.11.0 - .2 und 2.0.0beta1.
+Zum Abgabe-Zeitpunkt sind folgende \gls{gdal}-Versionen verfügbar: 1.10.1, 1.11.0 - .2 und 2.0.0beta1.
 
 Wegen Problemen mit mehreren Treibern entfallen die Versionen 1.11.x.
 
 Version 2.0.0beta1 entfällt wegen mangelnder Unterstützung in unseren Abhängigkeiten.
 
-Daher wird vorerst GDAL 1.10.1 eingesetzt.
+Daher wird vorerst \gls{gdal} 1.10.1 eingesetzt.
 \end{decision}
 
 \subsection{Interlis 2}
