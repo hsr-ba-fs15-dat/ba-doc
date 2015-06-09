@@ -59,7 +59,7 @@ Langfristig sollen sich die beteiligten Fachstellen um ihr Fachgebiet kümmern k
 Ein Grossteil der Diskussionen in der Schweizer Geo-Szene dreht sich um Format- und Implementations-Details, statt sich mit Modell- oder Fach-Fragen zu beschäftigen \cite{sfkeller}. Um Bewegung in diese Situation zu bringen, soll ein Prototyp einer Konvertierungs- und Transformations-Plattform implementiert werden. Dieser dient als Demonstrationsobjekt für spätere Weiterentwicklungen und soll aufzeigen, wie eine solche Plattform aussehen könnte und wo allfällige Stolpersteine zu finden sind.
 
 \paragraph{Projekt dat}
-Es ist wichtig anzumerken, dass der ursprüngliche Titel dieser Arbeit ``Project dat HSR'' lautete und sich mit der Dokumentation und der Erweiterung des Projekts dat\footnote{\url{http://dat-data.com/}} befassen sollte. Dies wurde während der Arbeit aufgrund mangelnder Reife von \gls{dat} abgebrochen und ist im \vref{sec:dat} dokumentiert.
+Es ist wichtig anzumerken, dass der ursprüngliche Titel dieser Arbeit ``Project dat \acs{hsr}'' lautete und sich mit der Dokumentation und der Erweiterung des Projekts dat\footnote{\url{http://dat-data.com/}} befassen sollte. Dies wurde während der Arbeit aufgrund mangelnder Reife von \gls{dat} abgebrochen und ist im \vref{sec:dat} dokumentiert.
 
 \section{Rahmenbedingungen}
 
@@ -68,7 +68,7 @@ Folgende Rahmenbedingungen wurden durch den Betreuer \cite{sfkeller} vorgegeben:
 \begin{itemize}
 \item Python als Programmiersprache
 \item Postgres oder SQLite als Datenbank
-\item Deployment der Applikation muss via Web Server Gateway Interface (WSGI) möglich sein
+\item Deployment der Applikation muss via \gls{wsgi} möglich sein
 \end{itemize}
 
 Diese sind zugleich als nicht-funktionale Anforderungen zu verstehen.
@@ -120,10 +120,10 @@ opendatahub.it ist eine italienische, ebenfalls \gls{ckan}-basierte Plattform.
 \gls{fme} ist ein kommerzielles Produkt der Safe Software Inc. Der Fokus liegt auf der Transformation, Konvertierung und Integration von Daten in einer Desktop-Applikation.
 
 \paragraph{geopol.ch}
-Geopol ist eine kommerzielle Web-to-FME Schnittstelle.
+Geopol ist eine kommerzielle Web-to-\acs{fme} Schnittstelle.
 
 \subsection{Pentaho Kettle}
-Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben (\cref{fig:tb:kettle}).
+\gls{kettle} ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben (\cref{fig:tb:kettle}).
 
 \begin{figure}[H]
     \centering
@@ -161,14 +161,14 @@ In diesem Abschnitt wird das grobe Umsetzungskonzept von \gls{odh}, in \cref{fig
 
 \subsection{Internes Format}
 Es wurden diverse Optionen sowohl zur Speicherung wie auch zur Transformation der Daten in Betracht gezogen und im Hinblick auf deren Vor- und Nachteile bezüglich Machbarkeit, Komplexität und Performance evaluiert. Die Daten werden von Parser-Modulen in sogenannte DataFrame Objekte geladen. 
-Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pandas.pydata.org/}} Python-Bibliothek. Pandas ist eine mächtige ``Data-Analysis'' Bibliothek, welche aufgrund der zugrundeliegenden NumPy\footnote{\url{http://www.numpy.org/}} Bibliothek sehr effizient ist.
+Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pandas.pydata.org/}} Python-Bibliothek. Pandas ist eine mächtige ``Data-Analysis'' Bibliothek, welche aufgrund der zugrunde liegenden NumPy\footnote{\url{http://www.numpy.org/}} Bibliothek sehr effizient ist.
 Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
 
 \subsection{Schema-Transformation}
-Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
+Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung \gls{pgis}.
 
 \subsection{Erweiterbarkeit}
-Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
+Sowohl die Unterstützung von Dateiformaten\footnote{CSV, \acs{kml}, Excel, \dots} wie auch die Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
 
 
 \chapter{Resultate und Ausblick} \label{sec:tb:results}
@@ -262,7 +262,7 @@ Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten
 \subsection{Fabio Scala}
 Trotz Hindernisse und Startschwierigkeiten zu Beginn der Arbeit, insbesondere durch das unreife ``Projekt dat'' sowie den natürlichen Differenzen im Team, ist es uns gelungen diese zu überwinden und eine vernünftige und moderne Webapplikation zu implementieren. Aus diesem Grund kann ich die Bachelorarbeit als positive und lehrreiche Erfahrung einstufen. Ich bin stolz auf das Team OpenDataHub und bedanke mich hiermit nochmals persönlich bei allen Beteiligten.
 
-Bezüglich Technologien bin ich froh, dass ich als langjähriger Python Entwickler endlich Django Erfahrungen sammeln sowie auf Frontend-Seite die mächtige Kombination von AngularJS und TypeScript einsetzen konnte.
+Bezüglich Technologien bin ich froh, dass ich als langjähriger Python Entwickler endlich Django Erfahrungen sammeln sowie auf Frontend-Seite die mächtige Kombination von AngularJS und \gls{ts} einsetzen konnte.
 
 
 \section{Dank}

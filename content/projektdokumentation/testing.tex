@@ -68,7 +68,7 @@ Als Testpersonen stellten sich zur Verfügung:
 \paragraph{Anmeldestatus} Angemeldet.
 \paragraph{Aufgabe} Der Benutzer interessiert sich für Baustellen auf Zürcher Kantonsstrassen. Er will Gemeinde, Baustellen-Status, Beginn und Ende der Bauarbeiten sowie den Strassennamen, jeweils mit menschenlesbaren Feld-Bezeichnungen, und erstellt dazu eine Transformation.
 
-Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assistenten.
+Der Benutzer hat keine Erfahrungen mit \acs{odhql} oder \acs{sql} und verwendet den Assistenten.
 
 \paragraph{Walkthrough}
 \begin{enumerate}
@@ -90,7 +90,7 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 \paragraph{Testperson 1}
 \begin{enumerate}
 \item Nach kurzer Orientierung in der Benutzeroberfläche findet der Benutzer das Suchfeld.
-\item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen. Dies ist eine Unschönheit im WFS von dem die Daten stammen und kein UI-Problem.
+\item Die Suche nach ``baustelle'' ist erfolgreich. Der Benutzer ist unsicher, ob ``baustellen\_detailansicht'' oder ``baustellen\_uebersicht'' richtig ist und wird angewiesen, die ``Detail''-Version auszuwählen. Dies ist eine Unschönheit im \acs{wfs} von dem die Daten stammen und kein UI-Problem.
 \item Er ist unsicher, wo er klicken muss um die Felder hinzuzufügen. Nach kurzer Orientierung findet er die richtige Stelle (alles ausser Alias-Feld).
 \item Bei der Eingabe der Aliases ist der Benutzer enttäuscht, dass die Tabelle nicht automatisch weiter scrollt. 
 \item Das Speichern der Transformation funktioniert problemlos.
@@ -103,16 +103,16 @@ Der Benutzer hat keine Erfahrungen mit ODHQL oder SQL und verwendet den Assisten
 
 Das Datums-Format soll dem Format ``Tag. Monat. Jahr'' (z.B. ``01.01.1970'') entsprechen.
 
-Da er bereits Erfahrung mit ODHQL oder SQL hat schreibt er die Transformation selbst. Der Assistent kann als Startpunkt verwendet werden, unterstützt jedoch nicht alle benötigte Funktionalität.
+Da er bereits Erfahrung mit \acs{odhql} oder \acs{sql} hat schreibt er die Transformation selbst. Der Assistent kann als Startpunkt verwendet werden, unterstützt jedoch nicht alle benötigte Funktionalität.
 
-Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilfe eine ODHQL-Referenz enthalten.
+Hinweis: Die Sprache \acs{odhql} lehnt sich stark an \acs{sql} an. Ausserdem ist in der Hilfe eine \acs{odhql}-Referenz enthalten.
 
 \paragraph{Walkthrough}
 \begin{enumerate}
 \item Der Benutzer klickt auf ``Neue Transformation'' und liest sich den Informations-Text durch.
 \item Um die Liste der Spalten zu erhalten verwendet er den Assistenten (siehe \cref{sec:ui-test-trf-ass}, Schritte \crefrange{ui-test-assist-begin}{ui-test-assist-end}).
 \item Durch Klick auf ``Manuelles Bearbeiten'' wechselt der Benutzer in den Editier-Modus.
-\item Mit Hilfe der ODHQL-Referenz ergänzt der Benutzer die fehlenden Funktionen (ST\_Centroid, To\_Date, To\_Char). Zur Überprüfung der Abfrage verwendet der Benutzer periodisch den ``Vorschau''-Knopf.
+\item Mit Hilfe der \acs{odhql}-Referenz ergänzt der Benutzer die fehlenden Funktionen (ST\_Centroid, To\_Date, To\_Char). Zur Überprüfung der Abfrage verwendet der Benutzer periodisch den ``Vorschau''-Knopf.
 \item Anschliessend vergibt er einen Namen sowie eine Beschreibung und klickt auf den ``Speichern''-Button.
 \item Eine grüne Erfolgsmeldung erscheint und nach kurzer Zeit wird der Benutzer zur Detail-Ansicht der neuen Transformation weitergeleitet.
   \begin{enumerate}[label=\labelenumi\alph*.]
@@ -125,18 +125,18 @@ Hinweis: Die Sprache ODHQL lehnt sich stark an SQL an. Ausserdem ist in der Hilf
 \item Der Benutzer verwendet den Assistenten als Startpunkt und will anschliessend in den Editier-Modus wechseln. Dazu muss er erst nach oben scrollen, was er als ``mühsam'' bezeichnet.
 \item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammen klicken.
 \item Nach der Eingabe eines fehlerhaften Queries stellt der Benutzer fest, dass die Fehlermeldung ungünstig platziert ist (unterhalb der Vorschau).
-\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung DB1 besucht, verwendet SQL aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
+\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung DB1 besucht, verwendet \acs{sql} aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
 \end{enumerate}
 
 \subsection{UI05: Daten beziehen}
 \paragraph{Anmeldestatus} Nicht angemeldet.
-\paragraph{Aufgabe} Um die Daten in seinem System weiterverwenden zu können will der Benutzer die Resultate der vorhin erstellten Transformationen als GML-Datei herunterladen.
+\paragraph{Aufgabe} Um die Daten in seinem System weiterverwenden zu können will der Benutzer die Resultate der vorhin erstellten Transformationen als \acs{gml}-Datei herunterladen.
 
 \paragraph{Walkthrough}
 \begin{enumerate}
 \item Der Benutzer sucht die Transformation in der Daten-Liste und klickt auf den Namen.
 \item Ein Klick auf ``Herunterladen'' öffnet die Format-Auswahl.
-\item Die Auswahl von ``GML'' führt zu einem erfolgreichen Download der Daten.
+\item Die Auswahl von ``\acs{gml}'' führt zu einem erfolgreichen Download der Daten.
 \end{enumerate}
 
 \paragraph{Testperson 1}
@@ -157,7 +157,7 @@ Testet ob eine Serie von Files richtig identifiziert werden.
 Formatiert eine Serie von DataFrames und überprüft, ob die erwartete Anzahl Dateien erzeugt wurde.
 
 \subsection{Fixtures}
-Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formatiert werden können. Dabei wird das selbe API verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
+Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formatiert werden können. Dabei wird das selbe \acs{api} verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
 
 Diese Tests werden dynamisch generiert.
 
@@ -174,4 +174,4 @@ Testet die Implementation diverser ODHQL-Funktionen.
 Tests für den Interpreter.
 
 \subsection{REST API}
-Testet einige API-Funktionen.
+Testet einige \acs{api}-Funktionen.

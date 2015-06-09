@@ -257,13 +257,13 @@ Selbe Funktionalität wie /api/session, setzt jedoch den HTTP-Header ``Basic rea
 Zerstört die aktuelle Session und entfernt Client-Side Cookies.
 
 \paragraph{GET /api/changes} ~\\
-Liefert eine Json-formatierte Version des Change Streams (siehe auch JavaScript-API createChangesStream).
+Liefert eine Json-formatierte Version des Change Streams (siehe auch JavaScript-\acs{api} createChangesStream).
 
 \paragraph{GET /api/csv} ~\\
-Liefert eine CSV-Datei mit der letzten Version der Daten.
+Liefert eine \acs{csv}-Datei mit der letzten Version der Daten.
 
 \paragraph{POST /api/bulk} ~\\
-Ermöglicht das Einfügen von mehreren Datensätzen gleichzeitig. Unterstützt werden JSON (Content-Type \texttt{application/json}) und CSV (Content-Type \texttt{text/csv}).
+Ermöglicht das Einfügen von mehreren Datensätzen gleichzeitig. Unterstützt werden JSON (Content-Type \texttt{application/json}) und \acs{csv} (Content-Type \texttt{text/csv}).
 
 Falls die Daten akzeptiert werden besteht die Antwort aus einer Liste von JSON-Objekten mit Key und Version für die neu eingefügten Datensätze, andernfalls aus einem HTTP-Fehler.
 
@@ -289,7 +289,7 @@ Wird für Replikation verwendet.
 
 \subsection{JavaScript}
 %https://github.com/maxogden/dat/blob/master/docs/js-api.md
-dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript API. Dieser Abschnitt zeigt auf welche Interaktion mit dem Repository via JavaScript API möglich ist.
+dat kommt als Node.js-Modul daher und ist die einzige Möglichkeit überhaupt um auf performante Art und Weise das \gls{dat} Repository zu manipulieren. Das \gls{cli} verwendet intern ebenfalls die JavaScript \acs{api}. Dieser Abschnitt zeigt auf welche Interaktion mit dem Repository via JavaScript \acs{api} möglich ist.
 
 \begin{srclst}{js}{Laden des dat-Moduls}
 var dat = require('dat')
@@ -460,10 +460,10 @@ Liefert einen schreibbaren Stream. Jede Schreib-Operation liefert Status-Informa
     \item[primary] Spalte bzw. Array von Spalten, welche als Primary Key verwendet werden soll. Default: \mintinline{js}{key}.
     \item[hash] Wenn \mintinline{js}{true} wird als Primary Key der Hex-formatierte MD5-Hash der Primary Key-Spalten verwendet.
     \item[primaryFormat] Funktion, welche den Key formattiert bevor er eingefügt wird. Als Rückgabewert muss ein String geliefert werden. Akzeptiert \mintinline{js}{(val)}.
-    \item[columns] Liste von Spalten-Bezeichnungen, welche für CSV/MultiBuffer verwendet werden sollen.
-    \item[headerRow] Muss auf \mintinline{js}{false} gesetzt werden, wenn der CSV-Input keine Titel-Zeile enthält. In diesem Fall sollte auch \texttt{columns} gesetzt
-    \item[separator] Feld-Separator für CSV. Default: \texttt{','}
-    \item[delimiter] Record-Separator für CSV. Default: \path{'\n'}
+    \item[columns] Liste von Spalten-Bezeichnungen, welche für \acs{csv}/MultiBuffer verwendet werden sollen.
+    \item[headerRow] Muss auf \mintinline{js}{false} gesetzt werden, wenn der \acs{csv}-Input keine Titel-Zeile enthält. In diesem Fall sollte auch \texttt{columns} gesetzt
+    \item[separator] Feld-Separator für \acs{csv}. Default: \texttt{','}
+    \item[delimiter] Record-Separator für \acs{csv}. Default: \path{'\n'}
     \end{description}
 \end{description}
 
@@ -573,7 +573,7 @@ Ermittelt die aktuelle Anzahl Datensätze in der dat-DB.
 \subsection{Python}
 %https://github.com/pkafei/Dat-Python
 
-Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python API welche folgende grundlegenden Operationen mittels der \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
+Mit datPython\footnote{\url{https://github.com/pkafei/Dat-Python}} existiert eine sehr simple Python \acs{api} welche folgende grundlegenden Operationen mittels der \gls{rest} Schnittstelle von \gls{dat} ermöglicht.
 
 \begin{description}
     \item[\path{info()}] Generelle Informationen über das \gls{dat} Repository.

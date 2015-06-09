@@ -104,7 +104,7 @@ Folgende Parameter sollten direkt in der Datei ``settings.py'' konfiguriert werd
 \item[SECURE\_PROXY\_SSL\_HEADER] Verwaltet das Protokoll hinter einem Reverse Proxy
 \item[DATABASES] verwaltet die Entwicklungs-Datenbank. Hier sollte keine Produktive Datenbank hinterlegt werden. (Siehe \cref{sec:sd:umgebungsvariablen})
 \item[CACHES] verwaltet die Cache Methoden.
-\item[LANGUAGE\_CODE]{[}de-ch{]} setzt den i18n code für Django
+\item[LANGUAGE\_CODE]{[}de-ch{]} setzt den \acs{i18n} Code für Django
 \item[TIME\_ZONE]{[}Europe/Zurich{]}
 
 \item[EMAIL\_*] Für Fehler Benachrichtigungen im Frontend.
@@ -125,8 +125,8 @@ Umgebungsvariablen müssen dem Programm von aussen mitgegeben werden. Dies häng
 \item[FACEBOOK\_SECRET] Definiert den Facebook Secret Key für OAuth2
 \item[FACEBOOK\_PUBLIC] Definiert den Facebook Public Key für OAuth2
 \item[DJANGO\_SETTINGS\_MODULE]{[}opendatahub.settings{]} es kann eine alternative Einstellungs-Datei geladen werden.
-\item[PATH]{[}/vagrant/opendatahub/interlis{]} Pfad für interlis Bibliothek
-\item[CI]{[}False{]} Reduziert die Tests für Continous integration Plattformen. (Nicht lokal einsetzen.)
+\item[PATH]{[}/vagrant/opendatahub/interlis{]} Pfad zum \gls{interlis} Compiler
+\item[CI]{[}False{]} Reduziert die Tests für \acl{ci} Plattformen. (Nicht lokal einsetzen.)
 \end{description}
 \chapter{Benutzerhandbuch}
 
@@ -235,7 +235,7 @@ Die erste Möglichkeit besteht darin, Dateien die lokal auf dem PC gespeichert s
 \item Falls man nur Daten mit dem gleichen Format hochlädt und diese nicht durch deren Dateiendung oder Inhalt erkannt werden, kann Optional das Format der Daten explizit selektiert werden. Es empfiehlt sich dieses jedoch standardmässig auf ``Automatisch'' zu belassen.
 \item Dateien entweder via Drag \& Drop direkt ins rechteckige Feld mit der Bezeichnung ``Wählen oder ziehen Sie Ihre Dateien'' ziehen oder nach Klick auf das Feld über den Datei-Explorer auswählen.
 	\begin{itemize}
-	\item Es ist erlaubt, mehrere Dateien (beispielsweise eine CSV Datei und eine XML Datei) hochzuladen.
+	\item Es ist erlaubt, mehrere Dateien (beispielsweise eine \acs{csv} Datei und eine \acs{xml} Datei) hochzuladen.
 	\item Einige Formate wie beispielsweise das ESRI Shapefile erfordern sogar zwingend mehrere Dateien. Diese müssen vor der Endung denselben Namen besitzen.
 	\item Allgemein werden alle Dateien mit gleichem Namen und lediglich anderer Endung zu einer Gruppe zusammengefasst. Es ist somit nicht möglich ein \path{Mitarbeiter.xlsx} und \path{Mitarbeiter.csv} hochzuladen und dann als separate ``Tabellen'' zu behandeln.
 	\end{itemize}

@@ -79,7 +79,7 @@ Als Prefix für die \gls{api} URLs wird \url{/api/v1/} verwendet, was eine spät
 \label{fig:pd:api-root}
 \end{figure}
 
-Da für die Implementation des \gls{api} die Django-Erweiterung \texttt{rest\_framework}\footnote{\url{http://www.django-rest-framework.org/}} verwendet wurde, kann die API gut auch manuell ausprobiert werden. Dabei ist zu beachten, dass die Schrägstriche am Ende der URLs nicht optional sind.
+Da für die Implementation des \gls{api} die Django-Erweiterung \texttt{rest\_framework}\footnote{\url{http://www.django-rest-framework.org/}} verwendet wurde, kann die \acs{api} gut auch manuell ausprobiert werden. Dabei ist zu beachten, dass die Schrägstriche am Ende der URLs nicht optional sind.
 
 \subsection{Konfiguration - GET /api/v1/config/}
 Gibt die für den HTML5 Client notwendigen Konfigurationsinformationen zurück.
@@ -305,9 +305,9 @@ Erstellt eine neue Transformation.
   \textbf{name} & Name der Transformation (max. 200 Zeichen). \\
   \textbf{description} & Beschreibung der Transformation (keine Limitation). \\
   \textbf{private} (default: false) & Steuert ob die Transformation für andere Benutzer sichtbar ist.\\
-  \textbf{transformation} & ODHQL Statement, welches die Transformation definiert. Falls die referenzierten Datenquellen nicht existieren wird ein Template erstellt. \\
+  \textbf{transformation} & \acs{odhql} Statement, welches die Transformation definiert. Falls die referenzierten Datenquellen nicht existieren wird ein Template erstellt. \\
 }{Parameter für Erstellung einer Transformation}{pd:api-transformation-create}
-Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das ODHQL Statement korrekt ist. Siehe dazu \cref{sec:pd:api-parse}.
+Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das \acs{odhql} Statement korrekt ist. Siehe dazu \cref{sec:pd:api-parse}.
 
 \begin{srclst}{json}{Beispielanfrage für POST /api/v1/transformation/}
 {
@@ -322,7 +322,7 @@ Hinweis: Vor der Erstellung einer Transformation sollte geprüft werden, ob das 
 Aktualisiert eine Transformation. Es können alle in \cref{tab:pd:api-transformation-create} erwähnten Felder aktualisiert werden.
 
 \subsubsection{Preview für AdHoc-Transformationen - POST /api/v1/transformation/adhoc/}
-Erstellt eine Preview für ein ODHQL Statement, ohne die Transformation in der Datenbank zu persistieren. Dies ist nützlich, um eine Vorschau realisieren zu können, während der Benutzer noch am Bearbeiten seines Statements ist.
+Erstellt eine Preview für ein \acs{odhql} Statement, ohne die Transformation in der Datenbank zu persistieren. Dies ist nützlich, um eine Vorschau realisieren zu können, während der Benutzer noch am Bearbeiten seines Statements ist.
 
 \subsection{File Groups}\label{sec:pd:api-filegroups}
 Von Benutzern bereitgestellte Daten werden in sog. File Groups organisiert. Dies sind zusammengehörende Dateien, z.B. die .shx-, .shp- und .dbf-Datei bei einem ESRI Shapefile.
@@ -511,7 +511,7 @@ Liefert Detail-Informationen zur Url.
 Diese Views sind kein direkter Bestandteil des \gls{rest} \acs{api}s, dienen jedoch als Unterstützung dazu.
 
 \subsubsection{ODHQL Checker - POST /api/v1/parse} \label{sec:pd:api-parse}
-Parsed eine ODHQL Abfrage und liefert die Fehlermeldungen in einem zur Fehlersuche hilfreichen Format.
+Parsed eine \acs{odhql} Abfrage und liefert die Fehlermeldungen in einem zur Fehlersuche hilfreichen Format.
 
 \subsubsection{Benutzerdokumentation - GET /api/v1/odhql/doc/}
 Erstellt die Benutzerdokumentation anhand der Inline-Dokumentation im Code und liefert das Resultat als HTML-Seite zurück.

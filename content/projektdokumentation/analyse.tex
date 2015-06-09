@@ -21,11 +21,11 @@ Das \acf{csv} gilt trotz vielen Schwächen als universelles Austausch/Exportform
 
 \subsubsection{Erweiterung mit Typen und Geo-Daten}
 
-\gls{geocsv} ist eine durch das Geometa-Lab der HSR spezifizierte Erweiterung von CSV um Geo-Daten mit folgenden Eigenheiten \cite{sfkeller,geocsv,gdal-csv}:
+\gls{geocsv} ist eine durch das Geometa-Lab der \gls{hsr} spezifizierte Erweiterung von \acs{csv} um Geo-Daten mit folgenden Eigenheiten \cite{sfkeller,geocsv,gdal-csv}:
 
 \begin{itemize}
 \item Eine optionale Datei mit Endung \path{.csvt} spezifiziert auf einer einzigen Zeile die verwendeten Datentypen
-\item Den spezielle Datentyp ``WKT'' für Geometrien im \gls{wkt} Format
+\item Den spezielle Datentyp ``\acs{wkt}'' für Geometrien im \gls{wkt} Format
 \item Die speziellen Datentypen ``Point(x)'', ``Point(y)'' oder ``CoordX'' bzw. ``CoordY'' für den Spezialfall einer Punktgeometrie
 \item Eine optionale Datei mit der Endung \path{.prj} zur Angabe des Referenzsystems, ebenfalls im \gls{wkt} Format\footnote{Achtung, das \path{.prf} Format von ESRI sieht sehr ähnlich aus, enthält jedoch weniger Informationen!}
 \item Nur ein Geometrie-Objekt/Spalte pro Datei
@@ -42,7 +42,7 @@ Da viele nicht-technische Benutzer mit Microsoft Excel arbeiten \cite{sfkeller} 
 GeoPackage ist ein relativ neues, auf SQLite basiertes, Format. Es ist sehr nahe an SpatiaLite, welches mit Version 4.2 auf GeoPackage wechselt.
 
 \subsection{GML}
-\gls{gml} ist ein auf XML basierendes Format für Geo-Daten und ist das Standard-Ausgabeformat von \acs{wfs}-Servern.
+\gls{gml} ist ein auf \acs{xml} basierendes Format für Geo-Daten und ist das Standard-Ausgabeformat von \acs{wfs}-Servern.
 
 
 \subsection{Interlis}
@@ -61,7 +61,7 @@ Das Shapefile ist ein von der Firma ESRI spezifiziertes Format zum Austausch von
 Bei \gls{wfs} handelt es sich um einen speziellen Webservice für Geo-Daten. Die Daten können üblicherweise im \gls{gml} Format bezogen werden. Da es sich dabei um einen weit verbreiteten Standard des \gls{ogc} handelt, sollte die Applikation einen direkten Bezug von Daten via einem \acs{wfs} Server ermöglichen.
 
 \subsection{XML}
-Da es sich bei \acs{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version unterstützt, ähnlich der von der API von \purl{http://truckinfo.ch} gelieferten und in \cref{sec:pd:usecases} beschriebenen Daten. 
+Da es sich bei \acs{xml} um eine potenziell verschachtelte Datenstruktur handelt, wird vorerst nur eine flache Version unterstützt, ähnlich der von der \acs{api} von \purl{http://truckinfo.ch} gelieferten und in \cref{sec:pd:usecases} beschriebenen Daten. 
 
 \subsection{JSON}
 Auch bei JSON handelt es sich um ein Format mit Schachtelungsmöglichkeit. Aus diesem Grund wird auch hier vorerst nur die oberste Ebene betrachtet.
@@ -306,15 +306,15 @@ Index([u'CNTRYNAME', u'CONURB', u'DUP_NAME', u'LEVEL', u'NAME', u'NATION', u'PRO
 \paragraph{PyTables/HDF} ist eine high-performance Python-Bibliothek die wie Pandas ebenfalls auf NumPy aufbaut. Da das \acs{api} von PyTables im Vergleich zu Pandas eher low-level ist und weniger bietet wurde diese Bibliothek nicht weiter verfolgt.
 
 \subsubsection{Transformationssprache}
-\paragraph{DSL: Vereinfachtes SQL}
-Dieses Format lehnt sich an SELECT aus SQL an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit SQL auskennen, was das Erlernen dieser Query-Sprache sehr vereinfachen würde \cite{sfkeller}.
+\paragraph{DSL: Vereinfachtes \acs{sql}}
+Dieses Format lehnt sich an SELECT aus \acs{sql} an. Es ist anzunehmen, dass Experten im Bereich Datentransformation sich mit \acs{sql} auskennen, was das Erlernen dieser Query-Sprache sehr vereinfachen würde \cite{sfkeller}.
 
-Da als Backend nicht eine SQL-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden, sind einige kleinere Differenzen zu SQL unvermeidbar.
+Da als Backend nicht eine \acs{sql}-Datenbank verwendet wird, sondern die Operationen auf Pandas DataFrames übersetzt werden, sind einige kleinere Differenzen zu \acs{sql} unvermeidbar.
 
 Neue Funktionen können in Python definiert werden.
 
 \paragraph{DSL: Eigenes Format}
-Diese Variante besitzt grundsätzlich dieselben Eigenschaften wie eine SQL-basierte DSL. Dieser gegenüber entfällt jedoch das Familiaritäts-Argument. Ausserdem muss eine passende, einfach zu erlernende Syntax definiert werden.
+Diese Variante besitzt grundsätzlich dieselben Eigenschaften wie eine \acs{sql}-basierte DSL. Dieser gegenüber entfällt jedoch das Familiaritäts-Argument. Ausserdem muss eine passende, einfach zu erlernende Syntax definiert werden.
 
 Aus diesen Gründen wird diese Variante nicht weiter verfolgt.
 
@@ -341,7 +341,7 @@ Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen 
 \cref{tab:pd:format-results} fasst die verschiedenen Optionen zusammen.
 \mytable{lccC{1.8cm}C{1.8cm}C{1.8cm}}{
   \textbf{Kriterium} & \textbf{Datenbank} & \textbf{ogrtools} & \textbf{Petl} & \textbf{Pandas} & \textbf{PyTables} \\
-  & \textbf{SQL} & \textbf{ogrtransform} & \multicolumn{3}{c}{\textbf{SQL-ähnliche DSL}} \\
+  & \textbf{\acs{sql}} & \textbf{ogrtransform} & \multicolumn{3}{c}{\textbf{\acs{sql}-ähnliche \acs{dsl}}} \\
   \midrule
   \textbf{Performance} & \oneOfThree & ? & \oneOfThree & \twoOfThree & \oneOfThree \\
   \textbf{Machbarkeit} & \twoOfThree & \oneOfThree & \twoOfThree & \threeOfThree  & \twoOfThree \\
@@ -359,7 +359,7 @@ Zusätzlich werden die in \cref{tab:pd:format-criteria-transform} beschriebenen 
 \begin{decision}[label=dec:pd:format]{Intermediäres Format}
 Aufgrund der sowohl mächtigen \acs{api} wie auch der gleichzeitig hohen Performance und Integration mit Geo-Daten bzw. Shapely wurde für Pandas und deren Datenstrukturen entschieden. Die Variante ``Datenbank'' wurde, obschon der Aufwand für die Transformationen weitgehend entfallen würde, aufgrund der Machbarkeit im Zusammenhang mit Echtzeit-Datenquellen verworfen.
 
-Als Transformationssprache wird eine an SQL angelehnte DSL implementiert.
+Als Transformationssprache wird eine an SQL angelehnte \acs{dsl} implementiert.
 \end{decision}
 
 \section{User Interface}
@@ -388,7 +388,7 @@ Im Kontext der Evaluation eines für die Aufgabenstellung passenden Frontend Jav
 \end{quote}
 
 \begin{quote}
-... Es gibt eine grosse Anzahl solcher Bibliotheken, doch eine der populärsten ist sicherlich AngularJS. Angular basiert auf dem MVC Prinzip und bietet viele Vorteile zum interaktiven Bedienen einer Webseite. Somit haben wir in der SA auf Angular JS gesetzt ...
+... Es gibt eine grosse Anzahl solcher Bibliotheken, doch eine der populärsten ist sicherlich AngularJS. Angular basiert auf dem \acs{mvc} Prinzip und bietet viele Vorteile zum interaktiven Bedienen einer Webseite. Somit haben wir in der SA auf Angular JS gesetzt ...
 \cite[S. 19]{wohnortfinder}
 \end{quote}
 
@@ -478,5 +478,5 @@ Die beiden Methoden werden in \cref{fig:pd:cookie-token-auth} grafisch dargestel
 \end{figure}
 \subsection{Fazit}
 \begin{decision}{Session-Authentifizierung}
-Da wir die API vom Frontend so weit wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \gls{jwt}. So könnte die API auch aus einem Client mit anderer Domain verwendet werden.
+Da wir die \acs{api} vom Frontend so weit wie möglich trennen wollen, setzen wir auf die modernere Variante mittels \gls{jwt}. So könnte die \acs{api} auch aus einem Client mit anderer Domain verwendet werden.
 \end{decision}
