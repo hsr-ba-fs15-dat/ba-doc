@@ -11,10 +11,10 @@ Als erstes Ziel dieser Arbeit sollte das noch junge Projekt \gls{dat} anlysiert 
 
 \section{Was ist dat?} % https://github.com/maxogden/dat/blob/master/docs/what-is-dat.md
 
-Das dat-Projekt hat folgende Ziele \cite{what-is-dat}: 
+Das \gls{dat}-Projekt hat folgende Ziele \cite{what-is-dat}: 
 
 \begin{itemize}
-\item Daten sollen automatisch zwischen unterschiedlichen dat-Instanzen synchronisiert werden können. 
+\item Daten sollen automatisch zwischen unterschiedlichen \gls{dat}-Instanzen synchronisiert werden können. 
 \item Unterstützung grosser Datenmengen\footnote{Milliarden von Datensätzen bzw. Speicherbedarf im \si{\tera\byte}-Bereich}, evtl. mit häufigen Aktualisierungen
 \item Unterstützung von tabellarischen oder unstrukturierten Daten
 \item Plugin-basierte Schnittstelle zu bestehenden Datenbanken/Formaten
@@ -68,7 +68,7 @@ Siehe auch \url{https://github.com/maxogden/dat/issues/172}.
 \subsection{Regierung \textendash\ Sammlung von Daten} % https://github.com/maxogden/dat/issues/153
 Für Statistik- oder Regulierungszwecke sammeln Regierungen Daten von unterschiedlichsten Betrieben. Diese Daten müssen oft über ein mehr oder weniger brauchbares Portal abgeliefert werden.
 
-Die Verwendung von dat bringt folgende Vorteile:
+Die Verwendung von \gls{dat} bringt folgende Vorteile:
 \begin{itemize}
 \item Ermöglicht die Prüfung von Daten beim Import, bereits vor der Ablieferung der Daten
 \item Ermöglicht Ergänzung oder Korrektur von bereits abgelieferten Daten.
@@ -84,7 +84,7 @@ Siehe auch \url{https://github.com/maxogden/dat/issues/153}.
 Das \gls{dat} \gls{cli} ``\texttt{dat}'' ist das einzige Werkzeug um ohne \acs{api} mit dem Repository zu interagieren und bietet folgende Basisfunktionalität:
 
 \begin{itemize}
-  \item Erstellung neuer dat Repositories/Intanzen mit \mintinline{console}{$ dat init}
+  \item Erstellung neuer \gls{dat} Repositories/Intanzen mit \mintinline{console}{$ dat init}
   \item Import von \acs{csv} oder JSON Dateien mit \mintinline{console}{$ dat import}
   \item \gls{dat} Server und Webfrontend starten mit \mintinline{console}{$ dat listen}
   \item Klonen eines kompletten\footnote{Samt aller Historie} remote Repositories \gls{dat} Repostitories analog Git mit \mintinline{console}{$ dat clone}
@@ -114,16 +114,17 @@ Für eine Beschreibung der von \gls{dat} zur Verfügung gestellten \gls{api}, si
 
 \section{Fazit}
 %\section{Verwendung}
-Zum aktuellen Zeitpunkt (Februar 2015) implementiert dat alpha 6.9.6 folgende Features:
+Zum aktuellen Zeitpunkt (Februar 2015) implementiert \gls{dat} alpha 6.9.6 folgende Features:
 \begin{itemize}
 \item Datenspeicher auf Basis eines Key-/Value-Stores (LevelDB).
 \item Limitierte Synchronisation basierend auf einem Change-Stream. So weit wir erkennen können ist keine Konflikt-Verwaltung vorhanden, sondern lediglich Ein-Weg-Synchronisation vorgesehen.
-\item Pro dat-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll, wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
+\item Pro \gls{dat}-Instanz existiert nur ein Schema. Falls ein Datensatz mit neuen Spalten hinzugefügt werden soll, wird das bereits vorhandene Schema mit dem Schema des neuen Datensatzes zusammengeführt.
 \end{itemize}
 
-Aktuell läuft die Entwicklung der dat beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
+Aktuell läuft die Entwicklung der \gls{dat} beta-Version. In dieser sollen mehrere ``datasets'' unterstützt sowie bessere Versionskontrolle mit Konfliktbehandlung bzw. -Vermeidung implementiert werden. Leider ist diese Version noch nicht stabil und das API ändert sich damit komplett.
 
 \begin{decision}[label=dec:dat:fazit]{Projekt dat}
 Aufgrund der Tatsache, dass \gls{dat}, obschon vielversprechend, noch sehr unausgereift und undokumentiert ist, sowie das API noch ständigen Änderungen unterzogen wird, wurde nach Rücksprache mit dem Betreuer gegen den Einsatz von \gls{dat} entschieden. Das Projektrisiko ist zu gross und es wird nach einer alternativen Lösungen zur Implementation eines Datenhubs gesucht.
 \end{decision}
 
+\textit{Anmerkung: Bei Abschluss der Arbeit ist \gls{dat} ist nun in Version 6.9.7\footnote{siehe \url{https://github.com/maxogden/dat/releases}} (vom 25. Februar 2015) verfügbar.}
