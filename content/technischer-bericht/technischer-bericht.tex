@@ -123,7 +123,7 @@ opendatahub.it ist eine italienische, ebenfalls \gls{ckan}-basierte Plattform.
 Geopol ist eine kommerzielle Web-to-FME Schnittstelle.
 
 \subsection{Pentaho Kettle}
-Kettle ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben (\cref{fig:tb:kettle}).
+\gls{kettle} ist eine Open Source Desktop-Applikation für \acs{etl}-Aufgaben (\cref{fig:tb:kettle}).
 
 \begin{figure}[H]
     \centering
@@ -165,7 +165,7 @@ Ein DataFrame ist ein Tabellen-artiges Objekt der Pandas\footnote{\url{http://pa
 Zu jedem Format kann auch ein Formatter-Modul implementiert werden, welches ein DataFrame entgegennimmt und einen Output des gewünschten Formates zurückgibt.
 
 \subsection{Schema-Transformation}
-Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung PostGIS.
+Auch bei der Homogenisierung der Schemata wurden diverse Möglichkeiten, welche teilweise eng mit dem Format gekoppelt\footnote{Die Persistierung der Daten in eine Postgres Datenbank impliziert beispielsweise die Verwendung von PostgreSQL zur Transformation} sind, analysiert. Schlussendlich wurde eine eigene \gls{dsl} implementiert \textendash\ die \acf{odhql}. \acs{odhql}\glsunset{odhql} ist ein Subset von \acs{sql}, inklusive Unterstützung einiger Geo-Basisfunktionalität analog der PostgreSQL-Erweiterung \gls{pgis}.
 
 \subsection{Erweiterbarkeit}
 Sowohl die Unterstützung von Dateiformaten\footnote{CSV, KML, Excel, \dots} wie auch die Funktionen der \acl{odhql} wurden mit Bedacht auf Erweiterbarkeit implementiert. Eine Drittpartei kann durch Implementation eines speziellen Interfaces eigene Parser/Formatter Paare oder gar \gls{odhql} Funktionen zur Verfügung stellen, welche nach einem Neustart der Applikation sofort verfügbar sind.
@@ -262,7 +262,7 @@ Die Zusammenarbeit im Team empfand ich als angenehm und konstruktiv. Wir konnten
 \subsection{Fabio Scala}
 Trotz Hindernisse und Startschwierigkeiten zu Beginn der Arbeit, insbesondere durch das unreife ``Projekt dat'' sowie den natürlichen Differenzen im Team, ist es uns gelungen diese zu überwinden und eine vernünftige und moderne Webapplikation zu implementieren. Aus diesem Grund kann ich die Bachelorarbeit als positive und lehrreiche Erfahrung einstufen. Ich bin stolz auf das Team OpenDataHub und bedanke mich hiermit nochmals persönlich bei allen Beteiligten.
 
-Bezüglich Technologien bin ich froh, dass ich als langjähriger Python Entwickler endlich Django Erfahrungen sammeln sowie auf Frontend-Seite die mächtige Kombination von AngularJS und TypeScript einsetzen konnte.
+Bezüglich Technologien bin ich froh, dass ich als langjähriger Python Entwickler endlich Django Erfahrungen sammeln sowie auf Frontend-Seite die mächtige Kombination von AngularJS und \gls{ts} einsetzen konnte.
 
 
 \section{Dank}
