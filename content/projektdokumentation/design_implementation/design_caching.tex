@@ -2,7 +2,7 @@
 \section{Caching}
 Aufgrund der Entscheidung alle Daten verlustfrei im Originalformat zu speichern (\cref{dec:pd:datenspeicherung}), sowie der Verwendung von In-Memory Tabellen-artigen Datenstrukturen, muss sichergestellt werden, dass nicht bei jeder Operation die Originaldaten von Format-Parser neu eingelesen werden müssen.
 
-Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applikation implementiert. Es werden die Caching-Mechanismen von Django mit eingen Modifikationen/Erweiterungen verwendet. Folglich können die Caching-Backends jederzeit durch beliebige von Django unterstützte Backends wie z.B. Memcached, Filesystem, etc. ersetzt werden.
+Aus diesem Grund wurde ein dreistufiges Caching-Konzept für die gesamte Applikation implementiert. Es werden die Caching-Mechanismen von Django mit einigen Modifikationen/Erweiterungen verwendet. Folglich können die Caching-Backends jederzeit durch beliebige von Django unterstützte Backends wie z.B. Memcached, Filesystem, etc. ersetzt werden.
 \subsection{Caches}
 
 \cref{fig:pd:caches} zeigt eine Übersicht der in \gls{odh} eingesetzten Caches und deren Storage-Backends.
