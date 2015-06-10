@@ -125,7 +125,7 @@ Hinweis: Die Sprache \acs{odhql} lehnt sich stark an \acs{sql} an. Ausserdem ist
 \item Der Benutzer verwendet den Assistenten als Startpunkt und will anschliessend in den Editier-Modus wechseln. Dazu muss er erst nach oben scrollen, was er als ``mühsam'' bezeichnet.
 \item Das Hilfe-Icon funktioniert nicht. Die Punkt ``Hilfe'' im Menu schon, öffnet die Hilfe aber im selben Browser-Fenster. Der Benutzer muss die Abfrage nochmals neu zusammen klicken.
 \item Nach der Eingabe eines fehlerhaften Queries stellt der Benutzer fest, dass die Fehlermeldung ungünstig platziert ist (unterhalb der Vorschau).
-\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung DB1 besucht, verwendet \acs{sql} aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
+\item Der Benutzer hat einige Schwierigkeiten mit der Erstellung des Queries. Er hat zwar die Vorlesung Dbs1 an der \acs{hsr} besucht, verwendet \acs{sql} aber sehr selten. Mit Hilfe der Dokumentation gelingt es schliesslich doch.
 \end{enumerate}
 
 \subsection{UI05: Daten beziehen}
@@ -148,16 +148,16 @@ Nach Abschluss des Tests experimentierte der Benutzer ein wenig mit exotischeren
 Alles in allem wurden über 300 Unit-Tests erstellt. Diese decken die im folgenden beschriebenen Bereiche ab.
 
 \subsection{Formate}
-Testet ob eine Serie von Files richtig identifiziert werden.
+Testet ob eine Serie von Dateien richtig identifiziert werden.
 
 \subsection{Parser}
-Überprüft ob eine Serie von Files richtig gelesen werden kann, und ob wie erwartet eine Geometrie-Spalte vorhanden ist oder nicht.
+Überprüft ob eine Serie von Dateien richtig gelesen werden kann, und ob wie erwartet eine Geometrie-Spalte vorhanden ist oder nicht.
 
 \subsection{Formatter}
 Formatiert eine Serie von DataFrames und überprüft, ob die erwartete Anzahl Dateien erzeugt wurde.
 
 \subsection{Fixtures}
-Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formatiert werden können. Dabei wird das selbe \acs{api} verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
+Mit ``loadfixtures'' kann eine Serie von Test-Daten, auch Fixtures genannt, geladen werden. Diese Tests überprüfen, ob die geladenen Fixtures korrekt geparsed und anschliessend in jedem bekannten Format formatiert werden können. Dabei wird dasselbe \acs{api} verwendet, wie auch von Benutzern zum herunterladen von Dateien verwendet wird.
 
 Diese Tests werden dynamisch generiert.
 
