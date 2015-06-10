@@ -26,7 +26,7 @@ exit # Ausloggen ist notwendig, damit das virtuelle environment (virtualenv) kor
 \end{src}
 \section{Entwicklungsumgebung}
 \subsection{PyCharm}
-Wir nutzten zur Entwicklung von \acf{odh} die Entwicklungsumgebung PyCharm für Python aus dem Hause JetBrains. Für Studenten ist die Professional Edition kostenlos verfügbar.
+Wir nutzten zur Entwicklung von \acl{odh} die Entwicklungsumgebung PyCharm für Python aus dem Hause JetBrains. Für Studenten ist die Professional Edition kostenlos verfügbar.
 
 \subsection{Projekt erstellen}
 Nun kann ein PyCharm-Projekt erstellt werden. Dazu wählt man ``Datei $\to$ öffnen'' und wählt den Ordner \texttt{opendatahub} aus. Das Projekt wird erstellt. 
@@ -96,15 +96,15 @@ pyb -v django_test
 \end{src}
 
 \section{Einstellungen}
-In diesem Kapitel werden die wichtigsten Einstellungen für den Betrieb des \ac{odh} erläutert.
+In diesem Kapitel werden die wichtigsten Einstellungen für den Betrieb von \acl{odh} erläutert.
 \subsection{settings.py}
 Folgende Parameter sollten direkt in der Datei ``settings.py'' konfiguriert werden:
 \begin{description}
 \item[SECRET\_KEY] Sollte auf jeder Instanz anders sein.
 \item[USE\_X\_FORWARDED\_HOST] Verwaltet das Protokoll hinter einem Reverse Proxy
 \item[SECURE\_PROXY\_SSL\_HEADER] Verwaltet das Protokoll hinter einem Reverse Proxy
-\item[DATABASES] verwaltet die Entwicklungs-Datenbank. Hier sollte keine Produktive Datenbank hinterlegt werden. (Siehe \cref{sec:sd:umgebungsvariablen})
-\item[CACHES] verwaltet die Cache Methoden.
+\item[DATABASES] konfiguriert die Entwicklungs-Datenbank. Hier sollte keine Produktive Datenbank hinterlegt werden. (Siehe \cref{sec:sd:umgebungsvariablen})
+\item[CACHES] konfiguriert die Cache Backend.
 \item[LANGUAGE\_CODE]{[}de-ch{]} setzt den \acs{i18n} Code für Django
 \item[TIME\_ZONE]{[}Europe/Zurich{]}
 
