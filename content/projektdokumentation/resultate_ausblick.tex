@@ -4,9 +4,10 @@
 Die Resultate der Arbeit sind in \vref{sec:tb:results} beschrieben.
 
 \section{Weiterentwicklung} \label{sec:tb:further-dev}
+In diesem Abschnitt werden diverse Möglichkeiten zur Weiterentwicklung von \acl{odh} aufgezeigt.
 
 \subsection{GDAL 2.0}
-Diverse Treiber wurden in \gls{gdal} 2.0 massiv verbessert (\gls{interlis} 1/2) bzw. richtig implementiert (GeoPackage). Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
+Diverse Treiber\footnote{\gls{interlis} 1/2, GeoPackage} wurden in \gls{gdal} 2.0 massiv verbessert bzw. richtig implementiert. Sobald ein Release vorhanden ist, sollte ein Upgrade in Betracht gezogen werden.
 
 \subsection{Native Unterstützung für via ogr2ogr implementierte Formate}
 Die Unterstützung für die Formate \gls{interlis} 1, \acs{gml} und \acs{wfs} (nur Parser) ist via ogr2ogr implementiert. Da ogr2ogr auf Datei-Ebene operiert, müssen die Daten über ein Zwischenformat konvertiert werden.
@@ -24,7 +25,7 @@ Nach Untersuchung der bereits vorhandenen Produkte wurde entschieden, die Webapp
 Wir sehen folgende Optionen:
 \begin{itemize}
 \item Ausbau der verwalteten Metadaten
-\item Veränderung der Files, die zu einem Package gehören
+\item Mutation der Dateien, die zu einem Package gehören
 \item Diskussion von Daten/Transformationen, evtl. Issue-Tracker
 \item Integration von \acs{ckan}
 \end{itemize}
@@ -59,7 +60,7 @@ Ausserdem sollte untersucht werden, ob Geodaten in allen Fällen korrekt behande
 Nach Bedarf können weitere Formate implementiert werden.
 
 \subsection{ODH als WFS-Server}
-ODH unterstützt \acs{wfs} als Daten-Quelle. Die Idee ist, dass eine \acs{api} implementiert wird, welche eine Datenquelle oder \acs{wfs}-Url und optional eine \acs{odhql}-Abfrage entgegen nimmt, die Transformation durchführt und anschliessend das Resultat als \acs{wfs} anbietet.
+ODH unterstützt \acs{wfs} als Daten-Quelle. Die Idee ist, dass eine \acs{api} implementiert wird, welche eine Datenquelle oder \acs{wfs}-URL und optional eine \acs{odhql}-Abfrage entgegen nimmt, die Transformation durchführt und anschliessend das Resultat als \acs{wfs} anbietet.
 
 \subsection{Performanz bei grossen Datenmengen}
 Im Rahmen der Arbeit wurden Dokumente mit Grössen bis ca. 100 MB (ca. 1 Mio. Records) mit guten Resultaten getestet. Im Gespräch mit Herrn Dorfschmid wurde festgestellt, dass dies für viele Anwendungen ausreicht.
@@ -72,16 +73,16 @@ Zu beachten ist, dass diverse verwendete Bibliotheken (unter anderem auch \gls{g
 Die aktuelle Version von \acs{odh} unterstützt nur tabellarische Daten. Dies könnte um Unterstützung für baumartige Daten, wie zum Beispiel \acs{xml}, erweitert werden. 
 
 \subsection{Unterstützung für weitere Transformationsarten}
-Ogr2ogr ermöglicht es, Transformationen per \acs{sql} in einer Datenbank auszuführen. Dies könnte auch in ODH implementiert werden, würde jedoch zu Performance-Verlusten führen.
+Ogr2ogr ermöglicht es, Transformationen per \acs{sql} in einer Datenbank auszuführen. Dies könnte auch in ODH implementiert werden, würde jedoch zu Performance-Einbussen führen.
 
 \subsection{Bereinigung des REST API}
 Das \gls{rest} \acs{api} funktioniert, beinhaltet jedoch einige Inkonsistenzen bzw. Unschönheiten. 
 
 Ein Beispiel:
-Bei Anfragen auf \url{/api/v1/fileGroups/} wird das zur File Group gehörende Dokument zurückgeliefert.
-\url{/api/v1/document/<id>/fileGroups/} liefert alle zu einem Dokument gehörenden File Groups. Auch hier enthält die Antwort das Dokument, da derselbe Serializer verwendet wird. Dies führt jedoch dazu, dass bei Dokumenten mit mehr als einer File Group die Dokument-Informationen mehrfach in der Antwort enthalten sind.
+Bei Anfragen auf \href{http://beta.opendatahub.ch/api/v1/fileGroup/}{/api/v1/fileGroup/} wird das zur File Group gehörende Dokument zurückgeliefert.
+\href{http://beta.opendatahub.ch/api/v1/document/1/filegroup/}{/api/v1/document/<id>/filegroup/} liefert alle zu einem Dokument gehörenden File Groups. Auch hier enthält die Antwort das Dokument, da derselbe Serializer verwendet wird. Dies führt jedoch dazu, dass bei Dokumenten mit mehr als einer File Group die Dokument-Informationen mehrfach in der Antwort enthalten sind.
 
-Stattdessen sollte in dieser Situation nur die Dokument-Url geliefert werden.
+Stattdessen sollte in dieser Situation nur die Dokument-URL geliefert werden.
 
 \subsection{Templates in neuen Transformationen verwenden können}
 Anstatt ein Template zuerst als Transformation abzuspeichern, könnte es sinnvoll sein, ein Template direkt in einer neuen Transformation verwenden zu können.

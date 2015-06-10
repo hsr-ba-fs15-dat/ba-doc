@@ -1,5 +1,5 @@
 \section{Architektur}
-Daten-Lieferanten liefern ihre Daten per Web-Interface oder \ac{rest}-\ac{api}. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese wieder über das Web-Interface oder per \ac{rest}-\ac{api} ab. 
+Daten-Lieferanten liefern ihre Daten per Web-Interface oder \acs{rest}-\acs{api}. Diese Daten werden in der Datenbank gespeichert und im Web-Interface angezeigt. Daten-Nutzer rufen diese wieder über das Web-Interface oder per \acs{rest}-\acs{api} ab. 
 
 Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \cref{fig:pd:arch-overview} zu sehen ist:
 \begin{description}
@@ -15,7 +15,7 @@ Dritt-Entwickler können eigene Komponenten entwickeln und beisteuern, wie in \c
 \end{figure}
 
 \subsection{Komponenten und Packages}
-\cref{fig:pd:pypackages} erläutert die Package-Struktur und deren Inhalt der Python Module. Alle Python Module die sich im \path{plugins} Modul befinden, werden automatisch geladen. Darin befinden sich auch Beispiel-Plugins einer \acs{odhql}-Funktion sowie zur Erweiterung der Format-Unterstützung.
+\cref{fig:pd:pypackages} erläutert die Package-Struktur und Inhalt der Python Module. Alle Python Module die sich im \path{plugins} Modul befinden, werden automatisch geladen. Darin befinden sich auch Beispiel-Plugins einer \acs{odhql}-Funktion sowie zur Erweiterung der Format-Unterstützung.
 
 \begin{figure}[H]
     \centering

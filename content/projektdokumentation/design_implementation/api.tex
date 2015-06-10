@@ -68,10 +68,10 @@ Liefert eine Vorschau der Daten. Enthalten ist der Unique Name, welcher in Abfra
 \subsubsection{Download} \label{sec:pd:api-download}
 Fordert einen Download der Daten an. Das gewünschte Format wird mit dem Parameter \texttt{fmt} angegeben. Gültige Werte sind die von \cref{sec:pd:api-format} gelieferten Namen. Ohne Format-Angabe werden die Original-Daten geliefert.
 
-Hinweis: Dokumente können nicht als ganzes heruntergeladen werden \textendash stattdessen müssen die File Groups für diesen Zweck verwendet werden.
+Hinweis: Dokumente können nicht als ganzes heruntergeladen werden \textendash\ stattdessen müssen die File Groups für diesen Zweck verwendet werden.
 
 \subsection{Root - GET /api/v1/}
-Als Prefix für die \gls{api} URLs wird \url{/api/v1/} verwendet, was eine spätere versionierte Erweiterung erlaubt.
+Als Prefix für die \gls{api} URLs wird \href{http://beta.opendatahub.ch/api/v1/}{/api/v1/} verwendet, was eine spätere versionierte Erweiterung erlaubt.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/api-root}
@@ -167,7 +167,7 @@ Liefert eine Liste der Packages.
 }
 \end{srclst}
 
-Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}), Suche (\cref{sec:pd:api-search}) und Sortierung (\cref{sec:pd:api-sort}).
+Die Endpunkte (\cref{sec:pd:api-paging}), Suche (\cref{sec:pd:api-search}) und Sortierung (\cref{sec:pd:api-sort}) unterstützten Paging.
 
 \subsubsection{Package-Details - GET /api/v1/package/<id>/}\label{sec:pd:api-package-details}
 Liefert die Details zu einem Package. Dies sind grundsätzlich dieselben Informationen wie in der Package-Liste, jedoch um einige weitere Details ergänzt.
@@ -237,15 +237,15 @@ Die Antwort sieht unterschiedlich aus, je nachdem ob das Package ein Dokument (\
 }
 \end{srclst}
 
-\paragraph{File Groups} Die \texttt{file\_group}-Url liefert die Liste der File Groups, die zu diesem Dokument gehören. Siehe auch \cref{sec:pd:api-filegroups}.
+\paragraph{File Groups} Die \texttt{file\_group}-URL liefert die Liste der File Groups, die zu diesem Dokument gehören. Siehe auch \cref{sec:pd:api-filegroups}.
 
-\paragraph{Preview} Die Preview-Url liefert eine Vorschau der Daten im Package. Siehe auch \cref{sec:pd:api-preview}.
+\paragraph{Preview} Die Preview-URL liefert eine Vorschau der Daten im Package. Siehe auch \cref{sec:pd:api-preview}.
 
-\paragraph{Referenced File Groups/Transformations} Dies sind Urls für File Groups bzw. Transformations, welche in dieser Transformation verwendet wurden.
+\paragraph{Referenced File Groups/Transformations} Dies sind URLs für File Groups bzw. Transformations, welche in dieser Transformation verwendet wurden.
 
 \paragraph{Template} Templates sind abstrakte Transformationen, welche als Vorlage für konkrete Transformationen dienen. Für Templates kann keine Vorschau erstellt werden.
 
-\paragraph{Data} Url für den Download der Daten. Siehe \cref{sec:pd:api-download} für Details.
+\paragraph{Data} URL für den Download der Daten. Siehe \cref{sec:pd:api-download} für Details.
 
 \subsection{Dokumente}
 \subsubsection{Dokument-Liste - GET /api/v1/document/}
@@ -270,7 +270,7 @@ Erstellt ein neues Dokument.
 Zusätzlich wird eine der folgenden Optionen benötigt:
 \begin{description}
 \item[file] Direkter Datei-Upload. In diesem Fall wird die Anfrage als Multipart Form Request erwartet. Es kann mehr als eine Datei auf einmal hochgeladen werden. Diese werden dann dem selben Dokument zugeordnet, nach Datei-Namen (ohne Erweiterung) in File Groups gruppiert.
-\item[url] Erstellt ein Dokument mit einer Url als Datenquelle. Dies kann entweder ein \gls{wfs}-Endpoint oder eine http-Url sein. Zusätzlich kann der Parameter \texttt{refresh} angegeben werden, welcher steuert, wie oft die Daten abgerufen werden sollen (in Sekunden). Erlaubt sind Werte von 60 (1 Minute) bis 604800 (1 Woche).
+\item[url] Erstellt ein Dokument mit einer URL als Datenquelle. Dies kann entweder ein \gls{wfs}-Endpoint oder eine HTTP-URL sein. Zusätzlich kann der Parameter \texttt{refresh} angegeben werden, welcher steuert, wie oft die Daten abgerufen werden sollen (in Sekunden). Erlaubt sind Werte von 60 (1 Minute) bis 604800 (1 Woche).
 \end{description}
 
 \begin{srclst}{json}{Beispielanfrage für POST /api/v1/document/}
@@ -424,9 +424,9 @@ Liefert Detail-Informationen zu einer File Group.
 
 \paragraph{Document} Das Dokument, zu dem diese File Group gehört. Siehe auch \cref{sec:pd:api-document-details,sec:pd:api-package-details}.
 \paragraph{Files} Führt die zur File Group gehörenden Dateien auf. Siehe auch \cref{sec:pd:api-files}.
-\paragraph{Urls} Führt die zur File Group gehörenden Urls auf. Siehe auch \cref{sec:pd:api-urls}.
-\paragraph{Data} Url für den Download der Daten. Siehe auch \cref{sec:pd:api-download}.
-\paragraph{Preview} Url für eine Vorschau der Daten in dieser File Group. Siehe auch \cref{sec:pd:api-preview}.
+\paragraph{URLs} Führt die zur File Group gehörenden URLs auf. Siehe auch \cref{sec:pd:api-urls}.
+\paragraph{Data} URL für den Download der Daten. Siehe auch \cref{sec:pd:api-download}.
+\paragraph{Preview} URL für eine Vorschau der Daten in dieser File Group. Siehe auch \cref{sec:pd:api-preview}.
 \paragraph{Related Transformations} Führt Transformationen auf, die diese File Group verwenden.
 
 \subsection{Files} \label{sec:pd:api-files}
@@ -466,9 +466,9 @@ Liefert Informationen zu einer einzelnen Datei.
 }
 \end{srclst}
 
-\subsection{Urls} \label{sec:pd:api-urls}
-\subsubsection{Url-Liste - GET /api/v1/url/}
-Liefert eine Liste der vorhandenen Urls.
+\subsection{URLs} \label{sec:pd:api-urls}
+\subsubsection{URL-Liste - GET /api/v1/url/}
+Liefert eine Liste der vorhandenen URLs.
 
 \begin{srclst}{json}{Beispielantwort für GET /api/v1/url/}
 {
@@ -492,8 +492,8 @@ Liefert eine Liste der vorhandenen Urls.
 
 Dieser Endpunkt unterstützt Paging (\cref{sec:pd:api-paging}).
 
-\subsubsection{Url-Liste - GET /api/v1/url/1/}
-Liefert Detail-Informationen zur Url.
+\subsubsection{URL-Liste - GET /api/v1/url/1/}
+Liefert Detail-Informationen zur URL.
 
 \begin{srclst}{json}{Beispielantwort für GET /api/v1/url/1/}
 {
