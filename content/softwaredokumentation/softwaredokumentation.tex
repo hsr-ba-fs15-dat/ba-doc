@@ -94,6 +94,7 @@ Beim Build-Prozess werden Tests automatisch ausgeführt. Um nur die Python-Tests
 \begin{src}{shell}
 pyb -v django_test
 \end{src}
+
 \section{Einstellungen}
 In diesem Kapitel werden die wichtigsten Einstellungen für den Betrieb des \ac{odh} erläutert.
 \subsection{settings.py}
@@ -128,6 +129,203 @@ Umgebungsvariablen müssen dem Programm von aussen mitgegeben werden. Dies häng
 \item[PATH]{[}/vagrant/opendatahub/interlis{]} Pfad zum \gls{interlis} Compiler
 \item[CI]{[}False{]} Reduziert die Tests für \acl{ci} Plattformen. (Nicht lokal einsetzen.)
 \end{description}
+
+\section{Verwendete Software}
+In diesem Abschnitt wird die in \acl{odh} verwendete Software aufgelistet.
+
+\subsection{Python}
+Es wird Python 2.7 mit den in \cref{tab:sd:python-modules} gelisteten Modulen benötigt, um \acl{odh} zu verwenden. Diese sind auch in der Datei \path{requirements.txt} im Quellcode-Verzeichnis gelistet. Zusätzliche, nur zur Entwicklung benötigte Module sind in \cref{tab:sd:python-dev-modules} sowie in \path{requirements_dev.txt} gelistet.
+
+\begin{tabularx}{\textwidth}{llX}
+  \toprule\\
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \endfirsthead
+
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \midrule\\
+  \endhead
+
+  \midrule\\
+  \endfoot
+
+  \bottomrule\\
+  \caption{Zur Laufzeit benötigte Python Module}
+  \label{tab:sd:python-modules}
+  \endlastfoot
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{Django}}\\
+  \midrule\\
+
+  \textbf{django-toolbelt} & 0.0.1 & Installiert einige der untenstehenden Packages (gunicorn, dj-static, \dots) automatisch.\\
+  \textbf{dj-database-url} & 0.3.0 & Helper um Datenbank-URL aus der Umgebungsvariable zu lesen\\
+  \textbf{Django} & 1.7.5 & Django Framework\\
+  \textbf{dj-static} & 0.0.6 & Static-Asset Server für Gunicorn\\
+  \textbf{gunicorn} & 19.2.1 & WSGI Server\\
+  \textbf{psycopg2} & 2.6 & PostgreSQL Adapter\\
+  \textbf{static3} & 0.5.1 & Static-Asset Server. Durch django-toolbelt installiert.\\
+  \textbf{requests} & 2.5.3 & HTTP Bibliothek\\
+  
+  \textbf{python-social-auth} &  & OAuth Unterstützung\\
+  \textbf{django-picklefield} & 0.3.1 & Erlaubt Python Pickles als Datenbank-Felder\\
+  \textbf{djangorestframework} & 3.0.5 & REST API Framework\\
+  \textbf{django-pgjson} & 0.2.3 & JSON Datentyp-Unterstützung für PostgreSQL\\
+  \textbf{djangorestframework-jwt} & 1.4.0 & JWT-Unterstützung für REST das Framework\\
+  \textbf{whitenoise} & 1.0.6 & Static-Asset Server. Dieser wird effektiv in OpenDataHub verwendet.\\
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{NumPy / Pandas}}\\
+  \midrule\\
+
+  \textbf{numpy} & 1.9.1 & High-performance Vektor-Operationen\\
+  \textbf{pandas} & 0.16.0 & Data-Analysis Bibliothek\\
+  \textbf{xlsxwriter} & 0.7.1 & OpenXML Excel (xlsx) Unterstützung für Pandas\\
+  \textbf{xlwt} & 0.7.5 & Excel Unterstützung (schreibend) für Pandas\\
+  \textbf{xlrd} & 0.9.3 & Excel Unterstützung (lesend) für Pandas\\
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{Geo}}\\
+  \midrule\\
+
+  \textbf{pygdal} & 1.10.1 & GDAL Python API\\
+  \textbf{geopandas} & 0.1.1 & Pandas Erweiterung um Geo-Funktionalität\\
+  \textbf{fiona} & 1.5.1 & Wrapper um GDAL API, wird von GeoPandas verwendet.\\
+  \textbf{shapely} & 1.5.7 & Geometrie-Objekte in Python. Wird von GeoPandas verwendet.\\
+  \textbf{pyproj} & 1.9.4 & PROJ4 Python API (Koordinaten-Transformationen)\\
+  \textbf{fastkml} & 0.9 & KML Parser Bibliothek\\
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{Diverses}}\\
+  \midrule\\
+
+  \textbf{unicodecsv} & 0.9.4 & Unicode-Unterstützung für CSV.\\
+  \textbf{pyparsing} & 2.0.3 & Parser Parser Bibliothek. Wird verwendet um die \acf{odhql} zu definieren und parsen.\\
+  \textbf{lxml} & 3.4.2 & LXML Python API\\
+  \textbf{beautifulsoup4} & 4.3.2 & HTML Parser\\
+  \textbf{django-sslify} & 0.2.0 & SSL Unterstützung für Django\\
+  \textbf{enum34} & 1.0.4 & Python 3 Enum-Backport\\
+  \textbf{defusedxml} & 0.4.1 & Security-Wrapper für diverse XML Bibliotheken\\
+  \textbf{Pygments} & 2.0.2 & Syntax Highlighting\\
+  \textbf{docutils} & 0.12 & Dokumentations-Bibliothek. Wird für die \acs{odhql}-API verwendet.\\
+
+  \midrule
+  \multicolumn{3}{l}{\textbf{Indirekte Dependencies}}\\
+  \midrule
+
+  \textbf{html5lib} & 0.999 & \textendash\\
+  \textbf{click} & 3.3 & \textendash\\
+  \textbf{cligj} & 0.1.0 & \textendash\\
+  \textbf{descartes} & 1.0.1 & \textendash\\
+  \textbf{matplotlib} & 1.4.3 & \textendash\\
+  \textbf{mock} & 1.0.1 & \textendash\\
+  \textbf{python-dateutil} & 2.4.1 & \textendash\\
+  \textbf{pytz} & 2015.2 & \textendash\\
+  \textbf{pillow} & 2.8.1 & \textendash\\
+  \textbf{pyjwt} & 1.0.0 & \textendash\\
+\end{tabularx}
+
+
+\begin{tabularx}{\textwidth}{llX}
+
+  \toprule\\
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \midrule
+  \endfirsthead
+
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \midrule\\
+  \endhead
+
+  \midrule\\
+  \endfoot
+
+  \bottomrule\\
+  \caption{Zur Entwicklung benötigte Python Module}
+  \label{tab:sd:python-dev-modules}
+  \endlastfoot
+
+  \textbf{sphinx} & 1.2.3 & Generierung der API Dokumentation aus Inline Kommentaren\\
+  \textbf{nose} & 1.3.4 & Test-Runner\\
+  \textbf{pybuilder} & 0.10.51 & Build-tool (Task-runner) für Python\\
+  \textbf{sphinxcontrib-httpdomain} & 1.3.0 & HTTP Erweiterung für Sphinx zur Dokumentation von APIs\\
+  \textbf{django-extensions} & 1.5.0 & Django Erweiterungen/Befehle zur Entwicklung\\
+  \textbf{werkzeug} & 0.10.1 & Django Middlerware zur Entwicklung\\
+  \textbf{pyinotify} & 0.9.5 & Auto-reload Unterstützung für Django Debug-Server (via inotify)\\
+  \textbf{watchdog} & 0.8.3 & Auto-reload Unterstützung für Django Debug-Server\\
+  \textbf{pylint-django} & 0.6 & PyLint Unterstützung für Django-spezifische Module\\
+  \textbf{ipython} & latest & Bessere Debugging-Konsole\\
+\end{tabularx}
+
+
+\subsection{JavaScript}
+Im Frontend werden die in \cref{tab:sd:python-modules} gelisteten JavaScript Module eingesetzt. Diese sind zudem in \path{src/main/webapp/bower.json} abgelegt und werden mittels Bower\footnote{Web Package Manager, siehe \url{http://bower.io/}} installiert.
+
+\begin{tabularx}{\textwidth}{llX}
+  \toprule\\
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \endfirsthead
+
+  \textbf{Name} & \textbf{Version} & \textbf{Beschreibung} \\
+  \midrule\\
+  \endhead
+
+  \midrule\\
+  \endfoot
+
+  \bottomrule\\
+  \caption{Benötigte JavaScript Module}
+  \label{tab:sd:javascript-modules}
+  \endlastfoot
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{Angular / Core}}\\
+  \midrule\\
+
+  \textbf{angular} & 1.4.0 & AngularJS, Singe-Page-Application Framework\\
+  \textbf{bootstrap} & 3.2.0 & CSS Layout Framework\\
+  \textbf{angular-animate} & 1.4.0 & CSS Animationen mit AngularJS\\
+  \textbf{angular-aria} & 1.4.0 & Accessibility für AngularJS Applikationen\\
+  \textbf{angular-cookies} & 1.4.0 & AngularJS Coookie Untersützung\\
+  \textbf{angular-messages} & 1.4.0 & AngularJS Validierungs- und Fehlermeldungen\\
+  \textbf{angular-route} & 1.4.0 & URL-Routing\\
+  \textbf{angular-sanitize} & 1.4.0 & Security (HTML Escaping) in der Templates\\
+  \textbf{angular-touch} & 1.4.0 & Unterstützung für Touch-Events\\
+  \textbf{json3} & 3.2.6 & Cross-Browser bzw. JavaScript Engine JSON Implementation\\
+  \textbf{es5-shim} & 2.1.0 & Cross-Browser ECMAScript5 Compliance (Shim)\\
+  \textbf{jquery} & 2.1.3 & jQuery\\
+
+  \midrule\\
+  \multicolumn{3}{l}{\textbf{Erweiterungen}}\\
+  \midrule\\
+
+  \textbf{angular-ui-router} & 0.2.13 & Erweitertes URL-Routing\\
+  \textbf{animate.css} & 3.2.1 & Auswahl an CSS3 Animationen\\
+  \textbf{ngtoast} & 1.5.0 & Anzeige von ``Toasts'' (Meldungen)\\
+  \textbf{angular-bootstrap} & 0.12.1 & Integration von Bootstrap Elementen in AngularJS\\
+  \textbf{angular-ui-utils} & 0.2.2 & Diverse Common Utilities\\
+  \textbf{angular-ui-select} & 0.11.1 & Erweitertes Selection/Drop-down für AngularJS\\
+  \textbf{font-awesome} & 4.3.0 & Font Awesome Icons\\
+  \textbf{ng-file-upload} & 3.2.4 & File-Upload Direktive für AngularJS\\
+  \textbf{bootstrap-material-design} & 0.3.0 & Google Material Design für Bootstrap\\
+  \textbf{arrive} & 2.1.0 & DOM Watching. Von material-design benötigt zur Integration mit AngularJS.\\
+  \textbf{angular-easyfb} & 1.2.1 & Facebook OAuth Authentication\\
+  \textbf{restangular} & 1.4.0 & REST Client/Bibliothek\\
+  \textbf{bootstrap-social-buttons} & 1.0.0 & Diverse Social Network Icons/Buttons\\
+  \textbf{satellizer} & Eigener Fork & Token-Based Authentication\\
+  \textbf{blockui} & latest & Utility um einzelne Elemente zu blockieren\\
+  \textbf{angular-truncate} & latest & AngularJS Filter\\
+  \textbf{ng-table} & 0.5.4 & AngularJS Tabellen-Erweiterung um Funktionen wie Pagination, Sortierung, \dots,\\
+  \textbf{angular-ui-ace} & latest & Editor/Textfeld mit Syntax-Highlighting\\
+  \textbf{fontawesome-actions} & 0.5.0 & Kombination mehreren Font Awesome Icons\\
+  \textbf{angular-moment} & 0.10.0 & Darstellung von relativen Zeiten\\
+  \textbf{stacktrace-js} & 0.6.4 & Cross-Browser Stacktraces (Error handling)\\
+  \textbf{ES6StringFormat} & latest & Backport von \path{String.format} aus ECMAScript6\\
+  \textbf{angular-scroll} & 0.7.0 & Anchor-Unterstützung für AngularJS\\
+  \textbf{highlightjs} & 8.5.0 & Syntax Highlighting\\
+  \textbf{angular-highlightjs} & 0.4.1 & AngularJS Direktive für highlightjs\\
+\end{tabularx}
+
+
 \chapter{Benutzerhandbuch}
 
 \section{Datensuche und Bezug} \label{sec:sd:daten-suchen}
