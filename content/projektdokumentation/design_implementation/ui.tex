@@ -6,7 +6,7 @@ Zur Authentifizierung der Benutzer wird der OAuth 2 Standard verwendet. Dieser e
 Beispielsweise wurde python-social-auth verwendet um den Benutzer gegenüber diesen Diensten zu authentisieren. Die \acs{rest} Schnittstelle wird dann über einen Token gesichert.
 
 \subsection{Transformationen erstellen}
-Wir wollten das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen einen Wizard zu schreiben, welcher die Aktion vereinfachen soll (\cref{fig:pd:tables_per_click}). In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden. In der gelieferten Beta-Version, kann der Wizard verwendet werden. Die Transformation kann auch über den manuellen Editor erstellt werden (\cref{fig:pd:wizard-manual}), dann müssen allerdings entweder die Tabellennamen bekannt sein, oder es kann nur ein Template erstellt werden.
+Wir wollten das Erstellen einer Transformation so einfach wie möglich gestalten. Zu diesem Zweck haben wir uns früh dazu entschlossen einen Wizard zu implementieren, welcher die Erstellung einer Transformation vereinfachen soll (\cref{fig:pd:tables_per_click}). In den frühen Phasen des Projektes war es notwendig den Wizard zu verwenden. In der gelieferten Beta-Version, ist der Wizard optional. Die Transformation kann auch über den manuellen Editor erstellt werden (\cref{fig:pd:wizard-manual}), dann müssen allerdings entweder die Tabellennamen bekannt sein, oder es kann nur ein Template erstellt werden.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{fig/odhql_wizard_early.png}
