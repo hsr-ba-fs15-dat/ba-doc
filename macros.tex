@@ -43,3 +43,8 @@
 \newcommand*{\oneOfThree}{\FiveStar\FiveStarOpen\FiveStarOpen}
 \newcommand*{\twoOfThree}{\FiveStar\FiveStar\FiveStarOpen}
 \newcommand*{\threeOfThree}{\FiveStar\FiveStar\FiveStar}
+
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
