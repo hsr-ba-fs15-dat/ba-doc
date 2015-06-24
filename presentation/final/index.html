@@ -45,7 +45,7 @@
 					<p>Teilen, Beziehen, und Konvertieren von Daten</p>
 					<p><small>Bachelorarbeit FS15 HSR</small></p>
                     <p><small>Remo Liebi, Fabio Scala, Christoph Hüsler</small></p>
-                    <p><small>Betreuer: S. Keller, Experte: C. Eisenhut</small></p>
+                    <p><small>Betreuer: Prof. S. Keller, Experte: C. Eisenhut</small></p>
 				</section>
 
                 <section>
@@ -55,8 +55,8 @@
                         <li>Analyse</li><!-- chuesler -->
                         <li>Design und Implementation</li><!-- fscala, rliebi -->
                         <li>Resultate und Ausblick</li><!-- chuesler -->
-                        <li>Projekt- und Qualitätsmanagement</li><!-- fscala -->
                         <li>Demo</li><!-- rliebi -->
+                        <li>Projekt- und Qualitätsmanagement</li><!-- fscala -->
                         <li>Fragen</li><!-- alle -->
                     </ul>
                 </section>
@@ -107,6 +107,22 @@
                     </section>
 
                     <section>
+                        <h2>Anforderungen</h2>
+                    </section>
+
+                    <section>
+                        <h2>Use-Cases</h2>
+                    </section>
+
+                    <section>
+                        <h2>Nicht-funkionale Anforderungen</h2>
+                    </section>
+
+                    <section>
+                        <h2>Domain-Modell</h2>
+                    </section>
+
+                    <section>
                         <h2>dat</h2>
                         <q cite="http://dat-data.com" class="fragment">Dat is a version-controlled, decentralized data tool for collaboration between data people and data systems.</q>
                         <p>&nbsp;</p>
@@ -145,6 +161,7 @@
                         <q class="fragment" cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to aggregate, manipulate, and mashup content from around the web.</q>
                         <img class="fragment" src="img/yahoo-pipes.png"/>
                     </section>
+
                     <section>
                         <h2>Yahoo! Pipes</h2>
                         <ul>
@@ -152,6 +169,7 @@
                         </ul>
                         <p class="fragment">Discontinued (30.9.2015)</p>
                     </section>
+
                     <section>
                         <h2>Pentaho Kettle</h2>
                         <q class="fragment" cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a groundbreaking, metadata-driven approach.</q>
@@ -196,17 +214,70 @@
 
                 <section>
                     <section>
-                        <h1>Design &amp; Implementation</h1>
+                        <h1>Implementation</h1>
+                        <ul class="fragment">
+                            <li>Python 2.7</li>
+                            <li>AngularJS</li>
+                            <li>TypeScript</li>
+                            <li>GDAL</li>
+                        </ul>
                     </section>
 
                     <section>
                         <h2>Architektur</h2>
+                        <img class="fragment" src="img/odh-architecture.png"/>
                         <!-- fscala -->
                     </section>
-                    
+
                     <section>
-                        <h2>ODHQL</h2>
+                        <h2>Internes Format</h2>
+                        <ul>
+                            <li><a href="http://www.numpy.org/">NumPy</a>
+                                <ul>
+                                    <li>De-facto Standard Bibliothek für mehrdimensionale Matrizen und Arrays</li>
+                                </ul>
+                            </li> 
+
+                            <li><a href="http://pandas.pydata.org/">Pandas</a>
+                                <ul>
+                                    <li>Bibliothek zur Datenmanipulation und Analyse</li>
+                                    <li>Moderner "R" ersatz für Python</li>
+                                    <li>Basierend auf NumPy</li>
+                                </ul>
+                            </li> 
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Parser - Daten einlesen</h2>
+                        <img src="img/parser.png"/>
+                        <ul>
+                            <li>Nativ
+                                <ul>
+                                <li>(Geo)CSV, Excel, XML, (Geo)JSON, KML, ESRI Shapefile</li>
+                                </ul>
+                            </li>
+                            <li><a href="http://www.gdal.org/">ogr2ogr</a>
+                                <ul>
+                                <li>GML, WFS, Interlis 1</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>ODHQL - Daten transformieren</h2>
+                        <p>OpenDataHub Query Language</p>
                         <!-- fscala -->
+
+                    </section>
+
+                    <section>
+                        <h2>Formatter - Daten konvertieren</h2>
+                        <img src="img/formatter.png"/>
+                        <ul>
+                            <li>WIP</li>
+                        </ul>
                     </section>
 
                      <section>
@@ -236,6 +307,15 @@
 
                     <section>
                         <h2>Planung</h2>
+                    </section>
+
+                    <section>
+                        <h2>Testing</h2>
+                    </section>
+
+                    <section>
+                        <h2>Infrastruktur</h2>
+                        <img class="fragment" src="img/devenv.png"/>
                     </section>
 
                     <section>
