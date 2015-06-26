@@ -39,6 +39,8 @@
 		<div class="reveal">
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+            <!-- ################################################################################ rliebi start -->
+
 				<section>
                     <p><small>Abschlusspräsentation</small></p>
 					<h1>OpenDataHub</h1>
@@ -60,6 +62,10 @@
                         <li>Fragen</li><!-- alle -->
                     </ul>
                 </section>
+
+                <!-- ################################################################################ rliebi end -->
+
+                <!-- ################################################################################ chuesler start -->
 
                 <section>
                     <section>
@@ -194,24 +200,10 @@
 
                 </section>
 
-                <section>
-                    <section>
-                        <h1>Resultate</h1>
-                     </section>
+                <!-- ################################################################################ chuesler end -->
 
-                    <section>
-                        <h2>dat</h2> 
-                    </section>
-                    
-                    <section>
-                        <h2>OpenDataHub</h2> 
-                    </section>
 
-                    <section>
-                        <h2>Ausblick</h2> 
-                    </section>
-                </section>
-
+                <!-- ################################################################################ fscala start -->
                 <section>
                     <section>
                         <h1>Implementation</h1>
@@ -227,6 +219,11 @@
                         <h2>Architektur</h2>
                         <img class="fragment" src="img/odh-architecture.png"/>
                         <!-- fscala -->
+                    </section>
+
+                    <section>
+                        <h2>Django Models</h2>
+                        <img src="img/models.png"/>
                     </section>
 
                     <section>
@@ -249,7 +246,7 @@
                     </section>
 
                     <section>
-                        <h2>Parser - Daten einlesen</h2>
+                        <h2>Parser &ndash; Daten einlesen</h2>
                         <img src="img/parser.png"/>
                         <ul>
                             <li>Nativ
@@ -266,7 +263,7 @@
                     </section>
 
                     <section>
-                        <h2>ODHQL - Daten transformieren</h2>
+                        <h2>ODHQL &ndash; Daten transformieren</h2>
                         <p>OpenDataHub Query Language</p>
                     </section>
 
@@ -288,7 +285,7 @@
                     </section>
 
                     <section>
-                        <h2>Formatter - Daten konvertieren</h2>
+                        <h2>Formatter &ndash; Daten konvertieren</h2>
                         <img src="img/formatter.png"/>
                         <ul>
                             <li>Gegenstück zu Parser</li>
@@ -318,6 +315,10 @@
                         </ul>
                     </section>
 
+                    <!-- ################################################################################ fscala end -->
+
+                    <!-- ################################################################################ rliebi start -->
+
                      <section>
                         <h2>Authentication</h2>
                         <!-- rliebi -->
@@ -329,10 +330,44 @@
                     </section>
                 </section>
 
+                <!-- ################################################################################ rliebi end -->
+
+                <!-- ################################################################################ chuesler start -->
+
+                <section>
+                    <section>
+                        <h1>Resultate</h1>
+                     </section>
+
+                    <section>
+                        <h2>dat</h2> 
+                    </section>
+                    
+                    <section>
+                        <h2>OpenDataHub</h2> 
+                    </section>
+
+                    <section>
+                        <h2>Probleme &amp; Pitfalls</h2> 
+                    </section>
+
+                    <section>
+                        <h2>Ausblick</h2> 
+                    </section>
+                </section>
+
+                <!-- ################################################################################ chuesler end -->
+
+                <!-- ################################################################################ rliebi start -->
+
                 <section>
                     <h1>Demo</h1>
                     <!-- rliebi demo trobdb? gleiche wie an tag davor -->    
                 </section>
+
+                <!-- ################################################################################ rliebi end -->
+
+                <!-- ################################################################################ fscala start -->
 
                 <section>
                     <section>
@@ -340,7 +375,7 @@
                     </section>
 
                     <section>
-                        <h2>Vorgehensmodell - Scrum</h2>
+                        <h2>Vorgehensmodell &ndash; Scrum</h2>
                         <img src="img/scrum.png"/>
                         <ul>
                             <li>Iterativ, 2 Wochen</li>
@@ -371,19 +406,27 @@
                     </section>
 
                     <section>
-                        <h2>Planung - JIRA</h2>
+                        <h2>Planung &ndash; JIRA</h2>
                         <img src="img/jira-agile.png"/>
                     </section>
 
                     <section>
-                        <h2>Qualität - Reviews</h2>
+                        <h2>Planung</h2>
+                        <img src="img/burndown.png"/>
+                    </section>
+
+                    <section>
+                        <h2>Qualität &ndash; Reviews</h2>
                         <img src="img/jira-workflow.png"/>
                     </section>
 
                     <section>
-                        <h2>Qualität - Testing</h2>
+                        <h2>Qualität &ndash; Testing</h2>
                         <ul>
-
+                            <li>&gt; 300 Python Unit Tests</li>
+                            <li>Walkthrough als UI-Test</li>
+                            <li>Continuous Integration mittels Travis und Heroku</li>
+                            <li>Diverse Linting- &amp; Metrik-Checks</li>
                         </ul>
                     </section>
 
@@ -394,17 +437,67 @@
 
                     <section>
                         <h2>Risiken</h2>
+                        <ul>
+                            <li>TODO: not sure ob ich das zeige, scheint mir overkill, evt backup slide erstellen</li>
+                        </ul>
                     </section>
 
                     <section>
                         <h2>Stunden</h2>
+
+                        <p>16.02.2015 &ndash; 12.06.2015</p>
+
+                        <hr />
+
+                        <table style="float: left;">
+                        <tbody>
+                        <tr>
+                            <th>Soll</th>
+                            <th>960h</th>
+                        </tr>
+
+                        <tr>
+                            <th>Ist</th>
+                            <th>1404.3h</th>
+                        </tr>
+                        </tbody>
+                        </table>
+                
+                        <table style="float: right">
+                        <tbody>
+                        <tr>
+                            <th>Remo Liebi</th>
+                            <th>491.0h</th>
+                        </tr>
+
+                        <tr>
+                            <th>Chrisrtoph Hüsler</th>
+                            <th>436.5h</th>
+                        </tr>
+
+                        <tr>
+                            <th>Fabio Scala</th>
+                            <th>476.8h</th>
+                        </tr>
+
+                        </tbody>
+                        </table>
+
                     </section>
 
                 </section>
 
+
+                <section>
+                    <h1>Fragen?</h1>
+            
+                </section>
+
+                <!-- ################################################################################ fscala end -->
+
+
             </div>
 		</div>
-
 
 
 
