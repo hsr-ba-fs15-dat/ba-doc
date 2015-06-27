@@ -1,540 +1,618 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8"/>
+<head>
+    <meta charset="utf-8"/>
 
-		<title>OpenDataHub</title>
+    <title>OpenDataHub</title>
 
-		<meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
-		<meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
+    <meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
+    <meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
-        <link rel="stylesheet" href="custom.css"/>
-		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
-		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
+    <link rel="stylesheet" href="custom.css"/>
+    <link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
+    <link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
 
-        <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css" />
+    <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css"/>
 
-        <!-- Printing and PDF exports -->
-        <script>
-            var link = document.createElement( 'link' );
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.0.0/css/print/pdf.css' : 'reveal.js-3.0.0/css/print/paper.css';
-            document.getElementsByTagName( 'head' )[0].appendChild( link );
-        </script>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js-3.0.0/css/print/pdf.css' : 'reveal.js-3.0.0/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
 
 
-        <!--[if lt IE 9]>
-        <script src="lib/js/html5shiv.js"></script>
-        <![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
 
-	<body>
-		<div class="reveal">
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+<body>
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <!-- ################################################################################ rliebi start -->
+
+        <section>
+            <p>
+                <small>Abschlusspräsentation</small>
+            </p>
+            <h1>OpenDataHub</h1>
+
+            <p>Teilen, Beziehen, und Konvertieren von Daten</p>
+
+            <p>
+                <small>Bachelorarbeit FS15 HSR</small>
+            </p>
+            <p>
+                <small>Remo Liebi, Fabio Scala, Christoph Hüsler</small>
+            </p>
+            <p>
+                <small>Betreuer: Prof. S. Keller, Experte: C. Eisenhut</small>
+            </p>
+        </section>
+
+        <section>
+            <h2>Inhalt</h2>
+            <ul>
+                <li>Aufgabenstellung</li>
+                <!-- chuesler -->
+                <li>Analyse</li>
+                <!-- chuesler -->
+                <li>Design und Implementation</li>
+                <!-- fscala, rliebi -->
+                <li>Resultate und Ausblick</li>
+                <!-- chuesler -->
+                <li>Demo</li>
+                <!-- rliebi -->
+                <li>Projekt- und Qualitätsmanagement</li>
+                <!-- fscala -->
+                <li>Fragen</li>
+                <!-- alle -->
+            </ul>
+        </section>
+
+        <!-- ################################################################################ rliebi end -->
+
+        <!-- ################################################################################ chuesler start -->
+
+        <section>
+            <section>
+                <h1>Aufgabenstellung</h1>
+            </section>
+
+            <section>
+                <h2>Motivation</h2>
+                <ul>
+                    <li class="fragment">Methodenfreiheit &#8594; unterschiedliche Software</li>
+                    <li class="fragment">Viele Kommunikationspartner</li>
+                    <li class="fragment">Unterschiedliche Schemata</li>
+                </ul>
+                <p class="fragment">&#8594; Datenaustausch schwierig</p>
+            </section>
+
+            <section>
+                <h2>Heute</h2>
+                <!-- wie wird es heute gelöst?-->
+            </section>
+
+            <section>
+                <h2>Aufgabe</h2>
+                <ul>
+                    <li class="fragment">dat
+                        <ul>
+                            <li class="fragment">Untersuchen und Dokumentieren</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">OpenDataHub
+                        <ul>
+                            <li class="fragment">Datenaustausch</li>
+                            <li class="fragment">Schematransformation</li>
+                            <li class="fragment">Formatkonversion</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h1>Analyse</h1>
+            </section>
+
+            <section>
+                <h2>Anforderungen</h2>
+            </section>
+
+            <section>
+                <h2>Use-Cases</h2>
+            </section>
+
+            <section>
+                <h2>Nicht-funkionale Anforderungen</h2>
+            </section>
+
+            <section>
+                <h2>Domain-Modell</h2>
+            </section>
+
+            <section>
+                <h2>dat</h2>
+                <q cite="http://dat-data.com" class="fragment">Dat is a version-controlled, decentralized data tool for
+                    collaboration between data people and data systems.</q>
+
+                <p>&nbsp;</p>
+                <ul>
+                    <li class="fragment">Basiert auf node.js, LevelDB</li>
+                    <li class="fragment">Limitationen der Alpha-Version (6.9.6):
+                        <ul>
+                            <li class="fragment">1 Tabelle pro Instanz</li>
+                            <li class="fragment">Schema-los</li>
+                            <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="fragment">Status 24. Juni: 7.0.0-pre3 - soll oben beschriebene Probleme beheben</p>
+            </section>
+
+            <section>
+                <h2>CKAN</h2>
+                <q class="fragment" cite="http://ckan.org/">"CKAN is a powerful data management system that makes data
+                    accessible – by providing tools to streamline publishing, sharing, finding and using data."</q>
+                <img class="fragment" src="img/datahub-io.png"/>
+            </section>
+
+            <section>
+                <h2>CKAN</h2>
+                <ul>
+                    <li class="fragment">Reine data sharing platform</li>
+                    <li class="fragment">Keine Transformation - weder Schema noch Format</li>
+                    <li class="fragment">Sehr gute Metadaten-Verwaltung</li>
+                </ul>
+                <p class="fragment">Basis für opendata.admin.ch, datahub.io, opendatahub.it, ...</p>
+
+                <p class="fragment">Erst spät entdeckt, daher nicht eingebunden</p>
+            </section>
+
+            <section>
+                <h2>Yahoo! Pipes</h2>
+                <q class="fragment" cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to
+                    aggregate, manipulate, and mashup content from around the web.</q>
+                <img class="fragment" src="img/yahoo-pipes.png"/>
+            </section>
+
+            <section>
+                <h2>Yahoo! Pipes</h2>
+                <ul>
+                    <li class="fragment">Intuitives UI für Datenflüsse</li>
+                </ul>
+                <p class="fragment">Discontinued (30.9.2015)</p>
+            </section>
+
+            <section>
+                <h2>Pentaho Kettle</h2>
+                <q class="fragment" cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or
+                    Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a
+                    groundbreaking, metadata-driven approach.</q>
+                <img class="fragment" src="img/kettle-spoon-transformation.png"/>
+            </section>
+
+            <section>
+                <h2>Pentaho Kettle</h2>
+                <ul>
+                    <li class="fragment">Desktop-basiertes ETL-Tool</li>
+                    <li class="fragment">Unterstützung für Geo-Daten mit GeoKettle</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>FME</h2>
+                <ul>
+                    <li class="fragment">Kommerzielle Software zur Bearbeitung von Geo-Daten</li>
+                    <li class="fragment"><a href="http://info.geopol.ch/de/">info.geopol.ch</a> bietet Web-Frontend an
+                    </li>
+                </ul>
+            </section>
+
+        </section>
+
+        <!-- ################################################################################ chuesler end -->
+
+
+        <!-- ################################################################################ fscala start -->
+        <section>
+            <section>
+                <h1>Implementation</h1>
+                <ul class="fragment">
+                    <li>Python 2.7</li>
+                    <li>AngularJS</li>
+                    <li>TypeScript</li>
+                    <li>GDAL</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Architektur</h2>
+                <img class="fragment" src="img/odh-architecture.png"/>
+                <!-- fscala -->
+            </section>
+
+            <section>
+                <h2>Django Models</h2>
+                <img src="img/models.png"/>
+            </section>
+
+            <section>
+                <h2>Internes Format</h2>
+                <ul>
+                    <li class="fragment"><a href="http://www.numpy.org/">NumPy</a>
+                        <ul>
+                            <li>De-facto Standard Bibliothek für mehrdimensionale Matrizen und Arrays</li>
+                        </ul>
+                    </li>
+
+                    <li class="fragment"><a href="http://pandas.pydata.org/">Pandas</a>
+                        <ul>
+                            <li>Bibliothek zur Datenmanipulation und Analyse</li>
+                            <li>Moderner "R" ersatz für Python</li>
+                            <li>Basierend auf NumPy</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Parser &ndash; Daten einlesen</h2>
+                <img class="fragment" src="img/parser.png"/>
+                <ul class="fragment">
+                    <li>Nativ
+                        <ul>
+                            <li>(Geo)CSV, Excel, XML, (Geo)JSON, KML, ESRI Shapefile</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.gdal.org/">ogr2ogr</a>
+                        <ul>
+                            <li>GML, WFS, Interlis 1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>ODHQL &ndash; Daten transformieren</h2>
+
+                <p>OpenDataHub Query Language</p>
+            </section>
+
+            <section>
+                <h2>Syntax Parsing</h2>
+                <ul>
+                    <li>evtl chuesler?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Interpreter</h2>
+                <ul>
+                    <li>Performance durch Vektor-Operationen</li>
+                    <li>Kompakter, performanter Core</li>
+                    <li>Funktionale Erweiterung durch ODHQL Funktionen</li>
+                    <img src="img/function.png"/>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Formatter &ndash; Daten konvertieren</h2>
+                <img class="fragment" src="img/formatter.png"/>
+                <ul class="fragment">
+                    <li>Gegenstück zu Parser</li>
+                    <li>Implementierte Formate analog Parser</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>ogr2ogr &quot;Workaround&quot;</h2>
+                <ul>
+                    <li>Fehlende Formate temporär über ogr2ogr</li>
+                </ul>
+                <img src="img/ogr2ogr.png"/>
+                <ul>
+                    <li class="fragment">Besser: GDAL Python API</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Erweiterbarkeit</h2>
+                <ul>
+                    <li>&quot;plugins&quot; Verzeichnis für auto-loading
+                        <ul>
+                            <li>Neue Formate, Parser und Formatter</li>
+                            <li>ODHQL Funktionen</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- ################################################################################ fscala end -->
+
             <!-- ################################################################################ rliebi start -->
 
-				<section>
-                    <p><small>Abschlusspräsentation</small></p>
-					<h1>OpenDataHub</h1>
-					<p>Teilen, Beziehen, und Konvertieren von Daten</p>
-					<p><small>Bachelorarbeit FS15 HSR</small></p>
-                    <p><small>Remo Liebi, Fabio Scala, Christoph Hüsler</small></p>
-                    <p><small>Betreuer: Prof. S. Keller, Experte: C. Eisenhut</small></p>
-				</section>
+            <section>
+                <h2>Authentication</h2>
+                <!-- rliebi -->
+            </section>
+            <section>
+                <h2>OAuth2</h2>
+                <ul>
+                    <li>Account-Handling vereinfachen</li>
+                    <li>Benutzerverwaltung an Dritte abgeben</li>
+                </ul>
+                <!-- rliebi -->
+            </section>
+            <section>
+                <h2>Token Based Authentication</h2>
+                <ul>
+                    <li>Auf API-Ebene Zugriffsrechte durchsetzen</li>
+                    <li>AngularJS 'kennt' zugriffsrechte</li>
+                </ul>
+                <!-- rliebi -->
+            </section>
+            <section>
+                <h2>Frontend</h2>
+                <ul>
+                    <li>Beispiel-Anwendung für API</li>
+                    <li>Unterscheidung Template / Transformation</li>
+                    <li>Error Handling</li>
+                </ul>
+            </section>
 
-                <section>
-                    <h2>Inhalt</h2>
-                    <ul>
-                        <li>Aufgabenstellung</li><!-- chuesler -->
-                        <li>Analyse</li><!-- chuesler -->
-                        <li>Design und Implementation</li><!-- fscala, rliebi -->
-                        <li>Resultate und Ausblick</li><!-- chuesler -->
-                        <li>Demo</li><!-- rliebi -->
-                        <li>Projekt- und Qualitätsmanagement</li><!-- fscala -->
-                        <li>Fragen</li><!-- alle -->
-                    </ul>
-                </section>
+            <section>
+                <h2></h2>
+            </section>
+        </section>
 
-                <!-- ################################################################################ rliebi end -->
+        <!-- ################################################################################ rliebi end -->
 
-                <!-- ################################################################################ chuesler start -->
+        <!-- ################################################################################ chuesler start -->
 
-                <section>
-                    <section>
-                    <h1>Aufgabenstellung</h1>
-                    </section>
+        <section>
+            <section>
+                <h1>Resultate</h1>
+            </section>
 
-                    <section>
-                        <h2>Motivation</h2>
+            <section>
+                <h2>dat</h2>
+            </section>
+
+            <section>
+                <h2>OpenDataHub</h2>
+            </section>
+
+            <section>
+                <h2>Probleme &amp; Pitfalls</h2>
+            </section>
+
+            <section>
+                <h2>Ausblick</h2>
+            </section>
+        </section>
+
+        <!-- ################################################################################ chuesler end -->
+
+        <!-- ################################################################################ rliebi start -->
+
+        <section>
+            <h1>Demo</h1>
+            <!-- rliebi demo trobdb? gleiche wie an tag davor -->
+        </section>
+
+        <!-- ################################################################################ rliebi end -->
+
+        <!-- ################################################################################ fscala start -->
+
+        <section>
+            <section>
+                <h1>Projekt</h1>
+            </section>
+
+            <section>
+                <h2>Vorgehensmodell &ndash; Scrum</h2>
+                <img src="img/scrum.png"/>
+                <ul>
+                    <li>Iterativ, 2 Wochen</li>
+                    <li>Daily Standups um 10:00</li>
+                    <li>Continuous Integration &amp; Deliverables
+                    <li>Wöchentlicher &quot;Kundenkontakt&quot;</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Planung</h2>
+                <ul>
+                    <li>1. Woche: Kick-off</li>
+                    <li>Iterativ
                         <ul>
-                            <li class="fragment">Methodenfreiheit &#8594; unterschiedliche Software</li>
-                            <li class="fragment">Viele Kommunikationspartner</li>
-                            <li class="fragment">Unterschiedliche Schemata</li>
+                            <li>Analyse</li>
+                            <li>Design</li>
+                            <li>Implementation</li>
                         </ul>
-                        <p class="fragment">&#8594; Datenaustausch schwierig</p>
-                    </section>
-
-                    <section>
-                        <h2>Heute</h2>
-                        <!-- wie wird es heute gelöst?-->
-                    </section>     
-
-                    <section>
-                        <h2>Aufgabe</h2>
+                    </li>
+                    <li>Feature-Freeze
                         <ul>
-                            <li class="fragment">dat
-                                <ul>
-                                    <li class="fragment">Untersuchen und Dokumentieren</li>
-                                </ul>
-                            </li>
-                            <li class="fragment">OpenDataHub
-                                <ul>
-                                    <li class="fragment">Datenaustausch</li>
-                                    <li class="fragment">Schematransformation</li>
-                                    <li class="fragment">Formatkonversion</li>
-                                </ul>
-                            </li>
+                            <li>1 Bugfixing-Sprint</li>
                         </ul>
-                    </section>
-
-                </section>
-
-                <section>
-                    <section>
-                        <h1>Analyse</h1>
-                    </section>
-
-                    <section>
-                        <h2>Anforderungen</h2>
-                    </section>
-
-                    <section>
-                        <h2>Use-Cases</h2>
-                    </section>
-
-                    <section>
-                        <h2>Nicht-funkionale Anforderungen</h2>
-                    </section>
-
-                    <section>
-                        <h2>Domain-Modell</h2>
-                    </section>
-
-                    <section>
-                        <h2>dat</h2>
-                        <q cite="http://dat-data.com" class="fragment">Dat is a version-controlled, decentralized data tool for collaboration between data people and data systems.</q>
-                        <p>&nbsp;</p>
+                    </li>
+                    <li>Code-Freeze
                         <ul>
-                            <li class="fragment">Basiert auf node.js, LevelDB</li>
-                            <li class="fragment">Limitationen der Alpha-Version (6.9.6):
-                                <ul>
-                                    <li class="fragment">1 Tabelle pro Instanz</li>
-                                    <li class="fragment">Schema-los</li>
-                                    <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
-                                </ul>
-                            </li>
+                            <li>1 Dokumentations-Sprint</li>
                         </ul>
-                        <p class="fragment">Status 24. Juni: 7.0.0-pre3 - soll oben beschriebene Probleme beheben</p>
-                    </section>
-
-                    <section>
-                        <h2>CKAN</h2>
-                        <q class="fragment" cite="http://ckan.org/">"CKAN is a powerful data management system that makes data accessible – by providing tools to streamline publishing, sharing, finding and using data."</q>
-                        <img class="fragment" src="img/datahub-io.png"/>
-                    </section>
-
-                    <section>    
-                        <h2>CKAN</h2>
-                        <ul>
-                            <li class="fragment">Reine data sharing platform</li>
-                            <li class="fragment">Keine Transformation - weder Schema noch Format</li>
-                            <li class="fragment">Sehr gute Metadaten-Verwaltung</li>
-                        </ul>
-                        <p class="fragment">Basis für opendata.admin.ch, datahub.io, opendatahub.it, ...</p> 
-                        <p class="fragment">Erst spät entdeckt, daher nicht eingebunden</p>
-                    </section>
-
-                    <section>
-                        <h2>Yahoo! Pipes</h2>
-                        <q class="fragment" cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to aggregate, manipulate, and mashup content from around the web.</q>
-                        <img class="fragment" src="img/yahoo-pipes.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Yahoo! Pipes</h2>
-                        <ul>
-                            <li class="fragment">Intuitives UI für Datenflüsse</li>
-                        </ul>
-                        <p class="fragment">Discontinued (30.9.2015)</p>
-                    </section>
-
-                    <section>
-                        <h2>Pentaho Kettle</h2>
-                        <q class="fragment" cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a groundbreaking, metadata-driven approach.</q>
-                        <img class="fragment" src="img/kettle-spoon-transformation.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Pentaho Kettle</h2>
-                        <ul>
-                            <li class="fragment">Desktop-basiertes ETL-Tool</li>
-                            <li class="fragment">Unterstützung für Geo-Daten mit GeoKettle</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>FME</h2>
-                        <ul>
-                            <li class="fragment">Kommerzielle Software zur Bearbeitung von Geo-Daten</li>
-                            <li class="fragment"><a href="http://info.geopol.ch/de/">info.geopol.ch</a> bietet Web-Frontend an</li>
-                        </ul>
-                    </section>
-
-                </section>
-
-                <!-- ################################################################################ chuesler end -->
-
-
-                <!-- ################################################################################ fscala start -->
-                <section>
-                    <section>
-                        <h1>Implementation</h1>
-                        <ul class="fragment">
-                            <li>Python 2.7</li>
-                            <li>AngularJS</li>
-                            <li>TypeScript</li>
-                            <li>GDAL</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Architektur</h2>
-                        <img class="fragment" src="img/odh-architecture.png"/>
-                        <!-- fscala -->
-                    </section>
-
-                    <section>
-                        <h2>Django Models</h2>
-                        <img src="img/models.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Internes Format</h2>
-                        <ul>
-                            <li class="fragment"><a href="http://www.numpy.org/">NumPy</a>
-                                <ul>
-                                    <li>De-facto Standard Bibliothek für mehrdimensionale Matrizen und Arrays</li>
-                                </ul>
-                            </li> 
-
-                            <li class="fragment"><a href="http://pandas.pydata.org/">Pandas</a>
-                                <ul>
-                                    <li>Bibliothek zur Datenmanipulation und Analyse</li>
-                                    <li>Moderner "R" ersatz für Python</li>
-                                    <li>Basierend auf NumPy</li>
-                                </ul>
-                            </li> 
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Parser &ndash; Daten einlesen</h2>
-                        <img class="fragment" src="img/parser.png"/>
-                        <ul class="fragment">
-                            <li>Nativ
-                                <ul>
-                                <li>(Geo)CSV, Excel, XML, (Geo)JSON, KML, ESRI Shapefile</li>
-                                </ul>
-                            </li>
-                            <li><a href="http://www.gdal.org/">ogr2ogr</a>
-                                <ul>
-                                <li>GML, WFS, Interlis 1</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>ODHQL &ndash; Daten transformieren</h2>
-                        <p>OpenDataHub Query Language</p>
-                    </section>
-
-                    <section>
-                        <h2>Syntax Parsing</h2>
-                        <ul>
-                            <li>evtl chuesler?</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Interpreter</h2>
-                        <ul>
-                            <li>Performance durch Vektor-Operationen</li>
-                            <li>Kompakter, performanter Core</li>
-                            <li>Funktionale Erweiterung durch ODHQL Funktionen</li>
-                            <img src="img/function.png"/>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Formatter &ndash; Daten konvertieren</h2>
-                        <img class="fragment" src="img/formatter.png"/>
-                        <ul class="fragment">
-                            <li>Gegenstück zu Parser</li>
-                            <li>Implementierte Formate analog Parser</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>ogr2ogr &quot;Workaround&quot;</h2>
-                        <ul>
-                            <li>Fehlende Formate temporär über ogr2ogr</li>
-                        </ul>
-                        <img src="img/ogr2ogr.png"/>
-                        <ul>
-                            <li class="fragment">Besser: GDAL Python API</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Erweiterbarkeit</h2>
-                        <ul>
-                            <li>&quot;plugins&quot; Verzeichnis für auto-loading</li>
-                            <ul>
-                                <li>Neue Formate, Parser und Formatter</li>
-                                <li>ODHQL Funktionen</li>
-                            <ul>
-                        </ul>
-                    </section>
-
-                    <!-- ################################################################################ fscala end -->
-
-                    <!-- ################################################################################ rliebi start -->
-
-                     <section>
-                        <h2>Authentication</h2>
-                        <!-- rliebi -->
-                    </section>
-
-                    <section>
-                        <h2>Frontend</h2>
-                        <!-- rliebi -->
-                    </section>
-                </section>
-
-                <!-- ################################################################################ rliebi end -->
-
-                <!-- ################################################################################ chuesler start -->
-
-                <section>
-                    <section>
-                        <h1>Resultate</h1>
-                     </section>
-
-                    <section>
-                        <h2>dat</h2> 
-                    </section>
-                    
-                    <section>
-                        <h2>OpenDataHub</h2> 
-                    </section>
-
-                    <section>
-                        <h2>Probleme &amp; Pitfalls</h2> 
-                    </section>
-
-                    <section>
-                        <h2>Ausblick</h2> 
-                    </section>
-                </section>
-
-                <!-- ################################################################################ chuesler end -->
-
-                <!-- ################################################################################ rliebi start -->
-
-                <section>
-                    <h1>Demo</h1>
-                    <!-- rliebi demo trobdb? gleiche wie an tag davor -->    
-                </section>
-
-                <!-- ################################################################################ rliebi end -->
-
-                <!-- ################################################################################ fscala start -->
-
-                <section>
-                    <section>
-                        <h1>Projekt</h1>
-                    </section>
-
-                    <section>
-                        <h2>Vorgehensmodell &ndash; Scrum</h2>
-                        <img src="img/scrum.png"/>
-                        <ul>
-                            <li>Iterativ, 2 Wochen</li>
-                            <li>Daily Standups um 10:00</li>
-                            <li>Continuous Integration &amp; Deliverables
-                            <li>Wöchentlicher &quot;Kundenkontakt&quot;</li>
-                        </ui>
-                    </section>
-
-                    <section>
-                        <h2>Planung</h2>
-                        <ul>
-                            <li>1. Woche: Kick-off</li>
-                            <li>Iterativ
-                            <ul>
-                                <li>Analyse</li>
-                                <li>Design</li>
-                                <li>Implementation</li>
-                            </ul>
-                            </li>
-                            <li>Feature-Freeze
-                            <ul><li>1 Bugfixing-Sprint</li></ul>
-                            </li>
-                            <li>Code-Freeze
-                                <ul><li>1 Dokumentations-Sprint</li></ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Planung &ndash; JIRA</h2>
-                        <img src="img/jira-agile.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Planung</h2>
-                        <img src="img/burndown.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Qualität &ndash; Reviews</h2>
-                        <img src="img/jira-workflow.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Qualität &ndash; Testing</h2>
-                        <ul>
-                            <li>&gt; 300 Python Unit Tests</li>
-                            <li>Walkthrough als UI-Test</li>
-                            <li>Continuous Integration mittels Travis und Heroku</li>
-                            <li>Diverse Linting- &amp; Metrik-Checks</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2>Infrastruktur</h2>
-                        <img src="img/devenv.png"/>
-                    </section>
-
-                    <section>
-                        <h2>Stunden</h2>
-
-                        <p>16.02.2015 &ndash; 12.06.2015</p>
-
-                        <hr />
-
-                        <table style="float: left;">
-                        <tbody>
-                        <tr>
-                            <th>Soll</th>
-                            <th>960h</th>
-                        </tr>
-
-                        <tr>
-                            <th>Ist</th>
-                            <th>1404.3h</th>
-                        </tr>
-                        </tbody>
-                        </table>
-                
-                        <table style="float: right">
-                        <tbody>
-                        <tr>
-                            <th>Remo Liebi</th>
-                            <th>491.0h</th>
-                        </tr>
-
-                        <tr>
-                            <th>Chrisrtoph Hüsler</th>
-                            <th>436.5h</th>
-                        </tr>
-
-                        <tr>
-                            <th>Fabio Scala</th>
-                            <th>476.8h</th>
-                        </tr>
-
-                        </tbody>
-                        </table>
-
-                    </section>
-
-                </section>
-
-
-                <section>
-                    <h1>Fragen?</h1>
-            
-                </section>
-
-                <!-- ################################################################################ fscala end -->
-
-                <section>
-                    <h2>Risiken</h2>
-                    <ul>
-                        <li>TODO: not sure ob ich das zeige, scheint mir overkill, evt backup slide erstellen</li>
-                    </ul>
-                </section>
-
-
-            </div>
-		</div>
-
-
-
-		<script src="reveal.js-3.0.0/lib/js/head.min.js"></script>
-		<script src="reveal.js-3.0.0/js/reveal.js"></script>
-
-		<script>
-
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-				// Parallax scrolling
-				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
-				// parallaxBackgroundSize: '2100px 900px',
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'reveal.js-3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js-3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
-					{ src: 'reveal.js-3.0.0/plugin/markdown/markdown.js', 
-                        condition: function() { return !!document.querySelector('[data-markdown]'); } },
-					{ src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true, 
-                        callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
-
-		</script>
-
-	</body>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Planung &ndash; JIRA</h2>
+                <img src="img/jira-agile.png"/>
+            </section>
+
+            <section>
+                <h2>Planung</h2>
+                <img src="img/burndown.png"/>
+            </section>
+
+            <section>
+                <h2>Qualität &ndash; Reviews</h2>
+                <img src="img/jira-workflow.png"/>
+            </section>
+
+            <section>
+                <h2>Qualität &ndash; Testing</h2>
+                <ul>
+                    <li>&gt; 300 Python Unit Tests</li>
+                    <li>Walkthrough als UI-Test</li>
+                    <li>Continuous Integration mittels Travis und Heroku</li>
+                    <li>Diverse Linting- &amp; Metrik-Checks</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Infrastruktur</h2>
+                <img src="img/devenv.png"/>
+            </section>
+
+            <section>
+                <h2>Stunden</h2>
+
+                <p>16.02.2015 &ndash; 12.06.2015</p>
+
+                <hr/>
+
+                <table style="float: left;">
+                    <tbody>
+                    <tr>
+                        <th>Soll</th>
+                        <th>960h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Ist</th>
+                        <th>1404.3h</th>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table style="float: right">
+                    <tbody>
+                    <tr>
+                        <th>Remo Liebi</th>
+                        <th>491.0h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Chrisrtoph Hüsler</th>
+                        <th>436.5h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Fabio Scala</th>
+                        <th>476.8h</th>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+
+        <section>
+            <h1>Fragen?</h1>
+
+        </section>
+
+        <!-- ################################################################################ fscala end -->
+
+        <section>
+            <h2>Risiken</h2>
+            <ul>
+                <li>TODO: not sure ob ich das zeige, scheint mir overkill, evt backup slide erstellen</li>
+            </ul>
+        </section>
+
+
+    </div>
+</div>
+
+
+<script src="reveal.js-3.0.0/lib/js/head.min.js"></script>
+<script src="reveal.js-3.0.0/js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'reveal.js-3.0.0/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'reveal.js-3.0.0/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js-3.0.0/plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
 </html>
