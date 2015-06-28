@@ -15,18 +15,24 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
+<<<<<<< HEAD
+    <link rel="stylesheet" href="lib/css/custom.css"/>
+    <link rel="stylesheet" href="css/reveal.css"/>
+    <link rel="stylesheet" href="css/theme/black.css" id="theme"/>
+=======
     <link rel="stylesheet" href="custom.css"/>
     <link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
-    <link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
+    <link rel="stylesheet" href="reveal.js-3.0.0/css/theme/beige.css" id="theme"/>
+>>>>>>> 6d5ba95dcc0235d156405ded0d4ca86b8479b52e
 
-    <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css"/>
+    <link rel="stylesheet" href="lib/css/zenburn.css"/>
 
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js-3.0.0/css/print/pdf.css' : 'reveal.js-3.0.0/css/print/paper.css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
@@ -108,7 +114,7 @@
                     <li class="fragment">Austausch wird mit jedem Partner neu implementiert</li>
                     <li class="fragment">Schwierig für "Laufkundschaft"</li>
                 </ul>
-                <img src="img/situation-current.png"/>
+                <img src="lib/img/situation-current.png"/>
             </section>
 
             <section>
@@ -139,10 +145,17 @@
             <section>
                 <h2>Anforderungen</h2>
                 <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
+<<<<<<< HEAD
                     offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die Formatkon-
                     version und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
                     ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
                     die entsprechende Formatkonversion und Schematransformation existiert.</q>
+=======
+                offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die Formatkon-
+                version und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
+                ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                die entsprechende Formatkonversion und Schematransformation existiert.</q>
+>>>>>>> 6d5ba95dcc0235d156405ded0d4ca86b8479b52e
             </section>
 
             <section>
@@ -196,7 +209,7 @@
                 <h2>CKAN: Datenaustausch</h2>
                 <q class="fragment" cite="http://ckan.org/">"CKAN is a powerful data management system that makes data
                     accessible – by providing tools to streamline publishing, sharing, finding and using data."</q>
-                <img class="fragment" src="img/datahub-io.png"/>
+                <img class="fragment" src="lib/img/datahub-io.png"/>
             </section>
 
             <section>
@@ -215,7 +228,7 @@
                 <h2>Yahoo! Pipes: Transformation</h2>
                 <q class="fragment" cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to
                     aggregate, manipulate, and mashup content from around the web.</q>
-                <img class="fragment" src="img/yahoo-pipes.png"/>
+                <img class="fragment" src="lib/img/yahoo-pipes.png"/>
             </section>
 
             <section>
@@ -231,7 +244,7 @@
                 <q class="fragment" cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or
                     Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a
                     groundbreaking, metadata-driven approach.</q>
-                <img class="fragment" src="img/kettle-spoon-transformation.png"/>
+                <img class="fragment" src="lib/img/kettle-spoon-transformation.png"/>
             </section>
 
             <section>
@@ -265,10 +278,11 @@
 
             <section>
                 <h2>Domain-Modell</h2>
-                <img class="fragment" src="img/domain-model.png"/>
+                <img class="fragment" src="lib/img/domain-model.png"/>
             </section>
 
         </section>
+
 
 
         <!-- ################################################################################ chuesler end -->
@@ -288,13 +302,13 @@
 
             <section>
                 <h2>Architektur</h2>
-                <img class="fragment" style="background-color: white;" src="img/odh-architecture.png"/>
+                <img class="fragment" style="background-color: white;" src="lib/img/odh-architecture.png"/>
                 <!-- fscala -->
             </section>
 
             <section>
                 <h2>Django Models</h2>
-                <img src="img/models.png"/>
+                <img src="lib/img/models.png"/>
             </section>
 
             <section>
@@ -318,7 +332,7 @@
 
             <section>
                 <h2>Parser &ndash; Daten einlesen</h2>
-                <img class="fragment" src="img/parser.png"/>
+                <img class="fragment" src="lib/img/parser.png"/>
                 <ul class="fragment">
                     <li>Nativ
                         <ul>
@@ -351,7 +365,7 @@
                         </ul>
                     </li>
                 </ul>
-                <img class="fragment" src="img/odhql-ast-expression.png"/>
+                <img class="fragment" src="lib/img/odhql-ast-expression.png"/>
             </section>
 
             <section>
@@ -360,13 +374,13 @@
                     <li>Performance durch Vektor-Operationen</li>
                     <li>Kompakter, performanter Core</li>
                     <li>Funktionale Erweiterung durch ODHQL Funktionen</li>
-                    <img src="img/function.png"/>
+                    <img src="lib/img/function.png"/>
                 </ul>
             </section>
 
             <section>
                 <h2>Formatter &ndash; Daten konvertieren</h2>
-                <img class="fragment" src="img/formatter.png"/>
+                <img class="fragment" src="lib/img/formatter.png"/>
                 <ul class="fragment">
                     <li>Gegenstück zu Parser</li>
                     <li>Implementierte Formate analog Parser</li>
@@ -378,7 +392,7 @@
                 <ul>
                     <li>Fehlende Formate temporär über ogr2ogr</li>
                 </ul>
-                <img src="img/ogr2ogr.png"/>
+                <img src="lib/img/ogr2ogr.png"/>
                 <ul>
                     <li class="fragment">Besser: GDAL Python API</li>
                 </ul>
@@ -412,7 +426,7 @@
                     <li>Benutzerverwaltung an Dritte delegieren</li>
                 </ul>
 
-                <img src="img/oauth_flow.png" style="height: 12em; margin-bottom: 0;"/>
+                <img src="lib/img/oauth_flow.png" style="height: 12em; margin-bottom: 0;"/>
                 <br/>
                 <small style="font-size: 0.2em;"><i>Source: Oracle</i></small>
 
@@ -437,7 +451,7 @@
                 <!-- rliebi -->
             </section>
             <section>
-                <img src="img/cookie-token-auth.png"/>
+                <img src="lib/img/cookie-token-auth.png"/>
             </section>
             <section>
                 <h2>Frontend</h2>
@@ -478,11 +492,6 @@
             </section>
 
             <section>
-<<<<<<< HEAD
-                <h2>OpenDataHub</h2>
-
-                <p>Siehe Demonstration</p>
-=======
                 <h2>Probleme: GDAL</h2>
                 <ul>
                      <li class="fragment">SegFault bei Interlis 1 in v1.11.x</li>
@@ -490,7 +499,6 @@
                      <li class="fragment">Treiber-Qualität sehr unterschiedlich</li>
                 </ul>
                 <p class="fragment">Beschluss 27.5.: Verwendet wird GDAL v1.10.1</p>
->>>>>>> 7f3f3f72cb36ffe8991fa25e56df2f31d9d12976
             </section>
 
             <section>
@@ -499,15 +507,9 @@
                     <li class="fragment">Open Source (Lizenz: MIT): <a href="https://github.com/hsr-ba-fs15-dat">github.com/hsr-ba-fs15-dat</a></li>
                     <li class="fragment">Weiterentwicklungsmöglichkeiten:
                         <ul>
-<<<<<<< HEAD
-                            <li>SegFault bei Interlis 1 in v1.11.x</li>
-                            <li>GeoPackage-Support</li>
-                            <li>Treiber-Qualität sehr unterschiedlich</li>
-=======
                             <li>ODH als WFS-Server</li>
                             <li>Ausbau der WebApp (z.B. Integration in CKAN)</li>
                             <li>Komplexere Datenstrukturen, Subqueries in ODHQL</li>
->>>>>>> 7f3f3f72cb36ffe8991fa25e56df2f31d9d12976
                         </ul>
                     </li>
                 </ul>
@@ -534,7 +536,7 @@
 
             <section>
                 <h2>Vorgehensmodell &ndash; Scrum</h2>
-                <img src="img/scrum.png"/>
+                <img src="lib/img/scrum.png"/>
                 <ul>
                     <li>Iterativ, 2 Wochen</li>
                     <li>Daily Standups um 10:00</li>
@@ -569,17 +571,17 @@
 
             <section>
                 <h2>Planung &ndash; JIRA</h2>
-                <img src="img/jira-agile.png"/>
+                <img src="lib/img/jira-agile.png"/>
             </section>
 
             <section>
                 <h2>Planung</h2>
-                <img src="img/burndown.png"/>
+                <img src="lib/img/burndown.png"/>
             </section>
 
             <section>
                 <h2>Qualität &ndash; Reviews</h2>
-                <img style="height: 15em" src="img/jira-workflow.png"/>
+                <img style="height: 15em" src="lib/img/jira-workflow.png"/>
             </section>
 
             <section>
@@ -594,7 +596,7 @@
 
             <section>
                 <h2>Infrastruktur</h2>
-                <img style="background-color: white;" src="img/devenv.png"/>
+                <img style="background-color: white;" src="lib/img/devenv.png"/>
             </section>
 
             <section>
@@ -654,8 +656,8 @@
 </div>
 
 
-<script src="reveal.js-3.0.0/lib/js/head.min.js"></script>
-<script src="reveal.js-3.0.0/js/reveal.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
 
 <script>
 
@@ -677,34 +679,34 @@
         // Optional libraries used to extend on reveal.js
         dependencies: [
             {
-                src: 'reveal.js-3.0.0/lib/js/classList.js', condition: function () {
+                src: 'lib/js/classList.js', condition: function () {
                 return !document.body.classList;
             }
             },
             {
-                src: 'reveal.js-3.0.0/plugin/markdown/marked.js', condition: function () {
+                src: 'plugin/markdown/marked.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             }
             },
             {
-                src: 'reveal.js-3.0.0/plugin/markdown/markdown.js',
+                src: 'plugin/markdown/markdown.js',
                 condition: function () {
                     return !!document.querySelector('[data-markdown]');
                 }
             },
             {
-                src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true,
+                src: 'plugin/highlight/highlight.js', async: true,
                 callback: function () {
                     hljs.initHighlightingOnLoad();
                 }
             },
             {
-                src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
                 return !!document.body.classList;
             }
             },
             {
-                src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function () {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
             }
             },
