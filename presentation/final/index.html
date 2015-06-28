@@ -108,7 +108,7 @@
                     <li class="fragment">Austausch wird mit jedem Partner neu implementiert</li>
                     <li class="fragment">Schwierig für "Laufkundschaft"</li>
                 </ul>
-                <img src="img/situation-current.png" />
+                <img src="img/situation-current.png"/>
             </section>
 
             <section>
@@ -139,10 +139,10 @@
             <section>
                 <h2>Anforderungen</h2>
                 <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
-offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die Formatkon-
-version und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
-ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
-die entsprechende Formatkonversion und Schematransformation existiert.</q>
+                    offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die Formatkon-
+                    version und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
+                    ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                    die entsprechende Formatkonversion und Schematransformation existiert.</q>
             </section>
 
             <section>
@@ -156,7 +156,9 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                     <li class="fragment">Gebäudeadressen
                         <ul>
                             <li class="fragment">Integration mehrerer Datenquellen</li>
-                            <li class="fragment">Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus MOPublic (Basel)</li>
+                            <li class="fragment">Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus
+                                MOPublic (Basel)
+                            </li>
                         </ul>
                     </li>
                     <li class="fragment">TROBDB: Verkehrshinderniss-Datenbank
@@ -175,6 +177,7 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                 <h2>dat: Datenspeicherung</h2>
                 <q cite="http://dat-data.com" class="fragment">Dat is a version-controlled, decentralized data tool for
                     collaboration between data people and data systems.</q>
+
                 <p>&nbsp;</p>
                 <ul>
                     <li class="fragment">Basiert auf node.js, LevelDB</li>
@@ -251,7 +254,8 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
             <section>
                 <h2>Nicht-funkionale Anforderungen</h2>
                 <ul>
-                    <li class="fragment">Machbarkeitsstudie &#8594; Performance relevant, aber nicht oberste Priorität</li>
+                    <li class="fragment">Machbarkeitsstudie &#8594; Performance relevant, aber nicht oberste Priorität
+                    </li>
                     <li class="fragment">Programmiersprache: Python</li>
                     <li class="fragment">Deployment via WSGI</li>
                     <li class="fragment">PostgreSQL oder SQLite, falls Datenbanken verwendet werden</li>
@@ -261,11 +265,10 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
 
             <section>
                 <h2>Domain-Modell</h2>
-                <img class="fragment" src="img/domain-model.png" />
+                <img class="fragment" src="img/domain-model.png"/>
             </section>
 
         </section>
-
 
 
         <!-- ################################################################################ chuesler end -->
@@ -348,7 +351,7 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                         </ul>
                     </li>
                 </ul>
-                <img class="fragment" src="img/odhql-ast-expression.png" />
+                <img class="fragment" src="img/odhql-ast-expression.png"/>
             </section>
 
             <section>
@@ -404,33 +407,49 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
             <section>
                 <h2>OAuth2</h2>
 
-                    <ul>
-                        <li>Account-Handling vereinfachen</li>
-                        <li>Benutzerverwaltung an Dritte delegieren</li>
-                    </ul>
+                <ul>
+                    <li>Account-Handling vereinfachen</li>
+                    <li>Benutzerverwaltung an Dritte delegieren</li>
+                </ul>
 
-                    <img src="img/oauth_flow.png"/>
-                <!-- rliebi -->
+                <img src="img/oauth_flow.png" style="height: 12em; margin-bottom: 0;"/>
+                <br/>
+                <small style="font-size: 0.2em;"><i>Source: Oracle</i></small>
+
+                <aside class="notes">
+
+                </aside>
             </section>
+
             <section>
                 <h2>Token Based Authentication</h2>
                 <ul>
                     <li>Auf API-Ebene Zugriffsrechte durchsetzen</li>
-                    <li>AngularJS 'kennt' zugriffsrechte</li>
+                    <li>Frontend 'kennt' Zugriffsrechte</li>
+
+
                 </ul>
+                <aside class="notes">
+                    Jeder Request erhält signierten Token mit userinformationen - Server überprüft Tokensignatur
+                    Vorteil: Cross-Domain kompatibel, einfacher für verschiedene Apps
+
+                </aside>
                 <!-- rliebi -->
+            </section>
+            <section>
+                <img src="img/cookie-token-auth.png"/>
             </section>
             <section>
                 <h2>Frontend</h2>
                 <ul>
-                    <li>Beispiel-Anwendung für API</li>
+                    <li>Demo-Anwendung für API</li>
+                    <li>Transformation Generator</li>
                     <li>Unterscheidung Template / Transformation</li>
                     <li>Error Handling</li>
                 </ul>
-            </section>
+                <aside class="notes">
 
-            <section>
-                <h2></h2>
+                </aside>
             </section>
         </section>
 
@@ -449,7 +468,7 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                     <li class="fragment">Limitationen der Alpha-Version (6.9.6):
                         <ul>
                             <li class="fragment">1 Tabelle pro Instanz</li>
-                            <li class="fragment">Schema-los</li>
+                            <li class="fragment">Schemalos</li>
                             <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
                         </ul>
                     </li>
@@ -459,6 +478,7 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
 
             <section>
                 <h2>OpenDataHub</h2>
+
                 <p>Siehe Demonstration</p>
             </section>
 
@@ -467,9 +487,9 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                 <ul>
                     <li>GDAL
                         <ul>
-                             <li>SegFault bei Interlis 1 in v1.11.x</li>
-                             <li>GeoPackage-Support</li>
-                             <li>Treiber-Qualität sehr unterschiedlich</li>
+                            <li>SegFault bei Interlis 1 in v1.11.x</li>
+                            <li>GeoPackage-Support</li>
+                            <li>Treiber-Qualität sehr unterschiedlich</li>
                         </ul>
                     </li>
                 </ul>
@@ -681,7 +701,9 @@ die entsprechende Formatkonversion und Schematransformation existiert.</q>
                 src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
             }
-            }
+            },
+            {src: 'socket.io/socket.io.js', async: true},
+            {src: 'plugin/notes-server/client.js', async: true}
         ]
     });
 
