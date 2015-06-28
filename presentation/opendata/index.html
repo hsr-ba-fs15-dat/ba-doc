@@ -16,7 +16,7 @@
 
         <link rel="stylesheet" href="custom.css"/>
 		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
-		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/beige.css" id="theme"/>
 
         <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css" />
 
@@ -64,14 +64,56 @@
 
                 <section>
                     <h2>Motivation</h2>
+                    <ul>
+                        <li class="fragment">Methodenfreiheit &#8594; unterschiedliche Software</li>
+                        <li class="fragment">Viele Kommunikationspartner</li>
+                        <li class="fragment">Unterschiedliche Schemata</li>
+                    </ul>
+                    <p class="fragment">&#8594; Datenaustausch schwierig</p>
                 </section>
 
                 <section>
                     <h2>Aufgabenstellung</h2>
+                    <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
+                    offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die Formatkon-
+                    version und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
+                    ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                    die entsprechende Formatkonversion und Schematransformation existiert.</q>
+                </section>
+
+                <section>
+                    <h2>Use Cases</h2>
+                    <ul>
+                        <li class="fragment">Postadressen
+                            <ul>
+                                <li class="fragment">Schematransformation</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Gebäudeadressen
+                            <ul>
+                                <li class="fragment">Integration mehrerer Datenquellen</li>
+                                <li class="fragment">Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus MOPublic (Basel)</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">TROBDB: Verkehrshinderniss-Datenbank
+                            <ul>
+                                <li class="fragment">Integration diverser Datenquellen</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
                     <h2>Resultate</h2>
+                    <ul>
+                        <li>Web-Applikation
+                            <ul>
+                                <li>Datenaustausch: Upload von Dateien oder auf Basis von URLs (z.B. WFS)</li>
+                                <li>Automatische Format-Konversion</li>
+                                <li>Transformationen per ODHQL, einem SQL-Subset</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
@@ -80,7 +122,6 @@
 
                 <section>
                     <h1>Fragen &amp; Diskussion</h1>
-                    
                 </section>
 
             </div>
