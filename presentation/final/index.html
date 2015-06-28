@@ -271,6 +271,7 @@
         </section>
 
 
+
         <!-- ################################################################################ chuesler end -->
 
 
@@ -288,7 +289,7 @@
 
             <section>
                 <h2>Architektur</h2>
-                <img class="fragment" src="img/odh-architecture.png"/>
+                <img class="fragment" style="background-color: white;" src="img/odh-architecture.png"/>
                 <!-- fscala -->
             </section>
 
@@ -463,7 +464,7 @@
             </section>
 
             <section>
-                <h2>dat</h2>
+                <h2>Probleme: dat</h2>
                 <ul>
                     <li class="fragment">Limitationen der Alpha-Version (6.9.6):
                         <ul>
@@ -472,31 +473,33 @@
                             <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
                         </ul>
                     </li>
+                    <li class="fragment">Transformationen nur Hooks und externen Tools</li>
                     <li class="fragment">Beschluss 25.2.: dat wird nicht verwendet</li>
                 </ul>
             </section>
 
             <section>
-                <h2>OpenDataHub</h2>
-
-                <p>Siehe Demonstration</p>
-            </section>
-
-            <section>
-                <h2>Probleme &amp; Pitfalls</h2>
+                <h2>Probleme: GDAL</h2>
                 <ul>
-                    <li>GDAL
-                        <ul>
-                            <li>SegFault bei Interlis 1 in v1.11.x</li>
-                            <li>GeoPackage-Support</li>
-                            <li>Treiber-Qualität sehr unterschiedlich</li>
-                        </ul>
-                    </li>
+                     <li class="fragment">SegFault bei Interlis 1 in v1.11.x</li>
+                     <li class="fragment">GeoPackage-Support erst in 2.0 brauchbar</li>
+                     <li class="fragment">Treiber-Qualität sehr unterschiedlich</li>
                 </ul>
+                <p class="fragment">Beschluss 27.5.: Verwendet wird GDAL v1.10.1</p>
             </section>
 
             <section>
                 <h2>Ausblick</h2>
+                <ul>
+                    <li class="fragment">Open Source (Lizenz: MIT): <a href="https://github.com/hsr-ba-fs15-dat">github.com/hsr-ba-fs15-dat</a></li>
+                    <li class="fragment">Weiterentwicklungsmöglichkeiten:
+                        <ul>
+                            <li>ODH als WFS-Server</li>
+                            <li>Ausbau der WebApp (z.B. Integration in CKAN)</li>
+                            <li>Komplexere Datenstrukturen, Subqueries in ODHQL</li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
         </section>
 
@@ -565,7 +568,7 @@
 
             <section>
                 <h2>Qualität &ndash; Reviews</h2>
-                <img src="img/jira-workflow.png"/>
+                <img style="height: 15em" src="img/jira-workflow.png"/>
             </section>
 
             <section>
@@ -580,7 +583,7 @@
 
             <section>
                 <h2>Infrastruktur</h2>
-                <img src="img/devenv.png"/>
+                <img style="background-color: white;" src="img/devenv.png"/>
             </section>
 
             <section>
@@ -612,7 +615,7 @@
                     </tr>
 
                     <tr>
-                        <th>Chrisrtoph Hüsler</th>
+                        <th>Christoph Hüsler</th>
                         <th>436.5h</th>
                     </tr>
 
@@ -635,15 +638,7 @@
         </section>
 
         <!-- ################################################################################ fscala end -->
-
-        <section>
-            <h2>Risiken</h2>
-            <ul>
-                <li>TODO: not sure ob ich das zeige, scheint mir overkill, evt backup slide erstellen</li>
-            </ul>
-        </section>
-
-
+        
     </div>
 </div>
 
@@ -700,6 +695,7 @@
             {
                 src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
+            }
             }
             },
             {src: 'socket.io/socket.io.js', async: true},
