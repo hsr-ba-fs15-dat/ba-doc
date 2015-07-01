@@ -1,0 +1,922 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="generator" content="Railroad Diagram Generator 1.39.959"><style type="text/css" xml:space="preserve">
+    ::-moz-selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }
+    ::selection
+    {
+      color: #FFFCF0;
+      background: #0F0C00;
+    }      
+    .ebnf a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover
+    {
+      color: #050400;
+      text-decoration: underline;
+    }    
+    .signature
+    {
+      color: #806600;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #0F0C00;
+      background: #FFFCF0;
+    }
+    a:link, a:visited
+    {
+      color: #0F0C00;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #806600;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #806600;
+      background: #F1E8C6;
+      color: #806600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #050400;
+      background: #FFF6D1;
+      border-color: #050400;       
+    }     
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #0F0C00;
+    }  
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {     
+      border-bottom: 1px solid #0F0C00;
+    }
+    #tabs li a.active
+    {
+      color: #0F0C00;
+      background: #FFFCF0;
+      border-color: #0F0C00;
+      border-bottom: 1px solid #FFFCF0;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #806600;
+      background: #FFFEFA;
+      color: #050400;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden 
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFFCF0;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #0F0C00;
+    }
+    #divs div.ebnf, div.ebnf
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px; 
+      padding-bottom: 2px; 
+      background: #FFF6D1;
+    }
+    table.palette
+    {
+      border-top: 1px solid #050400;
+      border-right: 1px solid #050400;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #050400;
+      border-left: 1px solid #050400;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style></head>
+   <body>
+      
+      <p style="font-size: 14px; font-weight:bold"><a name="UnionQuery">UnionQuery:</a></p>
+      <img border="0" src="diagram/UnionQuery.png" height="96" width="308" usemap="#UnionQuery.map"><map name="UnionQuery.map">
+         <area shape="rect" coords="49,45,107,77" href="#Query" title="Query">
+         <area shape="rect" coords="167,45,259,77" href="#OrderByList" title="OrderByList"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#UnionQuery" title="UnionQuery" shape="rect">UnionQuery</a>
+         ::= <a href="#Query" title="Query" shape="rect">Query</a> ( 'union' <a href="#Query" title="Query" shape="rect">Query</a> )* <a href="#OrderByList" title="OrderByList" shape="rect">OrderByList</a>?</pre></div>
+         
+      </p>
+      
+      <p>no references</p><br><p style="font-size: 14px; font-weight:bold"><a name="Query">Query:</a></p>
+      <img border="0" src="diagram/Query.png" height="52" width="466" usemap="#Query.map"><map name="Query.map">
+         <area shape="rect" coords="29,1,135,33" href="#FieldSelection" title="FieldSelection">
+         <area shape="rect" coords="155,1,305,33" href="#DataSourceSelection" title="DataSourceSelection">
+         <area shape="rect" coords="345,1,417,33" href="#FilterList" title="FilterList"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Query" title="Query" shape="rect">Query</a>    ::= <a href="#FieldSelection" title="FieldSelection" shape="rect">FieldSelection</a> <a href="#DataSourceSelection" title="DataSourceSelection" shape="rect">DataSourceSelection</a> <a href="#FilterList" title="FilterList" shape="rect">FilterList</a>?</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#UnionQuery" title="UnionQuery">UnionQuery</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FieldSelection">FieldSelection:</a></p>
+      <img border="0" src="diagram/FieldSelection.png" height="80" width="304" usemap="#FieldSelection.map"><map name="FieldSelection.map">
+         <area shape="rect" coords="127,45,255,77" href="#AliasedFieldEquiv" title="AliasedFieldEquiv"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FieldSelection" title="FieldSelection" shape="rect">FieldSelection</a>
+         ::= 'select' <a href="#AliasedFieldEquiv" title="AliasedFieldEquiv" shape="rect">AliasedFieldEquiv</a> ( ',' <a href="#AliasedFieldEquiv" title="AliasedFieldEquiv" shape="rect">AliasedFieldEquiv</a> )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Query" title="Query">Query</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="AliasedFieldEquiv">AliasedFieldEquiv:</a></p>
+      <img border="0" src="diagram/AliasedFieldEquiv.png" height="36" width="262" usemap="#AliasedFieldEquiv.map"><map name="AliasedFieldEquiv.map">
+         <area shape="rect" coords="29,1,111,33" href="#FieldEquiv" title="FieldEquiv">
+         <area shape="rect" coords="185,1,233,33" href="#Alias" title="Alias"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#AliasedFieldEquiv" title="AliasedFieldEquiv" shape="rect">AliasedFieldEquiv</a>
+         ::= <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a> 'as' <a href="#Alias" title="Alias" shape="rect">Alias</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FieldSelection" title="FieldSelection">FieldSelection</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FieldEquiv">FieldEquiv:</a></p>
+      <img border="0" src="diagram/FieldEquiv.png" height="124" width="170" usemap="#FieldEquiv.map"><map name="FieldEquiv.map">
+         <area shape="rect" coords="49,1,121,33" href="#Function" title="Function">
+         <area shape="rect" coords="49,45,103,77" href="#Value" title="Value">
+         <area shape="rect" coords="49,89,97,121" href="#Field" title="Field"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a>
+         ::= <a href="#Function" title="Function" shape="rect">Function</a>
+           | <a href="#Value" title="Value" shape="rect">Value</a>
+           | <a href="#Field" title="Field" shape="rect">Field</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#AliasedFieldEquiv" title="AliasedFieldEquiv">AliasedFieldEquiv</a></li>
+            
+            <li><a href="#BinaryCondition" title="BinaryCondition">BinaryCondition</a></li>
+            
+            <li><a href="#InCondition" title="InCondition">InCondition</a></li>
+            
+            <li><a href="#ListOfFunctionArguments" title="ListOfFunctionArguments">ListOfFunctionArguments</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Function">Function:</a></p>
+      <img border="0" src="diagram/Function.png" height="52" width="462" usemap="#Function.map"><map name="Function.map">
+         <area shape="rect" coords="29,1,105,33" href="#Identifier" title="Identifier">
+         <area shape="rect" coords="191,1,367,33" href="#ListOfFunctionArguments" title="ListOfFunctionArguments"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Function" title="Function" shape="rect">Function</a> ::= <a href="#Identifier" title="Identifier" shape="rect">Identifier</a> '(' <a href="#ListOfFunctionArguments" title="ListOfFunctionArguments" shape="rect">ListOfFunctionArguments</a>? ')'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FieldEquiv" title="FieldEquiv">FieldEquiv</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="ListOfFunctionArguments">ListOfFunctionArguments:</a></p>
+      <img border="0" src="diagram/ListOfFunctionArguments.png" height="80" width="180" usemap="#ListOfFunctionArguments.map"><map name="ListOfFunctionArguments.map">
+         <area shape="rect" coords="49,45,131,77" href="#FieldEquiv" title="FieldEquiv"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#ListOfFunctionArguments" title="ListOfFunctionArguments" shape="rect">ListOfFunctionArguments</a>
+         ::= <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a> ( ',' <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a> )*?</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Function" title="Function">Function</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Field">Field:</a></p>
+      <img border="0" src="diagram/Field.png" height="36" width="378" usemap="#Field.map"><map name="Field.map">
+         <area shape="rect" coords="29,1,201,33" href="#DataSourceNameOrAlias" title="DataSourceNameOrAlias">
+         <area shape="rect" coords="265,1,349,33" href="#FieldName" title="FieldName"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Field" title="Field" shape="rect">Field</a>    ::= <a href="#DataSourceNameOrAlias" title="DataSourceNameOrAlias" shape="rect">DataSourceNameOrAlias</a> '.' <a href="#FieldName" title="FieldName" shape="rect">FieldName</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FieldEquiv" title="FieldEquiv">FieldEquiv</a></li>
+            
+            <li><a href="#IsNullCondition" title="IsNullCondition">IsNullCondition</a></li>
+            
+            <li><a href="#OrderByField" title="OrderByField">OrderByField</a></li>
+            
+            <li><a href="#SingleJoinCondition" title="SingleJoinCondition">SingleJoinCondition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="DataSourceSelection">DataSourceSelection:</a></p>
+      <img border="0" src="diagram/DataSourceSelection.png" height="86" width="580" usemap="#DataSourceSelection.map"><map name="DataSourceSelection.map">
+         <area shape="rect" coords="99,35,227,67" href="#DataSourceName" title="DataSourceName">
+         <area shape="rect" coords="321,35,369,67" href="#Alias" title="Alias">
+         <area shape="rect" coords="429,1,531,33" href="#JoinDefinition" title="JoinDefinition"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#DataSourceSelection" title="DataSourceSelection" shape="rect">DataSourceSelection</a>
+         ::= 'from' <a href="#DataSourceName" title="DataSourceName" shape="rect">DataSourceName</a> ( 'as' <a href="#Alias" title="Alias" shape="rect">Alias</a> )? <a href="#JoinDefinition" title="JoinDefinition" shape="rect">JoinDefinition</a>*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Query" title="Query">Query</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="JoinDefinition">JoinDefinition:</a></p>
+      <img border="0" src="diagram/JoinDefinition.png" height="52" width="592" usemap="#JoinDefinition.map"><map name="JoinDefinition.map">
+         <area shape="rect" coords="93,1,221,33" href="#DataSourceName" title="DataSourceName">
+         <area shape="rect" coords="315,1,363,33" href="#Alias" title="Alias">
+         <area shape="rect" coords="459,1,563,33" href="#JoinCondition" title="JoinCondition"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#JoinDefinition" title="JoinDefinition" shape="rect">JoinDefinition</a>
+         ::= 'join' <a href="#DataSourceName" title="DataSourceName" shape="rect">DataSourceName</a> ( 'as' <a href="#Alias" title="Alias" shape="rect">Alias</a> )? 'on' <a href="#JoinCondition" title="JoinCondition" shape="rect">JoinCondition</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#DataSourceSelection" title="DataSourceSelection">DataSourceSelection</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="JoinCondition">JoinCondition:</a></p>
+      <img border="0" src="diagram/JoinCondition.png" height="124" width="372" usemap="#JoinCondition.map"><map name="JoinCondition.map">
+         <area shape="rect" coords="49,1,191,33" href="#SingleJoinCondition" title="SingleJoinCondition">
+         <area shape="rect" coords="115,89,257,121" href="#SingleJoinCondition" title="SingleJoinCondition"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#JoinCondition" title="JoinCondition" shape="rect">JoinCondition</a>
+         ::= <a href="#SingleJoinCondition" title="SingleJoinCondition" shape="rect">SingleJoinCondition</a>
+           | '(' <a href="#SingleJoinCondition" title="SingleJoinCondition" shape="rect">SingleJoinCondition</a> ( 'and' <a href="#SingleJoinCondition" title="SingleJoinCondition" shape="rect">SingleJoinCondition</a> )* ')'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#JoinDefinition" title="JoinDefinition">JoinDefinition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="SingleJoinCondition">SingleJoinCondition:</a></p>
+      <img border="0" src="diagram/SingleJoinCondition.png" height="36" width="224" usemap="#SingleJoinCondition.map"><map name="SingleJoinCondition.map">
+         <area shape="rect" coords="29,1,77,33" href="#Field" title="Field">
+         <area shape="rect" coords="147,1,195,33" href="#Field" title="Field"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#SingleJoinCondition" title="SingleJoinCondition" shape="rect">SingleJoinCondition</a>
+         ::= <a href="#Field" title="Field" shape="rect">Field</a> '=' <a href="#Field" title="Field" shape="rect">Field</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#JoinCondition" title="JoinCondition">JoinCondition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="DataSourceNameOrAlias">DataSourceNameOrAlias:</a></p>
+      <img border="0" src="diagram/DataSourceNameOrAlias.png" height="80" width="226" usemap="#DataSourceNameOrAlias.map"><map name="DataSourceNameOrAlias.map">
+         <area shape="rect" coords="49,1,177,33" href="#DataSourceName" title="DataSourceName">
+         <area shape="rect" coords="49,45,97,77" href="#Alias" title="Alias"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#DataSourceNameOrAlias" title="DataSourceNameOrAlias" shape="rect">DataSourceNameOrAlias</a>
+         ::= <a href="#DataSourceName" title="DataSourceName" shape="rect">DataSourceName</a>
+           | <a href="#Alias" title="Alias" shape="rect">Alias</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Field" title="Field">Field</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FilterList">FilterList:</a></p>
+      <img border="0" src="diagram/FilterList.png" height="36" width="258" usemap="#FilterList.map"><map name="FilterList.map">
+         <area shape="rect" coords="111,1,229,33" href="#FilterAlternative" title="FilterAlternative"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FilterList" title="FilterList" shape="rect">FilterList</a>
+         ::= 'where' <a href="#FilterAlternative" title="FilterAlternative" shape="rect">FilterAlternative</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Query" title="Query">Query</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FilterAlternative">FilterAlternative:</a></p>
+      <img border="0" src="diagram/FilterAlternative.png" height="80" width="228" usemap="#FilterAlternative.map"><map name="FilterAlternative.map">
+         <area shape="rect" coords="49,45,179,77" href="#FilterCombination" title="FilterCombination"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FilterAlternative" title="FilterAlternative" shape="rect">FilterAlternative</a>
+         ::= <a href="#FilterCombination" title="FilterCombination" shape="rect">FilterCombination</a> ( 'or' <a href="#FilterCombination" title="FilterCombination" shape="rect">FilterCombination</a> )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterDefinition" title="FilterDefinition">FilterDefinition</a></li>
+            
+            <li><a href="#FilterList" title="FilterList">FilterList</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FilterCombination">FilterCombination:</a></p>
+      <img border="0" src="diagram/FilterCombination.png" height="80" width="208" usemap="#FilterCombination.map"><map name="FilterCombination.map">
+         <area shape="rect" coords="49,45,159,77" href="#FilterDefinition" title="FilterDefinition"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FilterCombination" title="FilterCombination" shape="rect">FilterCombination</a>
+         ::= <a href="#FilterDefinition" title="FilterDefinition" shape="rect">FilterDefinition</a> ( 'and' <a href="#FilterDefinition" title="FilterDefinition" shape="rect">FilterDefinition</a> )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterAlternative" title="FilterAlternative">FilterAlternative</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FilterDefinition">FilterDefinition:</a></p>
+      <img border="0" src="diagram/FilterDefinition.png" height="168" width="308" usemap="#FilterDefinition.map"><map name="FilterDefinition.map">
+         <area shape="rect" coords="49,1,167,33" href="#BinaryCondition" title="BinaryCondition">
+         <area shape="rect" coords="49,45,141,77" href="#InCondition" title="InCondition">
+         <area shape="rect" coords="49,89,163,121" href="#IsNullCondition" title="IsNullCondition">
+         <area shape="rect" coords="95,133,213,165" href="#FilterAlternative" title="FilterAlternative"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FilterDefinition" title="FilterDefinition" shape="rect">FilterDefinition</a>
+         ::= <a href="#BinaryCondition" title="BinaryCondition" shape="rect">BinaryCondition</a>
+           | <a href="#InCondition" title="InCondition" shape="rect">InCondition</a>
+           | <a href="#IsNullCondition" title="IsNullCondition" shape="rect">IsNullCondition</a>
+           | '(' <a href="#FilterAlternative" title="FilterAlternative" shape="rect">FilterAlternative</a> ')'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterCombination" title="FilterCombination">FilterCombination</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="BinaryCondition">BinaryCondition:</a></p>
+      <img border="0" src="diagram/BinaryCondition.png" height="36" width="378" usemap="#BinaryCondition.map"><map name="BinaryCondition.map">
+         <area shape="rect" coords="29,1,111,33" href="#FieldEquiv" title="FieldEquiv">
+         <area shape="rect" coords="131,1,247,33" href="#BinaryOperator" title="BinaryOperator">
+         <area shape="rect" coords="267,1,349,33" href="#FieldEquiv" title="FieldEquiv"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#BinaryCondition" title="BinaryCondition" shape="rect">BinaryCondition</a>
+         ::= <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a> <a href="#BinaryOperator" title="BinaryOperator" shape="rect">BinaryOperator</a> <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterDefinition" title="FilterDefinition">FilterDefinition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="BinaryOperator">BinaryOperator:</a></p>
+      <img border="0" src="diagram/BinaryOperator.png" height="300" width="142">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#BinaryOperator" title="BinaryOperator" shape="rect">BinaryOperator</a>
+         ::= '='
+           | '!='
+           | '&lt;'
+           | '&lt;='
+           | '&gt;'
+           | '&gt;='
+           | 'like'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#BinaryCondition" title="BinaryCondition">BinaryCondition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="InCondition">InCondition:</a></p>
+      <img border="0" src="diagram/InCondition.png" height="96" width="498" usemap="#InCondition.map"><map name="InCondition.map">
+         <area shape="rect" coords="29,45,111,77" href="#FieldEquiv" title="FieldEquiv">
+         <area shape="rect" coords="349,45,403,77" href="#Value" title="Value"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#InCondition" title="InCondition" shape="rect">InCondition</a>
+         ::= <a href="#FieldEquiv" title="FieldEquiv" shape="rect">FieldEquiv</a> 'not'? 'in' '(' <a href="#Value" title="Value" shape="rect">Value</a> ( ',' <a href="#Value" title="Value" shape="rect">Value</a> )* ')'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterDefinition" title="FilterDefinition">FilterDefinition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="IsNullCondition">IsNullCondition:</a></p>
+      <img border="0" src="diagram/IsNullCondition.png" height="52" width="318" usemap="#IsNullCondition.map"><map name="IsNullCondition.map">
+         <area shape="rect" coords="29,1,77,33" href="#Field" title="Field">
+         <area shape="rect" coords="247,1,289,33" href="#Null" title="Null"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#IsNullCondition" title="IsNullCondition" shape="rect">IsNullCondition</a>
+         ::= <a href="#Field" title="Field" shape="rect">Field</a> 'is' 'not'? <a href="#Null" title="Null" shape="rect">Null</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FilterDefinition" title="FilterDefinition">FilterDefinition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="OrderByList">OrderByList:</a></p>
+      <img border="0" src="diagram/OrderByList.png" height="80" width="330" usemap="#OrderByList.map"><map name="OrderByList.map">
+         <area shape="rect" coords="181,45,281,77" href="#OrderByField" title="OrderByField"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#OrderByList" title="OrderByList" shape="rect">OrderByList</a>
+         ::= 'order' 'by' <a href="#OrderByField" title="OrderByField" shape="rect">OrderByField</a> ( ',' <a href="#OrderByField" title="OrderByField" shape="rect">OrderByField</a> )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#UnionQuery" title="UnionQuery">UnionQuery</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="OrderByField">OrderByField:</a></p>
+      <img border="0" src="diagram/OrderByField.png" height="124" width="278" usemap="#OrderByField.map"><map name="OrderByField.map">
+         <area shape="rect" coords="49,1,97,33" href="#Field" title="Field">
+         <area shape="rect" coords="49,45,97,77" href="#Alias" title="Alias">
+         <area shape="rect" coords="49,89,119,121" href="#Position" title="Position"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#OrderByField" title="OrderByField" shape="rect">OrderByField</a>
+         ::= ( <a href="#Field" title="Field" shape="rect">Field</a> | <a href="#Alias" title="Alias" shape="rect">Alias</a> | <a href="#Position" title="Position" shape="rect">Position</a> ) ( 'asc' | 'desc' )?</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#OrderByList" title="OrderByList">OrderByList</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Integer">Integer:</a></p>
+      <img border="0" src="diagram/Integer.png" height="452" width="126">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Integer" title="Integer" shape="rect">Integer</a>  ::= ( '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' )*</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Float" title="Float">Float</a></li>
+            
+            <li><a href="#Identifier" title="Identifier">Identifier</a></li>
+            
+            <li><a href="#Number" title="Number">Number</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="DataSourceName">DataSourceName:</a></p>
+      <img border="0" src="diagram/DataSourceName.png" height="36" width="134" usemap="#DataSourceName.map"><map name="DataSourceName.map">
+         <area shape="rect" coords="29,1,105,33" href="#Identifier" title="Identifier"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#DataSourceName" title="DataSourceName" shape="rect">DataSourceName</a>
+         ::= <a href="#Identifier" title="Identifier" shape="rect">Identifier</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#DataSourceNameOrAlias" title="DataSourceNameOrAlias">DataSourceNameOrAlias</a></li>
+            
+            <li><a href="#DataSourceSelection" title="DataSourceSelection">DataSourceSelection</a></li>
+            
+            <li><a href="#JoinDefinition" title="JoinDefinition">JoinDefinition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="FieldName">FieldName:</a></p>
+      <img border="0" src="diagram/FieldName.png" height="36" width="134" usemap="#FieldName.map"><map name="FieldName.map">
+         <area shape="rect" coords="29,1,105,33" href="#Identifier" title="Identifier"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#FieldName" title="FieldName" shape="rect">FieldName</a>
+         ::= <a href="#Identifier" title="Identifier" shape="rect">Identifier</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Field" title="Field">Field</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Alias">Alias:</a></p>
+      <img border="0" src="diagram/Alias.png" height="36" width="134" usemap="#Alias.map"><map name="Alias.map">
+         <area shape="rect" coords="29,1,105,33" href="#Identifier" title="Identifier"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Alias" title="Alias" shape="rect">Alias</a>    ::= <a href="#Identifier" title="Identifier" shape="rect">Identifier</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#AliasedFieldEquiv" title="AliasedFieldEquiv">AliasedFieldEquiv</a></li>
+            
+            <li><a href="#DataSourceNameOrAlias" title="DataSourceNameOrAlias">DataSourceNameOrAlias</a></li>
+            
+            <li><a href="#DataSourceSelection" title="DataSourceSelection">DataSourceSelection</a></li>
+            
+            <li><a href="#JoinDefinition" title="JoinDefinition">JoinDefinition</a></li>
+            
+            <li><a href="#OrderByField" title="OrderByField">OrderByField</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Value">Value:</a></p>
+      <img border="0" src="diagram/Value.png" height="168" width="240" usemap="#Value.map"><map name="Value.map">
+         <area shape="rect" coords="49,1,191,33" href="#SingleQuotedString" title="SingleQuotedString">
+         <area shape="rect" coords="49,45,117,77" href="#Number" title="Number">
+         <area shape="rect" coords="49,89,119,121" href="#Boolean" title="Boolean">
+         <area shape="rect" coords="49,133,91,165" href="#Null" title="Null"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Value" title="Value" shape="rect">Value</a>    ::= <a href="#SingleQuotedString" title="SingleQuotedString" shape="rect">SingleQuotedString</a>
+           | <a href="#Number" title="Number" shape="rect">Number</a>
+           | <a href="#Boolean" title="Boolean" shape="rect">Boolean</a>
+           | <a href="#Null" title="Null" shape="rect">Null</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#FieldEquiv" title="FieldEquiv">FieldEquiv</a></li>
+            
+            <li><a href="#InCondition" title="InCondition">InCondition</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Number">Number:</a></p>
+      <img border="0" src="diagram/Number.png" height="80" width="164" usemap="#Number.map"><map name="Number.map">
+         <area shape="rect" coords="49,1,115,33" href="#Integer" title="Integer">
+         <area shape="rect" coords="49,45,99,77" href="#Float" title="Float"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Number" title="Number" shape="rect">Number</a>   ::= <a href="#Integer" title="Integer" shape="rect">Integer</a>
+           | <a href="#Float" title="Float" shape="rect">Float</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Value" title="Value">Value</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Float">Float:</a></p>
+      <img border="0" src="diagram/Float.png" height="36" width="254" usemap="#Float.map"><map name="Float.map">
+         <area shape="rect" coords="29,1,95,33" href="#Integer" title="Integer">
+         <area shape="rect" coords="159,1,225,33" href="#Integer" title="Integer"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Float" title="Float" shape="rect">Float</a>    ::= <a href="#Integer" title="Integer" shape="rect">Integer</a> '.' <a href="#Integer" title="Integer" shape="rect">Integer</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Number" title="Number">Number</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Boolean">Boolean:</a></p>
+      <img border="0" src="diagram/Boolean.png" height="80" width="150">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Boolean" title="Boolean" shape="rect">Boolean</a>  ::= 'true'
+           | 'false'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Value" title="Value">Value</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Null">Null:</a></p>
+      <img border="0" src="diagram/Null.png" height="36" width="102">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Null" title="Null" shape="rect">Null</a>     ::= 'null'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#IsNullCondition" title="IsNullCondition">IsNullCondition</a></li>
+            
+            <li><a href="#Value" title="Value">Value</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="SingleQuotedString">SingleQuotedString:</a></p>
+      <img border="0" src="diagram/SingleQuotedString.png" height="36" width="222">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#SingleQuotedString" title="SingleQuotedString" shape="rect">SingleQuotedString</a>
+         ::= 'string in single quotes'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Value" title="Value">Value</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="DoubleQuotedString">DoubleQuotedString:</a></p>
+      <img border="0" src="diagram/DoubleQuotedString.png" height="36" width="228">
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#DoubleQuotedString" title="DoubleQuotedString" shape="rect">DoubleQuotedString</a>
+         ::= 'string in double quotes'</pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Identifier" title="Identifier">Identifier</a></li>
+            
+         </ul>
+         
+      </p><br><p style="font-size: 14px; font-weight:bold"><a name="Identifier">Identifier:</a></p>
+      <img border="0" src="diagram/Identifier.png" height="334" width="308" usemap="#Identifier.map"><map name="Identifier.map">
+         <area shape="rect" coords="173,1,239,33" href="#Integer" title="Integer">
+         <area shape="rect" coords="49,299,197,331" href="#DoubleQuotedString" title="DoubleQuotedString"></map>
+      
+      <p>
+         
+         <div class="ebnf"><pre><a href="#Identifier" title="Identifier" shape="rect">Identifier</a>
+         ::= ( 'a..z' | 'A..Z' | '_' ) ( 'a..z' | 'A..Z' | '_' | <a href="#Integer" title="Integer" shape="rect">Integer</a> )*
+           | <a href="#DoubleQuotedString" title="DoubleQuotedString" shape="rect">DoubleQuotedString</a></pre></div>
+         
+      </p>
+      
+      <p>referenced by:
+         
+         <ul>
+            
+            <li><a href="#Alias" title="Alias">Alias</a></li>
+            
+            <li><a href="#DataSourceName" title="DataSourceName">DataSourceName</a></li>
+            
+            <li><a href="#FieldName" title="FieldName">FieldName</a></li>
+            
+            <li><a href="#Function" title="Function">Function</a></li>
+            
+         </ul>
+         
+      </p><br><hr>
+      
+      <p>
+         
+         <table border="0" class="signature">
+            
+            <tr>
+               
+               <td style="width: 100%">&nbsp;</td>
+               
+               <td valign="top">
+                  
+                  <nobr class="signature">... generated by <a name="Railroad-Diagram-Generator" class="signature" title="http://www.bottlecaps.de/rr/ui" href="http://www.bottlecaps.de/rr/ui" target="_blank">Railroad Diagram Generator</a></nobr>
+                  
+               </td>
+               
+               <td><a name="Railroad-Diagram-Generator" title="http://www.bottlecaps.de/rr/ui" href="http://www.bottlecaps.de/rr/ui" target="_blank">
+                     <img border="0" src="diagram/rr-1.39.959.png" height="16" width="16"></a></td>
+               
+            </tr>
+            
+         </table>
+         
+      </p>
+      
+   </body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8"/>
+
+		<title>OpenDataHub</title>
+
+		<meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
+		<meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+
+        <link rel="stylesheet" href="custom.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/black.css" id="theme"/>
+
+        <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.0.0/css/print/pdf.css' : 'reveal.js-3.0.0/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+                    <p><small>Zwischenpräsentation</small></p>
+					<h1>OpenDataHub</h1>
+					<p>Teilen, Beziehen, und Konvertieren von Daten</p>
+					<p><small>Bachelor-Arbeit FS15 HSR</small></p>
+                    <p><small>Remo Liebi, Fabio Scala, Christoph Hüsler</small></p>
+				</section>
+				<section>
+                    <h1>Inhalt</h1>
+                    <ol>
+                        <li>Motivation</li>
+                        <li>Aufgabenstellung</li>
+                        <li>Demo</li>
+                        <li>Architektur-Übersicht</li>
+                    </ol>
+                </section>
+                <section>
+                    <h1>Motivation</h1>
+                    <ul>
+                        <li>Datenaustausch zwischen Organisationen schwierig</li>
+                        <li>Unkooperative Software-Anbieter</li>
+                        <li>Überforderte Datenlieferanten/Systembetreiber</li>
+                        <li>Oft nur 1:1-Konverter (OGR, geoconverter.hsr.ch)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Aufgabenstellung</h1>
+                    <ul>
+                        <li>Überblick über vorhandene Produkte (dat, \acs{ckan})</li>
+                        <li>Erstellung Datenaustausch-Portal (OpenDataHub)</li>
+                        <li>Formatkonversion und Schematransformation lösen</li> <!-- WTB writing skills -->
+                        <li>Endnutzer kümmern sich nur um Bereitstellung der Daten</li>
+                        <li>Benutzerverwaltung mittels SuisseID und OAuth2</li>
+                    </ul>
+                </section>
+                <section>
+                    <h1>Demo</h1>
+                    <a href="https://opendatahub-hsr-dev.herokuapp.com" target="_blank">open</a>
+                </section>
+                <section>
+                    <h1>Architektur</h1>
+                    <img src="img/ODH-Architecture-Overview.svg" />
+                </section>
+
+                <section>
+                <h1>Beispiel TROBDB</h1>
+                <h2>Excel-Austausch via Mail</h2>
+                <img src="trobdb-src/excel.png" />
+                </section>
+                <section>
+                <h2>WFS Baustellen Kantonsstrassen <a href="http://www.geolion.zh.ch/geodatenservice/show?nbid=1217">geolion.zh.ch</a></h2>
+                <img src="trobdb-src/gml.png" />
+                </section>
+                <section>
+                <h2>Webservice von <a href="http://truckinfo.ch/">truckinfo.ch</a></h2>
+                <img src="trobdb-src/xml.png" />
+                </section>
+                <section>
+                <h2>Online Verfügbar in diversen Formaten: <a href="http://www.stadt-zuerich.ch/opendata">stadt-zuerich.ch</a></h2>
+                <img src="trobdb-src/geojson.png" />
+                </section>
+
+                <section>
+                    <h2>Integration mit <a href="syntax/index.html">ODHQL</a></h2>
+                    <pre><code style="">
+SELECT v0.Bauarbeiten AS Beschreibung, 
+       ST_SetSRID(ST_GeomFromText(CONCAT(
+       'POINT(', CAST(v0."Zentroid X [m]", 'string'), ' ', 
+       CAST(v0."Zentroid Y [m]", 'string'), ')')), 21781) 
+       AS geometry 
+  FROM ODH15 AS v0
+ UNION
+SELECT v1.beschreibu,
+       ST_Centroid(v1.geometry) AS geometry 
+  FROM ODH16 AS v1
+ UNION
+SELECT v2.text, 
+       ST_SetSRID(ST_GeomFromText(CONCAT(
+       'POINT(', v2.x, ' ', v2.y, ')')), 3395) 
+       AS geometry 
+  FROM ODH17 AS v2
+ UNION
+SELECT v3.Projektbeschrieb, 
+       v3.geometry 
+  FROM ODH18 AS v3
+                    </code></pre>
+                </section>
+
+                <section>
+                <h2>Resultat</h2>
+                <img src="trobdb-src/odhql-result.png" />
+                </section>
+                    
+
+            </div>
+		</div>
+
+		<script src="reveal.js-3.0.0/lib/js/head.min.js"></script>
+		<script src="reveal.js-3.0.0/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js-3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js-3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'reveal.js-3.0.0/plugin/markdown/markdown.js', 
+                        condition: function() { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true, 
+                        callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

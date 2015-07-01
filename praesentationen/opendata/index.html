@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8"/>
+
+		<title>OpenDataHub</title>
+
+		<meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
+		<meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+
+        <link rel="stylesheet" href="custom.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/reveal.css"/>
+		<link rel="stylesheet" href="reveal.js-3.0.0/css/theme/beige.css" id="theme"/>
+
+        <link rel="stylesheet" href="reveal.js-3.0.0/lib/css/zenburn.css" />
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js-3.0.0/css/print/pdf.css' : 'reveal.js-3.0.0/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+                    <div>
+                        <img style="float:left; width:5em; border:none; box-shadow:none; background: none" src="img/hsr-logo.png" />
+                        <img style="float:right; width:5em; border:none; box-shadow:none; background: none" src="img/ifs-logo.png" />
+                    </div>
+					<h1 style="clear:both">
+                        <img style="width: 0.8em; border:none; box-shadow:none; background: none" src="img/logo-odh.png" />
+                        OpenDataHub</h1>
+					<p>Teilen, Beziehen, und Konvertieren von Daten</p>
+					<p><small>Bachelorarbeit Informatik Frühjahrssemester 2015</small></p>
+                    <p><small>Remo Liebi, Fabio Scala, Christoph Hüsler</small></p>
+				</section>
+
+                <section>
+                    <h2>Das Team</h2>
+
+                    <span class="fragment" style="float: left;">
+                        <img style="height: 6em;" src="img/rliebi.jpg" />
+                        <p>Remo Liebi</p>
+                        <p><small>Teilzeit, Freelancer</small></p>
+                    </span>
+
+                    <span class="fragment" style="float: left; margin-left: 15%;">
+                        <img style="height: 6em;" src="img/chuesler.jpg" />
+                        <p>Christoph Hüsler</p>
+                        <p><small>Teilzeit, Xinventa GmbH</small></p>
+                    </span>
+
+
+                    <span class="fragment" style="float: left; margin-left: 15%;">
+                        <img style="height: 6em;" src="img/fscala.jpg" />
+                        <p>Fabio Scala</p>
+                        <p><small>Teilzeit, Swisscom AG</small></p>
+                    </span>
+                </section> 
+
+                <section>
+                    <h2>Inhalt</h2>
+                    <ul>
+                        <li>Motivation und Aufgabenstellung</li><!-- chuesler -->
+                        <li>Resultate</li><!-- chuesler -->
+                        <li>Demo</li><!-- rliebi -->
+                        <li>Fragen &amp; Diskussion</li><!-- all -->
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Motivation</h2>
+                    <ul>
+                        <li class="fragment">Methodenfreiheit &#8594; unterschiedliche Software</li>
+                        <li class="fragment">Viele Kommunikationspartner</li>
+                        <li class="fragment">Unterschiedliche Schemata</li>
+                    </ul>
+                    <p class="fragment">&#8594; Datenaustausch schwierig</p>
+                </section>
+
+                <section>
+                    <h2>Motivation</h2>
+                    <img src="img/situation-current.png" />
+                </section>
+
+                <section>
+                    <h2>Aufgabenstellung</h2>
+                    <q>[...] zentrales <b>Portal</b> (= "OpenDataHub") [...], über dieses sich <b>Daten offen teilen</b>, <b>beziehen</b> und <b>konvertieren</b> lassen wobei sich die Beteiligten <b>nicht um die Formatkonversion und Schematransformation kümmern</b> müssen: Die Datenlieferanten liefern ihre Daten in
+                    ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                    die entsprechende Formatkonversion und Schematransformation existiert.</q>
+                </section>
+
+                <section>
+                    <h2>Aufgabenstellung</h2>
+                    <img src="img/situation-target.png" />
+                </section>
+
+                <section>
+                    <h2>Use Cases</h2>
+                    <ul>
+                        <li class="fragment">Postadressen
+                            <ul>
+                                <li class="fragment">Schematransformation</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Gebäudeadressen
+                            <ul>
+                                <li class="fragment">Integration mehrerer Datenquellen</li>
+                                <li class="fragment">Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus MOPublic (Basel)</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">TROBDB: Verkehrshindernis-Datenbank
+                            <ul>
+                                <li class="fragment">Integration diverser Datenquellen</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Resultate</h2>
+                    <ul>
+                        <li>Web-Applikation
+                            <ul>
+                                <li class="fragment">Datenaustausch: Upload von Dateien oder auf Basis von URLs (z.B. WFS)</li>
+                                <li class="fragment">Automatische Format-Konversion</li>
+                                <li class="fragment">Transformationen per ODHQL, einem SQL-Subset</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Demo</h2> 
+                </section>
+
+                <section>
+                    <h1>Fragen &amp; Diskussion</h1>
+                </section>
+
+            </div>
+		</div>
+
+		<script src="reveal.js-3.0.0/lib/js/head.min.js"></script>
+		<script src="reveal.js-3.0.0/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'reveal.js-3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'reveal.js-3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'reveal.js-3.0.0/plugin/markdown/markdown.js', 
+                        condition: function() { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'reveal.js-3.0.0/plugin/highlight/highlight.js', async: true, 
+                        callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'reveal.js-3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'reveal.js-3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

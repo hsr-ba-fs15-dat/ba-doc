@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>OpenDataHub</title>
+
+    <meta name="description" content="OpenDataHub - A Hub For Your Open Data"/>
+    <meta name="author" content="R. Liebi, F. Scala, C. Hüsler"/>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+
+    <link rel="stylesheet" href="lib/css/custom.css"/>
+    <link rel="stylesheet" href="css/reveal.css"/>
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme"/>
+
+    <link rel="stylesheet" href="lib/css/zenburn.css"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <!-- ################################################################################ rliebi start -->
+
+        <section>
+            <div>
+                <img style="float:left; width:5em; border:none; box-shadow:none; background: none" src="lib/img/hsr-logo.png" />
+                <img style="float:right; width:5em; border:none; box-shadow:none; background: none" src="lib/img/ifs-logo.png" />
+            </div>
+
+            <p>
+                <small>Abschlusspräsentation</small>
+            </p>
+            <h1 style="clear:both">
+                <img style="width: 0.8em; border:none; box-shadow:none; background: none" src="lib/img/logo-odh.png" />
+                OpenDataHub</h1>
+
+            <p>Teilen, Beziehen, und Konvertieren von Daten</p>
+            <p><small>Bachelorarbeit FS15 HSR</small></p>
+            <p><small>Remo Liebi, Fabio Scala, Christoph Hüsler</small></p>
+            <p><small>Betreuer: Prof. S. Keller, Experte: C. Eisenhut</small></p>
+        </section>
+
+        <section>
+            <h2>Inhalt</h2>
+            <ul>
+                <li>Aufgabenstellung</li>
+                <!-- chuesler -->
+                <li>Analyse</li>
+                <!-- chuesler -->
+                <li>Design und Implementation</li>
+                <!-- fscala, rliebi -->
+                <li>Resultate und Ausblick</li>
+                <!-- chuesler -->
+                <li>Demo</li>
+                <!-- rliebi -->
+                <li>Projekt- und Qualitätsmanagement</li>
+                <!-- fscala -->
+                <li>Fragen</li>
+                <!-- alle -->
+            </ul>
+        </section>
+
+        <!-- ################################################################################ rliebi end -->
+
+        <!-- ################################################################################ chuesler start -->
+
+        <section>
+            <section>
+                <h1>Aufgabenstellung</h1>
+            </section>
+
+            <section>
+                <h2>Motivation</h2>
+                <ul>
+                    <li>Methodenfreiheit &#8594; unterschiedliche Software</li>
+                    <li>Viele Kommunikationspartner</li>
+                    <li>Unterschiedliche Schemata</li>
+                </ul>
+                <p>&#8594; Datenaustausch schwierig</p>
+            </section>
+
+            <section>
+                <h2>Aufgabenstellung</h2>
+                <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
+                <b>offen teilen</b>, <b>beziehen</b> und <b>konvertieren</b> lassen wobei sich die Beteiligten <b>nicht</b> um die 
+                <b>Formatkonversion</b> und <b>Schematransformation</b> kümmern müssen: Die Datenlieferanten liefern ihre Daten in
+                ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                die entsprechende Formatkonversion und Schematransformation existiert.</q>
+            </section>
+
+            <section>
+                <h2>Aufgabenstellung</h2>
+                <img src="lib/img/conversion.png" />
+            </section>
+
+            <section>
+                <h2>Aufgabenstellung</h2>
+                <ul>
+                    <li>Vorhandene Lösungen, insbesondere dat
+                        <ul>
+                            <li>Untersuchen und Dokumentieren</li>
+                        </ul>
+                    </li>
+                    <li>OpenDataHub
+                        <ul>
+                            <li>Datenaustausch</li>
+                            <li><b>Schematransformation</b></li>
+                            <li>Formatkonversion</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Use-Cases</h2>
+                <ul>
+                    <li>Postadressen
+                        <ul>
+                            <li>Schematransformation</li>
+                        </ul>
+                    </li>
+                    <li>Gebäudeadressen
+                        <ul>
+                            <li>Integration mehrerer Datenquellen</li>
+                            <li>Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus
+                                MOPublic (Basel)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>TROBDB: Verkehrshinderniss-Datenbank
+                        <ul>
+                            <li>Integration diverser Datenquellen</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h1>Analyse</h1>
+            </section>
+
+            <section>
+                <h2>dat: Datenspeicherung</h2>
+                <q cite="http://dat-data.com">Dat is a version-controlled, decentralized data tool for
+                    collaboration between data people and data systems.</q>
+
+                <p>&nbsp;</p>
+                <ul>
+                    <li>Basiert auf node.js, LevelDB</li>
+                    <li>Limitationen der Alpha-Version (6.9.6):
+                        <ul>
+                            <li>1 Tabelle pro Instanz</li>
+                            <li>Schema-los</li>
+                            <li>One-Way Sync - kein Konfliktmanagement</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Status 24. Juni: 7.0.0-pre3 - soll oben beschriebene Probleme beheben</p>
+            </section>
+
+            <section>
+                <h2>CKAN: Datenaustausch</h2>
+                <q cite="http://ckan.org/">"CKAN is a powerful data management system that makes data
+                    accessible – by providing tools to streamline publishing, sharing, finding and using data."</q><br/>
+                <img style="height: 12em" src="lib/img/datahub-io.png"/>
+            </section>
+
+            <section>
+                <h2>CKAN: Datenaustausch</h2>
+                <ul>
+                    <li>Reine data sharing platform</li>
+                    <li>Keine Transformation - weder Schema noch Format</li>
+                    <li>Sehr gute Metadaten-Verwaltung</li>
+                </ul>
+                <p>Basis für opendata.admin.ch, datahub.io, opendatahub.it, ...</p>
+            </section>
+
+            <section>
+                <h2>Yahoo! Pipes: Transformation</h2>
+                <q cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to
+                    aggregate, manipulate, and mashup content from around the web.</q>
+                <img  style="height: 13em" src="lib/img/yahoo-pipes.png"/>
+            </section>
+
+            <section>
+                <h2>Yahoo! Pipes: Transformation</h2>
+                <ul>
+                    <li>Intuitives UI für Datenflüsse</li>
+                </ul>
+                <p>Discontinued (30.9.2015)</p>
+            </section>
+
+            <section>
+                <h2>Pentaho Kettle: Transformation</h2>
+                <q cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or
+                    Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a
+                    groundbreaking, metadata-driven approach.</q>
+                <img style="height: 12em" src="lib/img/kettle-spoon-transformation.png"/>
+            </section>
+
+            <section>
+                <h2>Pentaho Kettle: Transformation</h2>
+                <ul>
+                    <li>Desktop-basiertes ETL-Tool</li>
+                    <li>Unterstützung für Geo-Daten mit GeoKettle</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>FME: Transformation</h2>
+                <ul>
+                    <li>Kommerzielle Software zur Bearbeitung von Geo-Daten</li>
+                    <li><a href="http://info.geopol.ch/de/">info.geopol.ch</a> bietet Web-Frontend an
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Nicht-funkionale Anforderungen</h2>
+                <ul>
+                    <li>Machbarkeitsstudie &#8594; Performance relevant, aber nicht oberste Priorität</li>
+                    <li>UI: "gängige Browser"</li>
+                    <li>Programmiersprache: Python</li>
+                    <li>Deployment via WSGI</li>
+                    <li>PostgreSQL oder SQLite, falls Datenbanken verwendet werden</li>
+                    <li>Qualität: Unit-Tests, Sphinx-kompatible Doku-Kommentare, PEP-8</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Domain-Modell</h2>
+                <img src="lib/img/domain-model.png"/>
+            </section>
+
+        </section>
+
+
+
+        <!-- ################################################################################ chuesler end -->
+
+
+        <!-- ################################################################################ fscala start -->
+        <section>
+            <section>
+                <h1>Implementation</h1>
+                <ul>
+                    <li>Python 2.7 &amp; Django</li>
+                    <li>AngularJS &amp; TypeScript</li>
+                    <li>GDAL / ogr2ogr</li>
+                    <li>...</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Architektur</h2>
+                <img style="background-color: white;" src="lib/img/odh-architecture.png"/>
+                <!-- fscala -->
+            </section>
+
+            <!--
+            <section>
+                <h2>Django Models</h2>
+                <img src="lib/img/models.png"/>
+            </section>
+            -->
+
+            <section>
+                <h2>Internes Format</h2>
+                <ul>
+                    <li><a href="http://www.numpy.org/">NumPy</a>
+                        <ul>
+                            <li>De-facto Standard Bibliothek für mehrdimensionale Matrizen und Arrays</li>
+                        </ul>
+                    </li>
+
+                    <li><a href="http://pandas.pydata.org/">Pandas</a>
+                        <ul>
+                            <li>Bibliothek zur Datenmanipulation und Analyse</li>
+                            <li>Moderner "R" ersatz für Python</li>
+                            <li>Basierend auf NumPy</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Parser &ndash; Daten einlesen</h2>
+                <img src="lib/img/parser.png"/>
+                <ul>
+                    <li>Nativ
+                        <ul>
+                            <li>(Geo)CSV, Excel, XML, (Geo)JSON, KML, ESRI Shapefile</li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.gdal.org/">ogr2ogr</a>
+                        <ul>
+                            <li>GML, WFS, Interlis 1</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>ODHQL &ndash; Daten transformieren</h2>
+
+                <p>OpenDataHub Query Language</p>
+                <ul>
+                    <li>Subset von SQL (SELECT)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Syntax Parsing</h2>
+                <ul>
+                    <li>Parser basiert auf PyParsing
+                        <ul>
+                            <li>"Interne DSL", Code gleicht BNF</li>
+                        </ul>
+                    </li>
+                </ul>
+                <img src="lib/img/odhql-ast-expression.png"/>
+            </section>
+
+            <section>
+                <h2>Interpreter</h2>
+                <ul>
+                    <li>Performance durch Vektor-Operationen</li>
+                    <li>Kompakter, performanter Kern</li>
+                    <li>Funktionale Erweiterung durch ODHQL Funktionen</li>
+                    <img src="lib/img/function.png"/>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Formatter &ndash; Daten konvertieren</h2>
+                <img src="lib/img/formatter.png"/>
+                <ul>
+                    <li>Gegenstück zu Parser</li>
+                    <li>Implementierte Formate analog Parser</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>ogr2ogr &quot;Workaround&quot;</h2>
+                <ul>
+                    <li>Fehlende Formate temporär über ogr2ogr</li>
+                </ul>
+                <img src="lib/img/ogr2ogr.png"/>
+                <ul>
+                    <li>Besser: GDAL Python API</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Erweiterbarkeit</h2>
+                <ul>
+                    <li>&quot;plugins&quot; Verzeichnis für auto-loading
+                        <ul>
+                            <li>Neue Formate, Parser und Formatter</li>
+                            <li>ODHQL Funktionen</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- ################################################################################ fscala end -->
+
+            <!-- ################################################################################ rliebi start -->
+
+            <section>
+                <h2>Authentication</h2>
+                <!-- rliebi -->
+            </section>
+            <section>
+                <h2>OAuth2</h2>
+
+                <ul>
+                    <li>Account-Handling vereinfachen</li>
+                    <li>Benutzerverwaltung an Dritte delegieren</li>
+                </ul>
+
+                <img src="lib/img/oauth_flow.png" style="height: 12em; margin-bottom: 0;"/>
+                <br/>
+                <small style="font-size: 0.2em;"><i>Source: Oracle</i></small>
+
+                <aside class="notes">
+
+                </aside>
+            </section>
+
+            <section>
+                <h2>Token Based Authentication</h2>
+                <ul>
+                    <li>Auf API-Ebene Zugriffsrechte durchsetzen</li>
+                    <li>Frontend 'kennt' Zugriffsrechte</li>
+
+
+                </ul>
+                <aside class="notes">
+                    Jeder Request erhält signierten Token mit userinformationen - Server überprüft Tokensignatur
+                    Vorteil: Cross-Domain kompatibel, einfacher für verschiedene Apps
+
+                </aside>
+                <!-- rliebi -->
+            </section>
+            <section>
+                <img src="lib/img/cookie-token-auth.png"/>
+            </section>
+            <section>
+                <h2>Frontend</h2>
+                <ul>
+                    <li>Demo-Anwendung für API</li>
+                    <li>Transformation Generator</li>
+                    <li>Unterscheidung Template / Transformation</li>
+                    <li>Error Handling</li>
+                </ul>
+                <aside class="notes">
+
+                </aside>
+            </section>
+        </section>
+
+        <!-- ################################################################################ rliebi end -->
+
+        <!-- ################################################################################ chuesler start -->
+
+        <section>
+            <section>
+                <h1>Resultate</h1>
+            </section>
+
+            <section>
+                <h2>OpenDataHub</h2>
+                <ul>
+                    <li>Webapplikation
+                        <ul>
+                            <li>Daten anbieten, beziehen</li>
+                            <li>"Beliebige" Formate</li>
+                            <li>Transformationen
+                                <ul>
+                                    <li>Assistent für einfache Fälle, "get up and running"</li>
+                                    <li>Editor für komplexere Transformationen</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+<!--
+            <section>
+                <h2>Probleme: GDAL</h2>
+                <ul>
+                     <li>SegFault bei Interlis 1 in v1.11.x</li>
+                     <li>GeoPackage-Support erst in 2.0 brauchbar</li>
+                     <li>Treiber-Qualität sehr unterschiedlich</li>
+                </ul>
+                <p>Beschluss 27.5.: Verwendet wird GDAL v1.10.1</p>
+            </section>
+-->
+            <section>
+                <h2>Weiterentwicklungsmöglichkeiten</h2>
+                <ul>
+                    <li>Weiterentwicklungsmöglichkeiten:
+                        <ul>
+                            <li>ODH als WFS-Server</li>
+                            <li>Ausbau der WebApp (z.B. Integration in CKAN)</li>
+                            <li>Komplexere Datenstrukturen, Subqueries in ODHQL</li>
+                        </ul>
+                    </li>
+                    <li>Open Source (Lizenz: MIT): <a href="https://github.com/hsr-ba-fs15-dat">github.com/hsr-ba-fs15-dat</a></li>
+                </ul>
+            </section>
+        </section>
+
+        <!-- ################################################################################ chuesler end -->
+
+        <!-- ################################################################################ rliebi start -->
+
+        <section>
+            <h1><a href="http://beta.opendatahub.ch/" target="_blank">Demo</a></h1>
+            <!-- rliebi demo trobdb? gleiche wie an tag davor -->
+        </section>
+
+        <!-- ################################################################################ rliebi end -->
+
+        <!-- ################################################################################ fscala start -->
+
+        <section>
+            <section>
+                <h1>Projekt</h1>
+            </section>
+
+            <section>
+                <h2>Vorgehensmodell &ndash; Scrum</h2>
+                <img src="lib/img/scrum.png"/>
+                <ul>
+                    <li>Iterativ, 2 Wochen</li>
+                    <li>Daily Standups um 10:00</li>
+                    <li>Continuous Integration &amp; Deliverables
+                    <li>Wöchentlicher &quot;Kundenkontakt&quot;</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Planung</h2>
+                <ul>
+                    <li>1. Woche: Kick-off</li>
+                    <li>Iterativ
+                        <ul>
+                            <li>Analyse</li>
+                            <li>Design</li>
+                            <li>Implementation</li>
+                        </ul>
+                    </li>
+                    <li>Feature-Freeze
+                        <ul>
+                            <li>1 Bugfixing-Sprint</li>
+                        </ul>
+                    </li>
+                    <li>Code-Freeze
+                        <ul>
+                            <li>1 Dokumentations-Sprint</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Planung &ndash; JIRA</h2>
+                <img src="lib/img/jira-agile.png"/>
+            </section>
+
+            <section>
+                <h2>Planung</h2>
+                <img src="lib/img/burndown.png"/>
+            </section>
+
+            <section>
+                <h2>Qualität &ndash; Reviews</h2>
+                <img style="height: 15em" src="lib/img/jira-workflow.png"/>
+            </section>
+
+            <section>
+                <h2>Qualität &ndash; Testing</h2>
+                <ul>
+                    <li>&gt; 300 Python Unit Tests</li>
+                    <li>Walkthrough als UI-Test</li>
+                    <li>Continuous Integration mittels Travis und Heroku</li>
+                    <li>Diverse Linting- &amp; Metrik-Checks</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Infrastruktur</h2>
+                <img style="background-color: white;" src="lib/img/devenv.png"/>
+            </section>
+
+            <section>
+                <h2>Stunden</h2>
+
+                <p>16.02.2015 &ndash; 12.06.2015</p>
+
+                <hr/>
+
+                <table style="float: left;">
+                    <tbody>
+                    <tr>
+                        <th>Soll</th>
+                        <th>960h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Ist</th>
+                        <th>1404.3h</th>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table style="float: right">
+                    <tbody>
+                    <tr>
+                        <th>Remo Liebi</th>
+                        <th>491.0h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Christoph Hüsler</th>
+                        <th>436.5h</th>
+                    </tr>
+
+                    <tr>
+                        <th>Fabio Scala</th>
+                        <th>476.8h</th>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+
+
+        <section>
+            <h1>Fragen?</h1>
+
+        </section>
+
+        <!-- ################################################################################ fscala end -->
+        
+    </div>
+</div>
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {src: 'socket.io/socket.io.js', async: true},
+            {src: 'plugin/notes-server/client.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
+</html>
