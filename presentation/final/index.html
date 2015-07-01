@@ -284,7 +284,7 @@
         <section>
             <section>
                 <h1>Implementation</h1>
-                <ul class="fragment">
+                <ul>
                     <li>Python 2.7</li>
                     <li>AngularJS</li>
                     <li>TypeScript</li>
@@ -294,7 +294,7 @@
 
             <section>
                 <h2>Architektur</h2>
-                <img class="fragment" style="background-color: white;" src="lib/img/odh-architecture.png"/>
+                <img style="background-color: white;" src="lib/img/odh-architecture.png"/>
                 <!-- fscala -->
             </section>
 
@@ -306,7 +306,7 @@
             <section>
                 <h2>Internes Format</h2>
                 <ul>
-                    <li class="fragment"><a href="http://www.numpy.org/">NumPy</a>
+                    <li><a href="http://www.numpy.org/">NumPy</a>
                         <ul>
                             <li>De-facto Standard Bibliothek für mehrdimensionale Matrizen und Arrays</li>
                         </ul>
@@ -324,8 +324,8 @@
 
             <section>
                 <h2>Parser &ndash; Daten einlesen</h2>
-                <img class="fragment" src="lib/img/parser.png"/>
-                <ul class="fragment">
+                <img src="lib/img/parser.png"/>
+                <ul>
                     <li>Nativ
                         <ul>
                             <li>(Geo)CSV, Excel, XML, (Geo)JSON, KML, ESRI Shapefile</li>
@@ -344,27 +344,27 @@
 
                 <p>OpenDataHub Query Language</p>
                 <ul>
-                    <li class="fragment">Subset von SQL (SELECT)</li>
+                    <li>Subset von SQL (SELECT)</li>
                 </ul>
             </section>
 
             <section>
                 <h2>Syntax Parsing</h2>
                 <ul>
-                    <li class="fragment">Parser basiert auf pyparsing
+                    <li>Parser basiert auf PyParsing
                         <ul>
-                            <li class="fragment">"Interne DSL", Code gleicht BNF</li>
+                            <li>"Interne DSL", Code gleicht BNF</li>
                         </ul>
                     </li>
                 </ul>
-                <img class="fragment" src="lib/img/odhql-ast-expression.png"/>
+                <img src="lib/img/odhql-ast-expression.png"/>
             </section>
 
             <section>
                 <h2>Interpreter</h2>
                 <ul>
                     <li>Performance durch Vektor-Operationen</li>
-                    <li>Kompakter, performanter Core</li>
+                    <li>Kompakter, performanter Kern</li>
                     <li>Funktionale Erweiterung durch ODHQL Funktionen</li>
                     <img src="lib/img/function.png"/>
                 </ul>
@@ -372,8 +372,8 @@
 
             <section>
                 <h2>Formatter &ndash; Daten konvertieren</h2>
-                <img class="fragment" src="lib/img/formatter.png"/>
-                <ul class="fragment">
+                <img src="lib/img/formatter.png"/>
+                <ul>
                     <li>Gegenstück zu Parser</li>
                     <li>Implementierte Formate analog Parser</li>
                 </ul>
@@ -386,7 +386,7 @@
                 </ul>
                 <img src="lib/img/ogr2ogr.png"/>
                 <ul>
-                    <li class="fragment">Besser: GDAL Python API</li>
+                    <li>Besser: GDAL Python API</li>
                 </ul>
             </section>
 
