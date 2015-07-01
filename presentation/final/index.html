@@ -93,37 +93,64 @@
             <section>
                 <h2>Motivation</h2>
                 <ul>
-                    <li class="fragment">Methodenfreiheit &#8594; unterschiedliche Software</li>
-                    <li class="fragment">Viele Kommunikationspartner</li>
-                    <li class="fragment">Unterschiedliche Schemata</li>
+                    <li>Methodenfreiheit &#8594; unterschiedliche Software</li>
+                    <li>Viele Kommunikationspartner</li>
+                    <li>Unterschiedliche Schemata</li>
                 </ul>
-                <p class="fragment">&#8594; Datenaustausch schwierig</p>
+                <p>&#8594; Datenaustausch schwierig</p>
             </section>
 
             <section>
-                <h2>Heute</h2>
-                <!-- wie wird es heute gelöst?-->
-                <ul>
-                    <li class="fragment">Zwischenmodell</li>
-                    <li class="fragment">Austausch wird mit jedem Partner neu implementiert</li>
-                    <li class="fragment">Schwierig für "Laufkundschaft"</li>
-                </ul>
-                <img src="lib/img/situation-current.png"/>
+                <h2>Aufgabenstellung</h2>
+                <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
+                <b>offen teilen</b>, <b>beziehen</b> und <b>konvertieren</b> lassen wobei sich die Beteiligten <b>nicht</b> um die 
+                <b>Formatkonversion</b> und <b>Schematransformation</b> kümmern müssen: Die Datenlieferanten liefern ihre Daten in
+                ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
+                die entsprechende Formatkonversion und Schematransformation existiert.</q>
             </section>
 
             <section>
-                <h2>Aufgabe</h2>
+                <h2>Aufgabenstellung</h2>
+                <img src="lib/img/conversion.png" />
+            </section>
+
+            <section>
+                <h2>Aufgabenstellung</h2>
                 <ul>
-                    <li class="fragment">dat
+                    <li>Vorhandene Lösungen, insbesondere dat
                         <ul>
-                            <li class="fragment">Untersuchen und Dokumentieren</li>
+                            <li>Untersuchen und Dokumentieren</li>
                         </ul>
                     </li>
-                    <li class="fragment">OpenDataHub
+                    <li>OpenDataHub
                         <ul>
-                            <li class="fragment">Datenaustausch</li>
-                            <li class="fragment">Schematransformation</li>
-                            <li class="fragment">Formatkonversion</li>
+                            <li>Datenaustausch</li>
+                            <li><b>Schematransformation</b></li>
+                            <li>Formatkonversion</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Use-Cases</h2>
+                <ul>
+                    <li>Postadressen
+                        <ul>
+                            <li>Schematransformation</li>
+                        </ul>
+                    </li>
+                    <li>Gebäudeadressen
+                        <ul>
+                            <li>Integration mehrerer Datenquellen</li>
+                            <li>Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus
+                                MOPublic (Basel)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>TROBDB: Verkehrshinderniss-Datenbank
+                        <ul>
+                            <li>Integration diverser Datenquellen</li>
                         </ul>
                     </li>
                 </ul>
@@ -137,121 +164,77 @@
             </section>
 
             <section>
-                <h2>Anforderungen</h2>
-                <q>[...] zentrales Portal (= "OpenDataHub") [...], über dieses sich Daten
-                offen teilen, beziehen und konvertieren lassen wobei sich die Beteiligten nicht um die 
-                Formatkonversion und Schematransformation kümmern müssen: Die Datenlieferanten liefern ihre Daten in
-                ihrem Format und Schema und die Nutzer beziehen es ihrerseits, wie sie wollen - vorausgesetzt,
-                die entsprechende Formatkonversion und Schematransformation existiert.</q>
-            </section>
-
-            <section>
-                <h2>Aufgabenstellung</h2>
-                <img src="lib/img/situation-target.png" />
-            </section>
-
-            <section>
-                <h2>Use-Cases</h2>
-                <ul>
-                    <li class="fragment">Postadressen
-                        <ul>
-                            <li class="fragment">Schematransformation</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Gebäudeadressen
-                        <ul>
-                            <li class="fragment">Integration mehrerer Datenquellen</li>
-                            <li class="fragment">Verknüpfen von Adressbuch mit dazugehörenden Gebäudeeingängen aus
-                                MOPublic (Basel)
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="fragment">TROBDB: Verkehrshinderniss-Datenbank
-                        <ul>
-                            <li class="fragment">Integration diverser Datenquellen</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>Existierende Lösungen</h2>
-            </section>
-
-            <section>
                 <h2>dat: Datenspeicherung</h2>
-                <q cite="http://dat-data.com" class="fragment">Dat is a version-controlled, decentralized data tool for
+                <q cite="http://dat-data.com">Dat is a version-controlled, decentralized data tool for
                     collaboration between data people and data systems.</q>
 
                 <p>&nbsp;</p>
                 <ul>
-                    <li class="fragment">Basiert auf node.js, LevelDB</li>
-                    <li class="fragment">Limitationen der Alpha-Version (6.9.6):
+                    <li>Basiert auf node.js, LevelDB</li>
+                    <li>Limitationen der Alpha-Version (6.9.6):
                         <ul>
-                            <li class="fragment">1 Tabelle pro Instanz</li>
-                            <li class="fragment">Schema-los</li>
-                            <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
+                            <li>1 Tabelle pro Instanz</li>
+                            <li>Schema-los</li>
+                            <li>One-Way Sync - kein Konfliktmanagement</li>
                         </ul>
                     </li>
                 </ul>
-                <p class="fragment">Status 24. Juni: 7.0.0-pre3 - soll oben beschriebene Probleme beheben</p>
+                <p>Status 24. Juni: 7.0.0-pre3 - soll oben beschriebene Probleme beheben</p>
             </section>
 
             <section>
                 <h2>CKAN: Datenaustausch</h2>
-                <q class="fragment" cite="http://ckan.org/">"CKAN is a powerful data management system that makes data
-                    accessible – by providing tools to streamline publishing, sharing, finding and using data."</q>
-                <img class="fragment" src="lib/img/datahub-io.png"/>
+                <q cite="http://ckan.org/">"CKAN is a powerful data management system that makes data
+                    accessible – by providing tools to streamline publishing, sharing, finding and using data."</q><br/>
+                <img style="height: 12em" src="lib/img/datahub-io.png"/>
             </section>
 
             <section>
                 <h2>CKAN: Datenaustausch</h2>
                 <ul>
-                    <li class="fragment">Reine data sharing platform</li>
-                    <li class="fragment">Keine Transformation - weder Schema noch Format</li>
-                    <li class="fragment">Sehr gute Metadaten-Verwaltung</li>
+                    <li>Reine data sharing platform</li>
+                    <li>Keine Transformation - weder Schema noch Format</li>
+                    <li>Sehr gute Metadaten-Verwaltung</li>
                 </ul>
-                <p class="fragment">Basis für opendata.admin.ch, datahub.io, opendatahub.it, ...</p>
-
-                <p class="fragment">Erst spät entdeckt</p>
+                <p>Basis für opendata.admin.ch, datahub.io, opendatahub.it, ...</p>
             </section>
 
             <section>
                 <h2>Yahoo! Pipes: Transformation</h2>
-                <q class="fragment" cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to
+                <q cite="https://pipes.yahoo.com/pipes/">Pipes is a powerful composition tool to
                     aggregate, manipulate, and mashup content from around the web.</q>
-                <img class="fragment" src="lib/img/yahoo-pipes.png"/>
+                <img  style="height: 13em" src="lib/img/yahoo-pipes.png"/>
             </section>
 
             <section>
                 <h2>Yahoo! Pipes: Transformation</h2>
                 <ul>
-                    <li class="fragment">Intuitives UI für Datenflüsse</li>
+                    <li>Intuitives UI für Datenflüsse</li>
                 </ul>
-                <p class="fragment">Discontinued (30.9.2015)</p>
+                <p>Discontinued (30.9.2015)</p>
             </section>
 
             <section>
                 <h2>Pentaho Kettle: Transformation</h2>
-                <q class="fragment" cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or
+                <q cite="http://community.pentaho.com/projects/data-integration/">Data Integration (or
                     Kettle) delivers powerful Extraction, Transformation, and Loading (ETL) capabilities, using a
                     groundbreaking, metadata-driven approach.</q>
-                <img class="fragment" src="lib/img/kettle-spoon-transformation.png"/>
+                <img style="height: 12em" src="lib/img/kettle-spoon-transformation.png"/>
             </section>
 
             <section>
                 <h2>Pentaho Kettle: Transformation</h2>
                 <ul>
-                    <li class="fragment">Desktop-basiertes ETL-Tool</li>
-                    <li class="fragment">Unterstützung für Geo-Daten mit GeoKettle</li>
+                    <li>Desktop-basiertes ETL-Tool</li>
+                    <li>Unterstützung für Geo-Daten mit GeoKettle</li>
                 </ul>
             </section>
 
             <section>
                 <h2>FME: Transformation</h2>
                 <ul>
-                    <li class="fragment">Kommerzielle Software zur Bearbeitung von Geo-Daten</li>
-                    <li class="fragment"><a href="http://info.geopol.ch/de/">info.geopol.ch</a> bietet Web-Frontend an
+                    <li>Kommerzielle Software zur Bearbeitung von Geo-Daten</li>
+                    <li><a href="http://info.geopol.ch/de/">info.geopol.ch</a> bietet Web-Frontend an
                     </li>
                 </ul>
             </section>
@@ -259,18 +242,18 @@
             <section>
                 <h2>Nicht-funkionale Anforderungen</h2>
                 <ul>
-                    <li class="fragment">Machbarkeitsstudie &#8594; Performance relevant, aber nicht oberste Priorität
-                    </li>
-                    <li class="fragment">Programmiersprache: Python</li>
-                    <li class="fragment">Deployment via WSGI</li>
-                    <li class="fragment">PostgreSQL oder SQLite, falls Datenbanken verwendet werden</li>
-                    <li class="fragment">Qualität: Unit-Tests, Sphinx-kompatible Doku-Kommentare, PEP-8</li>
+                    <li>Machbarkeitsstudie &#8594; Performance relevant, aber nicht oberste Priorität</li>
+                    <li>UI: "gängige Browser"</li>
+                    <li>Programmiersprache: Python</li>
+                    <li>Deployment via WSGI</li>
+                    <li>PostgreSQL oder SQLite, falls Datenbanken verwendet werden</li>
+                    <li>Qualität: Unit-Tests, Sphinx-kompatible Doku-Kommentare, PEP-8</li>
                 </ul>
             </section>
 
             <section>
                 <h2>Domain-Modell</h2>
-                <img class="fragment" src="lib/img/domain-model.png"/>
+                <img src="lib/img/domain-model.png"/>
             </section>
 
         </section>
@@ -471,41 +454,44 @@
             </section>
 
             <section>
-                <h2>Probleme: dat</h2>
+                <h2>OpenDataHub</h2>
                 <ul>
-                    <li class="fragment">Limitationen der Alpha-Version (6.9.6):
+                    <li>Webapplikation
                         <ul>
-                            <li class="fragment">1 Tabelle pro Instanz</li>
-                            <li class="fragment">Schemalos</li>
-                            <li class="fragment">One-Way Sync - kein Konfliktmanagement</li>
+                            <li>Daten anbieten, beziehen</li>
+                            <li>"Beliebige" Formate</li>
+                            <li>Transformationen
+                                <ul>
+                                    <li>Assistent für einfache Fälle, "get up and running"</li>
+                                    <li>Editor für komplexere Transformationen</li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-                    <li class="fragment">Transformationen nur Hooks und externen Tools</li>
-                    <li class="fragment">Beschluss 25.2.: dat wird nicht verwendet</li>
                 </ul>
             </section>
-
+<!--
             <section>
                 <h2>Probleme: GDAL</h2>
                 <ul>
-                     <li class="fragment">SegFault bei Interlis 1 in v1.11.x</li>
-                     <li class="fragment">GeoPackage-Support erst in 2.0 brauchbar</li>
-                     <li class="fragment">Treiber-Qualität sehr unterschiedlich</li>
+                     <li>SegFault bei Interlis 1 in v1.11.x</li>
+                     <li>GeoPackage-Support erst in 2.0 brauchbar</li>
+                     <li>Treiber-Qualität sehr unterschiedlich</li>
                 </ul>
-                <p class="fragment">Beschluss 27.5.: Verwendet wird GDAL v1.10.1</p>
+                <p>Beschluss 27.5.: Verwendet wird GDAL v1.10.1</p>
             </section>
-
+-->
             <section>
-                <h2>Ausblick</h2>
+                <h2>Weiterentwicklungsmöglichkeiten</h2>
                 <ul>
-                    <li class="fragment">Open Source (Lizenz: MIT): <a href="https://github.com/hsr-ba-fs15-dat">github.com/hsr-ba-fs15-dat</a></li>
-                    <li class="fragment">Weiterentwicklungsmöglichkeiten:
+                    <li>Weiterentwicklungsmöglichkeiten:
                         <ul>
                             <li>ODH als WFS-Server</li>
                             <li>Ausbau der WebApp (z.B. Integration in CKAN)</li>
                             <li>Komplexere Datenstrukturen, Subqueries in ODHQL</li>
                         </ul>
                     </li>
+                    <li>Open Source (Lizenz: MIT): <a href="https://github.com/hsr-ba-fs15-dat">github.com/hsr-ba-fs15-dat</a></li>
                 </ul>
             </section>
         </section>
